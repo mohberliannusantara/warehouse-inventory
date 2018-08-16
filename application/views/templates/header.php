@@ -35,28 +35,34 @@
     </div>
     <div class="sidebar-wrapper">
       <ul class="nav">
-        <li class="nav-item active  ">
-          <a class="nav-link" href="<?php echo site_url() ?>">
+        <li class="nav-item <?php echo ($this->uri->segment(1) == 'Beranda') ? 'active':''; ?>">
+          <a class="nav-link" href="<?php echo site_url('Beranda') ?>">
             <i class="material-icons">dashboard</i>
             <p>Beranda</p>
           </a>
         </li>
-        <li class="nav-item ">
-          <a class="nav-link" href="<?php echo site_url() ?>index.php/barang">
+        <li class="nav-item <?php echo ($this->uri->segment(1) == 'Barang') ? 'active':''; ?> ">
+          <a class="nav-link" href="<?php echo site_url('Barang')?>">
             <i class="material-icons">inventory</i>
             <p>Barang</p>
           </a>
         </li>
-        <li class="nav-item ">
-          <a class="nav-link" href="./tables.html">
-            <i class="material-icons">content_paste</i>
-            <p>Table List</p>
+        <li class="nav-item <?php echo ($this->uri->segment(1) == 'Kendaraan') ? 'active':''; ?> ">
+          <a class="nav-link" href="<?php echo site_url('Kendaraan')?>">
+            <i class="material-icons">local_shipping</i>
+            <p>Kendaraan</p>
           </a>
         </li>
-        <li class="nav-item ">
-          <a class="nav-link" href="./typography.html">
-            <i class="material-icons">library_books</i>
-            <p>Typography</p>
+        <li class="nav-item <?php echo ($this->uri->segment(1) == 'Property') ? 'active':''; ?> ">
+          <a class="nav-link" href="<?php echo site_url('Property')?>">
+            <i class="material-icons">home</i>
+            <p>Property</p>
+          </a>
+        </li>
+        <li class="nav-item <?php echo ($this->uri->segment(1) == 'User') ? 'active':''; ?> ">
+          <a class="nav-link" href="<?php echo site_url('User')?>">
+            <i class="material-icons">portrait</i>
+            <p>User</p>
           </a>
         </li>
   </ul>

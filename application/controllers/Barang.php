@@ -14,13 +14,9 @@ class Barang extends CI_Controller {
 
 	public function index()
 	{
- 		$data['total_barang']= $this->barang_model->get_total();
-		$data['barang'] = $this->barang_model->get_all();
-
+		
 		$this->load->view("templates/header");
-
-		$this->load->view('barang/index', $data);
-
+		$this->load->view('barang/index');
 		$this->load->view("templates/footer");
 	}
 
