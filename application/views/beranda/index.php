@@ -24,11 +24,11 @@
               <i class="material-icons">local_shipping</i>
             </div>
             <p class="card-category">Kendaraan</p>
-            <h3 class="card-title"><?php echo $total_barang; ?></h3>
+            <h3 class="card-title"><?php echo $total_kendaraan; ?></h3>
           </div>
           <div class="card-footer">
             <div class="stats">
-              <i class="material-icons">local_offer</i> Estimasi Asset Barang Rp. <h5><?php echo $total_barang; ?></h5>
+              <i class="material-icons">local_offer</i> Estimasi Asset Barang Rp. <h5><?php echo $total_harga_kendaraan[0]; ?></h5>
             </div>
           </div>
         </div>
@@ -40,11 +40,11 @@
               <i class="material-icons">home</i>
             </div>
             <p class="card-category">Property</p>
-            <h3 class="card-title"><?php echo $total_barang; ?></h3>
+            <h3 class="card-title"><?php echo $total_properti; ?></h3>
           </div>
           <div class="card-footer">
             <div class="stats">
-              <i class="material-icons">local_offer</i> Estimasi Asset Barang Rp. <h5><?php echo $total_barang; ?></h5>
+              <i class="material-icons">local_offer</i> Estimasi Asset Barang Rp. <h5><?php echo $total_harga_properti[0]; ?></h5>
             </div>
           </div>
         </div>

@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Property_model extends CI_Model
+class Properti_model extends CI_Model
 {
 
   function __construct()
