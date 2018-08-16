@@ -26,6 +26,8 @@ class Barang_model extends CI_Model
     return $query->result();
   }
 
+
+
 }
 
 

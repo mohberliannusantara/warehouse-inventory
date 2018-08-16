@@ -18,6 +18,13 @@ class Properti_model extends CI_Model
   {
     return $this->db->get('properti');
   }
+
+  public function get_total_harga()
+  {
+    $this->db->select_sum('harga');
+    $query = $this->db->get('properti');
+    return $query->result();
+  }
 }
 
 
