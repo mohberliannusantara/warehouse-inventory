@@ -12,7 +12,7 @@
           </div>
           <div class="card-footer">
             <div class="stats">
-              <i class="material-icons">local_offer</i> Estimasi Asset Barang Rp. <h5><?php echo $total_harga_barang[0]; ?></h5>
+              <i class="material-icons">local_offer</i> Estimasi Asset Barang Rp. <h5><?php echo $total_harga_barang; ?></h5>
             </div>
           </div>
         </div>
