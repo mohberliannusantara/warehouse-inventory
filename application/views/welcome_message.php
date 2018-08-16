@@ -1,89 +1,146 @@
-<?php
-defined('BASEPATH') OR exit('No direct script access allowed');
-?><!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
+
 <head>
-	<meta charset="utf-8">
-	<title>Welcome to CodeIgniter</title>
-
-	<style type="text/css">
-
-	::selection { background-color: #E13300; color: white; }
-	::-moz-selection { background-color: #E13300; color: white; }
-
-	body {
-		background-color: #fff;
-		margin: 40px;
-		font: 13px/20px normal Helvetica, Arial, sans-serif;
-		color: #4F5155;
-	}
-
-	a {
-		color: #003399;
-		background-color: transparent;
-		font-weight: normal;
-	}
-
-	h1 {
-		color: #444;
-		background-color: transparent;
-		border-bottom: 1px solid #D0D0D0;
-		font-size: 19px;
-		font-weight: normal;
-		margin: 0 0 14px 0;
-		padding: 14px 15px 10px 15px;
-	}
-
-	code {
-		font-family: Consolas, Monaco, Courier New, Courier, monospace;
-		font-size: 12px;
-		background-color: #f9f9f9;
-		border: 1px solid #D0D0D0;
-		color: #002166;
-		display: block;
-		margin: 14px 0 14px 0;
-		padding: 12px 10px 12px 10px;
-	}
-
-	#body {
-		margin: 0 15px 0 15px;
-	}
-
-	p.footer {
-		text-align: right;
-		font-size: 11px;
-		border-top: 1px solid #D0D0D0;
-		line-height: 32px;
-		padding: 0 10px 0 10px;
-		margin: 20px 0 0 0;
-	}
-
-	#container {
-		margin: 10px;
-		border: 1px solid #D0D0D0;
-		box-shadow: 0 0 8px #D0D0D0;
-	}
-	</style>
+	<meta charset="utf-8" />
+	<link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
+	<link rel="icon" type="image/png" href="<?php echo base_url('assets/img/favicon.png'); ?>">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	<title>
+		Warehouse Inventory - PT. PLN Persero
+	</title>
+	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
+	<!--     Fonts and icons     -->
+	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+	<!-- CSS Files -->
+	<link href="<?php echo base_url('assets/css/material-dashboard.css?v=2.1.0'); ?>" rel="stylesheet" />
+	<!-- CSS Just for demo purpose, don't include it in your project -->
+	<link href="<?php echo base_url('assets/demo/demo.css'); ?>" rel="stylesheet" />
 </head>
-<body>
 
-<div id="container">
-	<h1>Welcome to CodeIgniter!</h1>
-
-	<div id="body">
-		<p>The page you are looking at is being generated dynamically by CodeIgniter.</p>
-
-		<p>If you would like to edit this page you'll find it located at:</p>
-		<code>application/views/welcome_message.php</code>
-
-		<p>The corresponding controller for this page is found at:</p>
-		<code>application/controllers/Welcome.php</code>
-
-		<p>If you are exploring CodeIgniter for the very first time, you should start by reading the <a href="user_guide/">User Guide</a>.</p>
+<body class="offline-doc">
+	<!-- Navbar -->
+	<nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
+		<div class="container-fluid">
+			<div class="navbar-wrapper">
+				<a class="navbar-brand" href="#Inventaris">Inventaris Dashboard</a>
+			</div>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="navbar-toggler-icon icon-bar"></span>
+				<span class="navbar-toggler-icon icon-bar"></span>
+				<span class="navbar-toggler-icon icon-bar"></span>
+			</button>
+			<div class="collapse navbar-collapse justify-content-end">
+				<ul class="navbar-nav">
+					<li class="nav-item">
+						<a class="nav-link" href="http://www.pln.co.id/" target="_blank">
+							Tentang PLN
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<!-- End Navbar -->
+	<div class="page-header clear-filter">
+		<div class="page-header-image" style="background-image: url(<?php echo base_url('assets/img/background.jpg'); ?>)"></div>
+		<div class="content-center">
+			<div class="col-md-8 ml-auto mr-auto">
+				<div class="brand">
+					<h1 class="title">Monitoring Aset</h1>
+					<h3 class="description">Memantau aset perusahaan dengan lebih mudah</h3>
+					<div class="btn-group">
+						<button class="btn btn-warning btn-lg dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							Pilih Rayon Anda
+						</button>
+						<div class="dropdown-menu">
+							<?php foreach ($rayon as $key => $value): ?>
+								<a class="dropdown-item" data-toggle="modal" data-target="#exampleModal"><?php echo $value->nama; ?></a>
+							<?php endforeach; ?>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h3 class="modal-title" id="exampleModalLabel">Masuk</h3>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<form>
+						<div class="form-group">
+							<label for="" class="label">Username</label>
+							<input type="text" class="form-control" id="recipient-name">
+						</div>
+						<div class="form-group">
+							<label for="" class="label">Password</label>
+							<input type="password" class="form-control" id="recipient-name">
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
+					<button type="button" class="btn btn-warning">Masuk</button>
+				</div>
+			</div>
+		</div>
 	</div>
 
-	<p class="footer">Page rendered in <strong>{elapsed_time}</strong> seconds. <?php echo  (ENVIRONMENT === 'development') ?  'CodeIgniter Version <strong>' . CI_VERSION . '</strong>' : '' ?></p>
-</div>
-
+	<footer class="footer">
+		<div class="container-fluid">
+			<nav class="float-left">
+				<ul>
+					<li>
+						<a href="https://github.com/mohberliannusantara/warehouse-inventory">
+							Licenses
+						</a>
+					</li>
+				</ul>
+			</nav>
+			<div class="copyright float-right">
+				&copy;
+				<script>
+				document.write(new Date().getFullYear())
+				</script>, made with <i class="material-icons">favorite</i> by
+				<a href="https://www.creative-tim.com" target="_blank" class="text-warning">Libo Tim</a> for PT. PLN Persero
+			</div>
+		</div>
+	</footer>
+	<script type="text/javascript">
+	function openModal(id) {
+		$.ajax({
+			url:"{{ base_url('admin/pengguna/get/') }}"+id,
+			method: 'post',
+			data:null
+		}).done(function(data) {
+			$('#modal-content').html(data);
+			$('#exampleModalCenter').modal('show');
+		});
+	}
+</script>
+<!--   Core JS Files   -->
+<script src="<?php echo base_url('assets/js/core/jquery.min.js') ?>" type="text/javascript"></script>
+<script src="<?php echo base_url('/assets/js/core/popper.min.js') ?>" type="text/javascript"></script>
+<script src="<?php echo base_url('assets/js/core/bootstrap-material-design.min.js') ?>" type="text/javascript"></script>
+<script src="<?php echo base_url('assets/js/plugins/perfect-scrollbar.jquery.min.js') ?>"></script>
+<!--  Google Maps Plugin    -->
+<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
+<!-- Chartist JS -->
+<script src="<?php echo base_url('assets/js/plugins/chartist.min.js') ?>"></script>
+<!--  Notifications Plugin    -->
+<script src="<?php echo base_url('assets/js/plugins/bootstrap-notify.js') ?>"></script>
+<!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
+<script src="<?php echo base_url('assets/js/material-dashboard.min.js?v=2.1.0') ?>" type="text/javascript"></script>
+<!-- Material Dashboard DEMO methods, don't include it in your project! -->
+<script src="<?php echo base_url('assets/demo/demo.js') ?>"></script>
 </body>
+
 </html>
