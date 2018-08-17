@@ -16,14 +16,20 @@ class Barang_model extends CI_Model
 
   public function get()
   {
-    return $this->db->get('barang');
+    $this->db->order_by('barang.id_barang', 'DESC');
+
+    $this->db->join('kondisi', 'kondisi.id_kondisi = barang.id_kondisi');
+
+    $this->db->join('jenis_barang', 'jenis_barang.id_jenis_barang = barang.id_jenis_barang');
+
+    $query = $this->db->get('barang');
+
+    return $query->result();
   }
 
-  public function get_total_harga()
+  public function create_barang($data)
   {
-    $this->db->select_sum('harga');
-    $query = $this->db->get('barang');
-    return $query->result();
+      return $this->db->insert('barang', $data);
   }
 
 

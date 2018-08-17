@@ -58,114 +58,26 @@
                   </th>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td>
-                      1
-                    </td>
-                    <td>
-                      Dakota Rice
-                    </td>
-                    <td>
-                      Oud-Turnhout
-                    </td>
-                    <td class="text-primary">
-                      $36,738
-                    </td>
-                    <td>
-                      <button type="button" class="btn btn-sm btn-warning">Ubah</button>
-                      <button type="button" class="btn btn-sm btn-danger">Hapus</button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      2
-                    </td>
-                    <td>
-                      Curaçao
-                    </td>
-                    <td>
-                      Sinaai-Waas
-                    </td>
-                    <td class="text-primary">
-                      $23,789
-                    </td>
-                    <td>
-                      <button type="button" class="btn btn-sm btn-warning">Ubah</button>
-                      <button type="button" class="btn btn-sm btn-danger">Hapus</button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      3
-                    </td>
-                    <td>
-                      Netherlands
-                    </td>
-                    <td>
-                      Baileux
-                    </td>
-                    <td class="text-primary">
-                      $56,142
-                    </td>
-                    <td>
-                      <button type="button" class="btn btn-sm btn-warning">Ubah</button>
-                      <button type="button" class="btn btn-sm btn-danger">Hapus</button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      4
-                    </td>
-                    <td>
-                      Korea, South
-                    </td>
-                    <td>
-                      Overland Park
-                    </td>
-                    <td class="text-primary">
-                      $38,735
-                    </td>
-                    <td>
-                      <button type="button" class="btn btn-sm btn-warning">Ubah</button>
-                      <button type="button" class="btn btn-sm btn-danger">Hapus</button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      5
-                    </td>
-                    <td>
-                      Malawi
-                    </td>
-                    <td>
-                      Feldkirchen in Kärnten
-                    </td>
-                    <td class="text-primary">
-                      $63,542
-                    </td>
-                    <td>
-                      <button type="button" class="btn btn-sm btn-warning">Ubah</button>
-                      <button type="button" class="btn btn-sm btn-danger">Hapus</button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      6
-                    </td>
-                    <td>
-                      Chile
-                    </td>
-                    <td>
-                      Gloucester
-                    </td>
-                    <td class="text-primary">
-                      $78,615
-                    </td>
-                    <td>
-                      <button type="button" class="btn btn-sm btn-warning">Ubah</button>
-                      <button type="button" class="btn btn-sm btn-danger">Hapus</button>
-                    </td>
-                  </tr>
+                  <?php foreach ($barang as $key => $value): ?>
+                    <tr>
+                      <td>
+                        <?php echo $value->id_barang; ?>
+                      </td>
+                      <td>
+                        <?php echo $value->nama_barang; ?>
+                      </td>
+                      <td>
+                        <?php echo $value->nama_kondisi; ?>
+                      </td>
+                      <td class="text-primary">
+                        Rp. <?php echo $value->harga; ?>
+                      </td>
+                      <td>
+                        <button type="button" class="btn btn-sm btn-warning">Ubah</button>
+                        <button type="button" class="btn btn-sm btn-danger">Hapus</button>
+                      </td>
+                    </tr>
+                  <?php endforeach; ?>
                 </tbody>
               </table>
             </div>

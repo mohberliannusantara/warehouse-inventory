@@ -28,7 +28,7 @@
           </div>
           <div class="card-footer">
             <div class="stats">
-              <i class="material-icons">local_offer</i> Estimasi Asset Barang Rp. <h5><?php echo $total_harga_kendaraan[0]; ?></h5>
+              <i class="material-icons">local_offer</i> Estimasi Asset Barang Rp. <h5><?php echo $total_harga_kendaraan; ?></h5>
             </div>
           </div>
         </div>
@@ -44,7 +44,7 @@
           </div>
           <div class="card-footer">
             <div class="stats">
-              <i class="material-icons">local_offer</i> Estimasi Asset Barang Rp. <h5><?php echo $total_harga_properti[0]; ?></h5>
+              <i class="material-icons">local_offer</i> Estimasi Asset Barang Rp. <h5><?php echo $total_harga_properti ?></h5>
             </div>
           </div>
         </div>
