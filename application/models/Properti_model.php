@@ -21,9 +21,9 @@ class Properti_model extends CI_Model
 
   public function get_total_harga()
   {
-    $this->db->select_sum('harga');
-    $query = $this->db->get('properti');
-    return $query->result();
+    $this->db->select('SUM(harga) as total');
+    $this->db->from('properti');
+    return $this->db->get()->row()->total;
   }
 }
 

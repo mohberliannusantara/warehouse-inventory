@@ -74,22 +74,22 @@
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
+				<?php echo form_open('Login/login')?>
 				<div class="modal-body">
-					<form>
-						<div class="form-group">
-							<label for="" class="label">Username</label>
-							<input type="text" class="form-control" id="recipient-name">
-						</div>
-						<div class="form-group">
-							<label for="" class="label">Password</label>
-							<input type="password" class="form-control" id="recipient-name">
-						</div>
-					</form>
+					<div class="form-group">
+						<label for="" class="label">Username</label>
+						<input type="text" name="username" class="form-control" id="recipient-name">
+					</div>
+					<div class="form-group">
+						<label for="" class="label">Password</label>
+						<input type="password" name="password" class="form-control" id="recipient-name">
+					</div>
 				</div>
 				<div class="modal-footer">
 					<!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
-					<button type="button" class="btn btn-warning">Masuk</button>
+					<button type="submit" class="btn btn-warning">Masuk</button>
 				</div>
+				<?php echo form_close()?>
 			</div>
 		</div>
 	</div>
@@ -108,39 +108,39 @@
 			<div class="copyright float-right">
 				&copy;
 				<script>
-				document.write(new Date().getFullYear())
+					document.write(new Date().getFullYear())
 				</script>, made with <i class="material-icons">favorite</i> by
 				<a href="https://www.creative-tim.com" target="_blank" class="text-warning">Libo Tim</a> for PT. PLN Persero
 			</div>
 		</div>
 	</footer>
 	<script type="text/javascript">
-	function openModal(id) {
-		$.ajax({
-			url:"{{ base_url('admin/pengguna/get/') }}"+id,
-			method: 'post',
-			data:null
-		}).done(function(data) {
-			$('#modal-content').html(data);
-			$('#exampleModalCenter').modal('show');
-		});
-	}
-</script>
-<!--   Core JS Files   -->
-<script src="<?php echo base_url('assets/js/core/jquery.min.js') ?>" type="text/javascript"></script>
-<script src="<?php echo base_url('/assets/js/core/popper.min.js') ?>" type="text/javascript"></script>
-<script src="<?php echo base_url('assets/js/core/bootstrap-material-design.min.js') ?>" type="text/javascript"></script>
-<script src="<?php echo base_url('assets/js/plugins/perfect-scrollbar.jquery.min.js') ?>"></script>
-<!--  Google Maps Plugin    -->
-<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
-<!-- Chartist JS -->
-<script src="<?php echo base_url('assets/js/plugins/chartist.min.js') ?>"></script>
-<!--  Notifications Plugin    -->
-<script src="<?php echo base_url('assets/js/plugins/bootstrap-notify.js') ?>"></script>
-<!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
-<script src="<?php echo base_url('assets/js/material-dashboard.min.js?v=2.1.0') ?>" type="text/javascript"></script>
-<!-- Material Dashboard DEMO methods, don't include it in your project! -->
-<script src="<?php echo base_url('assets/demo/demo.js') ?>"></script>
+		function openModal(id) {
+			$.ajax({
+				url:"{{ base_url('admin/pengguna/get/') }}"+id,
+				method: 'post',
+				data:null
+			}).done(function(data) {
+				$('#modal-content').html(data);
+				$('#exampleModalCenter').modal('show');
+			});
+		}
+	</script>
+	<!--   Core JS Files   -->
+	<script src="<?php echo base_url('assets/js/core/jquery.min.js') ?>" type="text/javascript"></script>
+	<script src="<?php echo base_url('/assets/js/core/popper.min.js') ?>" type="text/javascript"></script>
+	<script src="<?php echo base_url('assets/js/core/bootstrap-material-design.min.js') ?>" type="text/javascript"></script>
+	<script src="<?php echo base_url('assets/js/plugins/perfect-scrollbar.jquery.min.js') ?>"></script>
+	<!--  Google Maps Plugin    -->
+	<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
+	<!-- Chartist JS -->
+	<script src="<?php echo base_url('assets/js/plugins/chartist.min.js') ?>"></script>
+	<!--  Notifications Plugin    -->
+	<script src="<?php echo base_url('assets/js/plugins/bootstrap-notify.js') ?>"></script>
+	<!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
+	<script src="<?php echo base_url('assets/js/material-dashboard.min.js?v=2.1.0') ?>" type="text/javascript"></script>
+	<!-- Material Dashboard DEMO methods, don't include it in your project! -->
+	<script src="<?php echo base_url('assets/demo/demo.js') ?>"></script>
 </body>
 
 </html>

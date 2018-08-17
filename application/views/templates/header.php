@@ -61,7 +61,7 @@
         </li>
         <li class="nav-item <?php echo ($this->uri->segment(1) == 'User') ? 'active':''; ?> ">
           <a class="nav-link" href="<?php echo site_url('User')?>">
-            <i class="material-icons">portrait</i>
+            <i class="material-icons">person</i>
             <p>User</p>
           </a>
         </li>
@@ -98,7 +98,7 @@
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
               <a class="dropdown-item" href="#">Profil</a>
-              <a class="dropdown-item" href="#">Logout</a>
+              <a class="dropdown-item" href="<?php echo base_url('Login/logout')?>">Logout</a>
             </div>
           </li>
         </ul>
