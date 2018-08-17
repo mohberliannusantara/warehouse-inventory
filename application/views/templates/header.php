@@ -61,7 +61,7 @@
         </li>
         <li class="nav-item <?php echo ($this->uri->segment(1) == 'User') ? 'active':''; ?> ">
           <a class="nav-link" href="<?php echo site_url('User')?>">
-            <i class="material-icons">portrait</i>
+            <i class="material-icons">person</i>
             <p>User</p>
           </a>
         </li>
