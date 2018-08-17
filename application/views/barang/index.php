@@ -12,7 +12,8 @@
               <p class="card-description">
                 Menambahkan barang kedalam daftar dengan memasukkan informasi secara detail tentang barang tersebut
               </p>
-              <a href="#pablo" class="btn btn-info btn-round">Tambah</a>
+              <!-- <a href="" class="btn btn-info btn-round">Tambah</a> -->
+              <?php echo anchor('barang/create', 'Tambah', array('class' => 'btn btn-info btn-round')); ?>
             </div>
           </div>
         </div>
@@ -70,7 +71,7 @@
                         <?php echo $value->nama_kondisi; ?>
                       </td>
                       <td class="text-primary">
-                        Rp. <?php echo $value->harga; ?>
+                        Rp. <?php echo number_format($value->harga); ?>
                       </td>
                       <td>
                         <button type="button" class="btn btn-sm btn-warning">Ubah</button>
