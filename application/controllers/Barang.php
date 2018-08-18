@@ -23,6 +23,7 @@ class Barang extends CI_Controller {
 	public function create()
 	{
 		$data['page_title'] = 'Tambah Barang';
+		$data['page_content'] = 'Tambahkan barang kedalam daftar dengan informasi yang lengkap';
 
 		$this->load->helper('form');
 		$this->load->library('form_validation');
@@ -31,21 +32,21 @@ class Barang extends CI_Controller {
 		$data['kondisi'] = $this->kondisi_model->get();
 
 		// validasi input
-		$this->form_validation->set_rules('nama_barang', 'Nama_barang', 'required|is_unique[blogs.post_title]',
+		$this->form_validation->set_rules('nama_barang', 'Nama_barang', 'required',
 		array(
 			'required' 		=> 'Masukkan nama barang.',
 		));
 
-		$this->form_validation->set_rules('text', 'Konten', 'required|min_length[8]',
+		$this->form_validation->set_rules('harga', 'Harga', 'required',
 		array(
-			'required' 		=> 'Silahkan %s isi dulu gan.',
-			'min_length' 	=> 'Konten %s kurang panjang gan.',
+			'required' 		=> 'Masukkan estimasi harga barang.',
 		));
-		// $this->validate($this->input->post(), [
-		// 	'username' => 'required|string|unique:admin',
-		// 	'password' => 'required|string|confirmed',
-		// 	'id_level' => 'required'
-		// ]);
+
+		$this->form_validation->set_rules('keterangan', 'Keterangan', 'required|min_length[8]',
+		array(
+			'required' 		=> 'Masukkan keterangan barang.',
+			'min_length' 	=> 'Lengkapi detail keterangan barang.',
+		));
 
 		if ($this->form_validation->run() === FALSE)
 		{
@@ -73,7 +74,7 @@ class Barang extends CI_Controller {
 					$post_image = '';
 
 					$this->load->view('templates/header');
-					$this->load->view('blogs/blog_create', $data);
+					$this->load->view('barang/create', $data);
 					$this->load->view('templates/footer');
 
 				} else { //jika berhasil upload
@@ -88,26 +89,33 @@ class Barang extends CI_Controller {
 
 			}
 
-			$slug = url_title($this->input->post('title'), 'dash', TRUE);
-
 			$post_data = array(
-				'fk_cat_id' => $this->input->post('cat_id'),
-				'post_title' => $this->input->post('title'),
-				'post_date' => date("Y-m-d H:i:s"),
-				'post_slug' => $slug,
-				'post_content' => $this->input->post('text'),
-				'post_thumbnail' => $post_image,
-				'date_created' => date("Y-m-d H:i:s"),
+				'nama_barang' => $this->input->post('nama_barang'),
+				'harga' => $this->input->post('harga'),
+				'id_jenis_barang' => $this->input->post('id_jenis_barang'),
+				'id_kondisi' => $this->input->post('id_kondisi'),
+				'keterangan' => $this->input->post('keterangan'),
+				'tanggal' => date("Y-m-d H:i:s"),
+				'gambar' => $post_image,
 			);
 
 			if( empty($data['upload_error']) ) {
-				$this->blog_model->create($post_data);
+				$this->barang_model->create($post_data);
 
 				$this->load->view('templates/header');
-				$this->load->view('blogs/blog_success', $data);
+				$this->load->view('beranda', $data);
 				$this->load->view('templates/footer');
 			}
 		}
 	}
 
+	public function move()
+	{
+		$data['page_title'] = 'Pindah Barang';
+		$data['page_content'] = 'Pindahkan barang dan memberi detail keterangan barang';
+
+		$this->load->view("templates/header");
+		$this->load->view('barang/edit', $data);
+		$this->load->view("templates/footer");
+	}
 }

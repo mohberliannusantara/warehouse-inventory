@@ -12,14 +12,13 @@
               <p class="card-description">
                 Menambahkan barang kedalam daftar dengan memasukkan informasi secara detail tentang barang tersebut
               </p>
-              <!-- <a href="" class="btn btn-info btn-round">Tambah</a> -->
-              <?php echo anchor('barang/create', 'Tambah', array('class' => 'btn btn-info btn-round')); ?>
+              <?php echo anchor('Barang/create', 'Tambah', array('class' => 'btn btn-info btn-round')); ?>
             </div>
           </div>
         </div>
         <div class="row">
           <div class="card card-profile">
-            <div class="card-header card-header-warning">
+            <div class="card-header card-header-danger">
               <h4 class="card-title">Pindah Barang</h4>
             </div>
             <div class="card-body">
@@ -27,21 +26,21 @@
               <p class="card-description">
                 Memindahkan barang dengan memberikan keterangan tentang kemana barang akan dipindahkan
               </p>
-              <a href="#pablo" class="btn btn-warning btn-round">Pindah</a>
+              <?php echo anchor('Barang/move', 'Pindah', array('class' => 'btn btn-danger btn-round')); ?>
             </div>
           </div>
         </div>
       </div>
       <div class="col-md-8">
         <div class="card">
-          <div class="card-header card-header-primary">
-            <h4 class="card-title ">Daftar Barang</h4>
+          <div class="card-header card-header-warning">
+            <h4 class="card-title">Daftar Barang</h4>
             <p class="card-category"> menampilakan daftar seluruh barang yang tersedia</p>
           </div>
           <div class="card-body">
             <div class="table-responsive">
               <table class="table">
-                <thead class=" text-primary">
+                <thead class="text-warning">
                   <th>
                     ID
                   </th>

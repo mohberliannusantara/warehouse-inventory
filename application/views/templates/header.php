@@ -10,7 +10,7 @@
   <title>
     Warehouse-Inventori | PT. PLN Persero
   </title>
-  <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
+  <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, Pengguna-scalable=0, shrink-to-fit=no' name='viewport' />
   <!--     Fonts and icons     -->
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
@@ -53,16 +53,16 @@
             <p>Kendaraan</p>
           </a>
         </li>
-        <li class="nav-item <?php echo ($this->uri->segment(1) == 'Property') ? 'active':''; ?> ">
-          <a class="nav-link" href="<?php echo site_url('Property')?>">
+        <li class="nav-item <?php echo ($this->uri->segment(1) == 'Properti') ? 'active':''; ?> ">
+          <a class="nav-link" href="<?php echo site_url('Properti')?>">
             <i class="material-icons">home</i>
             <p>Property</p>
           </a>
         </li>
-        <li class="nav-item <?php echo ($this->uri->segment(1) == 'User') ? 'active':''; ?> ">
-          <a class="nav-link" href="<?php echo site_url('User')?>">
+        <li class="nav-item <?php echo ($this->uri->segment(1) == 'Pengguna') ? 'active':''; ?> ">
+          <a class="nav-link" href="<?php echo site_url('Pengguna')?>">
             <i class="material-icons">person</i>
-            <p>User</p>
+            <p>Pengguna</p>
           </a>
         </li>
   </ul>
@@ -97,7 +97,7 @@
               </p>
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-              <a class="dropdown-item" href="#">Profil</a>
+              <a class="dropdown-item" href="<?php echo base_url('Pengguna/')?>">Profil</a>
               <a class="dropdown-item" href="<?php echo base_url('Login/logout')?>">Logout</a>
             </div>
           </li>

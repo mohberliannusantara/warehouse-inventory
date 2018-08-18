@@ -3,14 +3,14 @@
     <div class="row">
       <div class="col-md-12">
         <div class="card">
-          <div class="card-header card-header-info">
+          <div class="card-header card-header-danger">
             <h4 class="card-title "><?php echo $page_title; ?></h4>
-            <p class="card-category"> Tambahkan barang kedalam daftar dengan informasi yang lengkap</p>
+            <p class="card-category"><?php echo $page_content; ?></p>
           </div>
           <div class="card-body">
             <form action="<?php base_url('Barang/create') ?>" method="post" enctype="multipart/form-data">
               <div class="form-group">
-                <label for="nama_barang">Nama Barang</label>
+                <label for="nama_barang" >Nama Barang</label>
                 <input type="text" class="form-control" name="nama_barang" value="<?php echo set_value('nama_barang') ?>" required autofocus>
                 <div class="invalid-feedback">Masukkan nama barang.</div>
               </div>
@@ -46,7 +46,7 @@
               </div>
 
               <div class="form-group">
-                <label for="harga">Harga</label>
+                <label for="harga" >Harga</label>
                 <input type="number" min="1000" class="form-control" name="harga" value="<?php echo set_value('harga') ?>" required >
                 <div class="invalid-feedback">Masukkan Harga barang.</div>
               </div>
@@ -65,7 +65,7 @@
                 <span class="file-custom"></span>
               </label>
               <div class="form-group">
-                <input class="btn btn-info" type="submit" value="Simpan">
+                <input class="btn btn-danger" type="submit" value="Pindah">
               </div>
             </form>
           </div>
