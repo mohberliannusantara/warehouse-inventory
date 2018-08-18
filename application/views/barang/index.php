@@ -59,7 +59,7 @@
                   </th>
                 </thead>
                 <tbody>
-                  <?php foreach ($barang as $key => $value): ?>
+                  <?php foreach ($barang as $value): ?>
                     <tr>
                       <td>
                         <?php echo $value->id_barang; ?>
@@ -68,7 +68,7 @@
                         <?php echo $value->nama_barang; ?>
                       </td>
                       <td>
-                        <?php echo $value->nama_kondisi; ?>
+                        <?php echo $value->kondisi; ?>
                       </td>
                       <td class="text-primary">
                         Rp. <?php echo number_format($value->harga); ?>
