@@ -16,7 +16,7 @@ class Barang_model extends CI_Model
 
   public function get()
   {
-    $this->db->select('barang.id_barang, barang.nama as nama_barang, kondisi.nama as kondisi, barang.harga');
+    $this->db->select('barang.id_barang, barang.nama_barang as nama_barang, kondisi.nama_kondisi as kondisi, barang.harga');
     $this->db->from('barang');
     $this->db->join('kondisi', 'barang.id_kondisi = kondisi.id_kondisi');
     $this->db->order_by('barang.id_barang', 'DESC');
