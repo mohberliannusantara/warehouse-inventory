@@ -8,10 +8,11 @@
             <p class="card-category"> Tambahkan barang kedalam daftar dengan informasi yang lengkap</p>
           </div>
           <div class="card-body">
-            <form action="{{ base_url('barang/store') }}" method="post" enctype="multipart/form-data">
+            <?php echo validation_errors(); ?>
+              <?php echo form_open_multipart('Barang/create') ?>
               <div class="form-group">
                 <label for="title" >Nama Barang</label>
-                <input type="text" class="form-control" name="nama_barang" value="<?php echo set_value('nama_barang') ?>" required>
+                <input type="text" class="form-control" name="nama_barang" value="<?php //echo set_value('nama_barang') ?>">
                 <div class="invalid-feedback">Masukkan nama barang.</div>
               </div>
 
@@ -22,8 +23,8 @@
                     <select class="custom-select" name="jenis_barang">
                       <option selected value="">Pilih Jenis Barang</option>
                       <?php foreach ($jenis_barang as $row): ?>
-                        <option value="<?php $row->id_jenis_barang ?>">
-                          <?php echo $row->nama_jenis_barang; ?>
+                        <option value="<?php echo $row->id_jenis_barang ?>">
+                          <?php echo $row->nama; ?>
                         </option>
                       <?php endforeach; ?>
                     </select>
@@ -38,8 +39,8 @@
                     <select class="custom-select" name="kondisi">
                       <option selected value="">Pilih Kondisi Barang</option>
                       <?php foreach ($kondisi as $row): ?>
-                        <option value="<?php $row->id_kondisi ?>">
-                          <?php echo $row->nama_kondisi; ?>
+                        <option value="<?php echo $row->id_kondisi ?>">
+                          <?php echo $row->nama; ?>
                         </option>
                       <?php endforeach; ?>
                     </select>
@@ -49,13 +50,13 @@
 
               <div class="form-group">
                 <label for="harga" >Harga</label>
-                <input type="text" class="form-control" name="harga" value="<?php echo set_value('harga') ?>" required>
+                <input class="form-control number" name="harga" value="<?php //echo set_value('harga') ?>">
                 <div class="invalid-feedback">Masukkan Harga barang.</div>
               </div>
 
               <div class="form-group">
                 <label for="keterangan">Keterangan</label>
-                <textarea class="form-control" name="text" rows="3" required><?php echo set_value('keterangan') ?></textarea>
+                <textarea class="form-control" name="keterangan" rows="3"><?php //echo set_value('keterangan') ?></textarea>
                 <div class="invalid-feedback">Isi keterangan barang</div>
               </div>
 
@@ -70,7 +71,7 @@
               <div class="form-group">
                 <input class="btn btn-info" type="submit" value="Simpan">
               </div>
-            </form>
+            <?php echo form_close()?>
           </div>
         </div>
       </div>

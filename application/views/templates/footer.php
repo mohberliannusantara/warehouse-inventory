@@ -12,7 +12,7 @@
 		<div class="copyright float-right">
 			&copy;
 			<script>
-			document.write(new Date().getFullYear())
+				document.write(new Date().getFullYear())
 			</script>, made with <i class="material-icons">favorite</i> by
 			<a href="https://www.creative-tim.com" target="_blank">Creative Tim</a> for a better web.
 		</div>
@@ -34,6 +34,24 @@
 <script src="<?php echo base_url('assets/js/plugins/bootstrap-notify.js') ?>"></script>
 <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
 <script src="<?php echo base_url('assets/js/material-dashboard.min.js') ?>" type="text/javascript"></script>
+
+<!-- koma otomatis saat input number -->
+<script>
+	$('input.number').keyup(function(event) {
+
+  // skip for arrow keys
+	  if(event.which >= 37 && event.which <= 40) return;
+
+	  // format number
+	  $(this).val(function(index, value) {
+	  	return value
+	  	.replace(/\D/g, "")
+	  	.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+	  	;
+	  });
+	});
+</script>
+
 </body>
 
 </html>

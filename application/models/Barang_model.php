@@ -25,7 +25,12 @@ class Barang_model extends CI_Model
     return $query->result();
   }
 
-  public function create_barang($data)
+  public function get_all()
+  {
+    $this->db->get('barang');
+  }
+
+  public function insert($data)
   {
     return $this->db->insert('barang', $data);
   }

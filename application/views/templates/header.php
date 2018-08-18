@@ -41,25 +41,25 @@
             <p>Beranda</p>
           </a>
         </li>
-        <li class="nav-item <?php echo ($this->uri->segment(1) == 'Barang') ? 'active':''; ?> ">
+        <li class="nav-item <?php echo ($this->uri->segment(1) == 'Barang' || $this->uri->segment(1) == 'barang') ? 'active':''; ?> ">
           <a class="nav-link" href="<?php echo site_url('Barang')?>">
             <i class="material-icons">inventory</i>
             <p>Barang</p>
           </a>
         </li>
-        <li class="nav-item <?php echo ($this->uri->segment(1) == 'Kendaraan') ? 'active':''; ?> ">
+        <li class="nav-item <?php echo ($this->uri->segment(1) == 'Kendaraan' || $this->uri->segment(1) == 'kendaraan') ? 'active':''; ?> ">
           <a class="nav-link" href="<?php echo site_url('Kendaraan')?>">
             <i class="material-icons">local_shipping</i>
             <p>Kendaraan</p>
           </a>
         </li>
-        <li class="nav-item <?php echo ($this->uri->segment(1) == 'Property') ? 'active':''; ?> ">
-          <a class="nav-link" href="<?php echo site_url('Property')?>">
+        <li class="nav-item <?php echo ($this->uri->segment(1) == 'Properti' || $this->uri->segment(1) == 'properti') ? 'active':''; ?> ">
+          <a class="nav-link" href="<?php echo site_url('Properti')?>">
             <i class="material-icons">home</i>
-            <p>Property</p>
+            <p>Properti</p>
           </a>
         </li>
-        <li class="nav-item <?php echo ($this->uri->segment(1) == 'User') ? 'active':''; ?> ">
+        <li class="nav-item <?php echo ($this->uri->segment(1) == 'User' || $this->uri->segment(1) == 'user') ? 'active':''; ?> ">
           <a class="nav-link" href="<?php echo site_url('User')?>">
             <i class="material-icons">person</i>
             <p>User</p>
