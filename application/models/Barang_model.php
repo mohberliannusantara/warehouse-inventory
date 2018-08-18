@@ -16,20 +16,18 @@ class Barang_model extends CI_Model
 
   public function get()
   {
+    $this->db->select('barang.id_barang, barang.nama as nama_barang, kondisi.nama as kondisi, barang.harga');
+    $this->db->from('barang');
+    $this->db->join('kondisi', 'barang.id_kondisi = kondisi.id_kondisi');
     $this->db->order_by('barang.id_barang', 'DESC');
 
-    $this->db->join('kondisi', 'kondisi.id_kondisi = barang.id_kondisi');
-
-    $this->db->join('jenis_barang', 'jenis_barang.id_jenis_barang = barang.id_jenis_barang');
-
-    $query = $this->db->get('barang');
-
+    $query = $this->db->get();
     return $query->result();
   }
 
   public function create($data)
   {
-      return $this->db->insert('barang', $data);
+    return $this->db->insert('barang', $data);
   }
 
   public function get_by_id($id)

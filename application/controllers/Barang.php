@@ -9,6 +9,7 @@ class Barang extends CI_Controller {
 		$this->load->model('barang_model');
 		$this->load->model('jenis_barang_model');
 		$this->load->model('kondisi_model');
+		$this->load->library('form_validation');
 	}
 
 	public function index()
@@ -24,9 +25,6 @@ class Barang extends CI_Controller {
 	{
 		$data['page_title'] = 'Tambah Barang';
 		$data['page_content'] = 'Tambahkan barang kedalam daftar dengan informasi yang lengkap';
-
-		$this->load->helper('form');
-		$this->load->library('form_validation');
 
 		$data['jenis_barang'] = $this->jenis_barang_model->get();
 		$data['kondisi'] = $this->kondisi_model->get();
@@ -47,6 +45,8 @@ class Barang extends CI_Controller {
 			'required' 		=> 'Masukkan keterangan barang.',
 			'min_length' 	=> 'Lengkapi detail keterangan barang.',
 		));
+
+		$this->form_validation->set_rules('nama_barang', 'nama_barang', 'required');
 
 		if ($this->form_validation->run() === FALSE)
 		{
