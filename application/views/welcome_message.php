@@ -56,8 +56,8 @@
 							Pilih Rayon Anda
 						</button>
 						<div class="dropdown-menu">
-							<?php foreach ($rayon as $key => $value): ?>
-								<a class="dropdown-item" data-toggle="modal" data-target="#exampleModal"><?php echo $value->nama; ?></a>
+							<?php foreach ($rayon as $value): ?>
+								<a class="dropdown-item" data-toggle="modal" data-target="#exampleModal" value="<?php echo $value->id_rayon ?>"><?php echo $value->nama_rayon; ?></a>
 							<?php endforeach; ?>
 						</div>
 					</div>
@@ -110,7 +110,7 @@
 				<script>
 					document.write(new Date().getFullYear())
 				</script>, made with <i class="material-icons">favorite</i> by
-				<a href="https://www.creative-tim.com" target="_blank" class="text-warning">Libo Tim</a> for PT. PLN Persero
+				<a href="https://github.com/mohberliannusantara/warehouse-inventory" target="_blank" class="text-warning">Libo Tim</a> for PT. PLN Persero
 			</div>
 		</div>
 	</footer>

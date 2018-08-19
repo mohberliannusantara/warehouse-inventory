@@ -23,7 +23,7 @@
                       <option selected value="">Pilih Jenis Barang</option>
                       <?php foreach ($jenis_barang as $row): ?>
                         <option value="<?php echo $row->id_jenis_barang ?>">
-                          <?php echo $row->nama; ?>
+                          <?php echo $row->nama_jenis_barang; ?>
                         </option>
                       <?php endforeach; ?>
                     </select>
@@ -37,7 +37,7 @@
                       <option selected value="">Pilih Kondisi Barang</option>
                       <?php foreach ($kondisi as $row): ?>
                         <option value="<?php echo $row->id_kondisi ?>">
-                          <?php echo $row->nama; ?>
+                          <?php echo $row->nama_kondisi; ?>
                         </option>
                       <?php endforeach; ?>
                     </select>

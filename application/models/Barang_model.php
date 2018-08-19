@@ -16,10 +16,10 @@ class Barang_model extends CI_Model
 
   public function get()
   {
-    $this->db->select('barang.id_barang, barang.nama_barang as nama_barang, kondisi.nama_kondisi as kondisi, barang.harga');
-    $this->db->from('barang');
-    $this->db->join('kondisi', 'barang.id_kondisi = kondisi.id_kondisi');
     $this->db->order_by('barang.id_barang', 'DESC');
+    $this->db->join('jenis_barang', 'barang.id_jenis_barang = jenis_barang.id_jenis_barang');
+    $this->db->join('kondisi', 'barang.id_kondisi = kondisi.id_kondisi');
+    $this->db->from('barang');
 
     $query = $this->db->get();
     return $query->result();
@@ -36,6 +36,15 @@ class Barang_model extends CI_Model
     return $query->row();
   }
 
+  public function delete($id)
+  {
+      if ( !empty($id) ){
+          $delete = $this->db->delete('barang', array('id_barang'=>$id) );
+          return $delete ? true : false;
+      } else {
+          return false;
+      }
+  }
 }
 
 

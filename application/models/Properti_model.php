@@ -16,7 +16,8 @@ class Properti_model extends CI_Model
 
   public function get()
   {
-    return $this->db->get('properti');
+    $query = $this->db->get('properti');
+    return $query->result();
   }
 
   public function get_total_harga()

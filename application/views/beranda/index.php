@@ -45,7 +45,7 @@
                 <i class="material-icons" style="color: white;">home</i>
               </div>
             </a>
-            <p class="card-category">Property</p>
+            <p class="card-category">Properti</p>
             <h3 class="card-title"><?php echo $total_properti; ?></h3>
           </div>
           <div class="card-footer">
@@ -66,19 +66,19 @@
                 <ul class="nav nav-tabs" data-tabs="tabs">
                   <li class="nav-item">
                     <a class="nav-link active" href="#profile" data-toggle="tab">
-                      <i class="material-icons">bug_report</i> Bugs
+                      <i class="material-icons">inventory</i> Barang
                       <div class="ripple-container"></div>
                     </a>
                   </li>
                   <li class="nav-item">
                     <a class="nav-link" href="#messages" data-toggle="tab">
-                      <i class="material-icons">code</i> Website
+                      <i class="material-icons">local_shipping</i> Kendaraan
                       <div class="ripple-container"></div>
                     </a>
                   </li>
                   <li class="nav-item">
                     <a class="nav-link" href="#settings" data-toggle="tab">
-                      <i class="material-icons">cloud</i> Server
+                      <i class="material-icons">home</i> Properti
                       <div class="ripple-container"></div>
                     </a>
                   </li>
@@ -89,214 +89,157 @@
           <div class="card-body">
             <div class="tab-content">
               <div class="tab-pane active" id="profile">
-                <table class="table">
-                  <tbody>
-                    <tr>
-                      <td>
-                        <div class="form-check">
-                          <label class="form-check-label">
-                            <input class="form-check-input" type="checkbox" value="" checked>
-                            <span class="form-check-sign">
-                              <span class="check"></span>
-                            </span>
-                          </label>
-                        </div>
-                      </td>
-                      <td>Sign contract for "What are conference organizers afraid of?"</td>
-                      <td class="td-actions text-right">
-                        <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm">
-                          <i class="material-icons">edit</i>
-                        </button>
-                        <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
-                          <i class="material-icons">close</i>
-                        </button>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div class="form-check">
-                          <label class="form-check-label">
-                            <input class="form-check-input" type="checkbox" value="">
-                            <span class="form-check-sign">
-                              <span class="check"></span>
-                            </span>
-                          </label>
-                        </div>
-                      </td>
-                      <td>Lines From Great Russian Literature? Or E-mails From My Boss?</td>
-                      <td class="td-actions text-right">
-                        <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm">
-                          <i class="material-icons">edit</i>
-                        </button>
-                        <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
-                          <i class="material-icons">close</i>
-                        </button>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div class="form-check">
-                          <label class="form-check-label">
-                            <input class="form-check-input" type="checkbox" value="">
-                            <span class="form-check-sign">
-                              <span class="check"></span>
-                            </span>
-                          </label>
-                        </div>
-                      </td>
-                      <td>Flooded: One year later, assessing what was lost and what was found when a ravaging rain swept through metro Detroit
-                      </td>
-                      <td class="td-actions text-right">
-                        <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm">
-                          <i class="material-icons">edit</i>
-                        </button>
-                        <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
-                          <i class="material-icons">close</i>
-                        </button>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div class="form-check">
-                          <label class="form-check-label">
-                            <input class="form-check-input" type="checkbox" value="" checked>
-                            <span class="form-check-sign">
-                              <span class="check"></span>
-                            </span>
-                          </label>
-                        </div>
-                      </td>
-                      <td>Create 4 Invisible User Experiences you Never Knew About</td>
-                      <td class="td-actions text-right">
-                        <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm">
-                          <i class="material-icons">edit</i>
-                        </button>
-                        <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
-                          <i class="material-icons">close</i>
-                        </button>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
+                <div class="table-responsive">
+                  <table class="table">
+                    <thead class="text-warning">
+                      <th>
+                        ID
+                      </th>
+                      <th>
+                        Nama
+                      </th>
+                      <th>
+                        Kondisi
+                      </th>
+                      <th>
+                        Harga
+                      </th>
+                      <th>
+                        aksi
+                      </th>
+                    </thead>
+                    <tbody>
+                      <?php foreach ($barang as $value): ?>
+                        <tr>
+                          <td>
+                            <?php echo $value->id_barang; ?>
+                          </td>
+                          <td>
+                            <?php echo $value->nama_barang; ?>
+                          </td>
+                          <td>
+                            <?php echo $value->nama_kondisi; ?>
+                          </td>
+                          <td class="text-warning">
+                            Rp. <?php echo number_format($value->harga); ?>
+                          </td>
+                          <td>
+                            <a href="<?php echo base_url('Barang/edit/') . $value->id_barang ?>" rel="tooltip" title="Ubah" class="btn btn-sm btn-warning">
+                              <i class="material-icons">edit</i>
+                            </a>
+                            <a href="<?php echo base_url('Barang/delete/') . $value->id_barang ?>" rel="tooltip" title="Hapus" class="btn btn-sm btn-danger">
+                              <i class="material-icons">close</i>
+                            </a>
+                          </td>
+                        </tr>
+                      <?php endforeach; ?>
+                    </tbody>
+                  </table>
+                </div>
               </div>
               <div class="tab-pane" id="messages">
-                <table class="table">
-                  <tbody>
-                    <tr>
-                      <td>
-                        <div class="form-check">
-                          <label class="form-check-label">
-                            <input class="form-check-input" type="checkbox" value="" checked>
-                            <span class="form-check-sign">
-                              <span class="check"></span>
-                            </span>
-                          </label>
-                        </div>
-                      </td>
-                      <td>Flooded: One year later, assessing what was lost and what was found when a ravaging rain swept through metro Detroit
-                      </td>
-                      <td class="td-actions text-right">
-                        <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm">
-                          <i class="material-icons">edit</i>
-                        </button>
-                        <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
-                          <i class="material-icons">close</i>
-                        </button>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div class="form-check">
-                          <label class="form-check-label">
-                            <input class="form-check-input" type="checkbox" value="">
-                            <span class="form-check-sign">
-                              <span class="check"></span>
-                            </span>
-                          </label>
-                        </div>
-                      </td>
-                      <td>Sign contract for "What are conference organizers afraid of?"</td>
-                      <td class="td-actions text-right">
-                        <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm">
-                          <i class="material-icons">edit</i>
-                        </button>
-                        <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
-                          <i class="material-icons">close</i>
-                        </button>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
+                <div class="table-responsive">
+                  <table class="table">
+                    <thead class="text-warning">
+                      <th>
+                        ID
+                      </th>
+                      <th>
+                        Nama
+                      </th>
+                      <th>
+                        Jenis
+                      </th>
+                      <th>
+                        Kondisi
+                      </th>
+                      <th>
+                        Harga
+                      </th>
+                      <th>
+                        aksi
+                      </th>
+                    </thead>
+                    <tbody>
+                      <?php foreach ($kendaraan as $value): ?>
+                        <tr>
+                          <td>
+                            <?php echo $value->id_kendaraan; ?>
+                          </td>
+                          <td>
+                            <?php echo $value->nama_kendaraan; ?>
+                          </td>
+                          <td>
+                            <?php echo $value->nama_jenis_kendaraan; ?>
+                          </td>
+                          <td>
+                            <?php echo $value->nama_kondisi; ?>
+                          </td>
+                          <td class="text-warning">
+                            Rp. <?php echo number_format($value->harga); ?>
+                          </td>
+                          <td>
+                            <a href="<?php echo base_url('Kendaraan/edit/') . $value->id_kendaraan ?>" rel="tooltip" title="Ubah" class="btn btn-sm btn-warning">
+                              <i class="material-icons">edit</i>
+                            </a>
+                            <a href="<?php echo base_url('Kendaraan/delete/') . $value->id_kendaraan ?>" rel="tooltip" title="Hapus" class="btn btn-sm btn-danger">
+                              <i class="material-icons">close</i>
+                            </a>
+                          </td>
+                        </tr>
+                      <?php endforeach; ?>
+                    </tbody>
+                  </table>
+                </div>
               </div>
               <div class="tab-pane" id="settings">
-                <table class="table">
-                  <tbody>
-                    <tr>
-                      <td>
-                        <div class="form-check">
-                          <label class="form-check-label">
-                            <input class="form-check-input" type="checkbox" value="">
-                            <span class="form-check-sign">
-                              <span class="check"></span>
-                            </span>
-                          </label>
-                        </div>
-                      </td>
-                      <td>Lines From Great Russian Literature? Or E-mails From My Boss?</td>
-                      <td class="td-actions text-right">
-                        <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm">
-                          <i class="material-icons">edit</i>
-                        </button>
-                        <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
-                          <i class="material-icons">close</i>
-                        </button>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div class="form-check">
-                          <label class="form-check-label">
-                            <input class="form-check-input" type="checkbox" value="" checked>
-                            <span class="form-check-sign">
-                              <span class="check"></span>
-                            </span>
-                          </label>
-                        </div>
-                      </td>
-                      <td>Flooded: One year later, assessing what was lost and what was found when a ravaging rain swept through metro Detroit
-                      </td>
-                      <td class="td-actions text-right">
-                        <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm">
-                          <i class="material-icons">edit</i>
-                        </button>
-                        <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
-                          <i class="material-icons">close</i>
-                        </button>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div class="form-check">
-                          <label class="form-check-label">
-                            <input class="form-check-input" type="checkbox" value="" checked>
-                            <span class="form-check-sign">
-                              <span class="check"></span>
-                            </span>
-                          </label>
-                        </div>
-                      </td>
-                      <td>Sign contract for "What are conference organizers afraid of?"</td>
-                      <td class="td-actions text-right">
-                        <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm">
-                          <i class="material-icons">edit</i>
-                        </button>
-                        <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
-                          <i class="material-icons">close</i>
-                        </button>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
+                <div class="table-responsive">
+                  <table class="table">
+                    <thead class="text-warning">
+                      <th>
+                        ID
+                      </th>
+                      <th>
+                        Luas
+                      </th>
+                      <th>
+                        Nomor Sertifikat
+                      </th>
+                      <th>
+                        Harga
+                      </th>
+                      <th>
+                        aksi
+                      </th>
+                    </thead>
+                    <tbody>
+                      <?php foreach ($properti as $value): ?>
+                        <tr>
+                          <td>
+                            <?php echo $value->id_properti; ?>
+                          </td>
+                          <td>
+                            <?php echo $value->luas, " M2"; ?>
+                          <td>
+                            <?php echo $value->no_sertifikat; ?>
+                          </td>
+                          </td>
+                          <td class="text-warning">
+                            Rp. <?php echo number_format($value->harga); ?>
+                          </td>
+                          <td>
+                            <a href="<?php echo base_url('Properti/edit/') . $value->id_properti ?>" rel="tooltip" title="Ubah" class="btn btn-sm btn-warning">
+                              <i class="material-icons">edit</i>
+                            </a>
+                            <a href="<?php echo base_url('Properti/delete/') . $value->id_properti ?>" rel="tooltip" title="Hapus" class="btn btn-sm btn-danger">
+                              <i class="material-icons">close</i>
+                            </a>
+                          </td>
+                        </tr>
+                      <?php endforeach; ?>
+                    </tbody>
+                  </table>
+                </div>
               </div>
             </div>
           </div>

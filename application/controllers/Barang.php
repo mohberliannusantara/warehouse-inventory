@@ -109,6 +109,50 @@ class Barang extends CI_Controller {
 		}
 	}
 
+	public function edit($id = NULL)
+	{
+		$data['page_title'] = 'Ubah Barang';
+
+		$data['category'] = $this->category_model->get_category_by_id($id);
+
+		// cek apakah id kosong atau tidak
+		if ( empty($id) || !$data['category'] ) redirect('blog');
+
+		$this->load->helper('form');
+		// meload library form_validation
+		$this->load->library('form_validation');
+
+		// validasi input
+		$this->form_validation->set_rules('cat_name', 'Nama Kategori', 'required',
+		array('required' => 'Isi %s donk, males amat.'));
+		$this->form_validation->set_rules('cat_description', 'Deskripsi', 'required');
+
+		// Cek apakah input valid atau tidak
+		if ($this->form_validation->run() === FALSE)
+		{
+			$this->load->view('templates/header');
+			$this->load->view('categories/cat_edit', $data);
+			$this->load->view('templates/footer');
+
+		} else {
+
+			$post_data = array(
+				'cat_name' => $this->input->post('cat_name'),
+				'cat_description' => $this->input->post('cat_description'),
+			);
+
+			$this->load->view('templates/header');
+
+			if ($this->category_model->update($post_data, $id)) {
+				$this->load->view('blogs/blog_success', $data);
+			} else {
+				$this->load->view('blogs/blog_failed', $data);
+			}
+			$this->load->view('templates/footer');
+
+		}
+	}
+
 	public function move()
 	{
 		$data['page_title'] = 'Pindah Barang';
@@ -117,5 +161,11 @@ class Barang extends CI_Controller {
 		$this->load->view("templates/header");
 		$this->load->view('barang/edit', $data);
 		$this->load->view("templates/footer");
+	}
+
+	public function delete($id)
+	{
+		$this->barang_model->delete($id);
+		redirect('Barang');
 	}
 }

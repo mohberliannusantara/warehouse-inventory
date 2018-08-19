@@ -3,8 +3,8 @@
 		<nav class="float-left">
 			<ul>
 				<li>
-					<a href="https://www.creative-tim.com">
-						Creative Tim
+					<a href="https://github.com/mohberliannusantara/warehouse-inventory">
+						Licenses
 					</a>
 				</li>
 			</ul>
@@ -14,7 +14,7 @@
 			<script>
 				document.write(new Date().getFullYear())
 			</script>, made with <i class="material-icons">favorite</i> by
-			<a href="https://www.creative-tim.com" target="_blank">Creative Tim</a> for a better web.
+			<a href="https://github.com/mohberliannusantara/warehouse-inventory" target="_blank" class="text-warning">Libo Tim</a> for PT. PLN Persero
 		</div>
 		<!-- your footer here -->
 	</div>
