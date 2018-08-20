@@ -8,6 +8,7 @@
             <p class="card-category"> Tambahkan barang kedalam daftar dengan informasi yang lengkap</p>
           </div>
           <div class="card-body">
+              <?php //echo $upload_error;?>
             <form action="<?php base_url('Barang/create') ?>" method="post" enctype="multipart/form-data">
               <div class="form-group">
                 <label for="nama_barang">Nama Barang</label>
@@ -47,7 +48,7 @@
 
               <div class="form-group">
                 <label for="harga">Harga</label>
-                <input type="number" min="1000" class="form-control" name="harga" value="<?php echo set_value('harga') ?>" required >
+                <input min="1000" class="form-control number" name="harga" value="<?php echo set_value('harga') ?>" required >
                 <div class="invalid-feedback">Masukkan Harga barang.</div>
               </div>
 

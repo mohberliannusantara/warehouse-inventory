@@ -46,7 +46,7 @@ class Barang extends CI_Controller {
 				// Konfigurasi folder upload & file yang diijinkan untuk diupload/disimpan
 				$config['upload_path']          = './assets/uploads/barang/';
 				$config['allowed_types']        = 'gif|jpg|png';
-				$config['max_size']             = 10000;
+				$config['max_size']             = 10000000000000;
 				$config['max_width']            = 3000;
 				$config['max_height']           = 3000;
 
@@ -75,20 +75,20 @@ class Barang extends CI_Controller {
 			}
 
 			$post_data = array(
-				'nama' => $this->input->post('nama_barang'),
+				'nama_barang' => $this->input->post('nama_barang'),
  				'harga' => str_replace(',', '', $this->input->post('harga')),
  				'id_jenis_barang' => $this->input->post('jenis_barang'),
  				'id_kondisi' => $this->input->post('kondisi'),
  				'keterangan' => $this->input->post('keterangan'),
 				'tanggal' => date("Y-m-d H:i:s"),
-				'gambar' => $post_image,
+				'gambar' => md5($post_image)
 			);
 
 			if( empty($data['upload_error']) ) {
 				$this->barang_model->create($post_data);
-
+				$data['barang'] = $this->barang_model->get();
 				$this->load->view('templates/header');
-				$this->load->view('beranda', $data);
+				$this->load->view('barang/index', $data);
 				$this->load->view('templates/footer');
 			}
 		}

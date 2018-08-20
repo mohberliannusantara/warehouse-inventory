@@ -57,6 +57,9 @@
                     Kondisi
                   </th>
                   <th>
+                    Keterangan
+                  </th>
+                  <th>
                     Harga
                   </th>
                   <th>
@@ -74,6 +77,9 @@
                       </td>
                       <td>
                         <?php echo $value->nama_kondisi; ?>
+                      </td>
+                      <td>
+                        <?php echo $value->keterangan; ?>
                       </td>
                       <td class="text-primary">
                         Rp. <?php echo number_format($value->harga); ?>

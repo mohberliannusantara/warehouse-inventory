@@ -23,6 +23,10 @@
 </div>
 <!--   Core JS Files   -->
 <script src="<?php echo base_url('assets/js/core/jquery.min.js') ?>" type="text/javascript"></script>
+<!-- <script src="https://code.jquery.com/jquery-3.3.1.js"></script> -->
+<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.19/js/dataTables.material.min.js"></script>
+
 <script src="<?php echo base_url('assets/js/core/popper.min.js') ?>" type="text/javascript"></script>
 <script src="<?php echo base_url('assets/js/core/bootstrap-material-design.min.js') ?>" type="text/javascript"></script>
 <script src="<?php echo base_url('assets/js/plugins/perfect-scrollbar.jquery.min.js') ?>"></script>
@@ -40,7 +44,7 @@
 	$('input.number').keyup(function(event) {
 
   // skip for arrow keys
-	  if(event.which >= 37 && event.which <= 40) return;
+  if(event.which >= 37 && event.which <= 40) return;
 
 	  // format number
 	  $(this).val(function(index, value) {
@@ -50,6 +54,17 @@
 	  	;
 	  });
 	});
+
+	$(document).ready(function() {
+		$('#example').DataTable( {
+			columnDefs: [
+			{
+				targets: [ 0, 1, 2 ],
+				className: 'mdl-data-table__cell--non-numeric'
+			}
+			]
+		} );
+	} );
 </script>
 
 </body>
