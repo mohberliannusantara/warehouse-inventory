@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Aug 16, 2018 at 04:00 PM
+-- Generation Time: Aug 20, 2018 at 07:00 PM
 -- Server version: 5.7.18-1
 -- PHP Version: 7.0.20-2
 
@@ -31,15 +31,16 @@ CREATE TABLE `admin` (
   `username` varchar(100) NOT NULL,
   `password` varchar(100) NOT NULL,
   `level` int(11) NOT NULL,
-  `id_rayon` int(11) NOT NULL
+  `id_rayon` int(11) NOT NULL,
+  `gambar` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `admin`
 --
 
-INSERT INTO `admin` (`id_admin`, `username`, `password`, `level`, `id_rayon`) VALUES
-(1, 'admin', 'admin', 1, 1);
+INSERT INTO `admin` (`id_admin`, `username`, `password`, `level`, `id_rayon`, `gambar`) VALUES
+(1, 'admin', 'admin', 1, 1, '');
 
 -- --------------------------------------------------------
 
@@ -49,21 +50,22 @@ INSERT INTO `admin` (`id_admin`, `username`, `password`, `level`, `id_rayon`) VA
 
 CREATE TABLE `barang` (
   `id_barang` int(11) NOT NULL,
-  `nama` varchar(100) NOT NULL,
+  `nama_barang` varchar(100) NOT NULL,
   `harga` int(11) NOT NULL,
   `id_jenis_barang` int(11) NOT NULL,
   `id_kondisi` int(50) NOT NULL,
   `keterangan` varchar(255) NOT NULL,
   `gambar` varchar(255) NOT NULL,
-  `id_rayon` int(11) NOT NULL
+  `id_rayon` int(11) NOT NULL,
+  `tanggal` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `barang`
 --
 
-INSERT INTO `barang` (`id_barang`, `nama`, `harga`, `id_jenis_barang`, `id_kondisi`, `keterangan`, `gambar`, `id_rayon`) VALUES
-(1, 'meja', 156000, 2, 1, 'diletakkan di ruang teleconference', '', 2);
+INSERT INTO `barang` (`id_barang`, `nama_barang`, `harga`, `id_jenis_barang`, `id_kondisi`, `keterangan`, `gambar`, `id_rayon`, `tanggal`) VALUES
+(1, 'meja', 156000, 2, 1, 'diletakkan di ruang teleconference', '', 2, '2018-08-16 21:33:51');
 
 -- --------------------------------------------------------
 
@@ -73,14 +75,14 @@ INSERT INTO `barang` (`id_barang`, `nama`, `harga`, `id_jenis_barang`, `id_kondi
 
 CREATE TABLE `jenis_barang` (
   `id_jenis_barang` int(11) NOT NULL,
-  `nama` varchar(100) NOT NULL
+  `nama_jenis_barang` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `jenis_barang`
 --
 
-INSERT INTO `jenis_barang` (`id_jenis_barang`, `nama`) VALUES
+INSERT INTO `jenis_barang` (`id_jenis_barang`, `nama_jenis_barang`) VALUES
 (1, 'Elektronik'),
 (2, 'Non Elektronik');
 
@@ -92,14 +94,14 @@ INSERT INTO `jenis_barang` (`id_jenis_barang`, `nama`) VALUES
 
 CREATE TABLE `jenis_kendaraan` (
   `id_jenis_kendaraan` int(11) NOT NULL,
-  `nama` varchar(100) NOT NULL
+  `nama_jenis_kendaraan` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `jenis_kendaraan`
 --
 
-INSERT INTO `jenis_kendaraan` (`id_jenis_kendaraan`, `nama`) VALUES
+INSERT INTO `jenis_kendaraan` (`id_jenis_kendaraan`, `nama_jenis_kendaraan`) VALUES
 (1, 'Roda 2'),
 (2, 'Roda 4');
 
@@ -111,7 +113,7 @@ INSERT INTO `jenis_kendaraan` (`id_jenis_kendaraan`, `nama`) VALUES
 
 CREATE TABLE `kendaraan` (
   `id_kendaraan` int(11) NOT NULL,
-  `nama` varchar(100) NOT NULL,
+  `nama_kendaraan` varchar(100) NOT NULL,
   `plat` varchar(20) NOT NULL,
   `harga` int(11) NOT NULL,
   `id_kondisi` int(11) NOT NULL,
@@ -124,7 +126,7 @@ CREATE TABLE `kendaraan` (
 -- Dumping data for table `kendaraan`
 --
 
-INSERT INTO `kendaraan` (`id_kendaraan`, `nama`, `plat`, `harga`, `id_kondisi`, `id_jenis_kendaraan`, `id_rayon`, `gambar`) VALUES
+INSERT INTO `kendaraan` (`id_kendaraan`, `nama_kendaraan`, `plat`, `harga`, `id_kondisi`, `id_jenis_kendaraan`, `id_rayon`, `gambar`) VALUES
 (1, 'Mobil Pickup', 'N 1945 MRD', 76000000, 1, 2, 2, '1');
 
 -- --------------------------------------------------------
@@ -135,14 +137,14 @@ INSERT INTO `kendaraan` (`id_kendaraan`, `nama`, `plat`, `harga`, `id_kondisi`, 
 
 CREATE TABLE `kondisi` (
   `id_kondisi` int(11) NOT NULL,
-  `nama` varchar(100) NOT NULL
+  `nama_kondisi` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `kondisi`
 --
 
-INSERT INTO `kondisi` (`id_kondisi`, `nama`) VALUES
+INSERT INTO `kondisi` (`id_kondisi`, `nama_kondisi`) VALUES
 (1, 'Baru'),
 (2, 'Bekas'),
 (3, 'Rusak');
@@ -179,7 +181,7 @@ INSERT INTO `properti` (`id_properti`, `luas`, `harga`, `keterangan`, `no_sertif
 
 CREATE TABLE `rayon` (
   `id_rayon` int(11) NOT NULL,
-  `nama` varchar(100) NOT NULL,
+  `nama_rayon` varchar(100) NOT NULL,
   `telp` varchar(15) NOT NULL,
   `keterangan` text NOT NULL,
   `latitude` float NOT NULL,
@@ -190,7 +192,7 @@ CREATE TABLE `rayon` (
 -- Dumping data for table `rayon`
 --
 
-INSERT INTO `rayon` (`id_rayon`, `nama`, `telp`, `keterangan`, `latitude`, `longitude`) VALUES
+INSERT INTO `rayon` (`id_rayon`, `nama_rayon`, `telp`, `keterangan`, `latitude`, `longitude`) VALUES
 (1, 'Pusat', '21312', 'dfsd', 1234, 123),
 (2, 'Grati', '5324', 'zdvxsdf', 123, 124),
 (3, 'Gadingrejo', '234234', 'dfaafs', 45, 42),

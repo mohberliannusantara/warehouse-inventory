@@ -30,23 +30,8 @@ class Barang extends CI_Controller {
 		$data['kondisi'] = $this->kondisi_model->get();
 
 		// validasi input
-		$this->form_validation->set_rules('nama_barang', 'Nama_barang', 'required',
-		array(
-			'required' 		=> 'Masukkan nama barang.',
-		));
-
-		$this->form_validation->set_rules('harga', 'Harga', 'required',
-		array(
-			'required' 		=> 'Masukkan estimasi harga barang.',
-		));
-
-		$this->form_validation->set_rules('keterangan', 'Keterangan', 'required|min_length[8]',
-		array(
-			'required' 		=> 'Masukkan keterangan barang.',
-			'min_length' 	=> 'Lengkapi detail keterangan barang.',
-		));
-
-		$this->form_validation->set_rules('nama_barang', 'nama_barang', 'required');
+		$this->form_validation->set_rules('nama_barang', 'Nama_barang', 'required');
+		$this->form_validation->set_rules('harga', 'Harga', 'required');
 
 		if ($this->form_validation->run() === FALSE)
 		{
@@ -61,9 +46,9 @@ class Barang extends CI_Controller {
 				// Konfigurasi folder upload & file yang diijinkan untuk diupload/disimpan
 				$config['upload_path']          = './assets/uploads/barang/';
 				$config['allowed_types']        = 'gif|jpg|png';
-				$config['max_size']             = 100;
-				$config['max_width']            = 1024;
-				$config['max_height']           = 768;
+				$config['max_size']             = 10000;
+				$config['max_width']            = 3000;
+				$config['max_height']           = 3000;
 
 				$this->load->library('upload', $config);
 
@@ -90,11 +75,11 @@ class Barang extends CI_Controller {
 			}
 
 			$post_data = array(
-				'nama_barang' => $this->input->post('nama_barang'),
-				'harga' => $this->input->post('harga'),
-				'id_jenis_barang' => $this->input->post('id_jenis_barang'),
-				'id_kondisi' => $this->input->post('id_kondisi'),
-				'keterangan' => $this->input->post('keterangan'),
+				'nama' => $this->input->post('nama_barang'),
+ 				'harga' => str_replace(',', '', $this->input->post('harga')),
+ 				'id_jenis_barang' => $this->input->post('jenis_barang'),
+ 				'id_kondisi' => $this->input->post('kondisi'),
+ 				'keterangan' => $this->input->post('keterangan'),
 				'tanggal' => date("Y-m-d H:i:s"),
 				'gambar' => $post_image,
 			);
