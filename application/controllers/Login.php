@@ -6,20 +6,30 @@ class Login extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->model('Admin_model');
+		$this->load->model('Login_model');
 	}
 	function login()
 	{
 		$username = $this->input->post('username');
 		$password = $this->input->post('password');
-		$cek = $this->Admin_model->login($username,$password);
+		$cek = $this->Login_model->login($username,$password);
 		if ($cek->num_rows() == 1) {
+
+			$data_rayon = $cek->row();
+
+			$userdata = array(
+				'rayon' => $data_rayon->nama_rayon,
+				'logged_in' => TRUE
+			);
+			$this->session->set_userdata($userdata);
 			redirect('Beranda','refresh');
 		}
 	}
 
 	function logout()
 	{
+		$userdata = array('rayon','logged_in');
+		$this->session->unset_userdata($userdata);
 		redirect('Welcome','refresh');
 	}
 }

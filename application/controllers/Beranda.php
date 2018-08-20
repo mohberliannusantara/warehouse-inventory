@@ -11,6 +11,9 @@ class Beranda extends CI_Controller
 		$this->load->model('Barang_model');
 		$this->load->model('Kendaraan_model');
 		$this->load->model('Properti_model');
+		if (!$this->session->logged_in == TRUE) {
+			redirect('Welcome','refresh');
+		}
 	}
 
 	public function index()

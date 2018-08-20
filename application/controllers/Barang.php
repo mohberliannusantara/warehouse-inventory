@@ -10,6 +10,9 @@ class Barang extends CI_Controller {
 		$this->load->model('jenis_barang_model');
 		$this->load->model('kondisi_model');
 		$this->load->library('form_validation');
+		if (!$this->session->logged_in == TRUE) {
+			redirect('Welcome','refresh');
+		}
 	}
 
 	public function index()
