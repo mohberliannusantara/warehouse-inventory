@@ -11,7 +11,7 @@
             <form action="<?php base_url('Barang/create') ?>" method="post" enctype="multipart/form-data">
               <div class="form-group">
                 <label for="nama_barang" >Nama Barang</label>
-                <input type="text" class="form-control" name="nama_barang" value="<?php echo set_value('nama_barang') ?>" required autofocus>
+                <input type="text" class="form-control" name="nama_barang" value="<?php echo $barang->nama_barang ?>" required autofocus>
                 <div class="invalid-feedback">Masukkan nama barang.</div>
               </div>
 
@@ -45,21 +45,24 @@
                 </div>
               </div>
 
-              <div class="form-group">
-                <label for="harga" >Harga</label>
-                <input type="number" min="1000" class="form-control" name="harga" value="<?php echo set_value('harga') ?>" required >
+               <div class="form-group">
+                <label for="harga">Harga</label>
+                <input min="1000" class="form-control number" name="harga" value="<?php echo $barang->harga ?>" required >
                 <div class="invalid-feedback">Masukkan Harga barang.</div>
               </div>
 
               <div class="form-group">
                 <label for="keterangan">Keterangan</label>
-                <textarea class="form-control" name="keterangan" rows="3" required><?php echo set_value('keterangan') ?></textarea>
+                <textarea class="form-control number" name="keterangan" rows="3" required><?php echo $barang->keterangan ?></textarea>
                 <div class="invalid-feedback">Isi keterangan barang</div>
               </div>
 
               <div class="form-group">
                 <label for="gambar">Foto Barang</label>
+                <br>
+                <img style="width: 100px;height: 100%" src="<?php echo base_url('assets/uploads/barang/').$barang->gambar?>">
               </div>
+
               <label class="file">
                 <input type="file" class="form-control-file" name="gambar">
                 <span class="file-custom"></span>

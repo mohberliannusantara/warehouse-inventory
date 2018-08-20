@@ -76,12 +76,12 @@ class Barang extends CI_Controller {
 
 			$post_data = array(
 				'nama_barang' => $this->input->post('nama_barang'),
- 				'harga' => str_replace(',', '', $this->input->post('harga')),
- 				'id_jenis_barang' => $this->input->post('jenis_barang'),
- 				'id_kondisi' => $this->input->post('kondisi'),
- 				'keterangan' => $this->input->post('keterangan'),
+				'harga' => str_replace(',', '', $this->input->post('harga')),
+				'id_jenis_barang' => $this->input->post('jenis_barang'),
+				'id_kondisi' => $this->input->post('kondisi'),
+				'keterangan' => $this->input->post('keterangan'),
 				'tanggal' => date("Y-m-d H:i:s"),
-				'gambar' => md5($post_image)
+				'gambar' => $post_image
 			);
 
 			if( empty($data['upload_error']) ) {
@@ -94,47 +94,76 @@ class Barang extends CI_Controller {
 		}
 	}
 
-	public function edit($id = NULL)
+	public function edit($id = null)
 	{
 		$data['page_title'] = 'Ubah Barang';
+		$data['page_content'] = 'Ubah barang kedalam daftar dengan informasi yang lengkap';
 
-		$data['category'] = $this->category_model->get_category_by_id($id);
-
-		// cek apakah id kosong atau tidak
-		if ( empty($id) || !$data['category'] ) redirect('blog');
-
-		$this->load->helper('form');
-		// meload library form_validation
-		$this->load->library('form_validation');
-
+		$data['barang'] = $this->barang_model->get_by_id($id);
+		$data['jenis_barang'] = $this->jenis_barang_model->get();
+		$data['kondisi'] = $this->kondisi_model->get();
 		// validasi input
-		$this->form_validation->set_rules('cat_name', 'Nama Kategori', 'required',
-		array('required' => 'Isi %s donk, males amat.'));
-		$this->form_validation->set_rules('cat_description', 'Deskripsi', 'required');
+		$this->form_validation->set_rules('nama_barang', 'Nama_barang', 'required');
+		$this->form_validation->set_rules('harga', 'Harga', 'required');
 
 		// Cek apakah input valid atau tidak
 		if ($this->form_validation->run() === FALSE)
 		{
 			$this->load->view('templates/header');
-			$this->load->view('categories/cat_edit', $data);
+			$this->load->view('barang/edit', $data);
 			$this->load->view('templates/footer');
 
 		} else {
+			if ( isset($_FILES['gambar']) && $_FILES['gambar']['size'] > 0 )
+			{
+				// Konfigurasi folder upload & file yang diijinkan untuk diupload/disimpan
+				$config['upload_path']          = './assets/uploads/barang/';
+				$config['allowed_types']        = 'gif|jpg|png';
+				$config['max_size']             = 10000000000000;
+				$config['max_width']            = 3000;
+				$config['max_height']           = 3000;
+
+				$this->load->library('upload', $config);
+
+				if ( ! $this->upload->do_upload('gambar'))
+				{
+					$data['upload_error'] = $this->upload->display_errors();
+
+					$post_image = '';
+
+					$this->load->view('templates/header');
+					$this->load->view('barang/create', $data);
+					$this->load->view('templates/footer');
+
+				} else { //jika berhasil upload
+
+					$img_data = $this->upload->data();
+					$post_image = $img_data['file_name'];
+
+				}
+			} else { //jika tidak upload gambar
+
+				$post_image = '';
+
+			}
 
 			$post_data = array(
-				'cat_name' => $this->input->post('cat_name'),
-				'cat_description' => $this->input->post('cat_description'),
+				'nama_barang' => $this->input->post('nama_barang'),
+				'harga' => str_replace(',', '', $this->input->post('harga')),
+				'id_jenis_barang' => $this->input->post('jenis_barang'),
+				'id_kondisi' => $this->input->post('kondisi'),
+				'keterangan' => $this->input->post('keterangan'),
+				'tanggal' => date("Y-m-d H:i:s"),
+				'gambar' => md5($post_image)
 			);
 
-			$this->load->view('templates/header');
-
-			if ($this->category_model->update($post_data, $id)) {
-				$this->load->view('blogs/blog_success', $data);
-			} else {
-				$this->load->view('blogs/blog_failed', $data);
+			if( empty($data['upload_error']) ) {
+				$this->barang_model->create($post_data);
+				$data['barang'] = $this->barang_model->get();
+				$this->load->view('templates/header');
+				$this->load->view('barang/index', $data);
+				$this->load->view('templates/footer');
 			}
-			$this->load->view('templates/footer');
-
 		}
 	}
 
