@@ -42,6 +42,12 @@ class Barang extends CI_Controller {
 		$this->load->view('templates/footer');
 	}
 
+	public function get($id)
+  {
+    $data['barang'] = $this->barang_model->get_by_id($id);
+    $this->view('Barang/view', $data);
+  }
+
 	public function create()
 	{
 		$data['page'] = 'Barang';
