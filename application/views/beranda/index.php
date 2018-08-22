@@ -9,8 +9,8 @@
                 <i class="material-icons" style="color: white;">inventory</i>
               </div>
             </a>
-            <p class="card-category">Jumlah Barang</p>
-            <h3 class="card-title"><?php echo $total_barang; ?></h3>
+            <p class="card-category">Barang</p>
+            <h3 class="card-title" rel="tooltip" title="Barang"><?php echo $total_barang; ?></h3>
           </div>
           <div class="card-footer">
             <div class="stats">
@@ -28,7 +28,7 @@
               </div>
             </a>
             <p class="card-category">Kendaraan</p>
-            <h3 class="card-title"><?php echo $total_kendaraan; ?></h3>
+            <h3 class="card-title" rel="tooltip" title="Kendaraan"><?php echo $total_kendaraan; ?></h3>
           </div>
           <div class="card-footer">
             <div class="stats">
@@ -46,7 +46,7 @@
               </div>
             </a>
             <p class="card-category">Properti</p>
-            <h3 class="card-title"><?php echo $total_properti; ?></h3>
+            <h3 class="card-title" rel="tooltip" title="Properti"><?php echo $total_properti; ?></h3>
           </div>
           <div class="card-footer">
             <div class="stats">
@@ -136,6 +136,9 @@
                     </tbody>
                   </table>
                 </div>
+                <center>
+                  <a href="<?php echo base_url('Barang/')?>" class="btn btn-sm btn-primary">Lihat Lebih Banyak</a>
+                </center>
               </div>
               <div class="tab-pane" id="messages">
                 <div class="table-responsive">
@@ -191,6 +194,9 @@
                     </tbody>
                   </table>
                 </div>
+                <center>
+                  <a href="<?php echo base_url('Kendaraan/')?>" class="btn btn-sm btn-primary">Lihat Lebih Banyak</a>
+                </center>
               </div>
               <div class="tab-pane" id="settings">
                 <div class="table-responsive">
@@ -220,9 +226,9 @@
                           </td>
                           <td>
                             <?php echo $value->luas, " M2"; ?>
-                          <td>
-                            <?php echo $value->no_sertifikat; ?>
-                          </td>
+                            <td>
+                              <?php echo $value->no_sertifikat; ?>
+                            </td>
                           </td>
                           <td class="text-warning">
                             Rp. <?php echo number_format($value->harga); ?>
@@ -240,6 +246,9 @@
                     </tbody>
                   </table>
                 </div>
+                <center>
+                  <a href="<?php echo base_url('Properti/')?>" class="btn btn-sm btn-primary">Lihat Lebih Banyak</a>
+                </center>
               </div>
             </div>
           </div>
@@ -248,7 +257,7 @@
       <div class="col-md-4">
         <div class="card card-profile">
           <div class="card-avatar">
-            <a href="#pablo">
+            <a href="<?php echo base_url('Pengguna/')?>" >
               <img class="img" src="<?php echo base_url(); ?>assets/img/faces/marc.jpg" />
             </a>
           </div>
@@ -258,7 +267,7 @@
             <p class="card-description">
               Don't be scared of the truth because we need to restart the human foundation in truth And I love you like Kanye loves Kanye I love Rick Owens’ bed design but the back is...
             </p>
-            <a href="<?php echo base_url('Pengguna/')?>" class="btn btn-warning btn-round">Lihat</a>
+            <a href="<?php echo base_url('Pengguna/')?>" rel="tooltip" title="Lihat" class="btn btn-warning btn-round">Lihat</a>
           </div>
         </div>
       </div>

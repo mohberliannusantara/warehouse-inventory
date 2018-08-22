@@ -17,15 +17,34 @@ class Barang extends CI_Controller {
 
 	public function index()
 	{
+		$data['page'] = 'Barang';
 		$data['barang'] = $this->barang_model->get();
 
-		$this->load->view("templates/header");
+		$limit_per_page = 5;
+		$start_index = ( $this->uri->segment(3) ) ? $this->uri->segment(3) : 0;
+		$total_records = $this->barang_model->get_total();
+		if ($total_records > 0) {
+			$data["barang"] = $this->barang_model->get($limit_per_page,
+			$start_index);
+
+			$config['base_url'] = base_url() . 'Barang/index';
+			$config['total_rows'] = $total_records;
+			$config['per_page'] = $limit_per_page;
+			$config["uri_segment"] = 3;
+
+			$this->pagination->initialize($config);
+
+			// Buat link pagination
+			$data["links"] = $this->pagination->create_links();
+		}
+		$this->load->view('templates/header', $data);
 		$this->load->view('barang/index', $data);
-		$this->load->view("templates/footer");
+		$this->load->view('templates/footer');
 	}
 
 	public function create()
 	{
+		$data['page'] = 'Barang';
 		$data['page_title'] = 'Tambah Barang';
 		$data['page_content'] = 'Tambahkan barang kedalam daftar dengan informasi yang lengkap';
 
@@ -38,7 +57,7 @@ class Barang extends CI_Controller {
 
 		if ($this->form_validation->run() === FALSE)
 		{
-			$this->load->view('templates/header');
+			$this->load->view('templates/header', $data);
 			$this->load->view('barang/create', $data);
 			$this->load->view('templates/footer');
 		}
@@ -50,8 +69,8 @@ class Barang extends CI_Controller {
 				$config['upload_path']          = './assets/uploads/barang/';
 				$config['allowed_types']        = 'gif|jpg|png';
 				$config['max_size']             = 10000000000000;
-				$config['max_width']            = 3000;
-				$config['max_height']           = 3000;
+				$config['max_width']            = 5000;
+				$config['max_height']           = 5000;
 
 				$this->load->library('upload', $config);
 
@@ -90,7 +109,7 @@ class Barang extends CI_Controller {
 			if( empty($data['upload_error']) ) {
 				$this->barang_model->create($post_data);
 				$data['barang'] = $this->barang_model->get();
-				$this->load->view('templates/header');
+				$this->load->view('templates/header', $data);
 				$this->load->view('barang/index', $data);
 				$this->load->view('templates/footer');
 			}
@@ -99,6 +118,7 @@ class Barang extends CI_Controller {
 
 	public function edit($id = null)
 	{
+		$data['page'] = 'Barang';
 		$data['page_title'] = 'Ubah Barang';
 		$data['page_content'] = 'Ubah barang kedalam daftar dengan informasi yang lengkap';
 
@@ -112,7 +132,7 @@ class Barang extends CI_Controller {
 		// Cek apakah input valid atau tidak
 		if ($this->form_validation->run() === FALSE)
 		{
-			$this->load->view('templates/header');
+			$this->load->view('templates/header', $data);
 			$this->load->view('barang/edit', $data);
 			$this->load->view('templates/footer');
 

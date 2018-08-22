@@ -44,59 +44,62 @@
             <p class="card-category"> menampilakan daftar seluruh barang yang tersedia</p>
           </div>
           <div class="card-body">
-            <div class="table-responsive">
-              <table class="table">
-                <thead class="text-warning">
-                  <th>
-                    ID
-                  </th>
-                  <th>
-                    Nama
-                  </th>
-                  <th>
-                    Kondisi
-                  </th>
-                  <th>
-                    Keterangan
-                  </th>
-                  <th>
-                    Harga
-                  </th>
-                  <th>
-                    aksi
-                  </th>
-                </thead>
-                <tbody>
-                  <?php foreach ($barang as $value): ?>
-                    <tr>
-                      <td>
-                        <?php echo $value->id_barang; ?>
-                      </td>
-                      <td>
-                        <?php echo $value->nama_barang; ?>
-                      </td>
-                      <td>
-                        <?php echo $value->nama_kondisi; ?>
-                      </td>
-                      <td>
-                        <?php echo $value->keterangan; ?>
-                      </td>
-                      <td class="text-primary">
-                        Rp. <?php echo number_format($value->harga); ?>
-                      </td>
-                      <td>
-                        <a href="<?php echo base_url('Barang/edit/') . $value->id_barang ?>" rel="tooltip" title="Ubah" class="btn btn-sm btn-warning">
-                          <i class="material-icons">edit</i>
-                        </a>
-                        <a href="<?php echo base_url('Barang/delete/') . $value->id_barang ?>" rel="tooltip" title="Hapus" class="btn btn-sm btn-danger">
-                          <i class="material-icons">close</i>
-                        </a>
-                      </td>
-                    </tr>
-                  <?php endforeach; ?>
-                </tbody>
-              </table>
-            </div>
+            <?php if( !empty($barang) ) : ?>
+              <div class="table-responsive">
+                <table class="table">
+                  <thead class="text-warning">
+                    <th>
+                      ID
+                    </th>
+                    <th>
+                      Nama
+                    </th>
+                    <th>
+                      Kondisi
+                    </th>
+                    <th>
+                      Harga
+                    </th>
+                    <th>
+                      aksi
+                    </th>
+                  </thead>
+                  <tbody>
+                    <?php foreach ($barang as $value): ?>
+                      <tr>
+                        <td>
+                          <?php echo $value->id_barang; ?>
+                        </td>
+                        <td>
+                          <?php echo $value->nama_barang; ?>
+                        </td>
+                        <td>
+                          <?php echo $value->nama_kondisi; ?>
+                        </td>
+                        <td class="text-primary">
+                          Rp. <?php echo number_format($value->harga); ?>
+                        </td>
+                        <td>
+                          <a href="<?php echo base_url('Barang/edit/') . $value->id_barang ?>" rel="tooltip" title="Ubah" class="btn btn-sm btn-warning">
+                            <i class="material-icons">edit</i>
+                          </a>
+                          <a href="<?php echo base_url('Barang/delete/') . $value->id_barang ?>" rel="tooltip" title="Hapus" class="btn btn-sm btn-danger">
+                            <i class="material-icons">close</i>
+                          </a>
+                        </td>
+                      </tr>
+                    <?php endforeach; ?>
+                  </tbody>
+                </table>
+              </div>
+            <?php else : ?>
+              <center>
+                <p>Tidak Dapat Menampilakan Barang</p>
+              </center>
+            <?php endif;
+            if (isset($links)) {
+              echo $links;
+            } ?>
           </div>
         </div>
       </div>
@@ -128,14 +131,14 @@
   </div>
 </div>
 <script type="text/javascript">
-  function openModal(id) {
-    $.ajax({
-      url:"{{ base_url('Barang/get/') }}"+id,
-      method: 'post',
-      data:null
-    }).done(function(data) {
-      $('#modal-content').html(data);
-      $('#exampleModalCenter').modal('show');
-    });
-  }
+function openModal(id) {
+  $.ajax({
+    url:"{{ base_url('Barang/get/') }}"+id,
+    method: 'post',
+    data:null
+  }).done(function(data) {
+    $('#modal-content').html(data);
+    $('#exampleModalCenter').modal('show');
+  });
+}
 </script>

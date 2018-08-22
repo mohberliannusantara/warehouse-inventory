@@ -14,9 +14,26 @@ class Barang_model extends CI_Model
     return $this->db->count_all("barang");
   }
 
-  public function get()
+  public function get_limit()
   {
-    $this->db->order_by('barang.id_barang', 'DESC');
+
+    $this->db->order_by('barang.tanggal', 'DESC');
+    $this->db->limit(4);
+    $this->db->join('jenis_barang', 'barang.id_jenis_barang = jenis_barang.id_jenis_barang');
+    $this->db->join('kondisi', 'barang.id_kondisi = kondisi.id_kondisi');
+    $this->db->from('barang');
+
+    $query = $this->db->get();
+    return $query->result();
+  }
+
+  public function get($limit = FALSE, $offset = FALSE)
+  {
+    if ( $limit ) {
+      $this->db->limit($limit, $offset);
+    }
+
+    $this->db->order_by('barang.tanggal', 'DESC');
     $this->db->join('jenis_barang', 'barang.id_jenis_barang = jenis_barang.id_jenis_barang');
     $this->db->join('kondisi', 'barang.id_kondisi = kondisi.id_kondisi');
     $this->db->from('barang');
@@ -38,12 +55,12 @@ class Barang_model extends CI_Model
 
   public function delete($id)
   {
-      if ( !empty($id) ){
-          $delete = $this->db->delete('barang', array('id_barang'=>$id) );
-          return $delete ? true : false;
-      } else {
-          return false;
-      }
+    if ( !empty($id) ){
+      $delete = $this->db->delete('barang', array('id_barang'=>$id) );
+      return $delete ? true : false;
+    } else {
+      return false;
+    }
   }
 }
 

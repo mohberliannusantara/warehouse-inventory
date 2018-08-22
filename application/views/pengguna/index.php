@@ -4,8 +4,8 @@
       <div class="col-md-8">
         <div class="card">
           <div class="card-header card-header-warning">
-            <h4 class="card-title">Profil Pengguna</h4>
-            <p class="card-category">melihat detail profil pengguna</p>
+            <h4 class="card-title "><?php echo $page_title; ?></h4>
+            <p class="card-category">melihat daftar dan detail profil pengguna</p>
           </div>
           <div class="card-body">
             <form>
@@ -49,7 +49,7 @@
             <p class="card-description">
               Don't be scared of the truth because we need to restart the human foundation in truth And I love you like Kanye loves Kanye I love Rick Owens’ bed design but the back is...
             </p>
-            <a href="#pablo" class="btn btn-primary btn-round">Lihat</a>
+            <a href="#Hello" class="btn btn-warning btn-round">Hello</a>
           </div>
         </div>
       </div>

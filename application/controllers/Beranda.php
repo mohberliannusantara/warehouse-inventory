@@ -18,6 +18,7 @@ class Beranda extends CI_Controller
 
 	public function index()
 	{
+		$data['page'] = 'Beranda';
 
 		//jumlah barang
 		$data['total_barang']= $this->Barang_model->get_total();
@@ -45,12 +46,12 @@ class Beranda extends CI_Controller
 		$data['total_harga_kendaraan'] = ($total_harga_kendaraan == 0) ? $total_harga_kendaraan : $total_harga_kendaraan;
 		$data['total_harga_properti'] = ($total_harga_properti == 0) ? $total_harga_properti : $total_harga_properti;
 
-		$data['barang'] = $this->Barang_model->get();
+		$data['barang'] = $this->Barang_model->get_limit();
 		$data['kendaraan'] = $this->Kendaraan_model->get();
 		$data['properti'] = $this->Properti_model->get();
 
-		$this->load->view("templates/header");
+		$this->load->view('templates/header', $data);
 		$this->load->view('beranda/index', $data);
-		$this->load->view("templates/footer");
+		$this->load->view('templates/footer');
 	}
 }

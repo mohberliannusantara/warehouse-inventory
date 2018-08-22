@@ -14,8 +14,11 @@ class Pengguna extends CI_Controller
 
 	public function index()
 	{
-		$this->load->view("templates/header");
+		$data['page'] = 'Pengguna';
+		$data['page_title'] = 'Profil Pengguna';
+
+		$this->load->view('templates/header', $data);
 		$this->load->view('pengguna/index');
-		$this->load->view("templates/footer");
+		$this->load->view('templates/footer');
 	}
 }
