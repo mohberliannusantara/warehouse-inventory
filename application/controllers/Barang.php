@@ -45,7 +45,9 @@ class Barang extends CI_Controller {
 	public function get($id)
   {
     $data['barang'] = $this->barang_model->get_by_id($id);
-    $this->view('Barang/view', $data);
+    // $this->loadview('Barang/view', $data);
+		$this->load->view('barang/view', $data);
+
   }
 
 	public function create()
@@ -86,7 +88,7 @@ class Barang extends CI_Controller {
 
 					$post_image = '';
 
-					$this->load->view('templates/header');
+					$this->load->view('templates/header', $data);
 					$this->load->view('barang/create', $data);
 					$this->load->view('templates/footer');
 
