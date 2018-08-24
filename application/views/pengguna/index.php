@@ -12,22 +12,24 @@
               <div class="row">
                 <div class="col-md-12">
                   <div class="form-group">
-                    <label class="bmd-label-floating">Adress</label>
-                    <input type="text" class="form-control">
+                    <!-- <label class="bmd-label-floating">Adress</label> -->
+                    <input type="text" class="form-control">Rayon
                   </div>
                 </div>
               </div>
               <div class="row">
                 <div class="col-md-12">
                   <div class="form-group">
-                    <label class="bmd-label-floating">Rayon</label>
-                    <input type="text" class="form-control">
+                    <!-- <label class="bmd-label-floating">Rayon</label> -->
+                    <input type="text" class="form-control">Level
                   </div>
                 </div>
               </div>
               <div class="row">
                 <div class="col-md-12">
                   <div class="form-group">
+                    <!-- <label class="bmd-label-floating">Rayon</label> -->
+                    <input type="text" class="form-control">Nama
                   </div>
                 </div>
               </div>
@@ -47,7 +49,7 @@
             <h6 class="card-category text-gray">CEO / Co-Founder</h6>
             <h4 class="card-title">Alec Thompson</h4>
             <p class="card-description">
-              Don't be scared of the truth because we need to restart the human foundation in truth And I love you like Kanye loves Kanye I love Rick Owens’ bed design but the back is...
+              Being honest may not get you a lot of friends but it’ll always get you the right ones..
             </p>
             <a href="#Hello" class="btn btn-warning btn-round">Hello</a>
           </div>

@@ -9,11 +9,6 @@ class Kendaraan_model extends CI_Model
     parent::__construct();
   }
 
-  public function get_total()
-  {
-    return $this->db->count_all("kendaraan");
-  }
-
   public function get()
   {
     // $this->db->select('barang.id_barang, barang.nama_barang as nama_barang, kondisi.nama_kondisi as kondisi, barang.harga');
@@ -24,14 +19,19 @@ class Kendaraan_model extends CI_Model
 
     $query = $this->db->get();
     return $query->result();
-    // return $this->db->get('kendaraan');
   }
+
+  public function get_total()
+  {
+    return $this->db->count_all("kendaraan");
+  }
+
 
   public function get_total_harga()
   {
-    $this->db->select('SUM(harga) as total');
-    $this->db->from('kendaraan');
-    return $this->db->get()->row()->total;
+    $this->db->select_sum('harga');
+    $query = $this->db->get('kendaraan')->row();
+    return $query->harga;
   }
 }
 
