@@ -185,15 +185,16 @@ class Barang extends CI_Controller {
 				'id_kondisi' => $this->input->post('kondisi'),
 				'keterangan' => $this->input->post('keterangan'),
 				'tanggal' => date("Y-m-d H:i:s"),
-				'gambar' => md5($post_image)
+				'gambar' => $post_image
 			);
 
 			if( empty($data['upload_error']) ) {
-				$this->barang_model->create($post_data);
-				$data['barang'] = $this->barang_model->get();
-				$this->load->view('templates/header');
-				$this->load->view('barang/index', $data);
-				$this->load->view('templates/footer');
+				$this->barang_model->update($post_data,$id);
+				//$data['barang'] = $this->barang_model->get();
+				// $this->load->view('templates/header');
+				// $this->load->view('barang/index', $data);
+				// $this->load->view('templates/footer');
+				redirect('Barang','refresh');
 			}
 		}
 	}
@@ -211,6 +212,5 @@ class Barang extends CI_Controller {
 	public function delete($id)
 	{
 		$this->barang_model->delete($id);
-		redirect('Barang');
 	}
 }

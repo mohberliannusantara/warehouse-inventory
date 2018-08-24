@@ -22,7 +22,7 @@
                     <select class="custom-select" name="jenis_barang" required>
                       <option selected value="">Pilih Jenis Barang</option>
                       <?php foreach ($jenis_barang as $row): ?>
-                        <option value="<?php echo $row->id_jenis_barang ?>">
+                        <option value="<?php echo $row->id_jenis_barang ?>" <?php echo ($barang->id_jenis_barang == $row->id_jenis_barang) ? 'selected':'' ?>>
                           <?php echo $row->nama_jenis_barang; ?>
                         </option>
                       <?php endforeach; ?>
@@ -36,7 +36,7 @@
                     <select class="custom-select" name="kondisi" required>
                       <option selected value="">Pilih Kondisi Barang</option>
                       <?php foreach ($kondisi as $row): ?>
-                        <option value="<?php echo $row->id_kondisi ?>">
+                        <option value="<?php echo $row->id_kondisi ?>" <?php echo ($barang->id_kondisi == $row->id_kondisi) ? 'selected':'' ?>>
                           <?php echo $row->nama_kondisi; ?>
                         </option>
                       <?php endforeach; ?>
