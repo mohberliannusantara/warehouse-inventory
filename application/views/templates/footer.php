@@ -22,8 +22,8 @@
 </div>
 </div>
 <!--   Core JS Files   -->
-<script src="<?php echo base_url('assets/js/core/jquery.min.js') ?>" type="text/javascript"></script>
-<!-- <script src="https://code.jquery.com/jquery-3.3.1.js"></script> -->
+<!-- <script src="<?php //echo base_url('assets/js/core/jquery.min.js') ?>" type="text/javascript"></script> -->
+<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
 <!-- <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.10.19/js/dataTables.material.min.js"></script>
  -->
