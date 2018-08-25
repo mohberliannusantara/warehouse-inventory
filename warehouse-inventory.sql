@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Aug 25, 2018 at 01:36 PM
+-- Generation Time: Aug 25, 2018 at 03:02 PM
 -- Server version: 5.7.18-1
 -- PHP Version: 7.0.20-2
 
@@ -30,7 +30,7 @@ CREATE TABLE `admin` (
   `id_admin` int(11) NOT NULL,
   `username` varchar(100) NOT NULL,
   `password` varchar(100) NOT NULL,
-  `level` int(11) NOT NULL,
+  `id_level` int(11) NOT NULL,
   `id_rayon` int(11) NOT NULL,
   `gambar` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -39,7 +39,7 @@ CREATE TABLE `admin` (
 -- Dumping data for table `admin`
 --
 
-INSERT INTO `admin` (`id_admin`, `username`, `password`, `level`, `id_rayon`, `gambar`) VALUES
+INSERT INTO `admin` (`id_admin`, `username`, `password`, `id_level`, `id_rayon`, `gambar`) VALUES
 (1, 'admin', 'admin', 1, 1, ''),
 (2, 'bimo', 'bimo', 2, 4, 'asddasd');
 

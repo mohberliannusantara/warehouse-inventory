@@ -8,6 +8,7 @@ class Login extends CI_Controller {
 		parent::__construct();
 		$this->load->model('Login_model');
 	}
+
 	function login()
 	{
 		$username = $this->input->post('username');
@@ -23,6 +24,8 @@ class Login extends CI_Controller {
 			);
 			$this->session->set_userdata($userdata);
 			redirect('Beranda','refresh');
+		} else {
+			redirect('Welcome');
 		}
 	}
 
