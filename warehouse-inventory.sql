@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Aug 20, 2018 at 07:00 PM
+-- Generation Time: Aug 25, 2018 at 01:36 PM
 -- Server version: 5.7.18-1
 -- PHP Version: 7.0.20-2
 
@@ -40,7 +40,8 @@ CREATE TABLE `admin` (
 --
 
 INSERT INTO `admin` (`id_admin`, `username`, `password`, `level`, `id_rayon`, `gambar`) VALUES
-(1, 'admin', 'admin', 1, 1, '');
+(1, 'admin', 'admin', 1, 1, ''),
+(2, 'bimo', 'bimo', 2, 4, 'asddasd');
 
 -- --------------------------------------------------------
 
@@ -65,7 +66,18 @@ CREATE TABLE `barang` (
 --
 
 INSERT INTO `barang` (`id_barang`, `nama_barang`, `harga`, `id_jenis_barang`, `id_kondisi`, `keterangan`, `gambar`, `id_rayon`, `tanggal`) VALUES
-(1, 'meja', 156000, 2, 1, 'diletakkan di ruang teleconference', '', 2, '2018-08-16 21:33:51');
+(1, 'meja', 156000, 2, 1, 'diletakkan di ruang teleconference', '', 2, '2018-08-16 21:33:51'),
+(3, 'Lemari', 350000, 2, 1, 'diletakkan diruang A', '', 2, '2018-08-22 12:20:55'),
+(4, 'komputer', 1200000, 1, 1, 'diletakkan diruang A', '', 3, '2018-08-22 12:21:30'),
+(5, 'kipas angin', 200000, 1, 1, 'diletakkan diruang A', '', 1, '2018-08-22 12:22:51'),
+(6, 'Lemari berkas', 433000, 2, 1, 'diletakkan diruang A', '', 4, '2018-08-22 12:23:32'),
+(7, 'LCD Proyektor', 765000, 1, 1, 'Diletakkan diruang C', '', 5, '2018-08-22 12:23:51'),
+(8, 'LCD Proyektor', 752000, 1, 1, 'Dilatakkan diLemari ruang C', '', 7, '2018-08-22 12:24:30'),
+(9, 'TV 21 inci', 2500000, 1, 1, 'Diletakkan di Lobby', '', 2, '2018-08-22 12:32:29'),
+(10, 'TV 21 inci', 2500000, 1, 1, 'Diletakkan di Lobby', '', 1, '2018-08-22 12:32:40'),
+(12, 'TV 21 inci', 2500000, 1, 1, 'Diletakkan di Lobby', '', 7, '2018-08-22 12:32:48'),
+(16, 'TV 21 inci', 2500000, 1, 1, 'Diletakkan di Lobby', '', 1, '2018-08-22 12:37:54'),
+(17, 'LCD Proyektor', 765000, 1, 1, 'Diletakkan diruang G', 'Sony-VPL-DX1402.jpg', 0, '2018-08-24 00:28:28');
 
 -- --------------------------------------------------------
 
@@ -148,6 +160,25 @@ INSERT INTO `kondisi` (`id_kondisi`, `nama_kondisi`) VALUES
 (1, 'Baru'),
 (2, 'Bekas'),
 (3, 'Rusak');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `level`
+--
+
+CREATE TABLE `level` (
+  `id_level` int(11) NOT NULL,
+  `nama_level` varchar(60) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `level`
+--
+
+INSERT INTO `level` (`id_level`, `nama_level`) VALUES
+(1, 'super admin'),
+(2, 'admin');
 
 -- --------------------------------------------------------
 
@@ -263,12 +294,12 @@ ALTER TABLE `rayon`
 -- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `id_admin` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_admin` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `barang`
 --
 ALTER TABLE `barang`
-  MODIFY `id_barang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_barang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 --
 -- AUTO_INCREMENT for table `jenis_barang`
 --
