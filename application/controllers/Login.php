@@ -16,10 +16,15 @@ class Login extends CI_Controller {
 		$cek = $this->Login_model->login($username,$password);
 		if ($cek->num_rows() == 1) {
 
-			$data_rayon = $cek->row();
+			$value = $cek->row();
 
 			$userdata = array(
-				'rayon' => $data_rayon->nama_rayon,
+				'rayon' => $value->nama_rayon,
+				'id_level' => $value->id_level,
+				'level' => $value->nama_level,
+				'username' => $value->username,
+				'gambar' => $value->gambar,
+				'id_admin' => $value->id_admin,
 				'logged_in' => TRUE
 			);
 			$this->session->set_userdata($userdata);
