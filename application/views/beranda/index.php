@@ -105,7 +105,7 @@
                         Harga
                       </th>
                       <th>
-                        aksi
+                        Keterangan
                       </th>
                     </thead>
                     <tbody>
@@ -124,12 +124,7 @@
                             Rp. <?php echo number_format($value->harga); ?>
                           </td>
                           <td>
-                            <a href="<?php echo base_url('Barang/edit/') . $value->id_barang ?>" rel="tooltip" title="Ubah" class="btn btn-sm btn-warning">
-                              <i class="material-icons">edit</i>
-                            </a>
-                            <a href="<?php echo base_url('Barang/delete/') . $value->id_barang ?>" rel="tooltip" title="Hapus" class="btn btn-sm btn-danger">
-                              <i class="material-icons">close</i>
-                            </a>
+                            <?php echo substr($value->keterangan, 0, 25) ?>
                           </td>
                         </tr>
                       <?php endforeach; ?>
@@ -151,16 +146,13 @@
                         Nama
                       </th>
                       <th>
-                        Jenis
-                      </th>
-                      <th>
-                        Kondisi
+                        Plat
                       </th>
                       <th>
                         Harga
                       </th>
                       <th>
-                        aksi
+                        Keterangan
                       </th>
                     </thead>
                     <tbody>
@@ -173,21 +165,13 @@
                             <?php echo $value->nama_kendaraan; ?>
                           </td>
                           <td>
-                            <?php echo $value->nama_jenis_kendaraan; ?>
-                          </td>
-                          <td>
-                            <?php echo $value->nama_kondisi; ?>
+                            <?php echo $value->plat; ?>
                           </td>
                           <td class="text-warning">
                             Rp. <?php echo number_format($value->harga); ?>
                           </td>
                           <td>
-                            <a href="<?php echo base_url('Kendaraan/edit/') . $value->id_kendaraan ?>" rel="tooltip" title="Ubah" class="btn btn-sm btn-warning">
-                              <i class="material-icons">edit</i>
-                            </a>
-                            <a href="<?php echo base_url('Kendaraan/delete/') . $value->id_kendaraan ?>" rel="tooltip" title="Hapus" class="btn btn-sm btn-danger">
-                              <i class="material-icons">close</i>
-                            </a>
+                            <?php echo substr($value->keterangan, 0, 25) ?>
                           </td>
                         </tr>
                       <?php endforeach; ?>
@@ -215,7 +199,7 @@
                         Harga
                       </th>
                       <th>
-                        aksi
+                        Keterangan
                       </th>
                     </thead>
                     <tbody>
@@ -226,20 +210,15 @@
                           </td>
                           <td>
                             <?php echo $value->luas, " M2"; ?>
-                            <td>
-                              <?php echo $value->no_sertifikat; ?>
-                            </td>
+                          </td>
+                          <td>
+                            <?php echo $value->no_sertifikat; ?>
                           </td>
                           <td class="text-warning">
                             Rp. <?php echo number_format($value->harga); ?>
                           </td>
                           <td>
-                            <a href="<?php echo base_url('Properti/edit/') . $value->id_properti ?>" rel="tooltip" title="Ubah" class="btn btn-sm btn-warning">
-                              <i class="material-icons">edit</i>
-                            </a>
-                            <a href="<?php echo base_url('Properti/delete/') . $value->id_properti ?>" rel="tooltip" title="Hapus" class="btn btn-sm btn-danger">
-                              <i class="material-icons">close</i>
-                            </a>
+                            <?php echo substr($value->keterangan, 0, 25) ?>
                           </td>
                         </tr>
                       <?php endforeach; ?>

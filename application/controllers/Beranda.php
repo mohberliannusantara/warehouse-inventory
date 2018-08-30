@@ -31,7 +31,7 @@ class Beranda extends CI_Controller
 		$data['total_harga_properti'] = $this->Properti_model->get_total_harga();
 
 		//get limit
-		$data['barang'] = $this->Barang_model->get_limit();
+		$data['barang'] = $this->Barang_model->get_limit($this->session->userdata('id_rayon'));
 		$data['kendaraan'] = $this->Kendaraan_model->get();
 		$data['properti'] = $this->Properti_model->get();
 

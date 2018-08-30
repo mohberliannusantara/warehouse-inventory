@@ -22,6 +22,7 @@ class Login extends CI_Controller {
 				'rayon' => $value->nama_rayon,
 				'id_level' => $value->id_level,
 				'level' => $value->nama_level,
+				'id_rayon' => $value->id_rayon,
 				'username' => $value->username,
 				'gambar' => $value->gambar,
 				'id_admin' => $value->id_admin,

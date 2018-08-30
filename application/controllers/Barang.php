@@ -24,8 +24,7 @@ class Barang extends CI_Controller {
 		$start_index = ( $this->uri->segment(3) ) ? $this->uri->segment(3) : 0;
 		$total_records = $this->barang_model->get_total();
 		if ($total_records > 0) {
-			$data["barang"] = $this->barang_model->get($limit_per_page,
-			$start_index);
+			$data["barang"] = $this->barang_model->get($limit_per_page, $start_index, $this->session->userdata('id_rayon'));
 
 			$config['base_url'] = base_url() . 'Barang/index';
 			$config['total_rows'] = $total_records;
@@ -45,7 +44,6 @@ class Barang extends CI_Controller {
 	public function get($id)
   {
     $data['barang'] = $this->barang_model->get_by_id($id);
-    // $this->loadview('Barang/view', $data);
 		$this->load->view('barang/view', $data);
 
   }

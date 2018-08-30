@@ -102,37 +102,41 @@
         <div class="card card-profile">
           <div class="card-avatar">
             <a href="#pablo">
-              <img class="img" src="<?php echo base_url(); ?>assets/img/faces/marc.jpg" />
-            </a>
-          </div>
-          <div class="card-body">
-            <h6 class="card-category text-gray">CEO / Co-Founder</h6>
-            <h4 class="card-title">Alec Thompson</h4>
-            <p class="card-description">
-              Being honest may not get you a lot of friends but it’ll always get you the right ones..
-            </p>
-            <?php if ($this->session->id_level != 1 ) : ?>
-              <a href="#Hello" class="btn btn-warning btn-round">Hello</a>
-            <?php endif;?>
-          </div>
-        </div>
-        <?php if ($this->session->id_level == 1 ) : ?>
-          <div class="card card-profile">
-            <a href="<?php echo base_url('Barang/create')?>">
-              <div class="card-header card-header-info">
-                <h4 class="card-title">Tambah Pengguna</h4>
-              </div>
-            </a>
+              <?php if ($this->session->gambar == NULL): ?>
+                <img class="img" src="<?php echo base_url(); ?>assets/img/faces/marc.jpg" />
+                <?php ; else : ?>
+                <img class="img" src="<?php echo base_url('assets/uploads/admin/' . $this->session->gambar) ?>" />
+                <?php endif; ?>
+              </a>
+            </div>
             <div class="card-body">
-              <h4 class="card-title">Tambah Pengguna</h4>
+              <h6 class="card-category text-gray"><?php echo $this->session->level; ?> / <?php echo $this->session->rayon; ?></h6>
+              <h4 class="card-title"><?php echo $this->session->username; ?></h4>
               <p class="card-description">
-                Tambahkan pengguna untuk dapat mengelola inventori
+                Being honest may not get you a lot of friends but it’ll always get you the right ones..
               </p>
-              <?php echo anchor('Barang/create', 'Tambah', array('class' => 'btn btn-info btn-round')); ?>
+              <?php if ($this->session->id_level != 1 ) : ?>
+                <a href="#Hello" class="btn btn-warning btn-round">Hello</a>
+              <?php endif;?>
             </div>
           </div>
-        <?php endif;?>
+          <?php if ($this->session->id_level == 1 ) : ?>
+            <div class="card card-profile">
+              <a href="<?php echo base_url('Barang/create')?>">
+                <div class="card-header card-header-info">
+                  <h4 class="card-title">Tambah Pengguna</h4>
+                </div>
+              </a>
+              <div class="card-body">
+                <h4 class="card-title">Tambah Pengguna</h4>
+                <p class="card-description">
+                  Tambahkan pengguna untuk dapat mengelola inventori
+                </p>
+                <?php echo anchor('Barang/create', 'Tambah', array('class' => 'btn btn-info btn-round')); ?>
+              </div>
+            </div>
+          <?php endif;?>
+        </div>
       </div>
     </div>
   </div>
-</div>
