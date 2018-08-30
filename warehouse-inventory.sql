@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Aug 25, 2018 at 03:02 PM
+-- Generation Time: Aug 30, 2018 at 09:49 AM
 -- Server version: 5.7.18-1
 -- PHP Version: 7.0.20-2
 
@@ -41,7 +41,7 @@ CREATE TABLE `admin` (
 
 INSERT INTO `admin` (`id_admin`, `username`, `password`, `id_level`, `id_rayon`, `gambar`) VALUES
 (1, 'admin', 'admin', 1, 1, ''),
-(2, 'bimo', 'bimo', 2, 4, 'asddasd');
+(2, 'bimo', 'bimo', 2, 4, 'Image_1889c1e1.jpg');
 
 -- --------------------------------------------------------
 
@@ -73,10 +73,8 @@ INSERT INTO `barang` (`id_barang`, `nama_barang`, `harga`, `id_jenis_barang`, `i
 (6, 'Lemari berkas', 433000, 2, 1, 'diletakkan diruang A', '', 4, '2018-08-22 12:23:32'),
 (7, 'LCD Proyektor', 765000, 1, 1, 'Diletakkan diruang C', '', 5, '2018-08-22 12:23:51'),
 (8, 'LCD Proyektor', 752000, 1, 1, 'Dilatakkan diLemari ruang C', '', 7, '2018-08-22 12:24:30'),
-(9, 'TV 21 inci', 2500000, 1, 1, 'Diletakkan di Lobby', '', 2, '2018-08-22 12:32:29'),
 (10, 'TV 21 inci', 2500000, 1, 1, 'Diletakkan di Lobby', '', 1, '2018-08-22 12:32:40'),
 (12, 'TV 21 inci', 2500000, 1, 1, 'Diletakkan di Lobby', '', 7, '2018-08-22 12:32:48'),
-(16, 'TV 21 inci', 2500000, 1, 1, 'Diletakkan di Lobby', '', 1, '2018-08-22 12:37:54'),
 (17, 'LCD Proyektor', 765000, 1, 1, 'Diletakkan diruang G', 'Sony-VPL-DX1402.jpg', 0, '2018-08-24 00:28:28');
 
 -- --------------------------------------------------------
@@ -131,6 +129,7 @@ CREATE TABLE `kendaraan` (
   `id_kondisi` int(11) NOT NULL,
   `id_jenis_kendaraan` int(11) NOT NULL,
   `id_rayon` int(11) NOT NULL,
+  `keterangan` text NOT NULL,
   `gambar` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -138,8 +137,8 @@ CREATE TABLE `kendaraan` (
 -- Dumping data for table `kendaraan`
 --
 
-INSERT INTO `kendaraan` (`id_kendaraan`, `nama_kendaraan`, `plat`, `harga`, `id_kondisi`, `id_jenis_kendaraan`, `id_rayon`, `gambar`) VALUES
-(1, 'Mobil Pickup', 'N 1945 MRD', 76000000, 1, 2, 2, '1');
+INSERT INTO `kendaraan` (`id_kendaraan`, `nama_kendaraan`, `plat`, `harga`, `id_kondisi`, `id_jenis_kendaraan`, `id_rayon`, `keterangan`, `gambar`) VALUES
+(1, 'Mobil Pickup', 'N 1945 MRD', 76000000, 1, 2, 2, 'diparkiran A', '1');
 
 -- --------------------------------------------------------
 
