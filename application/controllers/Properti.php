@@ -1,14 +1,12 @@
-<?php
+Properti<?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Barang extends CI_Controller {
+class Properti extends CI_Controller {
 
 	function __construct()
 	{
 		parent::__construct();
-		$this->load->model('barang_model');
-		$this->load->model('jenis_barang_model');
-		$this->load->model('kondisi_model');
+		$this->load->model('properti_model');
 		$this->load->library('form_validation');
 		if (!$this->session->logged_in == TRUE) {
 			redirect('Welcome','refresh');
@@ -17,16 +15,16 @@ class Barang extends CI_Controller {
 
 	public function index()
 	{
-		$data['page'] = 'Barang';
-		$data['barang'] = $this->barang_model->get();
+		$data['page'] = 'Properti';
+		$data['properti'] = $this->properti_model->get();
 
 		$limit_per_page = 5;
 		$start_index = ( $this->uri->segment(3) ) ? $this->uri->segment(3) : 0;
-		$total_records = $this->barang_model->get_total($this->session->userdata('id_rayon'), $this->session->userdata('id_level'));
+		$total_records = $this->properti_model->get_total();
 		if ($total_records > 0) {
-			$data['barang'] = $this->barang_model->get($limit_per_page, $start_index, $this->session->userdata('id_rayon'), $this->session->userdata('id_level'));
+			$data['properti'] = $this->properti_model->get($limit_per_page, $start_index);
 
-			$config['base_url'] = base_url() . 'Barang/index';
+			$config['base_url'] = base_url() . 'Properti/index';
 			$config['total_rows'] = $total_records;
 			$config['per_page'] = $limit_per_page;
 			$config["uri_segment"] = 3;
@@ -37,33 +35,33 @@ class Barang extends CI_Controller {
 			$data["links"] = $this->pagination->create_links();
 		}
 		$this->load->view('templates/header', $data);
-		$this->load->view('barang/index', $data);
+		$this->load->view('properti/index', $data);
 		$this->load->view('templates/footer');
 	}
 
 	public function get($id)
   {
-    $data['barang'] = $this->barang_model->get_by_id($id);
-		$this->load->view('barang/view', $data);
+    $data['properti'] = $this->properti_model->get_by_id($id);
+		$this->load->view('properti/view', $data);
   }
 
 	public function create()
 	{
-		$data['page'] = 'Barang';
-		$data['page_title'] = 'Tambah Barang';
-		$data['page_content'] = 'Tambahkan barang kedalam daftar dengan informasi yang lengkap';
+		$data['page'] = 'Properti';
+		$data['page_title'] = 'Tambah Properti';
+		$data['page_content'] = 'Tambahkan properti kedalam daftar dengan informasi yang lengkap';
 
-		$data['jenis_barang'] = $this->jenis_barang_model->get();
+		$data['jenis_properti'] = $this->jenis_properti_model->get();
 		$data['kondisi'] = $this->kondisi_model->get();
 
 		// validasi input
-		$this->form_validation->set_rules('nama_barang', 'Nama_barang', 'required');
+		$this->form_validation->set_rules('nama_properti', 'Nama_properti', 'required');
 		$this->form_validation->set_rules('harga', 'Harga', 'required');
 
 		if ($this->form_validation->run() === FALSE)
 		{
 			$this->load->view('templates/header', $data);
-			$this->load->view('barang/create', $data);
+			$this->load->view('properti/create', $data);
 			$this->load->view('templates/footer');
 		}
 		else
@@ -71,7 +69,7 @@ class Barang extends CI_Controller {
 			if ( isset($_FILES['gambar']) && $_FILES['gambar']['size'] > 0 )
 			{
 				// Konfigurasi folder upload & file yang diijinkan untuk diupload/disimpan
-				$config['upload_path']          = './assets/uploads/barang/';
+				$config['upload_path']          = './assets/uploads/properti/';
 				$config['allowed_types']        = 'gif|jpg|png';
 				$config['max_size']             = 10000000000000;
 				$config['max_width']            = 5000;
@@ -86,7 +84,7 @@ class Barang extends CI_Controller {
 					$post_image = '';
 
 					$this->load->view('templates/header', $data);
-					$this->load->view('barang/create', $data);
+					$this->load->view('properti/create', $data);
 					$this->load->view('templates/footer');
 
 				} else { //jika berhasil upload
@@ -102,9 +100,9 @@ class Barang extends CI_Controller {
 			}
 
 			$post_data = array(
-				'nama_barang' => $this->input->post('nama_barang'),
+				'nama_properti' => $this->input->post('nama_properti'),
 				'harga' => str_replace(',', '', $this->input->post('harga')),
-				'id_jenis_barang' => $this->input->post('jenis_barang'),
+				'id_jenis_properti' => $this->input->post('jenis_properti'),
 				'id_kondisi' => $this->input->post('kondisi'),
 				'keterangan' => $this->input->post('keterangan'),
 				'tanggal' => date("Y-m-d H:i:s"),
@@ -112,10 +110,10 @@ class Barang extends CI_Controller {
 			);
 
 			if( empty($data['upload_error']) ) {
-				$this->barang_model->create($post_data);
-				$data['barang'] = $this->barang_model->get();
+				$this->properti_model->create($post_data);
+				$data['properti'] = $this->properti_model->get();
 				$this->load->view('templates/header', $data);
-				$this->load->view('barang/index', $data);
+				$this->load->view('properti/index', $data);
 				$this->load->view('templates/footer');
 			}
 		}
@@ -123,29 +121,29 @@ class Barang extends CI_Controller {
 
 	public function edit($id = null)
 	{
-		$data['page'] = 'Barang';
-		$data['page_title'] = 'Ubah Barang';
-		$data['page_content'] = 'Ubah barang kedalam daftar dengan informasi yang lengkap';
+		$data['page'] = 'Properti';
+		$data['page_title'] = 'Ubah Properti';
+		$data['page_content'] = 'Ubah properti kedalam daftar dengan informasi yang lengkap';
 
-		$data['barang'] = $this->barang_model->get_by_id($id);
-		$data['jenis_barang'] = $this->jenis_barang_model->get();
+		$data['properti'] = $this->properti_model->get_by_id($id);
+		$data['jenis_properti'] = $this->jenis_properti_model->get();
 		$data['kondisi'] = $this->kondisi_model->get();
 		// validasi input
-		$this->form_validation->set_rules('nama_barang', 'Nama_barang', 'required');
+		$this->form_validation->set_rules('nama_properti', 'Nama_properti', 'required');
 		$this->form_validation->set_rules('harga', 'Harga', 'required');
 
 		// Cek apakah input valid atau tidak
 		if ($this->form_validation->run() === FALSE)
 		{
 			$this->load->view('templates/header', $data);
-			$this->load->view('barang/edit', $data);
+			$this->load->view('properti/edit', $data);
 			$this->load->view('templates/footer');
 
 		} else {
 			if ( isset($_FILES['gambar']) && $_FILES['gambar']['size'] > 0 )
 			{
 				// Konfigurasi folder upload & file yang diijinkan untuk diupload/disimpan
-				$config['upload_path']          = './assets/uploads/barang/';
+				$config['upload_path']          = './assets/uploads/properti/';
 				$config['allowed_types']        = 'gif|jpg|png';
 				$config['max_size']             = 10000000000000;
 				$config['max_width']            = 3000;
@@ -160,7 +158,7 @@ class Barang extends CI_Controller {
 					$post_image = '';
 
 					$this->load->view('templates/header');
-					$this->load->view('barang/create', $data);
+					$this->load->view('properti/create', $data);
 					$this->load->view('templates/footer');
 
 				} else { //jika berhasil upload
@@ -176,9 +174,9 @@ class Barang extends CI_Controller {
 			}
 
 			$post_data = array(
-				'nama_barang' => $this->input->post('nama_barang'),
+				'nama_properti' => $this->input->post('nama_properti'),
 				'harga' => str_replace(',', '', $this->input->post('harga')),
-				'id_jenis_barang' => $this->input->post('jenis_barang'),
+				'id_jenis_properti' => $this->input->post('jenis_properti'),
 				'id_kondisi' => $this->input->post('kondisi'),
 				'keterangan' => $this->input->post('keterangan'),
 				'tanggal' => date("Y-m-d H:i:s"),
@@ -186,28 +184,28 @@ class Barang extends CI_Controller {
 			);
 
 			if( empty($data['upload_error']) ) {
-				$this->barang_model->update($post_data,$id);
-				//$data['barang'] = $this->barang_model->get();
+				$this->properti_model->update($post_data,$id);
+				//$data['properti'] = $this->properti_model->get();
 				// $this->load->view('templates/header');
-				// $this->load->view('barang/index', $data);
+				// $this->load->view('properti/index', $data);
 				// $this->load->view('templates/footer');
-				redirect('Barang','refresh');
+				redirect('Properti','refresh');
 			}
 		}
 	}
 
 	public function move()
 	{
-		$data['page_title'] = 'Pindah Barang';
-		$data['page_content'] = 'Pindahkan barang dan memberi detail keterangan barang';
+		$data['page_title'] = 'Pindah Properti';
+		$data['page_content'] = 'Pindahkan properti dan memberi detail keterangan properti';
 
 		$this->load->view("templates/header");
-		$this->load->view('barang/edit', $data);
+		$this->load->view('properti/edit', $data);
 		$this->load->view("templates/footer");
 	}
 
 	public function delete($id)
 	{
-		$this->barang_model->delete($id);
+		$this->properti_model->delete($id);
 	}
 }

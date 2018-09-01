@@ -101,11 +101,11 @@
       <div class="col-md-4">
         <div class="card card-profile">
           <div class="card-avatar">
-            <a href="#pablo">
-              <?php if ($this->session->gambar == NULL): ?>
-                <img class="img" src="<?php echo base_url(); ?>assets/img/faces/marc.jpg" />
-                <?php ; else : ?>
+            <a href="#<?php echo $this->session->username; ?>">
+              <?php if ($this->session->gambar): ?>
                 <img class="img" src="<?php echo base_url('assets/uploads/admin/' . $this->session->gambar) ?>" />
+                <?php ; else : ?>
+                  <img class="img" src="<?php echo base_url(); ?>assets/img/faces/marc.jpg" />
                 <?php endif; ?>
               </a>
             </div>
