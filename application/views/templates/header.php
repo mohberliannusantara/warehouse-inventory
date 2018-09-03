@@ -22,7 +22,7 @@
   <link href="<?php echo base_url('assets/demo/demo.css'); ?>" rel="stylesheet" />
 </head>
 
-<body class="">
+<body>
   <div class="wrapper ">
     <div class="sidebar" data-color="orange" data-background-color="white" data-image="<?php echo base_url('assets/img/sidebar-1.jpg'); ?>">
       <!--

@@ -37,9 +37,7 @@ class Properti_model extends CI_Model
     }
 
     $this->db->order_by('properti.tanggal', 'DESC');
-    $this->db->from('properti');
-
-    $query = $this->db->get();
+    $query = $this->db->get('properti');
     return $query->result();
   }
 
@@ -47,8 +45,6 @@ class Properti_model extends CI_Model
   {
     $this->db->select('*');
     $this->db->from('properti');
-    $this->db->join('jenis_properti', 'properti.id_jenis_properti = jenis_properti.id_jenis_properti');
-    $this->db->join('kondisi', 'properti.id_kondisi = kondisi.id_kondisi');
     $this->db->where(array('properti.id_properti' => $id));
 
     $query = $this->db->get();
