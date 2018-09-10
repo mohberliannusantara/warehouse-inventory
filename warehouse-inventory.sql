@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Sep 01, 2018 at 11:21 PM
--- Server version: 5.7.18-1
--- PHP Version: 7.0.20-2
+-- Generation Time: Sep 10, 2018 at 07:04 PM
+-- Server version: 5.7.21-1
+-- PHP Version: 7.0.29-1+b1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -197,7 +197,6 @@ CREATE TABLE `properti` (
   `no_sertifikat` varchar(100) NOT NULL,
   `lokasi` varchar(255) NOT NULL,
   `gambar` varchar(255) NOT NULL,
-  `scan_sertifikat` varchar(255) NOT NULL,
   `tanggal` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -205,8 +204,8 @@ CREATE TABLE `properti` (
 -- Dumping data for table `properti`
 --
 
-INSERT INTO `properti` (`id_properti`, `luas`, `harga`, `keterangan`, `no_sertifikat`, `lokasi`, `gambar`, `scan_sertifikat`, `tanggal`) VALUES
-(1, 150, 120000000, 'lahan kosong', '555678', 'jl. mega mendung', 'asad', 'asda', '2018-09-01 22:13:11');
+INSERT INTO `properti` (`id_properti`, `luas`, `harga`, `keterangan`, `no_sertifikat`, `lokasi`, `gambar`, `tanggal`) VALUES
+(1, 150, 120000000, 'lahan kosong', '555678', 'jl. mega mendung rt/rw 10/13, kelurahan mulyorejo, kecamatan grati, pasuruan ', 'savana-bekol.jpg', '2018-09-01 22:13:11');
 
 -- --------------------------------------------------------
 

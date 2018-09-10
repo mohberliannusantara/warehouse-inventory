@@ -221,6 +221,7 @@ class Barang extends CI_Controller {
 		$hmtl = $this->output->get_output();
 
 		$dompdf = new DOMPDF();
+		// $dompdf = new Dompdf\DOMPDF();
 		$this->dompdf->load_html($html);
 		$this->dompdf->render();
 		$this->dompdf->stream("laporan.pdf");
