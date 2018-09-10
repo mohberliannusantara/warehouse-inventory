@@ -41,9 +41,18 @@
         <div class="col-md-8">
           <div class="card">
             <div class="card-header card-header-warning">
-              <h4 class="card-title">Daftar Properti</h4>
-              <p class="card-category"> menampilakan daftar seluruh properti yang tersedia</p>
+            <div class="row">
+              <div class="col-md-10">
+                <h4 class="card-title">Daftar Properti</h4>
+                <p class="card-category"> menampilakan daftar seluruh properti yang tersedia</p>
+              </div>
+              <div class="col-xs-2">
+                <a href="<?php echo base_url('Cetak/printPdf/').$this->uri->segment(1) ?>" rel="tooltip" title="Cetak Laporan" class="btn btn-primary">
+                  <i class="material-icons">print</i>
+                </a>
+              </div>
             </div>
+          </div>
             <div class="card-body">
               <?php if( !empty($properti) ) : ?>
                 <div class="table-responsive">

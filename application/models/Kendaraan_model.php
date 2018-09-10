@@ -84,6 +84,29 @@ class Kendaraan_model extends CI_Model
     }
   }
 
+  public function get_all($id_rayon = NULL, $id_level = NULL)
+  {
+    if ($id_level != 1) {
+      $this->db->order_by('kendaraan.tanggal', 'DESC');
+      $this->db->where('kendaraan.id_rayon', $id_rayon);
+      $this->db->join('jenis_kendaraan', 'kendaraan.id_jenis_kendaraan = jenis_kendaraan.id_jenis_kendaraan');
+      $this->db->join('kondisi', 'kendaraan.id_kondisi = kondisi.id_kondisi');
+      $this->db->from('kendaraan');
+
+      $query = $this->db->get();
+      return $query->result();
+    } else {
+      $this->db->order_by('kendaraan.tanggal', 'DESC');
+      // $this->db->where('kendaraan.id_rayon', $id_rayon);
+      $this->db->join('jenis_kendaraan', 'kendaraan.id_jenis_kendaraan = jenis_kendaraan.id_jenis_kendaraan');
+      $this->db->join('kondisi', 'kendaraan.id_kondisi = kondisi.id_kondisi');
+      $this->db->from('kendaraan');
+
+      $query = $this->db->get();
+      return $query->result();
+    }
+  }
+
   public function get_by_id($id)
   {
     $this->db->select('*');

@@ -46,7 +46,7 @@
                 <p class="card-category"> menampilakan daftar seluruh barang yang tersedia</p>
               </div>
               <div class="col-xs-2">
-                <a href="<?php echo base_url('Barang/print/') ?>" rel="tooltip" title="Cetak Laporan" class="btn btn-primary">
+                <a href="<?php echo base_url('Cetak/printPdf/').$this->uri->segment(1) ?>" rel="tooltip" title="Cetak Laporan" class="btn btn-primary">
                   <i class="material-icons">print</i>
                 </a>
               </div>
@@ -202,6 +202,6 @@ function deleteBarang(){
 }
 
   function searchBarang() {
-    
+
   }
 </script>

@@ -10,10 +10,11 @@ class Barang extends CI_Controller {
 		$this->load->model('jenis_barang_model');
 		$this->load->model('kondisi_model');
 		$this->load->library('form_validation');
-		// $this->load->library('dompdf_gen');
+		$this->load->library('dompdf_gen');
 		if (!$this->session->logged_in == TRUE) {
 			redirect('Welcome','refresh');
 		}
+	  
 	}
 
 	public function index()
@@ -227,20 +228,20 @@ class Barang extends CI_Controller {
 		$this->barang_model->delete($id);
 	}
 
-	// public function print()
-	// {
-	// 	$data['barang'] = $this->barang_model->get_all($this->session->userdata('id_rayon'), $this->session->userdata('id_level'));
-	//
-	// 	$paper_size = 'A4';
-	// 	$orientation = 'landscape';
-	// 	$hmtl = $this->output->get_output();
-	//
-	// 	$dompdf = new DOMPDF();
-	// 	// $dompdf = new Dompdf\DOMPDF();
-	// 	$this->dompdf->load_html($html);
-	// 	$this->dompdf->render();
-	// 	$this->dompdf->stream("laporan.pdf");
-	// 	unset($html);
-	// 	unset($dompdf);
-	// }
+	public function printBarang()
+	{
+		$data['barang'] = $this->barang_model->get_all($this->session->userdata('id_rayon'), $this->session->userdata('id_level'));
+		$this->load->view('barang/print', $data);
+		$paper_size = 'A4';
+		$orientation = 'landscape';
+		$html = $this->output->get_output();
+
+		$dompdf = new DOMPDF();
+		// $dompdf = new Dompdf\DOMPDF();
+		$this->dompdf->load_html($html);
+		$this->dompdf->render();
+		$this->dompdf->stream("laporan.pdf");
+		unset($html);
+		unset($dompdf);
+	}
 }
