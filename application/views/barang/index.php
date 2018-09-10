@@ -117,28 +117,21 @@
       </div>
     </div>
   </div>
-</div>
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title" id="exampleModalLabel">Cari</h4>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <?php //echo form_open('Login/login')?>
-      <div class="modal-body">
-        <form class="navbar-form">
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" id="exampleModalLabel">Cari</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
           <div class="input-group no-border">
             <label class="bmd-label-floating">ID Barang</label>
-            <input type="text" class="form-control">
-            <button type="submit" class="btn btn-warning btn-round btn-just-icon">
-              <i class="material-icons">search</i>
-              <div class="ripple-container"></div>
-            </button>
-          </div>
-        </form>
+            <input type="text" id="search" class="form-control">
+            <button type="submit" id="searchButton" class="btn btn-warning btn-round btn-just-icon">
+        </div>
       </div>
     </div>
   </div>
@@ -197,11 +190,6 @@ function openModal(id) {
     $('#exampleModalCenter').modal('show');
   });
 }
-
-function deleteModal(id) {
-  $('#id_barang').val(id);
-}
-
 function deleteBarang(){
   var id = $('#id_barang').val();
   $.ajax({
@@ -213,16 +201,7 @@ function deleteBarang(){
   });
 }
 
-$(document).ready(function(){
-
-
-
-  // $('#deleteButton').click(function(){
-  //   var ID = $(this).data('id');
-  //   $.ajax({
-  //     url: "<?php //echo base_url(); ?>barang/delete" + ID
-  //   });
-  // });
-
-})
+  function searchBarang() {
+    
+  }
 </script>
