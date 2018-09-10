@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Barang_model extends CI_Model
+class Pengguna_model extends CI_Model
 {
 
   function __construct()
@@ -11,20 +11,7 @@ class Barang_model extends CI_Model
 
   public function get_total()
   {
-    return $this->db->count_all("barang");
-  }
-
-  public function get_limit()
-  {
-
-    $this->db->order_by('barang.tanggal', 'DESC');
-    $this->db->limit(4);
-    $this->db->join('jenis_barang', 'barang.id_jenis_barang = jenis_barang.id_jenis_barang');
-    $this->db->join('kondisi', 'barang.id_kondisi = kondisi.id_kondisi');
-    $this->db->from('barang');
-
-    $query = $this->db->get();
-    return $query->result();
+    return $this->db->count_all("admin");
   }
 
   public function get($limit = FALSE, $offset = FALSE)
@@ -33,10 +20,10 @@ class Barang_model extends CI_Model
       $this->db->limit($limit, $offset);
     }
 
-    $this->db->order_by('barang.tanggal', 'DESC');
-    $this->db->join('jenis_barang', 'barang.id_jenis_barang = jenis_barang.id_jenis_barang');
-    $this->db->join('kondisi', 'barang.id_kondisi = kondisi.id_kondisi');
-    $this->db->from('barang');
+    $this->db->order_by('admin.id_admin', 'ASC');
+    $this->db->join('rayon', 'admin.id_rayon = rayon.id_rayon');
+    $this->db->join('level', 'admin.id_level = level.id_level');
+    $this->db->from('admin');
 
     $query = $this->db->get();
     return $query->result();
@@ -44,25 +31,17 @@ class Barang_model extends CI_Model
 
   public function create($data)
   {
-    return $this->db->insert('barang', $data);
+    return $this->db->insert('admin', $data);
   }
 
   public function get_by_id($id)
   {
-    // $this->db->where('barang.id_barang' => $id, NULL, FALSE);
-    // // $query = $this->db->get_where('barang', array('barang.id_barang' => $id));
-    // $this->db->join('jenis_barang', 'barang.id_jenis_barang = jenis_barang.id_jenis_barang');
-    // $this->db->join('kondisi', 'barang.id_kondisi = kondisi.id_kondisi');
-    // $this->db->from('barang');
-    //
-    // $query = $this->db->get();
-    // return $query->result();
 
     $this->db->select('*');
-    $this->db->from('barang');
-    $this->db->join('jenis_barang', 'barang.id_jenis_barang = jenis_barang.id_jenis_barang');
-    $this->db->join('kondisi', 'barang.id_kondisi = kondisi.id_kondisi');
-    $this->db->where(array('barang.id_barang' => $id));
+    $this->db->from('admin');
+    $this->db->join('rayon', 'admin.id_rayon = rayon.id_rayon');
+    $this->db->join('level', 'admin.id_level = level.id_level');
+    $this->db->where(array('admin.id_admin' => $id));
 
     $query = $this->db->get();
     return $query->row();
@@ -71,7 +50,7 @@ class Barang_model extends CI_Model
   public function delete($id)
   {
     if ( !empty($id) ){
-      $delete = $this->db->delete('barang', array('id_barang'=>$id) );
+      $delete = $this->db->delete('admin', array('id_admin'=>$id) );
       return $delete ? true : false;
     } else {
       return false;

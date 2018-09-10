@@ -5,61 +5,43 @@
         <div class="card">
           <div class="card-header card-header-info">
             <h4 class="card-title "><?php echo $page_title; ?></h4>
-            <p class="card-category"> Tambahkan barang kedalam daftar dengan informasi yang lengkap</p>
+            <p class="card-category"> Tambahkan properti kedalam daftar dengan informasi yang lengkap</p>
           </div>
           <div class="card-body">
-              <?php //echo $upload_error;?>
-            <form action="<?php base_url('Barang/create') ?>" method="post" enctype="multipart/form-data">
+            <?php //echo $upload_error;?>
+            <form action="<?php base_url('Properti/create') ?>" method="post" enctype="multipart/form-data">
               <div class="form-group">
-                <label for="nama_barang">Nama Barang</label>
-                <input type="text" class="form-control" name="nama_barang" value="<?php echo set_value('nama_barang') ?>" required autofocus>
-                <div class="invalid-feedback">Masukkan nama barang.</div>
+                <label for="no_sertifikat">Nomor Sertfikat</label>
+                <input type="number" class="form-control" name="no_sertifikat" value="<?php echo set_value('no_sertifikat') ?>" required autofocus>
+                <div class="invalid-feedback">Masukkan nomor sertifikat.</div>
               </div>
 
-              <div class="row">
-                <div class="col-sm-3">
-                  <div class="form-group">
-                    <label for="jenis_barang">Jenis Barang</label>
-                    <select class="custom-select" name="jenis_barang" required>
-                      <option selected value="">Pilih Jenis Barang</option>
-                      <?php foreach ($jenis_barang as $row): ?>
-                        <option value="<?php echo $row->id_jenis_barang ?>">
-                          <?php echo $row->nama_jenis_barang; ?>
-                        </option>
-                      <?php endforeach; ?>
-                    </select>
-                    <div class="invalid-feedback">Pilih dulu kategorinya gan</div>
-                  </div>
-                </div>
-                <div class="col-sm-3">
-                  <div class="form-group">
-                    <label for="kondisi_model">Kondisi Barang</label>
-                    <select class="custom-select" name="kondisi" required>
-                      <option selected value="">Pilih Kondisi Barang</option>
-                      <?php foreach ($kondisi as $row): ?>
-                        <option value="<?php echo $row->id_kondisi ?>">
-                          <?php echo $row->nama_kondisi; ?>
-                        </option>
-                      <?php endforeach; ?>
-                    </select>
-                  </div>
-                </div>
+              <div class="form-group">
+                <label for="luas">Luas (M2)</label>
+                <input type="text" class="form-control number" name="luas" value="<?php echo set_value('luas') ?>" required>
+                <div class="invalid-feedback">Masukkan luas.</div>
+              </div>
+
+              <div class="form-group">
+                <label for="lokasi">Lokasi / Alamat</label>
+                <input type="text" class="form-control" name="lokasi" value="<?php echo set_value('lokasi') ?>" required>
+                <div class="invalid-feedback">Masukkan lokasi atau alamat.</div>
               </div>
 
               <div class="form-group">
                 <label for="harga">Harga</label>
                 <input min="1000" class="form-control number" name="harga" value="<?php echo set_value('harga') ?>" required >
-                <div class="invalid-feedback">Masukkan Harga barang.</div>
+                <div class="invalid-feedback">Masukkan Harga properti.</div>
               </div>
 
               <div class="form-group">
                 <label for="keterangan">Keterangan</label>
                 <textarea class="form-control" name="keterangan" rows="3" required><?php echo set_value('keterangan') ?></textarea>
-                <div class="invalid-feedback">Isi keterangan barang</div>
+                <div class="invalid-feedback">Isi keterangan properti</div>
               </div>
 
               <div class="form-group">
-                <label for="gambar">Foto Barang</label>
+                <label for="gambar">Foto Properti</label>
               </div>
               <label class="file">
                 <input type="file" class="form-control-file" name="gambar">
@@ -68,10 +50,10 @@
               <div class="form-group">
                 <input class="btn btn-info" type="submit" value="Simpan">
               </div>
-            <?php echo form_close()?>
+              <?php echo form_close()?>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>

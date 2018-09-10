@@ -51,9 +51,6 @@ class Properti extends CI_Controller {
 		$data['page_title'] = 'Tambah Properti';
 		$data['page_content'] = 'Tambahkan properti kedalam daftar dengan informasi yang lengkap';
 
-		$data['jenis_properti'] = $this->jenis_properti_model->get();
-		$data['kondisi'] = $this->kondisi_model->get();
-
 		// validasi input
 		$this->form_validation->set_rules('nama_properti', 'Nama_properti', 'required');
 		$this->form_validation->set_rules('harga', 'Harga', 'required');
@@ -100,10 +97,10 @@ class Properti extends CI_Controller {
 			}
 
 			$post_data = array(
-				'nama_properti' => $this->input->post('nama_properti'),
+				'luas' => $this->input->post('luas'),
+				'no_sertifikat' => $this->input->post('no_sertifikat'),
 				'harga' => str_replace(',', '', $this->input->post('harga')),
-				'id_jenis_properti' => $this->input->post('jenis_properti'),
-				'id_kondisi' => $this->input->post('kondisi'),
+				'lokasi' => $this->input->post('lokasi'),
 				'keterangan' => $this->input->post('keterangan'),
 				'tanggal' => date("Y-m-d H:i:s"),
 				'gambar' => $post_image
@@ -126,8 +123,7 @@ class Properti extends CI_Controller {
 		$data['page_content'] = 'Ubah properti kedalam daftar dengan informasi yang lengkap';
 
 		$data['properti'] = $this->properti_model->get_by_id($id);
-		$data['jenis_properti'] = $this->jenis_properti_model->get();
-		$data['kondisi'] = $this->kondisi_model->get();
+
 		// validasi input
 		$this->form_validation->set_rules('nama_properti', 'Nama_properti', 'required');
 		$this->form_validation->set_rules('harga', 'Harga', 'required');

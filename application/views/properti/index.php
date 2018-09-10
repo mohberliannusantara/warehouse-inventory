@@ -84,7 +84,7 @@
                             <a href="#" onclick="openModal(<?php echo $value->id_properti; ?>)" rel="tooltip" title="Lihat" class="btn btn-sm btn-success">
                               <i class="material-icons">zoom_out_map</i>
                             </a>
-                            <a href="<?php echo base_url('Barang/edit/') . $value->id_properti ?>" rel="tooltip" title="Ubah" class="btn btn-sm btn-warning">
+                            <a href="<?php echo base_url('Properti/edit/') . $value->id_properti ?>" rel="tooltip" title="Ubah" class="btn btn-sm btn-warning">
                               <i class="material-icons">edit</i>
                             </a>
                             <a href="#" id="deleteModal" onclick="deleteModal(<?php echo $value->id_properti; ?>)" data-id="<?php echo $value->id_properti; ?>" data-toggle="modal" data-target="#confirmModal" rel="tooltip" title="Hapus" class="btn btn-sm btn-danger">

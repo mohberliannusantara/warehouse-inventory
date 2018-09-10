@@ -84,6 +84,29 @@ class Barang_model extends CI_Model
     }
   }
 
+  public function get_all($id_rayon = NULL, $id_level = NULL)
+  {
+    if ($id_level != 1) {
+      $this->db->order_by('barang.tanggal', 'DESC');
+      $this->db->where('barang.id_rayon', $id_rayon);
+      $this->db->join('jenis_barang', 'barang.id_jenis_barang = jenis_barang.id_jenis_barang');
+      $this->db->join('kondisi', 'barang.id_kondisi = kondisi.id_kondisi');
+      $this->db->from('barang');
+
+      $query = $this->db->get();
+      return $query->result();
+    } else {
+      $this->db->order_by('barang.tanggal', 'DESC');
+      // $this->db->where('barang.id_rayon', $id_rayon);
+      $this->db->join('jenis_barang', 'barang.id_jenis_barang = jenis_barang.id_jenis_barang');
+      $this->db->join('kondisi', 'barang.id_kondisi = kondisi.id_kondisi');
+      $this->db->from('barang');
+
+      $query = $this->db->get();
+      return $query->result();
+    }
+  }
+
   public function get_by_id($id)
   {
     $this->db->select('*');
