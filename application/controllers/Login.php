@@ -16,7 +16,7 @@ class Login extends CI_Controller {
 		$cek = $this->Login_model->login($username,$password);
 		if ($cek->num_rows() == 1) {
 
-			$data_rayon = $cek->row();
+			$value = $cek->row();
 
 			$userdata = array(
 				'id_rayon' => $data_rayon->id_rayon,

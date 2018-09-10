@@ -22,7 +22,7 @@
   <link href="<?php echo base_url('assets/demo/demo.css'); ?>" rel="stylesheet" />
 </head>
 
-<body class="">
+<body>
   <div class="wrapper ">
     <div class="sidebar" data-color="orange" data-background-color="white" data-image="<?php echo base_url('assets/img/sidebar-1.jpg'); ?>">
       <!--
@@ -32,7 +32,7 @@
     -->
     <div class="logo">
       <a href="<?php echo base_url('Beranda'); ?>" class="simple-text logo-normal">
-        Inventory
+        <?php echo $this->session->rayon; ?>
       </a>
     </div>
     <div class="sidebar-wrapper">
@@ -102,7 +102,7 @@
               </p>
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-              <a class="dropdown-item" href="<?php echo base_url('Pengguna/')?>"><?php echo 'Profil '.$this->session->rayon?></a>
+              <a class="dropdown-item" href="<?php echo base_url('Pengguna/')?>">Lihat Profil</a>
               <a class="dropdown-item" href="<?php echo base_url('Login/logout')?>">Logout</a>
             </div>
           </li>

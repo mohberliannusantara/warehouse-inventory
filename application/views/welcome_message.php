@@ -52,14 +52,9 @@
 					<h1 class="title">Monitoring Aset</h1>
 					<h3 class="description">Memantau aset perusahaan dengan lebih mudah</h3>
 					<div class="btn-group">
-						<button class="btn btn-warning btn-lg dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-							Pilih Rayon Anda
+						<button class="btn btn-warning btn-lg" type="button" aria-haspopup="true" aria-expanded="false" data-toggle="modal" data-target="#exampleModal">
+							Kelola Inventaris
 						</button>
-						<div class="dropdown-menu">
-							<?php foreach ($rayon as $value): ?>
-								<a class="dropdown-item" data-toggle="modal" data-target="#exampleModal" value="<?php echo $value->id_rayon ?>"><?php echo $value->nama_rayon; ?></a>
-							<?php endforeach; ?>
-						</div>
 					</div>
 				</div>
 			</div>
@@ -99,7 +94,7 @@
 			<nav class="float-left">
 				<ul>
 					<li>
-						<a href="https://github.com/mohberliannusantara/warehouse-inventory">
+						<a href="https://github.com/mohberliannusantara/warehouse-inventory" target="_blank">
 							Licenses
 						</a>
 					</li>
@@ -110,7 +105,7 @@
 				<script>
 					document.write(new Date().getFullYear())
 				</script>, made with <i class="material-icons">favorite</i> by
-				<a href="https://github.com/mohberliannusantara/warehouse-inventory" target="_blank" class="text-warning">Libo Tim</a> for PT. PLN Persero
+				<a href="https://github.com/mohberliannusantara/warehouse-inventory" target="_blank" class="text-warning">Libo Tim</a> for PT. PLN (Persero)
 			</div>
 		</div>
 	</footer>

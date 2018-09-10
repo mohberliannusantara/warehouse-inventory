@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Aug 25, 2018 at 03:02 PM
+-- Generation Time: Sep 01, 2018 at 11:21 PM
 -- Server version: 5.7.18-1
 -- PHP Version: 7.0.20-2
 
@@ -41,7 +41,8 @@ CREATE TABLE `admin` (
 
 INSERT INTO `admin` (`id_admin`, `username`, `password`, `id_level`, `id_rayon`, `gambar`) VALUES
 (1, 'admin', 'admin', 1, 1, ''),
-(2, 'bimo', 'bimo', 2, 4, 'asddasd');
+(2, 'bimo', 'bimo', 2, 4, 'Image_1889c1e1.jpg'),
+(3, 'berlian', 'berlian', 2, 2, 'Image_1889c1e2.jpg');
 
 -- --------------------------------------------------------
 
@@ -67,17 +68,15 @@ CREATE TABLE `barang` (
 
 INSERT INTO `barang` (`id_barang`, `nama_barang`, `harga`, `id_jenis_barang`, `id_kondisi`, `keterangan`, `gambar`, `id_rayon`, `tanggal`) VALUES
 (1, 'meja', 156000, 2, 1, 'diletakkan di ruang teleconference', '', 2, '2018-08-16 21:33:51'),
-(3, 'Lemari', 350000, 2, 1, 'diletakkan diruang A', '', 2, '2018-08-22 12:20:55'),
-(4, 'komputer', 1200000, 1, 1, 'diletakkan diruang A', '', 3, '2018-08-22 12:21:30'),
+(3, 'Lemari', 350000, 2, 1, 'diletakkan diruang A', '', 4, '2018-08-22 12:20:55'),
+(4, 'komputer', 1200000, 1, 1, 'diletakkan diruang A', '', 2, '2018-08-22 12:21:30'),
 (5, 'kipas angin', 200000, 1, 1, 'diletakkan diruang A', '', 1, '2018-08-22 12:22:51'),
 (6, 'Lemari berkas', 433000, 2, 1, 'diletakkan diruang A', '', 4, '2018-08-22 12:23:32'),
-(7, 'LCD Proyektor', 765000, 1, 1, 'Diletakkan diruang C', '', 5, '2018-08-22 12:23:51'),
-(8, 'LCD Proyektor', 752000, 1, 1, 'Dilatakkan diLemari ruang C', '', 7, '2018-08-22 12:24:30'),
-(9, 'TV 21 inci', 2500000, 1, 1, 'Diletakkan di Lobby', '', 2, '2018-08-22 12:32:29'),
-(10, 'TV 21 inci', 2500000, 1, 1, 'Diletakkan di Lobby', '', 1, '2018-08-22 12:32:40'),
-(12, 'TV 21 inci', 2500000, 1, 1, 'Diletakkan di Lobby', '', 7, '2018-08-22 12:32:48'),
-(16, 'TV 21 inci', 2500000, 1, 1, 'Diletakkan di Lobby', '', 1, '2018-08-22 12:37:54'),
-(17, 'LCD Proyektor', 765000, 1, 1, 'Diletakkan diruang G', 'Sony-VPL-DX1402.jpg', 0, '2018-08-24 00:28:28');
+(7, 'LCD Proyektor', 765000, 1, 1, 'Diletakkan diruang C', '', 2, '2018-08-22 12:23:51'),
+(8, 'LCD Proyektor', 752000, 1, 1, 'Dilatakkan diLemari ruang C', '', 2, '2018-08-22 12:24:30'),
+(10, 'TV 21 inci', 2500000, 1, 1, 'Diletakkan di Lobby', '', 2, '2018-08-22 12:32:40'),
+(12, 'TV 21 inci', 2500000, 1, 1, 'Diletakkan di Lobby', '', 3, '2018-08-22 12:32:48'),
+(17, 'LCD Proyektor', 765000, 1, 1, 'Diletakkan diruang G', 'Sony-VPL-DX1402.jpg', 2, '2018-08-24 00:28:28');
 
 -- --------------------------------------------------------
 
@@ -131,6 +130,8 @@ CREATE TABLE `kendaraan` (
   `id_kondisi` int(11) NOT NULL,
   `id_jenis_kendaraan` int(11) NOT NULL,
   `id_rayon` int(11) NOT NULL,
+  `keterangan` text NOT NULL,
+  `tanggal` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `gambar` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -138,8 +139,10 @@ CREATE TABLE `kendaraan` (
 -- Dumping data for table `kendaraan`
 --
 
-INSERT INTO `kendaraan` (`id_kendaraan`, `nama_kendaraan`, `plat`, `harga`, `id_kondisi`, `id_jenis_kendaraan`, `id_rayon`, `gambar`) VALUES
-(1, 'Mobil Pickup', 'N 1945 MRD', 76000000, 1, 2, 2, '1');
+INSERT INTO `kendaraan` (`id_kendaraan`, `nama_kendaraan`, `plat`, `harga`, `id_kondisi`, `id_jenis_kendaraan`, `id_rayon`, `keterangan`, `tanggal`, `gambar`) VALUES
+(1, 'Mobil Pickup', 'N 1945 MRD', 76000000, 1, 2, 2, 'diparkiran A', '2018-09-01 22:11:37', ''),
+(2, 'Mitsubishi', 'N 4351 BG', 90000000, 1, 2, 2, 'diparkir di B', '2018-09-01 23:06:57', ''),
+(3, 'Mitsubishi Pickup Tipe S', 'N 8566 AD', 87000000, 1, 2, 1, 'digunakan oleh pak Amin', '2018-09-01 23:20:38', '');
 
 -- --------------------------------------------------------
 
@@ -194,15 +197,16 @@ CREATE TABLE `properti` (
   `no_sertifikat` varchar(100) NOT NULL,
   `lokasi` varchar(255) NOT NULL,
   `gambar` varchar(255) NOT NULL,
-  `scan_sertifikat` varchar(255) NOT NULL
+  `scan_sertifikat` varchar(255) NOT NULL,
+  `tanggal` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `properti`
 --
 
-INSERT INTO `properti` (`id_properti`, `luas`, `harga`, `keterangan`, `no_sertifikat`, `lokasi`, `gambar`, `scan_sertifikat`) VALUES
-(1, 150, 120000000, 'lahan kosong', '555678', 'jl. mega mendung', 'asad', 'asda');
+INSERT INTO `properti` (`id_properti`, `luas`, `harga`, `keterangan`, `no_sertifikat`, `lokasi`, `gambar`, `scan_sertifikat`, `tanggal`) VALUES
+(1, 150, 120000000, 'lahan kosong', '555678', 'jl. mega mendung', 'asad', 'asda', '2018-09-01 22:13:11');
 
 -- --------------------------------------------------------
 
@@ -294,7 +298,7 @@ ALTER TABLE `rayon`
 -- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `id_admin` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_admin` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `barang`
 --
@@ -314,7 +318,7 @@ ALTER TABLE `jenis_kendaraan`
 -- AUTO_INCREMENT for table `kendaraan`
 --
 ALTER TABLE `kendaraan`
-  MODIFY `id_kendaraan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_kendaraan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `kondisi`
 --

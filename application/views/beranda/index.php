@@ -105,7 +105,7 @@
                         Harga
                       </th>
                       <th>
-                        aksi
+                        Keterangan
                       </th>
                     </thead>
                     <tbody>
@@ -124,12 +124,7 @@
                             Rp. <?php echo number_format($value->harga); ?>
                           </td>
                           <td>
-                            <a href="<?php echo base_url('Barang/edit/') . $value->id_barang ?>" rel="tooltip" title="Ubah" class="btn btn-sm btn-warning">
-                              <i class="material-icons">edit</i>
-                            </a>
-                            <a href="<?php echo base_url('Barang/delete/') . $value->id_barang ?>" rel="tooltip" title="Hapus" class="btn btn-sm btn-danger">
-                              <i class="material-icons">close</i>
-                            </a>
+                            <?php echo substr($value->keterangan, 0, 25) ?>
                           </td>
                         </tr>
                       <?php endforeach; ?>
@@ -151,16 +146,13 @@
                         Nama
                       </th>
                       <th>
-                        Jenis
-                      </th>
-                      <th>
-                        Kondisi
+                        Plat
                       </th>
                       <th>
                         Harga
                       </th>
                       <th>
-                        aksi
+                        Keterangan
                       </th>
                     </thead>
                     <tbody>
@@ -173,21 +165,13 @@
                             <?php echo $value->nama_kendaraan; ?>
                           </td>
                           <td>
-                            <?php echo $value->nama_jenis_kendaraan; ?>
-                          </td>
-                          <td>
-                            <?php echo $value->nama_kondisi; ?>
+                            <?php echo $value->plat; ?>
                           </td>
                           <td class="text-warning">
                             Rp. <?php echo number_format($value->harga); ?>
                           </td>
                           <td>
-                            <a href="<?php echo base_url('Kendaraan/edit/') . $value->id_kendaraan ?>" rel="tooltip" title="Ubah" class="btn btn-sm btn-warning">
-                              <i class="material-icons">edit</i>
-                            </a>
-                            <a href="<?php echo base_url('Kendaraan/delete/') . $value->id_kendaraan ?>" rel="tooltip" title="Hapus" class="btn btn-sm btn-danger">
-                              <i class="material-icons">close</i>
-                            </a>
+                            <?php echo substr($value->keterangan, 0, 25) ?>
                           </td>
                         </tr>
                       <?php endforeach; ?>
@@ -215,7 +199,7 @@
                         Harga
                       </th>
                       <th>
-                        aksi
+                        Keterangan
                       </th>
                     </thead>
                     <tbody>
@@ -226,20 +210,15 @@
                           </td>
                           <td>
                             <?php echo $value->luas, " M2"; ?>
-                            <td>
-                              <?php echo $value->no_sertifikat; ?>
-                            </td>
+                          </td>
+                          <td>
+                            <?php echo $value->no_sertifikat; ?>
                           </td>
                           <td class="text-warning">
                             Rp. <?php echo number_format($value->harga); ?>
                           </td>
                           <td>
-                            <a href="<?php echo base_url('Properti/edit/') . $value->id_properti ?>" rel="tooltip" title="Ubah" class="btn btn-sm btn-warning">
-                              <i class="material-icons">edit</i>
-                            </a>
-                            <a href="<?php echo base_url('Properti/delete/') . $value->id_properti ?>" rel="tooltip" title="Hapus" class="btn btn-sm btn-danger">
-                              <i class="material-icons">close</i>
-                            </a>
+                            <?php echo substr($value->keterangan, 0, 25) ?>
                           </td>
                         </tr>
                       <?php endforeach; ?>
@@ -257,17 +236,21 @@
       <div class="col-md-4">
         <div class="card card-profile">
           <div class="card-avatar">
-            <a href="<?php echo base_url('Pengguna/')?>" >
-              <img class="img" src="<?php echo base_url(); ?>assets/img/faces/marc.jpg" />
-            </a>
-          </div>
-          <div class="card-body">
-            <h6 class="card-category text-gray">CEO / Co-Founder</h6>
-            <h4 class="card-title">Alec Thompson</h4>
+            <a href="#<?php echo $this->session->username; ?>">
+              <?php if ($this->session->gambar): ?>
+                <img class="img" src="<?php echo base_url('assets/uploads/admin/' . $this->session->gambar) ?>" />
+                <?php ; else : ?>
+                  <img class="img" src="<?php echo base_url(); ?>assets/img/faces/marc.jpg" />
+                <?php endif; ?>
+              </a>
+            </div>
+            <div class="card-body">
+              <h6 class="card-category text-gray"><?php echo $this->session->level; ?> / <?php echo $this->session->rayon; ?></h6>
+              <h4 class="card-title"><?php echo $this->session->username; ?></h4>
             <p class="card-description">
               Don't be scared of the truth because we need to restart the human foundation in truth And I love you like Kanye loves Kanye I love Rick Owens’ bed design but the back is...
             </p>
-            <a href="<?php echo base_url('Pengguna/')?>" rel="tooltip" title="Lihat" class="btn btn-warning btn-round">Lihat</a>
+            <a href="<?php echo base_url('Pengguna/')?>" class="btn btn-primary btn-round">Lihat</a>
           </div>
         </div>
       </div>
