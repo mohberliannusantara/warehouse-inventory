@@ -25,7 +25,7 @@ class Barang extends CI_Controller {
 		$total_records = $this->barang_model->get_total();
 		if ($total_records > 0) {
 			$data["barang"] = $this->barang_model->get($limit_per_page,
-			$start_index);
+				$start_index);
 
 			$config['base_url'] = base_url() . 'Barang/index';
 			$config['total_rows'] = $total_records;
@@ -43,12 +43,26 @@ class Barang extends CI_Controller {
 	}
 
 	public function get($id)
-  {
-    $data['barang'] = $this->barang_model->get_by_id($id);
+	{
+		$data['barang'] = $this->barang_model->get_by_id($id);
     // $this->loadview('Barang/view', $data);
 		$this->load->view('barang/view', $data);
+	}
 
-  }
+	// public function search()
+	// {
+	// 	$id = $this->input->post('id_barang');
+	// 	$data['page'] = 'Barang';
+	// 	$data['page_title'] = 'Ubah Barang';
+	// 	$data['page_content'] = 'Ubah barang kedalam daftar dengan informasi yang lengkap';
+
+	// 	$data['barang'] = $this->barang_model->get_by_id($id);
+	// 	$data['jenis_barang'] = $this->jenis_barang_model->get();
+	// 	$data['kondisi'] = $this->kondisi_model->get();
+	// 	$this->load->view('templates/header', $data);
+	// 	$this->load->view('barang/edit', $data);
+	// 	$this->load->view('templates/footer');
+	// }
 
 	public function create()
 	{

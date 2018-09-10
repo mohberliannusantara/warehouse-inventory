@@ -109,6 +109,7 @@
       </div>
     </div>
   </div>
+
   <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
       <div class="modal-content">
@@ -118,18 +119,15 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <?php //echo form_open('Login/login')?>
         <div class="modal-body">
-          <form class="navbar-form">
-            <div class="input-group no-border">
-              <label class="bmd-label-floating">ID Barang</label>
-              <input type="text" class="form-control">
-              <button type="submit" class="btn btn-warning btn-round btn-just-icon">
-                <i class="material-icons">search</i>
-                <div class="ripple-container"></div>
-              </button>
-            </div>
-          </form>
+          <div class="input-group no-border">
+            <label class="bmd-label-floating">ID Barang</label>
+            <input type="text" id="search" class="form-control">
+            <button type="submit" id="searchButton" class="btn btn-warning btn-round btn-just-icon">
+              <i class="material-icons">search</i>
+              <div class="ripple-container"></div>
+            </button>
+          </div>
         </div>
       </div>
     </div>
@@ -178,6 +176,24 @@
   </div>
 
   <script type="text/javascript">
+    <script>
+    $(document).ready(function(){
+      $("#searchButton").click(function(){
+        var id_barang = $('search').val();
+        $.ajax({
+          url : "<?php echo base_url('barang/search'); ?>"
+          type : "POST",
+          dataType : "json",
+          data : {id_barang : id_barang},
+          success : function(data) {
+            alert('a');
+          },
+          error : function(data) {
+            alert('b');
+          }
+        });
+      });
+    });
     function openModal(id) {
       $.ajax({
         url:"<?php echo base_url('barang/get/'); ?>"+id,
@@ -194,26 +210,17 @@
     }
 
     function deleteBarang(){
-       var id = $('#id_barang').val();
-       $.ajax({
-        url:"<?php echo base_url('barang/delete/'); ?>"+id,
-        method: 'post',
-        data:null
-      }).done(function(data) {
-        location.reload();
-      });
-    }
+     var id = $('#id_barang').val();
+     $.ajax({
+      url:"<?php echo base_url('barang/delete/'); ?>"+id,
+      method: 'post',
+      data:null
+    }).done(function(data) {
+      location.reload();
+    });
+  }
+
+  function searchBarang() {
     
-    $(document).ready(function(){
-
-
-
-      // $('#deleteButton').click(function(){
-      //   var ID = $(this).data('id');
-      //   $.ajax({
-      //     url: "<?php //echo base_url(); ?>barang/delete" + ID
-      //   });
-      // });
-
-    })
-  </script>
+  }
+</script>

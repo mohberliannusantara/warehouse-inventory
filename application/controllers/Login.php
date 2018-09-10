@@ -19,6 +19,7 @@ class Login extends CI_Controller {
 			$data_rayon = $cek->row();
 
 			$userdata = array(
+				'id_rayon' => $data_rayon->id_rayon,
 				'rayon' => $data_rayon->nama_rayon,
 				'logged_in' => TRUE
 			);
