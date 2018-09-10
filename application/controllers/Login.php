@@ -19,8 +19,13 @@ class Login extends CI_Controller {
 			$value = $cek->row();
 
 			$userdata = array(
-				'id_rayon' => $data_rayon->id_rayon,
-				'rayon' => $data_rayon->nama_rayon,
+				'rayon' => $value->nama_rayon,
+				'id_level' => $value->id_level,
+				'level' => $value->nama_level,
+				'id_rayon' => $value->id_rayon,
+				'username' => $value->username,
+				'gambar' => $value->gambar,
+				'id_admin' => $value->id_admin,
 				'logged_in' => TRUE
 			);
 			$this->session->set_userdata($userdata);
