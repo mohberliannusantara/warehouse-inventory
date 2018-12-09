@@ -4,13 +4,13 @@
       <div class="col-lg-4 col-md-6 col-sm-6">
         <div class="card card-stats">
           <a href="<?php echo base_url('Barang/')?>">
-            <div class="card-header card-header-success card-header-icon">
+            <div class="card-header card-header-success card-header-icon" rel="tooltip" title="Barang">
               <div class="card-icon">
                 <i class="material-icons" style="color: white;">inventory</i>
               </div>
             </a>
             <p class="card-category">Barang</p>
-            <h3 class="card-title" rel="tooltip" title="Barang"><?php echo $total_barang; ?></h3>
+            <h3 class="card-title"><?php echo $total_barang; ?></h3>
           </div>
           <div class="card-footer">
             <div class="stats">
@@ -22,13 +22,13 @@
       <div class="col-lg-4 col-md-6 col-sm-6">
         <div class="card card-stats">
           <a href="<?php echo base_url('Kendaraan/')?>">
-            <div class="card-header card-header-info card-header-icon">
+            <div class="card-header card-header-info card-header-icon" rel="tooltip" title="Kendaraan">
               <div class="card-icon">
                 <i class="material-icons" style="color: white;">local_shipping</i>
               </div>
             </a>
             <p class="card-category">Kendaraan</p>
-            <h3 class="card-title" rel="tooltip" title="Kendaraan"><?php echo $total_kendaraan; ?></h3>
+            <h3 class="card-title"><?php echo $total_kendaraan; ?></h3>
           </div>
           <div class="card-footer">
             <div class="stats">
@@ -40,13 +40,13 @@
       <div class="col-lg-4 col-md-6 col-sm-6">
         <div class="card card-stats">
           <a href="<?php echo base_url('Properti')?>">
-            <div class="card-header card-header-danger card-header-icon">
+            <div class="card-header card-header-danger card-header-icon" rel="tooltip" title="Properti">
               <div class="card-icon">
                 <i class="material-icons" style="color: white;">home</i>
               </div>
             </a>
             <p class="card-category">Properti</p>
-            <h3 class="card-title" rel="tooltip" title="Properti"><?php echo $total_properti; ?></h3>
+            <h3 class="card-title"><?php echo $total_properti; ?></h3>
           </div>
           <div class="card-footer">
             <div class="stats">

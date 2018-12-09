@@ -24,7 +24,7 @@
 
 <body>
   <div class="wrapper ">
-    <div class="sidebar" data-color="orange" data-background-color="white" data-image="<?php echo base_url('assets/img/sidebar-1.jpg'); ?>">
+    <div class="sidebar" data-color="orange" data-background-color="white" data-image="<?php echo base_url('assets/img/sidebar-3.jpg'); ?>">
       <!--
       Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
 
@@ -32,6 +32,7 @@
     -->
     <div class="logo">
       <a href="<?php echo base_url('Beranda'); ?>" class="simple-text logo-normal">
+        <img src="<?php echo base_url('assets/img/favicon.png') ?>" alt="" style="width:10%;">
         <?php echo $this->session->rayon; ?>
       </a>
     </div>
@@ -94,6 +95,22 @@
           </div>
         </form>
         <ul class="navbar-nav">
+          <li class="nav-item dropdown">
+            <a class="nav-link" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i class="material-icons">notifications</i>
+              <span class="notification">5</span>
+              <p class="d-lg-none d-md-block">
+                Some Actions
+              </p>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+              <a class="dropdown-item" href="#">Mike John responded to your email</a>
+              <a class="dropdown-item" href="#">You have 5 new tasks</a>
+              <a class="dropdown-item" href="#">You're now friend with Andrew</a>
+              <a class="dropdown-item" href="#">Another Notification</a>
+              <a class="dropdown-item" href="#">Another One</a>
+            </div>
+          </li> 
           <li class="nav-item dropdown">
             <a class="nav-link" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <i class="material-icons">person</i>
