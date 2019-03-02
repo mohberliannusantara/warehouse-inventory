@@ -6,8 +6,8 @@
           <div class="card-header card-header-warning">
             <div class="row">
               <div class="col-md-10">
-                <h4 class="card-title">Daftar Barang</h4>
-                <p class="card-category">menampilakan data seluruh barang yang tersedia</p>
+                <h4 class="card-title">Daftar Extracomptable</h4>
+                <p class="card-category">menampilakan data seluruh extracomptable yang tersedia</p>
               </div>
               <div class="col-md-2">
                 <!-- <a href="<?php echo base_url('Cetak/printPdf/').$this->uri->segment(1) ?>" rel="tooltip" title="Cetak Laporan" class="btn btn-primary">

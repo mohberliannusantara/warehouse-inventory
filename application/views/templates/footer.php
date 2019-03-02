@@ -38,7 +38,7 @@
 <script src="<?php echo base_url('assets/js/plugins/bootstrap-notify.js') ?>"></script>
 <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
 <script src="<?php echo base_url('assets/js/material-dashboard.min.js') ?>" type="text/javascript"></script>
-
+<script type="text/javascript" src="<?php echo base_url('assets/js/addons/datatables.min.js') ?>"></script>
 <!-- koma otomatis saat input number -->
 <script>
 	$('input.number').keyup(function(event) {
@@ -65,6 +65,10 @@
 			]
 		} );
 	} );
+	$(document).ready(function () {
+    $('#dtBasicExample').DataTable();
+    $('.dataTables_length').addClass('bs-select');
+  });
 </script>
 
 </body>

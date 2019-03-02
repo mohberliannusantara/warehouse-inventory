@@ -21,7 +21,7 @@ class Barang extends CI_Controller {
 
 	public function index()
 	{
-		$data['page'] = 'Barang';
+		$data['page'] = 'Extracomptable';
 		$data['barang'] = $this->barang_model->get();
 
 		$limit_per_page = 5;

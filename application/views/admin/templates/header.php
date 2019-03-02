@@ -46,10 +46,10 @@
             <p>Beranda</p>
           </a>
         </li>
-        <li class="nav-item <?php if ($page == 'Barang'): ?>active<?php endif; ?>">
+        <li class="nav-item <?php if ($page == 'Extracomptable'): ?>active<?php endif; ?>">
           <a class="nav-link" href="<?php echo site_url('admin/barang')?>">
             <i class="material-icons">inventory</i>
-            <p>Barang</p>
+            <p>Extracomptable</p>
           </a>
         </li>
         <li class="nav-item <?php if ($page == 'Kendaraan'): ?>active<?php endif; ?>">

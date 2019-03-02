@@ -9,7 +9,7 @@
                 <i class="material-icons" style="color: white;">inventory</i>
               </div>
             </a>
-            <p class="card-category">Barang</p>
+            <p class="card-category">Extracomptable</p>
             <h3 class="card-title"><?php echo $total_barang; ?></h3>
           </div>
           <div class="card-footer">
