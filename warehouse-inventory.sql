@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Sep 10, 2018 at 07:04 PM
+-- Generation Time: Mar 02, 2019 at 10:19 AM
 -- Server version: 5.7.21-1
 -- PHP Version: 7.0.29-1+b1
 
@@ -76,7 +76,11 @@ INSERT INTO `barang` (`id_barang`, `nama_barang`, `harga`, `id_jenis_barang`, `i
 (8, 'LCD Proyektor', 752000, 1, 1, 'Dilatakkan diLemari ruang C', '', 2, '2018-08-22 12:24:30'),
 (10, 'TV 21 inci', 2500000, 1, 1, 'Diletakkan di Lobby', '', 2, '2018-08-22 12:32:40'),
 (12, 'TV 21 inci', 2500000, 1, 1, 'Diletakkan di Lobby', '', 3, '2018-08-22 12:32:48'),
-(17, 'LCD Proyektor', 765000, 1, 1, 'Diletakkan diruang G', 'Sony-VPL-DX1402.jpg', 2, '2018-08-24 00:28:28');
+(17, 'LCD Proyektor', 765000, 1, 1, 'Diletakkan diruang G', 'Sony-VPL-DX1402.jpg', 2, '2018-08-24 00:28:28'),
+(18, 'Meja', 500000, 2, 1, 'meja tamu diletakkan di ruang tunggu', '', 0, '2018-12-12 21:47:20'),
+(19, 'kursi', 640000, 2, 1, 'diletakkan diruang B', '61edea9d-894b-4f2c-ba78-422e393b7962w.jpg', 0, '2018-12-14 21:28:18'),
+(20, 'rak buku', 150000, 2, 1, 'diletakkan diruang B', '1294504_e90647e3-d9e7-471d-918d-f59fba093227.jpg', 0, '2018-12-14 21:42:20'),
+(21, 'meja komputer', 350000, 2, 1, 'meja untuk komputer', '', 0, '2019-01-12 21:14:41');
 
 -- --------------------------------------------------------
 
@@ -141,8 +145,7 @@ CREATE TABLE `kendaraan` (
 
 INSERT INTO `kendaraan` (`id_kendaraan`, `nama_kendaraan`, `plat`, `harga`, `id_kondisi`, `id_jenis_kendaraan`, `id_rayon`, `keterangan`, `tanggal`, `gambar`) VALUES
 (1, 'Mobil Pickup', 'N 1945 MRD', 76000000, 1, 2, 2, 'diparkiran A', '2018-09-01 22:11:37', ''),
-(2, 'Mitsubishi', 'N 4351 BG', 90000000, 1, 2, 2, 'diparkir di B', '2018-09-01 23:06:57', ''),
-(3, 'Mitsubishi Pickup Tipe S', 'N 8566 AD', 87000000, 1, 2, 1, 'digunakan oleh pak Amin', '2018-09-01 23:20:38', '');
+(2, 'Mitsubishi', 'N 4351 BG', 90000000, 1, 2, 2, 'diparkir di B', '2018-09-01 23:06:57', '');
 
 -- --------------------------------------------------------
 
@@ -192,7 +195,7 @@ INSERT INTO `level` (`id_level`, `nama_level`) VALUES
 CREATE TABLE `properti` (
   `id_properti` int(11) NOT NULL,
   `luas` int(11) NOT NULL,
-  `harga` int(11) NOT NULL,
+  `harga` bigint(11) NOT NULL,
   `keterangan` text NOT NULL,
   `no_sertifikat` varchar(100) NOT NULL,
   `lokasi` varchar(255) NOT NULL,
@@ -205,7 +208,8 @@ CREATE TABLE `properti` (
 --
 
 INSERT INTO `properti` (`id_properti`, `luas`, `harga`, `keterangan`, `no_sertifikat`, `lokasi`, `gambar`, `tanggal`) VALUES
-(1, 150, 120000000, 'lahan kosong', '555678', 'jl. mega mendung rt/rw 10/13, kelurahan mulyorejo, kecamatan grati, pasuruan ', 'savana-bekol.jpg', '2018-09-01 22:13:11');
+(1, 150, 120000000000000, 'lahan kosong', '555678', 'jl. mega mendung rt/rw 10/13, kelurahan mulyorejo, kecamatan grati, pasuruan ', '', '2018-09-01 22:13:11'),
+(2, 200, 1300000000, 'lahan kosong', '187567165', 'Jl. Sukarno Hatta No. 123', '', '2019-02-22 08:18:02');
 
 -- --------------------------------------------------------
 
@@ -278,6 +282,12 @@ ALTER TABLE `kondisi`
   ADD PRIMARY KEY (`id_kondisi`);
 
 --
+-- Indexes for table `level`
+--
+ALTER TABLE `level`
+  ADD PRIMARY KEY (`id_level`);
+
+--
 -- Indexes for table `properti`
 --
 ALTER TABLE `properti`
@@ -302,7 +312,7 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `barang`
 --
 ALTER TABLE `barang`
-  MODIFY `id_barang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id_barang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 --
 -- AUTO_INCREMENT for table `jenis_barang`
 --
@@ -317,17 +327,22 @@ ALTER TABLE `jenis_kendaraan`
 -- AUTO_INCREMENT for table `kendaraan`
 --
 ALTER TABLE `kendaraan`
-  MODIFY `id_kendaraan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_kendaraan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `kondisi`
 --
 ALTER TABLE `kondisi`
   MODIFY `id_kondisi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
+-- AUTO_INCREMENT for table `level`
+--
+ALTER TABLE `level`
+  MODIFY `id_level` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
 -- AUTO_INCREMENT for table `properti`
 --
 ALTER TABLE `properti`
-  MODIFY `id_properti` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_properti` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `rayon`
 --
