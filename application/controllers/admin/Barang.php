@@ -14,8 +14,8 @@ class Barang extends CI_Controller {
 		if (!$this->session->logged_in == TRUE) {
 			redirect('welcome','refresh');
 		}
-		if ($this->session->id_level == 1 ) {
-			redirect('admin/beranda','refresh');
+		if ($this->session->id_level == 2 ) {
+			redirect('beranda','refresh');
 		}
 	}
 
@@ -40,15 +40,15 @@ class Barang extends CI_Controller {
 			// Buat link pagination
 			$data["links"] = $this->pagination->create_links();
 		}
-		$this->load->view('templates/header', $data);
-		$this->load->view('barang/index', $data);
-		$this->load->view('templates/footer');
+		$this->load->view('admin/templates/header', $data);
+		$this->load->view('admin/barang/index', $data);
+		$this->load->view('admin/templates/footer');
 	}
 
 	public function get($id)
 	{
 		$data['barang'] = $this->barang_model->get_by_id($id);
-		$this->load->view('barang/view', $data);
+		$this->load->view('admin/barang/view', $data);
 	}
 
 	// public function search()

@@ -15,11 +15,13 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
   <!-- CSS Files -->
 
-  <!-- <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-lite/1.1.0/material.min.css">
-  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/dataTables.material.min.css"> -->
+  <!-- <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-lite/1.1.0/material.min.css"> -->
+  <!-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/dataTables.material.min.css"> -->
   <link href="<?php echo base_url('assets/css/material-dashboard.css'); ?>" rel="stylesheet" />
   <!-- CSS Just for demo purpose, don't include it in your project -->
   <link href="<?php echo base_url('assets/demo/demo.css'); ?>" rel="stylesheet" />
+  <!-- MDBootstrap Datatables  -->
+  <link href="<?php echo base_url('assets/css/addons/datatables.min.css') ?>" rel="stylesheet">
 </head>
 
 <body>
@@ -39,45 +41,45 @@
     <div class="sidebar-wrapper">
       <ul class="nav">
         <li class="nav-item <?php if ($page == 'Beranda'): ?>active<?php endif; ?>">
-          <a class="nav-link" href="<?php echo site_url('beranda') ?>">
+          <a class="nav-link" href="<?php echo site_url('admin/beranda') ?>">
             <i class="material-icons">dashboard</i>
             <p>Beranda</p>
           </a>
         </li>
         <li class="nav-item <?php if ($page == 'Barang'): ?>active<?php endif; ?>">
-          <a class="nav-link" href="<?php echo site_url('barang')?>">
+          <a class="nav-link" href="<?php echo site_url('admin/barang')?>">
             <i class="material-icons">inventory</i>
             <p>Barang</p>
           </a>
         </li>
         <li class="nav-item <?php if ($page == 'Kendaraan'): ?>active<?php endif; ?>">
-          <a class="nav-link" href="<?php echo site_url('kendaraan')?>">
+          <a class="nav-link" href="<?php echo site_url('admin/kendaraan')?>">
             <i class="material-icons">local_shipping</i>
             <p>Kendaraan</p>
           </a>
         </li>
         <li class="nav-item <?php if ($page == 'Properti'): ?>active<?php endif; ?>">
-          <a class="nav-link" href="<?php echo site_url('properti')?>">
+          <a class="nav-link" href="<?php echo site_url('admin/properti')?>">
             <i class="material-icons">home</i>
             <p>Properti</p>
           </a>
         </li>
-        <li class="nav-item <?php if ($page == 'Ruang'): ?>active<?php endif; ?>">
-          <a class="nav-link" href="<?php echo site_url('properti')?>">
-            <i class="material-icons">bookmark</i>
-            <p>Ruang</p>
+        <!-- <li class="nav-item <?php if ($page == 'Aktivitas'): ?>active<?php endif; ?>">
+          <a class="nav-link" href="<?php echo site_url('admin/aktivitas')?>">
+            <i class="material-icons">content_paste</i>
+            <p>Aktivitas</p>
           </a>
-        </li>
+        </li> -->
         <li class="nav-item <?php if ($page == 'Laporan'): ?>active<?php endif; ?>">
-          <a class="nav-link" href="<?php echo site_url('laporan')?>">
+          <a class="nav-link" href="<?php echo site_url('admin/laporan')?>">
             <i class="material-icons">print</i>
             <p>Laporan</p>
           </a>
         </li>
         <li class="nav-item <?php if ($page == 'Pengguna'): ?>active<?php endif; ?>">
-          <a class="nav-link" href="<?php echo site_url('pengguna')?>">
+          <a class="nav-link" href="<?php echo site_url('admin/pengguna')?>">
             <i class="material-icons">person</i>
-            <p>Profil</p>
+            <p>Pengguna</p>
           </a>
         </li>
       </ul>

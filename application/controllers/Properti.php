@@ -9,7 +9,10 @@ class Properti extends CI_Controller {
 		$this->load->model('properti_model');
 		$this->load->library('form_validation');
 		if (!$this->session->logged_in == TRUE) {
-			redirect('Welcome','refresh');
+			redirect('welcome','refresh');
+		}
+		if ($this->session->id_level == 1 ) {
+			redirect('admin/beranda','refresh');
 		}
 	}
 

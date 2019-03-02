@@ -9,12 +9,8 @@ class Pengguna extends CI_Controller
 		parent::__construct();
 		$this->load->model('pengguna_model');
 		$this->load->library('form_validation');
-
 		if (!$this->session->logged_in == TRUE) {
-			redirect('welcome','refresh');
-		}
-		if ($this->session->id_level == 1 ) {
-			redirect('admin/beranda','refresh');
+			redirect('Welcome','refresh');
 		}
 	}
 
@@ -40,9 +36,9 @@ class Pengguna extends CI_Controller
 			// Buat link pagination
 			$data["links"] = $this->pagination->create_links();
 		}
-		$this->load->view('templates/header', $data);
-		$this->load->view('pengguna/index', $data);
-		$this->load->view('templates/footer');
+		$this->load->view('admin/templates/header', $data);
+		$this->load->view('admin/pengguna/index', $data);
+		$this->load->view('admin/templates/footer');
 	}
 
 	public function get($id)

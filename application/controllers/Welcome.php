@@ -6,15 +6,18 @@ class Welcome extends CI_Controller {
 	function __construct()
 	{
 		parent::__construct();
-		$this->load->model('rayon_model');
 		if ($this->session->logged_in == TRUE) {
-			redirect('Beranda','refresh');
+			if ($this->session->id_level == 1) {
+				redirect('admin/beranda','refresh');
+			} else {
+				redirect('beranda','refresh');
+			}
+
 		}
 	}
 
 	public function index()
 	{
-		$data['rayon'] = $this->rayon_model->get_all();
-		$this->load->view('welcome_message', $data);
+		$this->load->view('welcome_message');
 	}
 }

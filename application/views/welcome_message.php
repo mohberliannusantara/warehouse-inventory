@@ -7,7 +7,7 @@
 	<link rel="icon" type="image/png" href="<?php echo base_url('assets/img/favicon.png'); ?>">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 	<title>
-		Warehouse Inventory - PT. PLN Persero
+		Sistem Monitoring Aset | PT. PLN Persero
 	</title>
 	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
 	<!--     Fonts and icons     -->
@@ -24,7 +24,7 @@
 	<nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
 		<div class="container-fluid">
 			<div class="navbar-wrapper">
-				<a class="navbar-brand" href="#Inventaris">Inventaris Dashboard</a>
+				<a class="navbar-brand" href="#Inventaris">Dashboard</a>
 			</div>
 			<button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
 				<span class="sr-only">Toggle navigation</span>
@@ -53,7 +53,7 @@
 					<h3 class="description">Memantau aset perusahaan dengan lebih mudah</h3>
 					<div class="btn-group">
 						<button class="btn btn-warning btn-lg" type="button" aria-haspopup="true" aria-expanded="false" data-toggle="modal" data-target="#exampleModal">
-							Kelola Inventaris
+							Kelola Aset
 						</button>
 					</div>
 				</div>
@@ -69,7 +69,7 @@
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
-				<?php echo form_open('Login/login')?>
+				<?php echo form_open('Autentikasi/login')?>
 				<div class="modal-body">
 					<div class="form-group">
 						<label for="" class="label">Username</label>
@@ -94,7 +94,7 @@
 			<nav class="float-left">
 				<ul>
 					<li>
-						<a href="https://github.com/mohberliannusantara/warehouse-inventory" target="_blank">
+						<a href="https://github.com/mohberliannusantara/warehouse-inventory/blob/master/license.txt" target="_blank">
 							Licenses
 						</a>
 					</li>

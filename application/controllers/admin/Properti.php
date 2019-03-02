@@ -1,36 +1,33 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Kendaraan extends CI_Controller {
+class Properti extends CI_Controller {
 
 	function __construct()
 	{
 		parent::__construct();
-		$this->load->model('kendaraan_model');
-		$this->load->model('jenis_kendaraan_model');
-		$this->load->model('kondisi_model');
+		$this->load->model('properti_model');
 		$this->load->library('form_validation');
-
 		if (!$this->session->logged_in == TRUE) {
 			redirect('welcome','refresh');
 		}
-		if ($this->session->id_level == 1 ) {
-			redirect('admin/beranda','refresh');
+		if ($this->session->id_level == 2 ) {
+			redirect('beranda','refresh');
 		}
 	}
 
 	public function index()
 	{
-		$data['page'] = 'Kendaraan';
-		$data['kendaraan'] = $this->kendaraan_model->get();
+		$data['page'] = 'Properti';
+		$data['properti'] = $this->properti_model->get();
 
 		$limit_per_page = 5;
 		$start_index = ( $this->uri->segment(3) ) ? $this->uri->segment(3) : 0;
-		$total_records = $this->kendaraan_model->get_total($this->session->userdata('id_rayon'), $this->session->userdata('id_level'));
+		$total_records = $this->properti_model->get_total();
 		if ($total_records > 0) {
-			$data['kendaraan'] = $this->kendaraan_model->get($limit_per_page, $start_index, $this->session->userdata('id_rayon'), $this->session->userdata('id_level'));
+			$data['properti'] = $this->properti_model->get($limit_per_page, $start_index);
 
-			$config['base_url'] = base_url() . 'Kendaraan/index';
+			$config['base_url'] = base_url() . 'Properti/index';
 			$config['total_rows'] = $total_records;
 			$config['per_page'] = $limit_per_page;
 			$config["uri_segment"] = 3;
@@ -40,35 +37,31 @@ class Kendaraan extends CI_Controller {
 			// Buat link pagination
 			$data["links"] = $this->pagination->create_links();
 		}
-		$this->load->view('templates/header', $data);
-		$this->load->view('kendaraan/index', $data);
-		$this->load->view('templates/footer');
+		$this->load->view('admin/templates/header', $data);
+		$this->load->view('admin/properti/index', $data);
+		$this->load->view('admin/templates/footer');
 	}
 
 	public function get($id)
   {
-    $data['kendaraan'] = $this->kendaraan_model->get_by_id($id);
-		$this->load->view('kendaraan/view', $data);
+    $data['properti'] = $this->properti_model->get_by_id($id);
+		$this->load->view('properti/view', $data);
   }
 
 	public function create()
 	{
-		$data['page'] = 'Kendaraan';
-		$data['page_title'] = 'Tambah Kendaraan';
-		$data['page_content'] = 'Tambahkan kendaraan kedalam daftar dengan informasi yang lengkap';
-
-		$data['jenis_kendaraan'] = $this->jenis_kendaraan_model->get();
-		$data['kondisi'] = $this->kondisi_model->get();
+		$data['page'] = 'Properti';
+		$data['page_title'] = 'Tambah Properti';
+		$data['page_content'] = 'Tambahkan properti kedalam daftar dengan informasi yang lengkap';
 
 		// validasi input
-		$this->form_validation->set_rules('nama_kendaraan', 'Nama_kendaraan', 'required');
-		$this->form_validation->set_rules('plat', 'Plat', 'required');
+		$this->form_validation->set_rules('nama_properti', 'Nama_properti', 'required');
 		$this->form_validation->set_rules('harga', 'Harga', 'required');
 
 		if ($this->form_validation->run() === FALSE)
 		{
 			$this->load->view('templates/header', $data);
-			$this->load->view('kendaraan/create', $data);
+			$this->load->view('properti/create', $data);
 			$this->load->view('templates/footer');
 		}
 		else
@@ -76,7 +69,7 @@ class Kendaraan extends CI_Controller {
 			if ( isset($_FILES['gambar']) && $_FILES['gambar']['size'] > 0 )
 			{
 				// Konfigurasi folder upload & file yang diijinkan untuk diupload/disimpan
-				$config['upload_path']          = './assets/uploads/kendaraan/';
+				$config['upload_path']          = './assets/uploads/properti/';
 				$config['allowed_types']        = 'gif|jpg|png';
 				$config['max_size']             = 10000000000000;
 				$config['max_width']            = 5000;
@@ -91,7 +84,7 @@ class Kendaraan extends CI_Controller {
 					$post_image = '';
 
 					$this->load->view('templates/header', $data);
-					$this->load->view('kendaraan/create', $data);
+					$this->load->view('properti/create', $data);
 					$this->load->view('templates/footer');
 
 				} else { //jika berhasil upload
@@ -107,22 +100,20 @@ class Kendaraan extends CI_Controller {
 			}
 
 			$post_data = array(
-				'nama_kendaraan' => $this->input->post('nama_kendaraan'),
-				'plat' => $this->input->post('plat'),
+				'luas' => $this->input->post('luas'),
+				'no_sertifikat' => $this->input->post('no_sertifikat'),
 				'harga' => str_replace(',', '', $this->input->post('harga')),
-				'id_jenis_kendaraan' => $this->input->post('jenis_kendaraan'),
-				'id_kondisi' => $this->input->post('kondisi'),
-				'id_rayon' => $this->session->userdata('id_rayon'),
+				'lokasi' => $this->input->post('lokasi'),
 				'keterangan' => $this->input->post('keterangan'),
 				'tanggal' => date("Y-m-d H:i:s"),
 				'gambar' => $post_image
 			);
 
 			if( empty($data['upload_error']) ) {
-				$this->kendaraan_model->create($post_data);
-				$data['kendaraan'] = $this->kendaraan_model->get();
+				$this->properti_model->create($post_data);
+				$data['properti'] = $this->properti_model->get();
 				$this->load->view('templates/header', $data);
-				$this->load->view('kendaraan/index', $data);
+				$this->load->view('properti/index', $data);
 				$this->load->view('templates/footer');
 			}
 		}
@@ -130,29 +121,28 @@ class Kendaraan extends CI_Controller {
 
 	public function edit($id = null)
 	{
-		$data['page'] = 'Kendaraan';
-		$data['page_title'] = 'Ubah Kendaraan';
-		$data['page_content'] = 'Ubah kendaraan kedalam daftar dengan informasi yang lengkap';
+		$data['page'] = 'Properti';
+		$data['page_title'] = 'Ubah Properti';
+		$data['page_content'] = 'Ubah properti kedalam daftar dengan informasi yang lengkap';
 
-		$data['kendaraan'] = $this->kendaraan_model->get_by_id($id);
-		$data['jenis_kendaraan'] = $this->jenis_kendaraan_model->get();
-		$data['kondisi'] = $this->kondisi_model->get();
+		$data['properti'] = $this->properti_model->get_by_id($id);
+
 		// validasi input
-		$this->form_validation->set_rules('nama_kendaraan', 'Nama_kendaraan', 'required');
+		$this->form_validation->set_rules('nama_properti', 'Nama_properti', 'required');
 		$this->form_validation->set_rules('harga', 'Harga', 'required');
 
 		// Cek apakah input valid atau tidak
 		if ($this->form_validation->run() === FALSE)
 		{
 			$this->load->view('templates/header', $data);
-			$this->load->view('kendaraan/edit', $data);
+			$this->load->view('properti/edit', $data);
 			$this->load->view('templates/footer');
 
 		} else {
 			if ( isset($_FILES['gambar']) && $_FILES['gambar']['size'] > 0 )
 			{
 				// Konfigurasi folder upload & file yang diijinkan untuk diupload/disimpan
-				$config['upload_path']          = './assets/uploads/kendaraan/';
+				$config['upload_path']          = './assets/uploads/properti/';
 				$config['allowed_types']        = 'gif|jpg|png';
 				$config['max_size']             = 10000000000000;
 				$config['max_width']            = 3000;
@@ -167,7 +157,7 @@ class Kendaraan extends CI_Controller {
 					$post_image = '';
 
 					$this->load->view('templates/header');
-					$this->load->view('kendaraan/create', $data);
+					$this->load->view('properti/create', $data);
 					$this->load->view('templates/footer');
 
 				} else { //jika berhasil upload
@@ -183,9 +173,9 @@ class Kendaraan extends CI_Controller {
 			}
 
 			$post_data = array(
-				'nama_kendaraan' => $this->input->post('nama_kendaraan'),
+				'nama_properti' => $this->input->post('nama_properti'),
 				'harga' => str_replace(',', '', $this->input->post('harga')),
-				'id_jenis_kendaraan' => $this->input->post('jenis_kendaraan'),
+				'id_jenis_properti' => $this->input->post('jenis_properti'),
 				'id_kondisi' => $this->input->post('kondisi'),
 				'keterangan' => $this->input->post('keterangan'),
 				'tanggal' => date("Y-m-d H:i:s"),
@@ -193,28 +183,28 @@ class Kendaraan extends CI_Controller {
 			);
 
 			if( empty($data['upload_error']) ) {
-				$this->kendaraan_model->update($post_data,$id);
-				//$data['kendaraan'] = $this->kendaraan_model->get();
+				$this->properti_model->update($post_data,$id);
+				//$data['properti'] = $this->properti_model->get();
 				// $this->load->view('templates/header');
-				// $this->load->view('kendaraan/index', $data);
+				// $this->load->view('properti/index', $data);
 				// $this->load->view('templates/footer');
-				redirect('Kendaraan','refresh');
+				redirect('Properti','refresh');
 			}
 		}
 	}
 
 	public function move()
 	{
-		$data['page_title'] = 'Pindah Kendaraan';
-		$data['page_content'] = 'Pindahkan kendaraan dan memberi detail keterangan kendaraan';
+		$data['page_title'] = 'Pindah Properti';
+		$data['page_content'] = 'Pindahkan properti dan memberi detail keterangan properti';
 
 		$this->load->view("templates/header");
-		$this->load->view('kendaraan/edit', $data);
+		$this->load->view('properti/edit', $data);
 		$this->load->view("templates/footer");
 	}
 
 	public function delete($id)
 	{
-		$this->kendaraan_model->delete($id);
+		$this->properti_model->delete($id);
 	}
 }

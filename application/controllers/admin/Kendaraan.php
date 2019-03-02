@@ -1,36 +1,35 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Barang extends CI_Controller {
+class Kendaraan extends CI_Controller {
 
 	function __construct()
 	{
 		parent::__construct();
-		$this->load->model('barang_model');
-		$this->load->model('jenis_barang_model');
+		$this->load->model('kendaraan_model');
+		$this->load->model('jenis_kendaraan_model');
 		$this->load->model('kondisi_model');
 		$this->load->library('form_validation');
-		// $this->load->library('dompdf_gen');
 		if (!$this->session->logged_in == TRUE) {
 			redirect('welcome','refresh');
 		}
-		if ($this->session->id_level == 1 ) {
-			redirect('admin/beranda','refresh');
+		if ($this->session->id_level == 2 ) {
+			redirect('beranda','refresh');
 		}
 	}
 
 	public function index()
 	{
-		$data['page'] = 'Barang';
-		$data['barang'] = $this->barang_model->get();
+		$data['page'] = 'Kendaraan';
+		$data['kendaraan'] = $this->kendaraan_model->get();
 
 		$limit_per_page = 5;
 		$start_index = ( $this->uri->segment(3) ) ? $this->uri->segment(3) : 0;
-		$total_records = $this->barang_model->get_total($this->session->userdata('id_rayon'), $this->session->userdata('id_level'));
+		$total_records = $this->kendaraan_model->get_total($this->session->userdata('id_rayon'), $this->session->userdata('id_level'));
 		if ($total_records > 0) {
-			$data["barang"] = $this->barang_model->get($limit_per_page, $start_index, $this->session->userdata('id_rayon'), $this->session->userdata('id_level'));
+			$data['kendaraan'] = $this->kendaraan_model->get($limit_per_page, $start_index, $this->session->userdata('id_rayon'), $this->session->userdata('id_level'));
 
-			$config['base_url'] = base_url() . 'Barang/index';
+			$config['base_url'] = base_url() . 'Kendaraan/index';
 			$config['total_rows'] = $total_records;
 			$config['per_page'] = $limit_per_page;
 			$config["uri_segment"] = 3;
@@ -40,49 +39,35 @@ class Barang extends CI_Controller {
 			// Buat link pagination
 			$data["links"] = $this->pagination->create_links();
 		}
-		$this->load->view('templates/header', $data);
-		$this->load->view('barang/index', $data);
-		$this->load->view('templates/footer');
+		$this->load->view('admin/templates/header', $data);
+		$this->load->view('admin/kendaraan/index', $data);
+		$this->load->view('admin/templates/footer');
 	}
 
 	public function get($id)
-	{
-		$data['barang'] = $this->barang_model->get_by_id($id);
-		$this->load->view('barang/view', $data);
-	}
-
-	// public function search()
-	// {
-	// 	$id = $this->input->post('id_barang');
-	// 	$data['page'] = 'Barang';
-	// 	$data['page_title'] = 'Ubah Barang';
-	// 	$data['page_content'] = 'Ubah barang kedalam daftar dengan informasi yang lengkap';
-
-	// 	$data['barang'] = $this->barang_model->get_by_id($id);
-	// 	$data['jenis_barang'] = $this->jenis_barang_model->get();
-	// 	$data['kondisi'] = $this->kondisi_model->get();
-	// 	$this->load->view('templates/header', $data);
-	// 	$this->load->view('barang/edit', $data);
-	// 	$this->load->view('templates/footer');
-	// }
+  {
+    $data['kendaraan'] = $this->kendaraan_model->get_by_id($id);
+		$this->load->view('kendaraan/view', $data);
+  }
 
 	public function create()
 	{
-		$data['page'] = 'Barang';
-		$data['page_title'] = 'Tambah Barang';
-		$data['page_content'] = 'Tambahkan barang kedalam daftar dengan informasi yang lengkap';
+		$data['page'] = 'Kendaraan';
+		$data['page_title'] = 'Tambah Kendaraan';
+		$data['page_content'] = 'Tambahkan kendaraan kedalam daftar dengan informasi yang lengkap';
 
-		$data['jenis_barang'] = $this->jenis_barang_model->get();
+		$data['jenis_kendaraan'] = $this->jenis_kendaraan_model->get();
 		$data['kondisi'] = $this->kondisi_model->get();
 
 		// validasi input
-		$this->form_validation->set_rules('nama_barang', 'Nama_barang', 'required');
+		$this->form_validation->set_rules('nama_kendaraan', 'Nama_kendaraan', 'required');
+		$this->form_validation->set_rules('plat', 'Plat', 'required');
 		$this->form_validation->set_rules('harga', 'Harga', 'required');
 
 		if ($this->form_validation->run() === FALSE)
 		{
 			$this->load->view('templates/header', $data);
-			$this->load->view('barang/create', $data);
+			$this->load->view('kendaraan/create', $data);
 			$this->load->view('templates/footer');
 		}
 		else
@@ -90,7 +75,7 @@ class Barang extends CI_Controller {
 			if ( isset($_FILES['gambar']) && $_FILES['gambar']['size'] > 0 )
 			{
 				// Konfigurasi folder upload & file yang diijinkan untuk diupload/disimpan
-				$config['upload_path']          = './assets/uploads/barang/';
+				$config['upload_path']          = './assets/uploads/kendaraan/';
 				$config['allowed_types']        = 'gif|jpg|png';
 				$config['max_size']             = 10000000000000;
 				$config['max_width']            = 5000;
@@ -105,7 +90,7 @@ class Barang extends CI_Controller {
 					$post_image = '';
 
 					$this->load->view('templates/header', $data);
-					$this->load->view('barang/create', $data);
+					$this->load->view('kendaraan/create', $data);
 					$this->load->view('templates/footer');
 
 				} else { //jika berhasil upload
@@ -121,20 +106,22 @@ class Barang extends CI_Controller {
 			}
 
 			$post_data = array(
-				'nama_barang' => $this->input->post('nama_barang'),
+				'nama_kendaraan' => $this->input->post('nama_kendaraan'),
+				'plat' => $this->input->post('plat'),
 				'harga' => str_replace(',', '', $this->input->post('harga')),
-				'id_jenis_barang' => $this->input->post('jenis_barang'),
+				'id_jenis_kendaraan' => $this->input->post('jenis_kendaraan'),
 				'id_kondisi' => $this->input->post('kondisi'),
+				'id_rayon' => $this->session->userdata('id_rayon'),
 				'keterangan' => $this->input->post('keterangan'),
 				'tanggal' => date("Y-m-d H:i:s"),
 				'gambar' => $post_image
 			);
 
 			if( empty($data['upload_error']) ) {
-				$this->barang_model->create($post_data);
-				$data['barang'] = $this->barang_model->get();
+				$this->kendaraan_model->create($post_data);
+				$data['kendaraan'] = $this->kendaraan_model->get();
 				$this->load->view('templates/header', $data);
-				$this->load->view('barang/index', $data);
+				$this->load->view('kendaraan/index', $data);
 				$this->load->view('templates/footer');
 			}
 		}
@@ -142,29 +129,29 @@ class Barang extends CI_Controller {
 
 	public function edit($id = null)
 	{
-		$data['page'] = 'Barang';
-		$data['page_title'] = 'Ubah Barang';
-		$data['page_content'] = 'Ubah barang kedalam daftar dengan informasi yang lengkap';
+		$data['page'] = 'Kendaraan';
+		$data['page_title'] = 'Ubah Kendaraan';
+		$data['page_content'] = 'Ubah kendaraan kedalam daftar dengan informasi yang lengkap';
 
-		$data['barang'] = $this->barang_model->get_by_id($id);
-		$data['jenis_barang'] = $this->jenis_barang_model->get();
+		$data['kendaraan'] = $this->kendaraan_model->get_by_id($id);
+		$data['jenis_kendaraan'] = $this->jenis_kendaraan_model->get();
 		$data['kondisi'] = $this->kondisi_model->get();
 		// validasi input
-		$this->form_validation->set_rules('nama_barang', 'Nama_barang', 'required');
+		$this->form_validation->set_rules('nama_kendaraan', 'Nama_kendaraan', 'required');
 		$this->form_validation->set_rules('harga', 'Harga', 'required');
 
 		// Cek apakah input valid atau tidak
 		if ($this->form_validation->run() === FALSE)
 		{
 			$this->load->view('templates/header', $data);
-			$this->load->view('barang/edit', $data);
+			$this->load->view('kendaraan/edit', $data);
 			$this->load->view('templates/footer');
 
 		} else {
 			if ( isset($_FILES['gambar']) && $_FILES['gambar']['size'] > 0 )
 			{
 				// Konfigurasi folder upload & file yang diijinkan untuk diupload/disimpan
-				$config['upload_path']          = './assets/uploads/barang/';
+				$config['upload_path']          = './assets/uploads/kendaraan/';
 				$config['allowed_types']        = 'gif|jpg|png';
 				$config['max_size']             = 10000000000000;
 				$config['max_width']            = 3000;
@@ -179,7 +166,7 @@ class Barang extends CI_Controller {
 					$post_image = '';
 
 					$this->load->view('templates/header');
-					$this->load->view('barang/create', $data);
+					$this->load->view('kendaraan/create', $data);
 					$this->load->view('templates/footer');
 
 				} else { //jika berhasil upload
@@ -195,9 +182,9 @@ class Barang extends CI_Controller {
 			}
 
 			$post_data = array(
-				'nama_barang' => $this->input->post('nama_barang'),
+				'nama_kendaraan' => $this->input->post('nama_kendaraan'),
 				'harga' => str_replace(',', '', $this->input->post('harga')),
-				'id_jenis_barang' => $this->input->post('jenis_barang'),
+				'id_jenis_kendaraan' => $this->input->post('jenis_kendaraan'),
 				'id_kondisi' => $this->input->post('kondisi'),
 				'keterangan' => $this->input->post('keterangan'),
 				'tanggal' => date("Y-m-d H:i:s"),
@@ -205,45 +192,28 @@ class Barang extends CI_Controller {
 			);
 
 			if( empty($data['upload_error']) ) {
-				$this->barang_model->update($post_data,$id);
-				//$data['barang'] = $this->barang_model->get();
+				$this->kendaraan_model->update($post_data,$id);
+				//$data['kendaraan'] = $this->kendaraan_model->get();
 				// $this->load->view('templates/header');
-				// $this->load->view('barang/index', $data);
+				// $this->load->view('kendaraan/index', $data);
 				// $this->load->view('templates/footer');
-				redirect('Barang','refresh');
+				redirect('Kendaraan','refresh');
 			}
 		}
 	}
 
 	public function move()
 	{
-		$data['page_title'] = 'Pindah Barang';
-		$data['page_content'] = 'Pindahkan barang dan memberi detail keterangan barang';
+		$data['page_title'] = 'Pindah Kendaraan';
+		$data['page_content'] = 'Pindahkan kendaraan dan memberi detail keterangan kendaraan';
 
 		$this->load->view("templates/header");
-		$this->load->view('barang/edit', $data);
+		$this->load->view('kendaraan/edit', $data);
 		$this->load->view("templates/footer");
 	}
 
 	public function delete($id)
 	{
-		$this->barang_model->delete($id);
-	}
-
-	public function printBarang()
-	{
-		$data['barang'] = $this->barang_model->get_all($this->session->userdata('id_rayon'), $this->session->userdata('id_level'));
-		$this->load->view('barang/print', $data);
-		$paper_size = 'A4';
-		$orientation = 'landscape';
-		$html = $this->output->get_output();
-
-		$dompdf = new DOMPDF();
-		// $dompdf = new Dompdf\DOMPDF();
-		$this->dompdf->load_html($html);
-		$this->dompdf->render();
-		$this->dompdf->stream("laporan.pdf");
-		unset($html);
-		unset($dompdf);
+		$this->kendaraan_model->delete($id);
 	}
 }

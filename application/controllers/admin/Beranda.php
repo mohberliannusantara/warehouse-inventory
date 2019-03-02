@@ -15,8 +15,8 @@ class Beranda extends CI_Controller
 		if (!$this->session->logged_in == TRUE) {
 			redirect('welcome','refresh');
 		}
-		if ($this->session->id_level == 1 ) {
-			redirect('admin/beranda','refresh');
+		if ($this->session->id_level == 2 ) {
+			redirect('beranda','refresh');
 		}
 	}
 
@@ -39,8 +39,8 @@ class Beranda extends CI_Controller
 		$data['kendaraan'] = $this->Kendaraan_model->get_limit($this->session->userdata('id_rayon'), $this->session->userdata('id_level'));
 		$data['properti'] = $this->Properti_model->get_limit();
 
-		$this->load->view('templates/header', $data);
-		$this->load->view('beranda/index', $data);
-		$this->load->view('templates/footer');
+		$this->load->view('admin/templates/header', $data);
+		$this->load->view('admin/beranda/index', $data);
+		$this->load->view('admin/templates/footer');
 	}
 }
