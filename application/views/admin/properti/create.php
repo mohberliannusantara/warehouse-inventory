@@ -9,7 +9,7 @@
           </div>
           <div class="card-body">
             <?php //echo $upload_error;?>
-            <form action="<?php base_url('properti/create') ?>" method="post" enctype="multipart/form-data">
+            <form action="<?php base_url('admin/properti/create') ?>" method="post" enctype="multipart/form-data">
               <div class="form-group">
                 <label for="nama_properti">Nama Properti</label>
                 <input type="text" class="form-control" name="nama_properti" value="<?php echo set_value('nama_properti') ?>" required autofocus>

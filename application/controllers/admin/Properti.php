@@ -1,201 +1,238 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
-class Properti extends CI_Controller {
+class Properti extends CI_Controller
+{
 
-	function __construct()
-	{
-		parent::__construct();
-		$this->load->model('properti_model');
-		$this->load->model('rayon_model');
-		$this->load->library('form_validation');
+    public function __construct()
+    {
+        parent::__construct();
+        $this->load->model('properti_model');
+        $this->load->model('rayon_model');
+        $this->load->library('form_validation');
 
-		if (!$this->session->logged_in == TRUE) {
-			redirect('welcome','refresh');
+        if (!$this->session->logged_in == true) {
+            redirect('welcome', 'refresh');
+        }
+        if ($this->session->id_level == 2) {
+            redirect('beranda', 'refresh');
+        }
+    }
+
+    public function index()
+    {
+        $data['page'] = 'Properti';
+        $data['properti'] = $this->properti_model->get();
+
+        $this->load->view('admin/templates/header', $data);
+        $this->load->view('admin/properti/index', $data);
+        $this->load->view('admin/templates/footer');
+    }
+
+    public function get($id)
+    {
+        $data['properti'] = $this->properti_model->get_by_id($id);
+        $this->load->view('admin/properti/view', $data);
+    }
+
+    public function create()
+    {
+        $data['page'] = 'Properti';
+        $data['rayon'] = $this->rayon_model->get();
+
+        $this->load->view('admin/templates/header', $data);
+        $this->load->view('admin/properti/create', $data);
+        $this->load->view('admin/templates/footer');
+
+        // $this->form_validation->set_rules('nama_properti', 'Nama_properti', 'required');
+        // $this->form_validation->set_rules('harga', 'Harga', 'required');
+
+        // if ($this->form_validation->run() === FALSE)
+        // {
+
+        // }
+        // else
+        // {
+        //     if ( isset($_FILES['gambar']) && $_FILES['gambar']['size'] > 0 )
+        //     {
+        //         // Konfigurasi folder upload & file yang diijinkan untuk diupload/disimpan
+        //         $config['upload_path']          = './assets/uploads/properti/';
+        //         $config['allowed_types']        = 'gif|jpg|png';
+        //         $config['max_size']             = 10000000000000;
+        //         $config['max_width']            = 5000;
+        //         $config['max_height']           = 5000;
+
+        //         $this->load->library('upload', $config);
+
+        //         if ( ! $this->upload->do_upload('gambar'))
+        //         {
+        //             $data['upload_error'] = $this->upload->display_errors();
+
+        //             $post_image = '';
+
+        //             $this->load->view('admin/templates/header', $data);
+        //             $this->load->view('admin/properti/create', $data);
+        //             $this->load->view('admin/templates/footer');
+
+        //         } else { //jika berhasil upload
+
+        //             $img_data = $this->upload->data();
+        //             $post_image = $img_data['file_name'];
+
+        //         }
+        //     } else { //jika tidak upload gambar
+
+        //         $post_image = '';
+
+        //     }
+
+        //     $post_data = array(
+        //         'luas' => $this->input->post('luas'),
+        //         'no_sertifikat' => $this->input->post('no_sertifikat'),
+        //         'harga' => str_replace(',', '', $this->input->post('harga')),
+        //         'lokasi' => $this->input->post('lokasi'),
+        //         'keterangan' => $this->input->post('keterangan'),
+        //         'tanggal' => date("Y-m-d H:i:s"),
+        //         'gambar' => $post_image
+        //     );
+
+        //     if( empty($data['upload_error']) ) {
+        //         $this->properti_model->create($post_data);
+        //         $data['properti'] = $this->properti_model->get();
+        //         $this->load->view('templates/header', $data);
+        //         $this->load->view('properti/index', $data);
+        //         $this->load->view('templates/footer');
+        //     }
+        // }
+    }
+
+    public function insert()
+    {
+		
+		$config['upload_path'] = './uploads/';
+		$config['allowed_types'] = 'gif|jpg|png|jpeg';
+		$config['max_size']  = '100';
+		$config['max_width']  = '1024';
+		$config['max_height']  = '768';
+		
+		$this->load->library('upload', $config);
+		
+		if ( ! $this->upload->do_upload()){
+			$error = array('error' => $this->upload->display_errors());
 		}
-		if ($this->session->id_level == 2 ) {
-			redirect('beranda','refresh');
-		}
-	}
+		
+        $post_data = array(
+			'nama_properti' => $this->input->post('nama_properti'),
+			'jenis_properti' => $this->input->post('jenis_properti'),
+			'id_rayon' => $this->input->post('id_rayon'),
+			'luas_tanah' => $this->input->post('luas_tanah'),
+			'luas_bangunan' => $this->input->post('luas_bangunan'),
+			'harga' => $this->input->post('harga'),
+			'tahun_perolehan' => $this->input->post('tahun_perolehan'),
+			'keterangan' => $this->input->post('nama_properti'),
+			'no_sertifikat' => $this->input->post('no_sertifikat'),
+			'tanggal_berlaku_sertifikat' => $this->input->post('tanggal_berlaku_sertifikat'),
+			'tanggal_kadaluarsa_sertifikat' => $this->input->post('tanggal_kadaluarsa_sertifikat'),
+			'no_pajak' => $this->input->post('no_pajak'),
+			'alamat' => $this->input->post('alamat'),
+			'lokasi' => $this->input->post('lokasi'),
+			'status' => $this->input->post('status'),
+			'foto_properto' => $this->input->post('foto_properto'),
+			'foto_pajak' => $this->input->post('foto_pajak'),
+			'foto_sertifikat' => $this->input->post('foto_sertifikat')
+		);
+    }
 
-	public function index()
-	{
-		$data['page'] = 'Properti';
-		$data['properti'] = $this->properti_model->get();
+    public function edit($id = null)
+    {
+        $data['page'] = 'Properti';
+        $data['page_title'] = 'Ubah Properti';
+        $data['page_content'] = 'Ubah properti kedalam daftar dengan informasi yang lengkap';
 
-		$this->load->view('admin/templates/header', $data);
-		$this->load->view('admin/properti/index', $data);
-		$this->load->view('admin/templates/footer');
-	}
+        $data['properti'] = $this->properti_model->get_by_id($id);
 
-	public function get($id)
-  {
-    $data['properti'] = $this->properti_model->get_by_id($id);
-		$this->load->view('admin/properti/view', $data);
-  }
+        // validasi input
+        $this->form_validation->set_rules('nama_properti', 'Nama_properti', 'required');
+        $this->form_validation->set_rules('harga', 'Harga', 'required');
 
-	public function create()
-	{
-		$data['page'] = 'Properti';
-		$data['rayon'] = $this->rayon_model->get();
+        // Cek apakah input valid atau tidak
+        if ($this->form_validation->run() === false) {
+            $this->load->view('templates/header', $data);
+            $this->load->view('properti/edit', $data);
+            $this->load->view('templates/footer');
 
-		$this->form_validation->set_rules('nama_properti', 'Nama_properti', 'required');
-		$this->form_validation->set_rules('harga', 'Harga', 'required');
+        } else {
+            if (isset($_FILES['gambar']) && $_FILES['gambar']['size'] > 0) {
+                // Konfigurasi folder upload & file yang diijinkan untuk diupload/disimpan
+                $config['upload_path'] = './assets/uploads/properti/';
+                $config['allowed_types'] = 'gif|jpg|png';
+                $config['max_size'] = 10000000000000;
+                $config['max_width'] = 3000;
+                $config['max_height'] = 3000;
 
-		if ($this->form_validation->run() === FALSE)
-		{
-			$this->load->view('admin/templates/header', $data);
-			$this->load->view('admin/properti/create', $data);
-			$this->load->view('admin/templates/footer');
-		}
-		else
-		{
-			if ( isset($_FILES['gambar']) && $_FILES['gambar']['size'] > 0 )
-			{
-				// Konfigurasi folder upload & file yang diijinkan untuk diupload/disimpan
-				$config['upload_path']          = './assets/uploads/properti/';
-				$config['allowed_types']        = 'gif|jpg|png';
-				$config['max_size']             = 10000000000000;
-				$config['max_width']            = 5000;
-				$config['max_height']           = 5000;
+                $this->load->library('upload', $config);
 
-				$this->load->library('upload', $config);
+                if (!$this->upload->do_upload('gambar')) {
+                    $data['upload_error'] = $this->upload->display_errors();
 
-				if ( ! $this->upload->do_upload('gambar'))
-				{
-					$data['upload_error'] = $this->upload->display_errors();
+                    $post_image = '';
 
-					$post_image = '';
+                    $this->load->view('templates/header');
+                    $this->load->view('properti/create', $data);
+                    $this->load->view('templates/footer');
 
-					$this->load->view('admin/templates/header', $data);
-					$this->load->view('admin/properti/create', $data);
-					$this->load->view('admin/templates/footer');
+                } else { //jika berhasil upload
 
-				} else { //jika berhasil upload
+                    $img_data = $this->upload->data();
+                    $post_image = $img_data['file_name'];
 
-					$img_data = $this->upload->data();
-					$post_image = $img_data['file_name'];
+                }
+            } else { //jika tidak upload gambar
 
-				}
-			} else { //jika tidak upload gambar
+                $post_image = '';
 
-				$post_image = '';
+            }
 
-			}
+            $post_data = array(
+                'nama_properti' => $this->input->post('nama_properti'),
+                'harga' => str_replace(',', '', $this->input->post('harga')),
+                'id_jenis_properti' => $this->input->post('jenis_properti'),
+                'id_kondisi' => $this->input->post('kondisi'),
+                'keterangan' => $this->input->post('keterangan'),
+                'tanggal' => date("Y-m-d H:i:s"),
+                'gambar' => $post_image,
+            );
 
-			$post_data = array(
-				'luas' => $this->input->post('luas'),
-				'no_sertifikat' => $this->input->post('no_sertifikat'),
-				'harga' => str_replace(',', '', $this->input->post('harga')),
-				'lokasi' => $this->input->post('lokasi'),
-				'keterangan' => $this->input->post('keterangan'),
-				'tanggal' => date("Y-m-d H:i:s"),
-				'gambar' => $post_image
-			);
+            if (empty($data['upload_error'])) {
+                $this->properti_model->update($post_data, $id);
+                //$data['properti'] = $this->properti_model->get();
+                // $this->load->view('templates/header');
+                // $this->load->view('properti/index', $data);
+                // $this->load->view('templates/footer');
+                redirect('Properti', 'refresh');
+            }
+        }
+    }
 
-			if( empty($data['upload_error']) ) {
-				$this->properti_model->create($post_data);
-				$data['properti'] = $this->properti_model->get();
-				$this->load->view('templates/header', $data);
-				$this->load->view('properti/index', $data);
-				$this->load->view('templates/footer');
-			}
-		}
-	}
+    public function move()
+    {
+        $data['page_title'] = 'Pindah Properti';
+        $data['page_content'] = 'Pindahkan properti dan memberi detail keterangan properti';
 
-	public function edit($id = null)
-	{
-		$data['page'] = 'Properti';
-		$data['page_title'] = 'Ubah Properti';
-		$data['page_content'] = 'Ubah properti kedalam daftar dengan informasi yang lengkap';
+        $this->load->view("templates/header");
+        $this->load->view('properti/edit', $data);
+        $this->load->view("templates/footer");
+    }
 
-		$data['properti'] = $this->properti_model->get_by_id($id);
+    public function delete($id)
+    {
+        $this->properti_model->delete($id);
 
-		// validasi input
-		$this->form_validation->set_rules('nama_properti', 'Nama_properti', 'required');
-		$this->form_validation->set_rules('harga', 'Harga', 'required');
+        redirect('properti', 'refresh');
 
-		// Cek apakah input valid atau tidak
-		if ($this->form_validation->run() === FALSE)
-		{
-			$this->load->view('templates/header', $data);
-			$this->load->view('properti/edit', $data);
-			$this->load->view('templates/footer');
+    }
 
-		} else {
-			if ( isset($_FILES['gambar']) && $_FILES['gambar']['size'] > 0 )
-			{
-				// Konfigurasi folder upload & file yang diijinkan untuk diupload/disimpan
-				$config['upload_path']          = './assets/uploads/properti/';
-				$config['allowed_types']        = 'gif|jpg|png';
-				$config['max_size']             = 10000000000000;
-				$config['max_width']            = 3000;
-				$config['max_height']           = 3000;
-
-				$this->load->library('upload', $config);
-
-				if ( ! $this->upload->do_upload('gambar'))
-				{
-					$data['upload_error'] = $this->upload->display_errors();
-
-					$post_image = '';
-
-					$this->load->view('templates/header');
-					$this->load->view('properti/create', $data);
-					$this->load->view('templates/footer');
-
-				} else { //jika berhasil upload
-
-					$img_data = $this->upload->data();
-					$post_image = $img_data['file_name'];
-
-				}
-			} else { //jika tidak upload gambar
-
-				$post_image = '';
-
-			}
-
-			$post_data = array(
-				'nama_properti' => $this->input->post('nama_properti'),
-				'harga' => str_replace(',', '', $this->input->post('harga')),
-				'id_jenis_properti' => $this->input->post('jenis_properti'),
-				'id_kondisi' => $this->input->post('kondisi'),
-				'keterangan' => $this->input->post('keterangan'),
-				'tanggal' => date("Y-m-d H:i:s"),
-				'gambar' => $post_image
-			);
-
-			if( empty($data['upload_error']) ) {
-				$this->properti_model->update($post_data,$id);
-				//$data['properti'] = $this->properti_model->get();
-				// $this->load->view('templates/header');
-				// $this->load->view('properti/index', $data);
-				// $this->load->view('templates/footer');
-				redirect('Properti','refresh');
-			}
-		}
-	}
-
-	public function move()
-	{
-		$data['page_title'] = 'Pindah Properti';
-		$data['page_content'] = 'Pindahkan properti dan memberi detail keterangan properti';
-
-		$this->load->view("templates/header");
-		$this->load->view('properti/edit', $data);
-		$this->load->view("templates/footer");
-	}
-
-	public function delete($id)
-	{
-		$this->properti_model->delete($id);
-
-		redirect('properti','refresh');
-
-	}
-
-	public function export()
+    public function export()
     {
         // Load plugin PHPExcel nya
         include APPPATH . 'third_party/PHPExcel/PHPExcel.php';
@@ -260,23 +297,22 @@ class Properti extends CI_Controller {
 
         // Buat header tabel nya pada baris ke 3
         $excel->setActiveSheetIndex(0)->setCellValue('A3', "No"); // Set kolom A3 dengan tulisan "NO"
-		$excel->setActiveSheetIndex(0)->setCellValue('B3', "id_properti"); // Set kolom A3 dengan tulisan "NO"
-		$excel->setActiveSheetIndex(0)->setCellValue('C3', "nama_properti"); // Set kolom B3 dengan tulisan "NIS"
+        $excel->setActiveSheetIndex(0)->setCellValue('B3', "id_properti"); // Set kolom A3 dengan tulisan "NO"
+        $excel->setActiveSheetIndex(0)->setCellValue('C3', "nama_properti"); // Set kolom B3 dengan tulisan "NIS"
         $excel->setActiveSheetIndex(0)->setCellValue('D3', "jenis_properti"); // Set kolom B3 dengan tulisan "NIS"
         $excel->setActiveSheetIndex(0)->setCellValue('E3', "rayon"); // Set kolom C3 dengan tulisan "NAMA"
-		$excel->setActiveSheetIndex(0)->setCellValue('F3', "luas_tanah"); // Set kolom D3 dengan tulisan "JENIS KELAMIN"
-		$excel->setActiveSheetIndex(0)->setCellValue('G3', "luas_bangunan"); // Set kolom B3 dengan tulisan "NIS"
-		$excel->setActiveSheetIndex(0)->setCellValue('H3', "harga"); // Set kolom D3 dengan tulisan "JENIS KELAMIN"
-		$excel->setActiveSheetIndex(0)->setCellValue('I3', "tahun_perolehan"); // Set kolom D3 dengan tulisan "JENIS KELAMIN"
-		$excel->setActiveSheetIndex(0)->setCellValue('J3', "keterangan"); // Set kolom D3 dengan tulisan "JENIS KELAMIN"
-		$excel->setActiveSheetIndex(0)->setCellValue('K3', "no_sertifikat"); // Set kolom D3 dengan tulisan "JENIS KELAMIN"
-		$excel->setActiveSheetIndex(0)->setCellValue('L3', "tanggal_berlaku_sertifikat"); // Set kolom D3 dengan tulisan "JENIS KELAMIN"
-		$excel->setActiveSheetIndex(0)->setCellValue('M3', "tanggal_kadaluarsa_sertifikat"); // Set kolom D3 dengan tulisan "JENIS KELAMIN"
-		$excel->setActiveSheetIndex(0)->setCellValue('N3', "no_pajak"); // Set kolom D3 dengan tulisan "JENIS KELAMIN"
-		$excel->setActiveSheetIndex(0)->setCellValue('O3', "alamat"); // Set kolom D3 dengan tulisan "JENIS KELAMIN"
-		$excel->setActiveSheetIndex(0)->setCellValue('P3', "lokasi"); // Set kolom D3 dengan tulisan "JENIS KELAMIN"
-		$excel->setActiveSheetIndex(0)->setCellValue('Q3', "status"); // Set kolom D3 dengan tulisan "JENIS KELAMIN"
-
+        $excel->setActiveSheetIndex(0)->setCellValue('F3', "luas_tanah"); // Set kolom D3 dengan tulisan "JENIS KELAMIN"
+        $excel->setActiveSheetIndex(0)->setCellValue('G3', "luas_bangunan"); // Set kolom B3 dengan tulisan "NIS"
+        $excel->setActiveSheetIndex(0)->setCellValue('H3', "harga"); // Set kolom D3 dengan tulisan "JENIS KELAMIN"
+        $excel->setActiveSheetIndex(0)->setCellValue('I3', "tahun_perolehan"); // Set kolom D3 dengan tulisan "JENIS KELAMIN"
+        $excel->setActiveSheetIndex(0)->setCellValue('J3', "keterangan"); // Set kolom D3 dengan tulisan "JENIS KELAMIN"
+        $excel->setActiveSheetIndex(0)->setCellValue('K3', "no_sertifikat"); // Set kolom D3 dengan tulisan "JENIS KELAMIN"
+        $excel->setActiveSheetIndex(0)->setCellValue('L3', "tanggal_berlaku_sertifikat"); // Set kolom D3 dengan tulisan "JENIS KELAMIN"
+        $excel->setActiveSheetIndex(0)->setCellValue('M3', "tanggal_kadaluarsa_sertifikat"); // Set kolom D3 dengan tulisan "JENIS KELAMIN"
+        $excel->setActiveSheetIndex(0)->setCellValue('N3', "no_pajak"); // Set kolom D3 dengan tulisan "JENIS KELAMIN"
+        $excel->setActiveSheetIndex(0)->setCellValue('O3', "alamat"); // Set kolom D3 dengan tulisan "JENIS KELAMIN"
+        $excel->setActiveSheetIndex(0)->setCellValue('P3', "lokasi"); // Set kolom D3 dengan tulisan "JENIS KELAMIN"
+        $excel->setActiveSheetIndex(0)->setCellValue('Q3', "status"); // Set kolom D3 dengan tulisan "JENIS KELAMIN"
 
         // Apply style header yang telah kita buat tadi ke masing-masing kolom header
         $excel->getActiveSheet()->getStyle('A3')->applyFromArray($style_col);
@@ -284,18 +320,18 @@ class Properti extends CI_Controller {
         $excel->getActiveSheet()->getStyle('C3')->applyFromArray($style_col);
         $excel->getActiveSheet()->getStyle('D3')->applyFromArray($style_col);
         $excel->getActiveSheet()->getStyle('E3')->applyFromArray($style_col);
-		$excel->getActiveSheet()->getStyle('F3')->applyFromArray($style_col);
-		$excel->getActiveSheet()->getStyle('G3')->applyFromArray($style_col);
-		$excel->getActiveSheet()->getStyle('H3')->applyFromArray($style_col);
-		$excel->getActiveSheet()->getStyle('I3')->applyFromArray($style_col);
-		$excel->getActiveSheet()->getStyle('J3')->applyFromArray($style_col);
-		$excel->getActiveSheet()->getStyle('K3')->applyFromArray($style_col);
-		$excel->getActiveSheet()->getStyle('L3')->applyFromArray($style_col);
-		$excel->getActiveSheet()->getStyle('M3')->applyFromArray($style_col);
-		$excel->getActiveSheet()->getStyle('N3')->applyFromArray($style_col);
-		$excel->getActiveSheet()->getStyle('O3')->applyFromArray($style_col);
-		$excel->getActiveSheet()->getStyle('P3')->applyFromArray($style_col);
-		$excel->getActiveSheet()->getStyle('Q3')->applyFromArray($style_col);
+        $excel->getActiveSheet()->getStyle('F3')->applyFromArray($style_col);
+        $excel->getActiveSheet()->getStyle('G3')->applyFromArray($style_col);
+        $excel->getActiveSheet()->getStyle('H3')->applyFromArray($style_col);
+        $excel->getActiveSheet()->getStyle('I3')->applyFromArray($style_col);
+        $excel->getActiveSheet()->getStyle('J3')->applyFromArray($style_col);
+        $excel->getActiveSheet()->getStyle('K3')->applyFromArray($style_col);
+        $excel->getActiveSheet()->getStyle('L3')->applyFromArray($style_col);
+        $excel->getActiveSheet()->getStyle('M3')->applyFromArray($style_col);
+        $excel->getActiveSheet()->getStyle('N3')->applyFromArray($style_col);
+        $excel->getActiveSheet()->getStyle('O3')->applyFromArray($style_col);
+        $excel->getActiveSheet()->getStyle('P3')->applyFromArray($style_col);
+        $excel->getActiveSheet()->getStyle('Q3')->applyFromArray($style_col);
 
         // Panggil function view yang ada di SiswaModel untuk menampilkan semua data siswanya
         $barang = $this->properti_model->get();
@@ -304,22 +340,22 @@ class Properti extends CI_Controller {
         $numrow = 6; // Set baris pertama untuk isi tabel adalah baris ke 4
         foreach ($barang as $data) { // Lakukan looping pada variabel siswa
             $excel->setActiveSheetIndex(0)->setCellValue('A' . $numrow, $no);
-			$excel->setActiveSheetIndex(0)->setCellValue('B' . $numrow, $data->id_properti);
-			$excel->setActiveSheetIndex(0)->setCellValue('C' . $numrow, $data->nama_properti);
+            $excel->setActiveSheetIndex(0)->setCellValue('B' . $numrow, $data->id_properti);
+            $excel->setActiveSheetIndex(0)->setCellValue('C' . $numrow, $data->nama_properti);
             $excel->setActiveSheetIndex(0)->setCellValue('D' . $numrow, $data->jenis_properti);
             $excel->setActiveSheetIndex(0)->setCellValue('E' . $numrow, $data->nama_rayon);
-			$excel->setActiveSheetIndex(0)->setCellValue('F' . $numrow, $data->luas_tanah);
-			$excel->setActiveSheetIndex(0)->setCellValue('G' . $numrow, $data->luas_bangunan);
-			$excel->setActiveSheetIndex(0)->setCellValue('H' . $numrow, $data->harga);
-			$excel->setActiveSheetIndex(0)->setCellValue('I' . $numrow, $data->tahun_perolehan);
-			$excel->setActiveSheetIndex(0)->setCellValue('J' . $numrow, $data->keterangan);
-			$excel->setActiveSheetIndex(0)->setCellValue('K' . $numrow, $data->no_sertifikat);
-			$excel->setActiveSheetIndex(0)->setCellValue('L' . $numrow, $data->tanggal_berlaku_sertifikat);
-			$excel->setActiveSheetIndex(0)->setCellValue('M' . $numrow, $data->tanggal_kadaluarsa_sertifikat);
-			$excel->setActiveSheetIndex(0)->setCellValue('N' . $numrow, $data->no_pajak);
-			$excel->setActiveSheetIndex(0)->setCellValue('O' . $numrow, $data->alamat);
-			$excel->setActiveSheetIndex(0)->setCellValue('P' . $numrow, $data->lokasi);
-			$excel->setActiveSheetIndex(0)->setCellValue('Q' . $numrow, $data->status);
+            $excel->setActiveSheetIndex(0)->setCellValue('F' . $numrow, $data->luas_tanah);
+            $excel->setActiveSheetIndex(0)->setCellValue('G' . $numrow, $data->luas_bangunan);
+            $excel->setActiveSheetIndex(0)->setCellValue('H' . $numrow, $data->harga);
+            $excel->setActiveSheetIndex(0)->setCellValue('I' . $numrow, $data->tahun_perolehan);
+            $excel->setActiveSheetIndex(0)->setCellValue('J' . $numrow, $data->keterangan);
+            $excel->setActiveSheetIndex(0)->setCellValue('K' . $numrow, $data->no_sertifikat);
+            $excel->setActiveSheetIndex(0)->setCellValue('L' . $numrow, $data->tanggal_berlaku_sertifikat);
+            $excel->setActiveSheetIndex(0)->setCellValue('M' . $numrow, $data->tanggal_kadaluarsa_sertifikat);
+            $excel->setActiveSheetIndex(0)->setCellValue('N' . $numrow, $data->no_pajak);
+            $excel->setActiveSheetIndex(0)->setCellValue('O' . $numrow, $data->alamat);
+            $excel->setActiveSheetIndex(0)->setCellValue('P' . $numrow, $data->lokasi);
+            $excel->setActiveSheetIndex(0)->setCellValue('Q' . $numrow, $data->status);
 
             // Apply style row yang telah kita buat tadi ke masing-masing baris (isi tabel)
             $excel->getActiveSheet()->getStyle('A' . $numrow)->applyFromArray($style_row);
@@ -327,18 +363,18 @@ class Properti extends CI_Controller {
             $excel->getActiveSheet()->getStyle('C' . $numrow)->applyFromArray($style_row);
             $excel->getActiveSheet()->getStyle('D' . $numrow)->applyFromArray($style_row);
             $excel->getActiveSheet()->getStyle('E' . $numrow)->applyFromArray($style_row);
-			$excel->getActiveSheet()->getStyle('F' . $numrow)->applyFromArray($style_row);
-			$excel->getActiveSheet()->getStyle('G' . $numrow)->applyFromArray($style_row);
-			$excel->getActiveSheet()->getStyle('H' . $numrow)->applyFromArray($style_row);
-			$excel->getActiveSheet()->getStyle('I' . $numrow)->applyFromArray($style_row);
-			$excel->getActiveSheet()->getStyle('J' . $numrow)->applyFromArray($style_row);
-			$excel->getActiveSheet()->getStyle('K' . $numrow)->applyFromArray($style_row);
-			$excel->getActiveSheet()->getStyle('L' . $numrow)->applyFromArray($style_row);
-			$excel->getActiveSheet()->getStyle('M' . $numrow)->applyFromArray($style_row);
-			$excel->getActiveSheet()->getStyle('N' . $numrow)->applyFromArray($style_row);
-			$excel->getActiveSheet()->getStyle('O' . $numrow)->applyFromArray($style_row);
-			$excel->getActiveSheet()->getStyle('P' . $numrow)->applyFromArray($style_row);
-			$excel->getActiveSheet()->getStyle('Q' . $numrow)->applyFromArray($style_row);
+            $excel->getActiveSheet()->getStyle('F' . $numrow)->applyFromArray($style_row);
+            $excel->getActiveSheet()->getStyle('G' . $numrow)->applyFromArray($style_row);
+            $excel->getActiveSheet()->getStyle('H' . $numrow)->applyFromArray($style_row);
+            $excel->getActiveSheet()->getStyle('I' . $numrow)->applyFromArray($style_row);
+            $excel->getActiveSheet()->getStyle('J' . $numrow)->applyFromArray($style_row);
+            $excel->getActiveSheet()->getStyle('K' . $numrow)->applyFromArray($style_row);
+            $excel->getActiveSheet()->getStyle('L' . $numrow)->applyFromArray($style_row);
+            $excel->getActiveSheet()->getStyle('M' . $numrow)->applyFromArray($style_row);
+            $excel->getActiveSheet()->getStyle('N' . $numrow)->applyFromArray($style_row);
+            $excel->getActiveSheet()->getStyle('O' . $numrow)->applyFromArray($style_row);
+            $excel->getActiveSheet()->getStyle('P' . $numrow)->applyFromArray($style_row);
+            $excel->getActiveSheet()->getStyle('Q' . $numrow)->applyFromArray($style_row);
 
             $no++; // Tambah 1 setiap kali looping
             $numrow++; // Tambah 1 setiap kali looping
@@ -350,18 +386,18 @@ class Properti extends CI_Controller {
         $excel->getActiveSheet()->getColumnDimension('C')->setWidth(25); // Set width kolom C
         $excel->getActiveSheet()->getColumnDimension('D')->setWidth(20); // Set width kolom D
         $excel->getActiveSheet()->getColumnDimension('E')->setWidth(30); // Set width kolom E
-		$excel->getActiveSheet()->getColumnDimension('F')->setWidth(30); // Set width kolom E
-		$excel->getActiveSheet()->getColumnDimension('G')->setWidth(30); // Set width kolom E
-		$excel->getActiveSheet()->getColumnDimension('H')->setWidth(30); // Set width kolom E
-		$excel->getActiveSheet()->getColumnDimension('I')->setWidth(30); // Set width kolom E
-		$excel->getActiveSheet()->getColumnDimension('J')->setWidth(30); // Set width kolom E
-		$excel->getActiveSheet()->getColumnDimension('K')->setWidth(30); // Set width kolom E
-		$excel->getActiveSheet()->getColumnDimension('L')->setWidth(30); // Set width kolom E
-		$excel->getActiveSheet()->getColumnDimension('M')->setWidth(30); // Set width kolom E
-		$excel->getActiveSheet()->getColumnDimension('N')->setWidth(30); // Set width kolom E
-		$excel->getActiveSheet()->getColumnDimension('O')->setWidth(30); // Set width kolom E
-		$excel->getActiveSheet()->getColumnDimension('P')->setWidth(30); // Set width kolom E
-		$excel->getActiveSheet()->getColumnDimension('Q')->setWidth(30); // Set width kolom E
+        $excel->getActiveSheet()->getColumnDimension('F')->setWidth(30); // Set width kolom E
+        $excel->getActiveSheet()->getColumnDimension('G')->setWidth(30); // Set width kolom E
+        $excel->getActiveSheet()->getColumnDimension('H')->setWidth(30); // Set width kolom E
+        $excel->getActiveSheet()->getColumnDimension('I')->setWidth(30); // Set width kolom E
+        $excel->getActiveSheet()->getColumnDimension('J')->setWidth(30); // Set width kolom E
+        $excel->getActiveSheet()->getColumnDimension('K')->setWidth(30); // Set width kolom E
+        $excel->getActiveSheet()->getColumnDimension('L')->setWidth(30); // Set width kolom E
+        $excel->getActiveSheet()->getColumnDimension('M')->setWidth(30); // Set width kolom E
+        $excel->getActiveSheet()->getColumnDimension('N')->setWidth(30); // Set width kolom E
+        $excel->getActiveSheet()->getColumnDimension('O')->setWidth(30); // Set width kolom E
+        $excel->getActiveSheet()->getColumnDimension('P')->setWidth(30); // Set width kolom E
+        $excel->getActiveSheet()->getColumnDimension('Q')->setWidth(30); // Set width kolom E
 
         // Set height semua kolom menjadi auto (mengikuti height isi dari kolommnya, jadi otomatis)
         $excel->getActiveSheet()->getDefaultRowDimension()->setRowHeight(-1);
@@ -380,15 +416,15 @@ class Properti extends CI_Controller {
 
         $write = PHPExcel_IOFactory::createWriter($excel, 'Excel2007');
         $write->save('php://output');
-	}
-	
-	public function preview()
-	{
-		$id_rayon = $this->input->post('rayon6');
-		
-		$data['properti'] = $this->properti_model->get_by_rayon($id_rayon);
-		
-		$this->load->view('admin/properti/preview', $data);
-		
-	}
+    }
+
+    public function preview()
+    {
+        $id_rayon = $this->input->post('rayon6');
+
+        $data['properti'] = $this->properti_model->get_by_rayon($id_rayon);
+
+        $this->load->view('admin/properti/preview', $data);
+
+    }
 }
