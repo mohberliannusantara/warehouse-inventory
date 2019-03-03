@@ -1,8 +1,8 @@
 <div class="row">
   <div class="col-md-5">
     <!-- Load thumbnail, jika ada -->
-    <?php if( $properti->gambar ) : ?>
-      <img src="<?php echo base_url() .'assets/uploads/properti/'. $properti->gambar  ?>" alt="" style="width:100%;">
+    <?php if( $properti->foto_properti ) : ?>
+      <img src="<?php echo base_url() .'assets/uploads/properti/'. $properti->foto_properti  ?>" alt="" style="width:100%;">
       <?php ; else : ?>
         <img src="https://via.placeholder.com/350x250" alt="" style="width:100%;">
       <?php endif; ?>
@@ -32,7 +32,7 @@
         <?php echo $properti->keterangan ?>
       </h5>
       <h5>
-        <?php echo $properti->lokasi; ?>
+        <a target="_blank" href="<?php echo $properti->lokasi ?>"><?php echo $properti->alamat ?></a>
       </h5>
     </div>
   </div>

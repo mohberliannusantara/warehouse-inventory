@@ -89,6 +89,7 @@ class Kendaraan_model extends CI_Model
         $this->db->select('*');
         $this->db->from('kendaraan');
         $this->db->join('jenis_kendaraan', 'kendaraan.id_jenis_kendaraan = jenis_kendaraan.id_jenis_kendaraan');
+        $this->db->join('rayon', 'kendaraan.id_rayon = rayon.id_rayon');
 
         $this->db->where(array('kendaraan.id_kendaraan' => $id));
 

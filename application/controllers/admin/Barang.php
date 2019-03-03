@@ -9,6 +9,8 @@ class Barang extends CI_Controller {
 		$this->load->model('barang_model');
 		$this->load->model('jenis_barang_model');
 		$this->load->model('kondisi_model');
+		$this->load->model('rayon_model');
+
 		$this->load->library('form_validation');
 		// $this->load->library('dompdf_gen');
 		if (!$this->session->logged_in == TRUE) {
@@ -74,6 +76,7 @@ class Barang extends CI_Controller {
 
 		$data['jenis_barang'] = $this->jenis_barang_model->get();
 		$data['kondisi'] = $this->kondisi_model->get();
+		$data['rayon'] = $this->rayon_model->get_all();
 
 		// validasi input
 		$this->form_validation->set_rules('nama_barang', 'Nama_barang', 'required');
@@ -82,7 +85,7 @@ class Barang extends CI_Controller {
 		if ($this->form_validation->run() === FALSE)
 		{
 			$this->load->view('templates/header', $data);
-			$this->load->view('barang/create', $data);
+			$this->load->view('admin/barang/create', $data);
 			$this->load->view('templates/footer');
 		}
 		else
@@ -105,7 +108,7 @@ class Barang extends CI_Controller {
 					$post_image = '';
 
 					$this->load->view('templates/header', $data);
-					$this->load->view('barang/create', $data);
+					$this->load->view('admin/barang/create', $data);
 					$this->load->view('templates/footer');
 
 				} else { //jika berhasil upload
@@ -126,16 +129,16 @@ class Barang extends CI_Controller {
 				'id_jenis_barang' => $this->input->post('jenis_barang'),
 				'id_kondisi' => $this->input->post('kondisi'),
 				'keterangan' => $this->input->post('keterangan'),
-				'tanggal' => date("Y-m-d H:i:s"),
-				'gambar' => $post_image
+				'gambar' => $post_image,
+				'id_rayon' => $this->input->post('rayon')
 			);
 
 			if( empty($data['upload_error']) ) {
 				$this->barang_model->create($post_data);
 				$data['barang'] = $this->barang_model->get();
-				$this->load->view('templates/header', $data);
-				$this->load->view('barang/index', $data);
-				$this->load->view('templates/footer');
+				$this->load->view('admin/templates/header', $data);
+				$this->load->view('admin/barang/index', $data);
+				$this->load->view('admin/templates/footer');
 			}
 		}
 	}
@@ -157,7 +160,7 @@ class Barang extends CI_Controller {
 		if ($this->form_validation->run() === FALSE)
 		{
 			$this->load->view('templates/header', $data);
-			$this->load->view('barang/edit', $data);
+			$this->load->view('admin/barang/edit', $data);
 			$this->load->view('templates/footer');
 
 		} else {
@@ -179,7 +182,7 @@ class Barang extends CI_Controller {
 					$post_image = '';
 
 					$this->load->view('templates/header');
-					$this->load->view('barang/create', $data);
+					$this->load->view('admin/barang/create', $data);
 					$this->load->view('templates/footer');
 
 				} else { //jika berhasil upload
@@ -203,15 +206,6 @@ class Barang extends CI_Controller {
 				'tanggal' => date("Y-m-d H:i:s"),
 				'gambar' => $post_image
 			);
-
-			if( empty($data['upload_error']) ) {
-				$this->barang_model->update($post_data,$id);
-				//$data['barang'] = $this->barang_model->get();
-				// $this->load->view('templates/header');
-				// $this->load->view('barang/index', $data);
-				// $this->load->view('templates/footer');
-				redirect('Barang','refresh');
-			}
 		}
 	}
 
@@ -228,6 +222,9 @@ class Barang extends CI_Controller {
 	public function delete($id)
 	{
 		$this->barang_model->delete($id);
+		
+		redirect('admin/barang','refresh');
+		
 	}
 
 	public function printBarang()
@@ -246,4 +243,127 @@ class Barang extends CI_Controller {
 		unset($html);
 		unset($dompdf);
 	}
+
+	public function export()
+	{
+		// Load plugin PHPExcel nya
+		include APPPATH.'third_party/PHPExcel/PHPExcel.php';
+		
+		// Panggil class PHPExcel nya
+		$excel = new PHPExcel();
+		
+		// Settingan awal fil excel
+		$excel->getProperties()->setCreator('My Notes Code')
+		->setLastModifiedBy('My Notes Code')
+		->setTitle("Data Barang")
+		->setSubject("Barang")
+		->setDescription("Laporan Semua Data Barang")
+		->setKeywords("Data Barang");
+		
+		// Buat sebuah variabel untuk menampung pengaturan style dari header tabel
+		$style_col = array(
+			'font' => array('bold' => true), // Set font nya jadi bold
+			'alignment' => array(
+				'horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER, // Set text jadi ditengah secara horizontal (center)
+				'vertical' => PHPExcel_Style_Alignment::VERTICAL_CENTER // Set text jadi di tengah secara vertical (middle)
+			),
+			'borders' => array(
+				'top' => array('style'  => PHPExcel_Style_Border::BORDER_THIN), // Set border top dengan garis tipis
+				'right' => array('style'  => PHPExcel_Style_Border::BORDER_THIN),  // Set border right dengan garis tipis
+				'bottom' => array('style'  => PHPExcel_Style_Border::BORDER_THIN), // Set border bottom dengan garis tipis
+				'left' => array('style'  => PHPExcel_Style_Border::BORDER_THIN) // Set border left dengan garis tipis
+				)
+			);
+			
+			// Buat sebuah variabel untuk menampung pengaturan style dari isi tabel
+			$style_row = array(
+				'alignment' => array(
+					'vertical' => PHPExcel_Style_Alignment::VERTICAL_CENTER // Set text jadi di tengah secara vertical (middle)
+				),
+				'borders' => array(
+					'top' => array('style'  => PHPExcel_Style_Border::BORDER_THIN), // Set border top dengan garis tipis
+					'right' => array('style'  => PHPExcel_Style_Border::BORDER_THIN),  // Set border right dengan garis tipis
+					'bottom' => array('style'  => PHPExcel_Style_Border::BORDER_THIN), // Set border bottom dengan garis tipis
+					'left' => array('style'  => PHPExcel_Style_Border::BORDER_THIN) // Set border left dengan garis tipis
+					)
+				);
+				
+				$excel->setActiveSheetIndex(0)->setCellValue('A1', "DATA BARANG"); // Set kolom A1 dengan tulisan "DATA SISWA"
+				$excel->getActiveSheet()->mergeCells('A1:E1'); // Set Merge Cell pada kolom A1 sampai E1
+				$excel->getActiveSheet()->getStyle('A1')->getFont()->setBold(TRUE); // Set bold kolom A1
+				$excel->getActiveSheet()->getStyle('A1')->getFont()->setSize(15); // Set font size 15 untuk kolom A1
+				$excel->getActiveSheet()->getStyle('A1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER); // Set text center untuk kolom A1
+				
+				// Buat header tabel nya pada baris ke 3
+				$excel->setActiveSheetIndex(0)->setCellValue('A3', "No"); // Set kolom A3 dengan tulisan "NO"
+				$excel->setActiveSheetIndex(0)->setCellValue('B3', "id_barang"); // Set kolom A3 dengan tulisan "NO"
+				$excel->setActiveSheetIndex(0)->setCellValue('C3', "nama_barang"); // Set kolom B3 dengan tulisan "NIS"
+				$excel->setActiveSheetIndex(0)->setCellValue('D3', "harga"); // Set kolom C3 dengan tulisan "NAMA"
+				$excel->setActiveSheetIndex(0)->setCellValue('E3', "jenis_barang"); // Set kolom D3 dengan tulisan "JENIS KELAMIN"
+				$excel->setActiveSheetIndex(0)->setCellValue('F3', "kondisi_barang"); // Set kolom E3 dengan tulisan "ALAMAT"
+				$excel->setActiveSheetIndex(0)->setCellValue('G3', "keterangan"); // Set kolom E3 dengan tulisan "ALAMAT"
+				
+				// Apply style header yang telah kita buat tadi ke masing-masing kolom header
+				$excel->getActiveSheet()->getStyle('A3')->applyFromArray($style_col);
+				$excel->getActiveSheet()->getStyle('B3')->applyFromArray($style_col);
+				$excel->getActiveSheet()->getStyle('C3')->applyFromArray($style_col);
+				$excel->getActiveSheet()->getStyle('D3')->applyFromArray($style_col);
+				$excel->getActiveSheet()->getStyle('E3')->applyFromArray($style_col);
+				$excel->getActiveSheet()->getStyle('F3')->applyFromArray($style_col);
+				$excel->getActiveSheet()->getStyle('G3')->applyFromArray($style_col);
+
+				// Panggil function view yang ada di SiswaModel untuk menampilkan semua data siswanya 
+				$barang = $this->barang_model->get();
+				
+				$no = 1; // Untuk penomoran tabel, di awal set dengan 1
+				$numrow = 7; // Set baris pertama untuk isi tabel adalah baris ke 4
+				foreach($barang as $data){ // Lakukan looping pada variabel siswa
+					$excel->setActiveSheetIndex(0)->setCellValue('A'.$numrow, $no);
+					$excel->setActiveSheetIndex(0)->setCellValue('B'.$numrow, $data->id_barang);
+					$excel->setActiveSheetIndex(0)->setCellValue('C'.$numrow, $data->nama_barang);
+					$excel->setActiveSheetIndex(0)->setCellValue('D'.$numrow, $data->harga);
+					$excel->setActiveSheetIndex(0)->setCellValue('E'.$numrow, $data->nama_jenis_barang);
+					$excel->setActiveSheetIndex(0)->setCellValue('F'.$numrow, $data->nama_kondisi);
+					$excel->setActiveSheetIndex(0)->setCellValue('G'.$numrow, $data->keterangan);
+					
+					// Apply style row yang telah kita buat tadi ke masing-masing baris (isi tabel)
+					$excel->getActiveSheet()->getStyle('A'.$numrow)->applyFromArray($style_row);
+					$excel->getActiveSheet()->getStyle('B'.$numrow)->applyFromArray($style_row);
+					$excel->getActiveSheet()->getStyle('C'.$numrow)->applyFromArray($style_row);
+					$excel->getActiveSheet()->getStyle('D'.$numrow)->applyFromArray($style_row);
+					$excel->getActiveSheet()->getStyle('E'.$numrow)->applyFromArray($style_row);
+					$excel->getActiveSheet()->getStyle('F'.$numrow)->applyFromArray($style_row);
+					$excel->getActiveSheet()->getStyle('G'.$numrow)->applyFromArray($style_row);
+					
+					$no++; // Tambah 1 setiap kali looping
+					$numrow++; // Tambah 1 setiap kali looping
+				}
+				
+				// Set width kolom
+				$excel->getActiveSheet()->getColumnDimension('A')->setWidth(5); // Set width kolom A
+				$excel->getActiveSheet()->getColumnDimension('B')->setWidth(15); // Set width kolom B
+				$excel->getActiveSheet()->getColumnDimension('C')->setWidth(25); // Set width kolom C
+				$excel->getActiveSheet()->getColumnDimension('D')->setWidth(20); // Set width kolom D
+				$excel->getActiveSheet()->getColumnDimension('E')->setWidth(30); // Set width kolom E
+				$excel->getActiveSheet()->getColumnDimension('F')->setWidth(30); // Set width kolom E
+				$excel->getActiveSheet()->getColumnDimension('G')->setWidth(30); // Set width kolom E
+				
+				// Set height semua kolom menjadi auto (mengikuti height isi dari kolommnya, jadi otomatis)
+				$excel->getActiveSheet()->getDefaultRowDimension()->setRowHeight(-1);
+				
+				// Set orientasi kertas jadi LANDSCAPE
+				$excel->getActiveSheet()->getPageSetup()->setOrientation(PHPExcel_Worksheet_PageSetup::ORIENTATION_LANDSCAPE);
+				
+				// Set judul file excel nya
+				$excel->getActiveSheet(0)->setTitle("Laporan Data Extra Countable");
+				$excel->setActiveSheetIndex(0);
+				
+				// Proses file excel
+				header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+				header('Content-Disposition: attachment; filename="Data Extra Countable.xlsx"'); // Set nama file excel nya
+				header('Cache-Control: max-age=0');
+				
+				$write = PHPExcel_IOFactory::createWriter($excel, 'Excel2007');
+				$write->save('php://output');
+			}
 }

@@ -12,8 +12,7 @@
       <h5>Nomor Plat</h5>
       <h5>Nama Kendaraan</h5>
       <h5>Jenis</h5>
-      <h5>Kondisi</h5>
-      <h5>Harga</h5>
+      <h5>Rayon</h5>
       <h5>Keterangan</h5>
     </div>
     <div class="col-md-4">
@@ -21,7 +20,7 @@
         <?php echo $kendaraan->id_kendaraan; ?>
       </h5>
       <h5>
-        <?php echo $kendaraan->plat; ?>
+        <?php echo $kendaraan->nomor_polisi; ?>
       </h5>
       <h5>
         <?php echo $kendaraan->nama_kendaraan; ?>
@@ -30,10 +29,7 @@
         <?php echo $kendaraan->nama_jenis_kendaraan; ?>
       </h5>
       <h5>
-        <?php echo $kendaraan->nama_kondisi; ?>
-      </h5>
-      <h5>
-        Rp. <?php echo number_format($kendaraan->harga); ?>
+        <?php echo $kendaraan->nama_rayon; ?>
       </h5>
       <h5>
         <?php echo $kendaraan->keterangan ?>
