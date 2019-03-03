@@ -23,20 +23,17 @@ class Properti_model extends CI_Model
 
   public function get_limit()
   {
-    $this->db->order_by('properti.tanggal', 'DESC');
+    $this->db->order_by('properti.nama_properti', 'ASC');
     $this->db->limit(4);
     $query = $this->db->get('properti');
 
     return $query->result();
   }
 
-  public function get($limit = FALSE, $offset = FALSE)
+  public function get()
   {
-    if ( $limit ) {
-      $this->db->limit($limit, $offset);
-    }
-
-    $this->db->order_by('properti.tanggal', 'DESC');
+    $this->db->order_by('rayon.nama_rayon', 'ASC');
+    $this->db->join('rayon', 'rayon.id_rayon = properti.id_rayon');
     $query = $this->db->get('properti');
     return $query->result();
   }

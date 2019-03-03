@@ -4,8 +4,8 @@
       <div class="col-md-12">
         <div class="card">
           <div class="card-header card-header-info">
-            <h4 class="card-title "><?php echo $page_title; ?></h4>
-            <p class="card-category"> Tambahkan properti kedalam daftar dengan informasi yang lengkap</p>
+            <h4 class="card-title ">Tambah Properti</h4>
+            <p class="card-category"> Tambahkan data properti kedalam daftar dengan menyertakan informasi secara lengkap</p>
           </div>
           <div class="card-body">
             <?php //echo $upload_error;?>

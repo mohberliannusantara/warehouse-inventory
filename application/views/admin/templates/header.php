@@ -14,30 +14,51 @@
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
   <!-- CSS Files -->
-
-  <!-- <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-lite/1.1.0/material.min.css"> -->
-  <!-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/dataTables.material.min.css"> -->
-  <link href="<?php echo base_url('assets/css/material-dashboard.css'); ?>" rel="stylesheet" />
+  <link href="<?php echo base_url('') ?>assets/css/material-dashboard.min.css?v=2.1.0" rel="stylesheet" />
   <!-- CSS Just for demo purpose, don't include it in your project -->
-  <link href="<?php echo base_url('assets/demo/demo.css'); ?>" rel="stylesheet" />
-  <!-- MDBootstrap Datatables  -->
-  <link href="<?php echo base_url('assets/css/addons/datatables.min.css') ?>" rel="stylesheet">
-</head>
+  <link href="<?php echo base_url('') ?>assets/demo/demo.css" rel="stylesheet" />
+  <!-- Google Tag Manager -->
+  <script>
+    (function(w, d, s, l, i) {
+      w[l] = w[l] || [];
+      w[l].push({
+        'gtm.start': new Date().getTime(),
+        event: 'gtm.js'
+      });
+      var f = d.getElementsByTagName(s)[0],
+        j = d.createElement(s),
+        dl = l != 'dataLayer' ? '&l=' + l : '';
+      j.async = true;
+      j.src =
+        'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+      f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-NKDMSK6');
+  </script>
+  <!-- End Google Tag Manager -->
 
-<body>
+</head>
+<body class="">
+  <!-- Extra details for Live View on GitHub Pages -->
+  <!-- Google Tag Manager (noscript) -->
+  <noscript>
+    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NKDMSK6" height="0" width="0" style="display:none;visibility:hidden"></iframe>
+  </noscript>
+  <!-- End Google Tag Manager (noscript) -->
   <div class="wrapper ">
     <div class="sidebar" data-color="orange" data-background-color="white" data-image="<?php echo base_url('assets/img/sidebar-3.jpg'); ?>">
       <!--
-      Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
+        Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
 
-      Tip 2: you can also add an image using data-image tag
+        Tip 2: you can also add an image using data-image tag
     -->
-    <div class="logo">
-      <a href="<?php echo base_url('Beranda'); ?>" class="simple-text logo-normal">
-        <img src="<?php echo base_url('assets/img/favicon.png') ?>" alt="" style="width:10%;">
-        PT. PLN (Persero)
-      </a>
-    </div>
+      <div class="logo">
+        <a href="http://www.creative-tim.com" class="simple-text logo-mini">
+          <img src="<?php echo base_url('assets/img/favicon.png') ?>" alt="" style="width:100%;">
+        </a>
+        <a href="http://www.creative-tim.com" class="simple-text logo-normal">
+          PT. PLN (Persero)
+        </a>
+      </div>
     <div class="sidebar-wrapper">
       <ul class="nav">
         <li class="nav-item <?php if ($page == 'Beranda'): ?>active<?php endif; ?>">

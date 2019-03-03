@@ -57,31 +57,16 @@ class Kendaraan_model extends CI_Model
     }
   }
 
-  public function get($limit = FALSE, $offset = FALSE, $id_rayon = NULL, $id_level = NULL)
+  public function get()
   {
-    if ( $limit ) {
-      $this->db->limit($limit, $offset);
-    }
-
-    if ($id_level != 1) {
-      $this->db->order_by('kendaraan.tanggal', 'DESC');
-      $this->db->where('kendaraan.id_rayon', $id_rayon);
+      $this->db->order_by('kendaraan.nama_kendaraan', 'ASC');
+      $this->db->join('rayon', 'kendaraan.id_rayon = rayon.id_rayon');
       $this->db->join('jenis_kendaraan', 'kendaraan.id_jenis_kendaraan = jenis_kendaraan.id_jenis_kendaraan');
-      $this->db->join('kondisi', 'kendaraan.id_kondisi = kondisi.id_kondisi');
+      $this->db->join('pemilik_kendaraan', 'kendaraan.id_pemilik_kendaraan = pemilik_kendaraan.id_pemilik_kendaraan');
       $this->db->from('kendaraan');
 
       $query = $this->db->get();
       return $query->result();
-    } else {
-      $this->db->order_by('kendaraan.tanggal', 'DESC');
-      // $this->db->where('kendaraan.id_rayon', $id_rayon);
-      $this->db->join('jenis_kendaraan', 'kendaraan.id_jenis_kendaraan = jenis_kendaraan.id_jenis_kendaraan');
-      $this->db->join('kondisi', 'kendaraan.id_kondisi = kondisi.id_kondisi');
-      $this->db->from('kendaraan');
-
-      $query = $this->db->get();
-      return $query->result();
-    }
   }
 
   public function get_all($id_rayon = NULL, $id_level = NULL)

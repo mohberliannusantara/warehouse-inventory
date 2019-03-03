@@ -8,6 +8,7 @@ class Properti extends CI_Controller {
 		parent::__construct();
 		$this->load->model('properti_model');
 		$this->load->library('form_validation');
+
 		if (!$this->session->logged_in == TRUE) {
 			redirect('welcome','refresh');
 		}
@@ -21,22 +22,6 @@ class Properti extends CI_Controller {
 		$data['page'] = 'Properti';
 		$data['properti'] = $this->properti_model->get();
 
-		$limit_per_page = 5;
-		$start_index = ( $this->uri->segment(3) ) ? $this->uri->segment(3) : 0;
-		$total_records = $this->properti_model->get_total();
-		if ($total_records > 0) {
-			$data['properti'] = $this->properti_model->get($limit_per_page, $start_index);
-
-			$config['base_url'] = base_url() . 'Properti/index';
-			$config['total_rows'] = $total_records;
-			$config['per_page'] = $limit_per_page;
-			$config["uri_segment"] = 3;
-
-			$this->pagination->initialize($config);
-
-			// Buat link pagination
-			$data["links"] = $this->pagination->create_links();
-		}
 		$this->load->view('admin/templates/header', $data);
 		$this->load->view('admin/properti/index', $data);
 		$this->load->view('admin/templates/footer');
@@ -51,18 +36,15 @@ class Properti extends CI_Controller {
 	public function create()
 	{
 		$data['page'] = 'Properti';
-		$data['page_title'] = 'Tambah Properti';
-		$data['page_content'] = 'Tambahkan properti kedalam daftar dengan informasi yang lengkap';
 
-		// validasi input
 		$this->form_validation->set_rules('nama_properti', 'Nama_properti', 'required');
 		$this->form_validation->set_rules('harga', 'Harga', 'required');
 
 		if ($this->form_validation->run() === FALSE)
 		{
-			$this->load->view('templates/header', $data);
-			$this->load->view('properti/create', $data);
-			$this->load->view('templates/footer');
+			$this->load->view('admin/templates/header', $data);
+			$this->load->view('admin/properti/create', $data);
+			$this->load->view('admin/templates/footer');
 		}
 		else
 		{
@@ -83,9 +65,9 @@ class Properti extends CI_Controller {
 
 					$post_image = '';
 
-					$this->load->view('templates/header', $data);
-					$this->load->view('properti/create', $data);
-					$this->load->view('templates/footer');
+					$this->load->view('admin/templates/header', $data);
+					$this->load->view('admin/properti/create', $data);
+					$this->load->view('admin/templates/footer');
 
 				} else { //jika berhasil upload
 
