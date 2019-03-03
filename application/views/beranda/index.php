@@ -40,7 +40,7 @@
       <div class="col-lg-4 col-md-6 col-sm-6">
         <div class="card card-stats">
           <a href="<?php echo base_url('Properti')?>">
-            <div class="card-header card-header-danger card-header-icon" rel="tooltip" title="Properti">
+            <div class="card-header card-header-rose card-header-icon" rel="tooltip" title="Properti">
               <div class="card-icon">
                 <i class="material-icons" style="color: white;">home</i>
               </div>
@@ -132,7 +132,7 @@
                   </table>
                 </div>
                 <center>
-                  <a href="<?php echo base_url('Barang/')?>" class="btn btn-sm btn-primary">Lihat Lebih Banyak</a>
+                  <a href="<?php echo base_url('Barang/')?>" class="btn btn-sm btn-warning">Lihat Lebih Banyak</a>
                 </center>
               </div>
               <div class="tab-pane" id="messages">
@@ -179,7 +179,7 @@
                   </table>
                 </div>
                 <center>
-                  <a href="<?php echo base_url('Kendaraan/')?>" class="btn btn-sm btn-primary">Lihat Lebih Banyak</a>
+                  <a href="<?php echo base_url('Kendaraan/')?>" class="btn btn-sm btn-warning">Lihat Lebih Banyak</a>
                 </center>
               </div>
               <div class="tab-pane" id="settings">
@@ -226,7 +226,7 @@
                   </table>
                 </div>
                 <center>
-                  <a href="<?php echo base_url('Properti/')?>" class="btn btn-sm btn-primary">Lihat Lebih Banyak</a>
+                  <a href="<?php echo base_url('Properti/')?>" class="btn btn-sm btn-warning">Lihat Lebih Banyak</a>
                 </center>
               </div>
             </div>
@@ -250,7 +250,7 @@
             <p class="card-description">
               Don't be scared of the truth because we need to restart the human foundation in truth And I love you like Kanye loves Kanye I love Rick Owens’ bed design but the back is...
             </p>
-            <a href="<?php echo base_url('Pengguna/')?>" class="btn btn-primary btn-round">Lihat</a>
+            <a href="<?php echo base_url('Pengguna/')?>" class="btn btn-warning btn-round">Lihat</a>
           </div>
         </div>
       </div>

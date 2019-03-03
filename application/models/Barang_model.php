@@ -42,7 +42,7 @@ class Barang_model extends CI_Model
       $query = $this->db->get();
       return $query->result();
     } else {
-      
+
       $this->db->join('jenis_barang', 'barang.id_jenis_barang = jenis_barang.id_jenis_barang');
       $this->db->join('kondisi', 'barang.id_kondisi = kondisi.id_kondisi');
       $this->db->from('barang');
@@ -64,10 +64,22 @@ class Barang_model extends CI_Model
       return $query->result();
   }
 
+  public function get_by_rayon($id_rayon)
+  {
+    $this->db->order_by('barang.nama_barang', 'asc');
+    $this->db->join('rayon', 'barang.id_rayon = rayon.id_rayon');
+    $this->db->join('jenis_barang', 'barang.id_jenis_barang = jenis_barang.id_jenis_barang');
+    $this->db->join('kondisi', 'barang.id_kondisi = kondisi.id_kondisi');
+    $this->db->where('barang.id_rayon', $id_rayon);
+    $this->db->from('barang');
+
+    $query = $this->db->get();
+    return $query->result();
+  }
   public function get_all($id_rayon = NULL, $id_level = NULL)
   {
     if ($id_level != 1) {
-      
+
       $this->db->where('barang.id_rayon', $id_rayon);
       $this->db->join('jenis_barang', 'barang.id_jenis_barang = jenis_barang.id_jenis_barang');
       $this->db->join('kondisi', 'barang.id_kondisi = kondisi.id_kondisi');
@@ -76,7 +88,7 @@ class Barang_model extends CI_Model
       $query = $this->db->get();
       return $query->result();
     } else {
-      
+
       // $this->db->where('barang.id_rayon', $id_rayon);
       $this->db->join('jenis_barang', 'barang.id_jenis_barang = jenis_barang.id_jenis_barang');
       $this->db->join('kondisi', 'barang.id_kondisi = kondisi.id_kondisi');
