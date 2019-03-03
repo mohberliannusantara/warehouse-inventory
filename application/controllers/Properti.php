@@ -7,8 +7,9 @@ class Properti extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('properti_model');
         $this->load->library('form_validation');
+        $this->load->model('properti_model');
+
         if (!$this->session->logged_in == true) {
             redirect('welcome', 'refresh');
         }
@@ -39,17 +40,15 @@ class Properti extends CI_Controller
     public function create()
     {
         $data['page'] = 'Properti';
-        $data['page_title'] = 'Tambah Properti';
-        $data['page_content'] = 'Tambahkan properti kedalam daftar dengan informasi yang lengkap';
 
         // validasi input
         $this->form_validation->set_rules('nama_properti', 'Nama_properti', 'required');
-        $this->form_validation->set_rules('harga', 'Harga', 'required');
+        // $this->form_validation->set_rules('harga', 'Harga', 'required');
 
         if ($this->form_validation->run() === false) {
-            $this->load->view('templates/header', $data);
-            $this->load->view('properti/create', $data);
-            $this->load->view('templates/footer');
+            $this->load->view('admin/templates/header', $data);
+            $this->load->view('admin/properti/create', $data);
+            $this->load->view('admin/templates/footer');
         } else {
             if (isset($_FILES['gambar']) && $_FILES['gambar']['size'] > 0) {
                 // Konfigurasi folder upload & file yang diijinkan untuk diupload/disimpan
@@ -83,21 +82,31 @@ class Properti extends CI_Controller
             }
 
             $post_data = array(
-                'luas' => $this->input->post('luas'),
-                'no_sertifikat' => $this->input->post('no_sertifikat'),
-                'harga' => str_replace(',', '', $this->input->post('harga')),
+                'nama_properti' => $this->input->post('nama_properti'),
+                'jenis_properti' => $this->input->post('jenis_properti'),
+                'id_rayon' => $this->input->post('rayon'),
+                'alamat' => $this->input->post('alamat'),
                 'lokasi' => $this->input->post('lokasi'),
+                'luas_tanah' => $this->input->post('luas_tanah'),
+                'luas_bangunan' => $this->input->post('luas_bangunan'),
+                'harga' => str_replace(',', '', $this->input->post('harga')),
+                // 'tanggal' => date("Y-m-d"),
+                'tahun_perolehan' => $this->input->post('tangal_perolehan'),
+                'no_sertifikat' => $this->input->post('no_sertifikat'),
+                'tanggal_berlaku_sertifikat' => $this->input->post('tangal_berlaku_sertifikat'),
+                'tangal_kadaluarsa_sertifikat' => $this->input->post('tangal_kadaluarsa_sertifikat'),
+                'no_pajak' => $this->input->post('no_pajak'),
                 'keterangan' => $this->input->post('keterangan'),
-                'tanggal' => date("Y-m-d H:i:s"),
                 'gambar' => $post_image,
             );
 
             if (empty($data['upload_error'])) {
                 $this->properti_model->create($post_data);
                 $data['properti'] = $this->properti_model->get();
-                $this->load->view('templates/header', $data);
-                $this->load->view('properti/index', $data);
-                $this->load->view('templates/footer');
+
+                $this->load->view('admin/templates/header', $data);
+                $this->load->view('admin/properti/index', $data);
+                $this->load->view('admin/templates/footer');
             }
         }
     }
@@ -258,7 +267,7 @@ class Properti extends CI_Controller
         $excel->setActiveSheetIndex(0)->setCellValue('D3', "harga"); // Set kolom C3 dengan tulisan "NAMA"
         $excel->setActiveSheetIndex(0)->setCellValue('E3', "keterangan"); // Set kolom D3 dengan tulisan "JENIS KELAMIN"
 		$excel->setActiveSheetIndex(0)->setCellValue('F3', "no_sertifikat"); // Set kolom D3 dengan tulisan "JENIS KELAMIN"
-		
+
         // Apply style header yang telah kita buat tadi ke masing-masing kolom header
         $excel->getActiveSheet()->getStyle('A3')->applyFromArray($style_col);
         $excel->getActiveSheet()->getStyle('B3')->applyFromArray($style_col);

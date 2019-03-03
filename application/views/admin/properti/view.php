@@ -8,8 +8,15 @@
       <?php endif; ?>
     </div>
     <div class="col-md-3">
-      <h5>ID Properti</h5>
-      <h5>Luas</h5>
+      <h5>Nama Properti</h5>
+      <h5>Jenis/Wujud Properti</h5>
+      <h5>Rayon</h5>
+      <h5>Luas Tanah</h5>
+      <h5>Luas Bagunan</h5>
+      <h5>Harga Perolehan</h5>
+      <h5>Tahun Perolehan</h5>
+      <h5>Status</h5>
+      <h5>Nomor Sertfikat</h5>
       <h5>Setifikat</h5>
       <h5>Harga</h5>
       <h5>Keterangan</h5>
@@ -17,7 +24,7 @@
     </div>
     <div class="col-md-4">
       <h5>
-        <?php echo $properti->id_properti; ?>
+        <?php echo $properti->nama_properti; ?>
       </h5>
       <h5>
         <?php echo $properti->luas; ?>
@@ -34,5 +41,8 @@
       <h5>
         <a target="_blank" href="<?php echo $properti->lokasi ?>"><?php echo $properti->alamat ?></a>
       </h5>
+      <button type="button" class="btn btn-rose">Lihat Sertfikat</button>
+      <button type="button" class="btn btn-warning">Lihat PBB</button>
+      <button type="button" class="btn btn-success">Lihat Lokasi</button>
     </div>
   </div>

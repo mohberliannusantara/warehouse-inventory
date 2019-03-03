@@ -7,6 +7,7 @@ class Properti extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model('properti_model');
+		$this->load->model('rayon_model');
 		$this->load->library('form_validation');
 
 		if (!$this->session->logged_in == TRUE) {
@@ -36,6 +37,7 @@ class Properti extends CI_Controller {
 	public function create()
 	{
 		$data['page'] = 'Properti';
+		$data['rayon'] = $this->rayon_model->get();
 
 		$this->form_validation->set_rules('nama_properti', 'Nama_properti', 'required');
 		$this->form_validation->set_rules('harga', 'Harga', 'required');
@@ -188,9 +190,9 @@ class Properti extends CI_Controller {
 	public function delete($id)
 	{
 		$this->properti_model->delete($id);
-		
+
 		redirect('properti','refresh');
-		
+
 	}
 
 	public function export()
@@ -265,8 +267,8 @@ class Properti extends CI_Controller {
 		$excel->setActiveSheetIndex(0)->setCellValue('F3', "keterangan"); // Set kolom D3 dengan tulisan "JENIS KELAMIN"
 		$excel->setActiveSheetIndex(0)->setCellValue('G3', "alamat"); // Set kolom B3 dengan tulisan "NIS"
 		$excel->setActiveSheetIndex(0)->setCellValue('H3', "no_sertifikat"); // Set kolom D3 dengan tulisan "JENIS KELAMIN"
-		
-		
+
+
         // Apply style header yang telah kita buat tadi ke masing-masing kolom header
         $excel->getActiveSheet()->getStyle('A3')->applyFromArray($style_col);
         $excel->getActiveSheet()->getStyle('B3')->applyFromArray($style_col);
