@@ -266,12 +266,17 @@ class Kendaraan extends CI_Controller {
 
         // Buat header tabel nya pada baris ke 3
         $excel->setActiveSheetIndex(0)->setCellValue('A3', "No"); // Set kolom A3 dengan tulisan "NO"
-        $excel->setActiveSheetIndex(0)->setCellValue('B3', "id_kendaraan"); // Set kolom A3 dengan tulisan "NO"
-        $excel->setActiveSheetIndex(0)->setCellValue('C3', "nama_kendaraan"); // Set kolom B3 dengan tulisan "NIS"
-        $excel->setActiveSheetIndex(0)->setCellValue('D3', "plat"); // Set kolom C3 dengan tulisan "NAMA"
-        $excel->setActiveSheetIndex(0)->setCellValue('E3', "kondisi"); // Set kolom D3 dengan tulisan "JENIS KELAMIN"
-        $excel->setActiveSheetIndex(0)->setCellValue('F3', "jenis_kendaraan"); // Set kolom D3 dengan tulisan "JENIS KELAMIN"
-        $excel->setActiveSheetIndex(0)->setCellValue('G3', "keterangan"); // Set kolom E3 dengan tulisan "ALAMAT"
+        $excel->setActiveSheetIndex(0)->setCellValue('B3', "Nama Kendaraan"); // Set kolom A3 dengan tulisan "NO"
+        $excel->setActiveSheetIndex(0)->setCellValue('C3', "Nomor Polisi"); // Set kolom B3 dengan tulisan "NIS"
+        $excel->setActiveSheetIndex(0)->setCellValue('D3', "Pengguna"); // Set kolom C3 dengan tulisan "NAMA"
+        $excel->setActiveSheetIndex(0)->setCellValue('E3', "Rayon"); // Set kolom D3 dengan tulisan "JENIS KELAMIN"
+        $excel->setActiveSheetIndex(0)->setCellValue('F3', "Nama Jenis Kendaraan"); // Set kolom D3 dengan tulisan "JENIS KELAMIN"
+		$excel->setActiveSheetIndex(0)->setCellValue('G3', "Stan awal"); // Set kolom E3 dengan tulisan "ALAMAT"
+		$excel->setActiveSheetIndex(0)->setCellValue('H3', "Stan akhir"); // Set kolom E3 dengan tulisan "ALAMAT"
+		$excel->setActiveSheetIndex(0)->setCellValue('I3', "Keteragan----"); // Set kolom E3 dengan tulisan "ALAMAT"
+		$excel->setActiveSheetIndex(0)->setCellValue('J3', "Vendor"); // Set kolom E3 dengan tulisan "ALAMAT"
+		$excel->setActiveSheetIndex(0)->setCellValue('K3', "Lama Berlaku"); // Set kolom E3 dengan tulisan "ALAMAT"
+		$excel->setActiveSheetIndex(0)->setCellValue('L3', "Status"); // Set kolom E3 dengan tulisan "ALAMAT"
 
         // Apply style header yang telah kita buat tadi ke masing-masing kolom header
         $excel->getActiveSheet()->getStyle('A3')->applyFromArray($style_col);
@@ -280,30 +285,46 @@ class Kendaraan extends CI_Controller {
         $excel->getActiveSheet()->getStyle('D3')->applyFromArray($style_col);
         $excel->getActiveSheet()->getStyle('E3')->applyFromArray($style_col);
         $excel->getActiveSheet()->getStyle('F3')->applyFromArray($style_col);
-        $excel->getActiveSheet()->getStyle('G3')->applyFromArray($style_col);
+		$excel->getActiveSheet()->getStyle('G3')->applyFromArray($style_col);
+		$excel->getActiveSheet()->getStyle('H3')->applyFromArray($style_col);
+		$excel->getActiveSheet()->getStyle('I3')->applyFromArray($style_col);
+		$excel->getActiveSheet()->getStyle('J3')->applyFromArray($style_col);
+		$excel->getActiveSheet()->getStyle('K3')->applyFromArray($style_col);
+		$excel->getActiveSheet()->getStyle('L3')->applyFromArray($style_col);
 
         // Panggil function view yang ada di SiswaModel untuk menampilkan semua data siswanya
-        $barang = $this->kendaraan_model->get();
+		$id_rayon = $this->input->post('rayon3');
+		$kendaraan = $this->kendaraan_model->get_by_rayon($id_rayon);
 
         $no = 1; // Untuk penomoran tabel, di awal set dengan 1
         $numrow = 7; // Set baris pertama untuk isi tabel adalah baris ke 4
-        foreach ($barang as $data) { // Lakukan looping pada variabel siswa
+        foreach ($kendaraan as $data) { // Lakukan looping pada variabel siswa
             $excel->setActiveSheetIndex(0)->setCellValue('A' . $numrow, $no);
-            $excel->setActiveSheetIndex(0)->setCellValue('B' . $numrow, $data->id_kendaraan);
-            $excel->setActiveSheetIndex(0)->setCellValue('C' . $numrow, $data->nama_kendaraan);
-			$excel->setActiveSheetIndex(0)->setCellValue('D' . $numrow, $data->nomor_polisi);
+            $excel->setActiveSheetIndex(0)->setCellValue('B' . $numrow, $data->nama_kendaraan);
+            $excel->setActiveSheetIndex(0)->setCellValue('C' . $numrow, $data->nomor_polisi);
+			$excel->setActiveSheetIndex(0)->setCellValue('D' . $numrow, $data->pengguna);
 			$excel->setActiveSheetIndex(0)->setCellValue('E' . $numrow, $data->nama_rayon);
-			$excel->setActiveSheetIndex(0)->setCellValue('F' . $numrow, $data->pengguna);
-            $excel->setActiveSheetIndex(0)->setCellValue('G' . $numrow, $data->keterangan);
+			$excel->setActiveSheetIndex(0)->setCellValue('F' . $numrow, $data->nama_jenis_kendaraan);
+			$excel->setActiveSheetIndex(0)->setCellValue('G' . $numrow, $data->stan_awal);
+			$excel->setActiveSheetIndex(0)->setCellValue('H' . $numrow, $data->stan_akhir);
+			$excel->setActiveSheetIndex(0)->setCellValue('I' . $numrow, $data->keterangan);
+			$excel->setActiveSheetIndex(0)->setCellValue('J' . $numrow, $data->nama_pemilik_kendaraan);
+			$excel->setActiveSheetIndex(0)->setCellValue('K' . $numrow, $data->lama_berlaku);
+			$excel->setActiveSheetIndex(0)->setCellValue('L' . $numrow, $data->status);
 
-            // Apply style row yang telah kita buat tadi ke masing-masing baris (isi tabel)
-            $excel->getActiveSheet()->getStyle('A' . $numrow)->applyFromArray($style_row);
+			// Apply style row yang telah kita buat tadi ke masing-masing baris (isi tabel)
+			$excel->getActiveSheet()->getStyle('A' . $numrow)->applyFromArray($style_row);
             $excel->getActiveSheet()->getStyle('B' . $numrow)->applyFromArray($style_row);
             $excel->getActiveSheet()->getStyle('C' . $numrow)->applyFromArray($style_row);
             $excel->getActiveSheet()->getStyle('D' . $numrow)->applyFromArray($style_row);
             $excel->getActiveSheet()->getStyle('E' . $numrow)->applyFromArray($style_row);
             $excel->getActiveSheet()->getStyle('F' . $numrow)->applyFromArray($style_row);
             $excel->getActiveSheet()->getStyle('G' . $numrow)->applyFromArray($style_row);
+			$excel->getActiveSheet()->getStyle('H' . $numrow)->applyFromArray($style_row);
+			$excel->getActiveSheet()->getStyle('I' . $numrow)->applyFromArray($style_row);
+			$excel->getActiveSheet()->getStyle('J' . $numrow)->applyFromArray($style_row);
+			$excel->getActiveSheet()->getStyle('K' . $numrow)->applyFromArray($style_row);
+			$excel->getActiveSheet()->getStyle('L' . $numrow)->applyFromArray($style_row);
 
             $no++; // Tambah 1 setiap kali looping
             $numrow++; // Tambah 1 setiap kali looping
@@ -316,7 +337,12 @@ class Kendaraan extends CI_Controller {
         $excel->getActiveSheet()->getColumnDimension('D')->setWidth(20); // Set width kolom D
         $excel->getActiveSheet()->getColumnDimension('E')->setWidth(30); // Set width kolom E
         $excel->getActiveSheet()->getColumnDimension('F')->setWidth(30); // Set width kolom E
-        $excel->getActiveSheet()->getColumnDimension('G')->setWidth(30); // Set width kolom E
+		$excel->getActiveSheet()->getColumnDimension('G')->setWidth(30); // Set width kolom E
+		$excel->getActiveSheet()->getColumnDimension('H')->setWidth(30); // Set width kolom E
+		$excel->getActiveSheet()->getColumnDimension('I')->setWidth(30); // Set width kolom E
+		$excel->getActiveSheet()->getColumnDimension('J')->setWidth(30); // Set width kolom E
+		$excel->getActiveSheet()->getColumnDimension('K')->setWidth(30); // Set width kolom E
+		$excel->getActiveSheet()->getColumnDimension('L')->setWidth(30); // Set width kolom E
 
         // Set height semua kolom menjadi auto (mengikuti height isi dari kolommnya, jadi otomatis)
         $excel->getActiveSheet()->getDefaultRowDimension()->setRowHeight(-1);
@@ -335,5 +361,15 @@ class Kendaraan extends CI_Controller {
 
         $write = PHPExcel_IOFactory::createWriter($excel, 'Excel2007');
         $write->save('php://output');
-    }
+	}
+	
+	public function preview()
+	{
+		$id_rayon = $this->input->post('rayon4');
+		//echo $id_rayon;
+		$data['kendaraan'] = $this->kendaraan_model->get_by_rayon($id_rayon);
+		
+		$this->load->view('admin/kendaraan/preview', $data);
+		
+	}
 }

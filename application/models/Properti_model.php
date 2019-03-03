@@ -46,6 +46,16 @@ class Properti_model extends CI_Model
     return $query->row();
   }
 
+  public function get_by_rayon($id_rayon)
+    {
+        $this->db->join('rayon', 'properti.id_rayon = rayon.id_rayon');
+        $this->db->where('properti.id_rayon', $id_rayon);
+        $this->db->from('properti');
+        
+        $query = $this->db->get();
+        return $query->result();
+    }
+
   public function create($data)
   {
     return $this->db->insert('properti', $data);

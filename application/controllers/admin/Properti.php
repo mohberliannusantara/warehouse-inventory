@@ -262,11 +262,20 @@ class Properti extends CI_Controller {
         $excel->setActiveSheetIndex(0)->setCellValue('A3', "No"); // Set kolom A3 dengan tulisan "NO"
 		$excel->setActiveSheetIndex(0)->setCellValue('B3', "id_properti"); // Set kolom A3 dengan tulisan "NO"
 		$excel->setActiveSheetIndex(0)->setCellValue('C3', "nama_properti"); // Set kolom B3 dengan tulisan "NIS"
-        $excel->setActiveSheetIndex(0)->setCellValue('D3', "luas"); // Set kolom B3 dengan tulisan "NIS"
-        $excel->setActiveSheetIndex(0)->setCellValue('E3', "harga"); // Set kolom C3 dengan tulisan "NAMA"
-		$excel->setActiveSheetIndex(0)->setCellValue('F3', "keterangan"); // Set kolom D3 dengan tulisan "JENIS KELAMIN"
-		$excel->setActiveSheetIndex(0)->setCellValue('G3', "alamat"); // Set kolom B3 dengan tulisan "NIS"
-		$excel->setActiveSheetIndex(0)->setCellValue('H3', "no_sertifikat"); // Set kolom D3 dengan tulisan "JENIS KELAMIN"
+        $excel->setActiveSheetIndex(0)->setCellValue('D3', "jenis_properti"); // Set kolom B3 dengan tulisan "NIS"
+        $excel->setActiveSheetIndex(0)->setCellValue('E3', "rayon"); // Set kolom C3 dengan tulisan "NAMA"
+		$excel->setActiveSheetIndex(0)->setCellValue('F3', "luas_tanah"); // Set kolom D3 dengan tulisan "JENIS KELAMIN"
+		$excel->setActiveSheetIndex(0)->setCellValue('G3', "luas_bangunan"); // Set kolom B3 dengan tulisan "NIS"
+		$excel->setActiveSheetIndex(0)->setCellValue('H3', "harga"); // Set kolom D3 dengan tulisan "JENIS KELAMIN"
+		$excel->setActiveSheetIndex(0)->setCellValue('I3', "tahun_perolehan"); // Set kolom D3 dengan tulisan "JENIS KELAMIN"
+		$excel->setActiveSheetIndex(0)->setCellValue('J3', "keterangan"); // Set kolom D3 dengan tulisan "JENIS KELAMIN"
+		$excel->setActiveSheetIndex(0)->setCellValue('K3', "no_sertifikat"); // Set kolom D3 dengan tulisan "JENIS KELAMIN"
+		$excel->setActiveSheetIndex(0)->setCellValue('L3', "tanggal_berlaku_sertifikat"); // Set kolom D3 dengan tulisan "JENIS KELAMIN"
+		$excel->setActiveSheetIndex(0)->setCellValue('M3', "tanggal_kadaluarsa_sertifikat"); // Set kolom D3 dengan tulisan "JENIS KELAMIN"
+		$excel->setActiveSheetIndex(0)->setCellValue('N3', "no_pajak"); // Set kolom D3 dengan tulisan "JENIS KELAMIN"
+		$excel->setActiveSheetIndex(0)->setCellValue('O3', "alamat"); // Set kolom D3 dengan tulisan "JENIS KELAMIN"
+		$excel->setActiveSheetIndex(0)->setCellValue('P3', "lokasi"); // Set kolom D3 dengan tulisan "JENIS KELAMIN"
+		$excel->setActiveSheetIndex(0)->setCellValue('Q3', "status"); // Set kolom D3 dengan tulisan "JENIS KELAMIN"
 
 
         // Apply style header yang telah kita buat tadi ke masing-masing kolom header
@@ -278,6 +287,15 @@ class Properti extends CI_Controller {
 		$excel->getActiveSheet()->getStyle('F3')->applyFromArray($style_col);
 		$excel->getActiveSheet()->getStyle('G3')->applyFromArray($style_col);
 		$excel->getActiveSheet()->getStyle('H3')->applyFromArray($style_col);
+		$excel->getActiveSheet()->getStyle('I3')->applyFromArray($style_col);
+		$excel->getActiveSheet()->getStyle('J3')->applyFromArray($style_col);
+		$excel->getActiveSheet()->getStyle('K3')->applyFromArray($style_col);
+		$excel->getActiveSheet()->getStyle('L3')->applyFromArray($style_col);
+		$excel->getActiveSheet()->getStyle('M3')->applyFromArray($style_col);
+		$excel->getActiveSheet()->getStyle('N3')->applyFromArray($style_col);
+		$excel->getActiveSheet()->getStyle('O3')->applyFromArray($style_col);
+		$excel->getActiveSheet()->getStyle('P3')->applyFromArray($style_col);
+		$excel->getActiveSheet()->getStyle('Q3')->applyFromArray($style_col);
 
         // Panggil function view yang ada di SiswaModel untuk menampilkan semua data siswanya
         $barang = $this->properti_model->get();
@@ -288,11 +306,20 @@ class Properti extends CI_Controller {
             $excel->setActiveSheetIndex(0)->setCellValue('A' . $numrow, $no);
 			$excel->setActiveSheetIndex(0)->setCellValue('B' . $numrow, $data->id_properti);
 			$excel->setActiveSheetIndex(0)->setCellValue('C' . $numrow, $data->nama_properti);
-            $excel->setActiveSheetIndex(0)->setCellValue('D' . $numrow, $data->luas);
-            $excel->setActiveSheetIndex(0)->setCellValue('E' . $numrow, $data->harga);
-			$excel->setActiveSheetIndex(0)->setCellValue('F' . $numrow, $data->keterangan);
-			$excel->setActiveSheetIndex(0)->setCellValue('G' . $numrow, $data->alamat);
-            $excel->setActiveSheetIndex(0)->setCellValue('H' . $numrow, $data->no_sertifikat);
+            $excel->setActiveSheetIndex(0)->setCellValue('D' . $numrow, $data->jenis_properti);
+            $excel->setActiveSheetIndex(0)->setCellValue('E' . $numrow, $data->nama_rayon);
+			$excel->setActiveSheetIndex(0)->setCellValue('F' . $numrow, $data->luas_tanah);
+			$excel->setActiveSheetIndex(0)->setCellValue('G' . $numrow, $data->luas_bangunan);
+			$excel->setActiveSheetIndex(0)->setCellValue('H' . $numrow, $data->harga);
+			$excel->setActiveSheetIndex(0)->setCellValue('I' . $numrow, $data->tahun_perolehan);
+			$excel->setActiveSheetIndex(0)->setCellValue('J' . $numrow, $data->keterangan);
+			$excel->setActiveSheetIndex(0)->setCellValue('K' . $numrow, $data->no_sertifikat);
+			$excel->setActiveSheetIndex(0)->setCellValue('L' . $numrow, $data->tanggal_berlaku_sertifikat);
+			$excel->setActiveSheetIndex(0)->setCellValue('M' . $numrow, $data->tanggal_kadaluarsa_sertifikat);
+			$excel->setActiveSheetIndex(0)->setCellValue('N' . $numrow, $data->no_pajak);
+			$excel->setActiveSheetIndex(0)->setCellValue('O' . $numrow, $data->alamat);
+			$excel->setActiveSheetIndex(0)->setCellValue('P' . $numrow, $data->lokasi);
+			$excel->setActiveSheetIndex(0)->setCellValue('Q' . $numrow, $data->status);
 
             // Apply style row yang telah kita buat tadi ke masing-masing baris (isi tabel)
             $excel->getActiveSheet()->getStyle('A' . $numrow)->applyFromArray($style_row);
@@ -303,6 +330,15 @@ class Properti extends CI_Controller {
 			$excel->getActiveSheet()->getStyle('F' . $numrow)->applyFromArray($style_row);
 			$excel->getActiveSheet()->getStyle('G' . $numrow)->applyFromArray($style_row);
 			$excel->getActiveSheet()->getStyle('H' . $numrow)->applyFromArray($style_row);
+			$excel->getActiveSheet()->getStyle('I' . $numrow)->applyFromArray($style_row);
+			$excel->getActiveSheet()->getStyle('J' . $numrow)->applyFromArray($style_row);
+			$excel->getActiveSheet()->getStyle('K' . $numrow)->applyFromArray($style_row);
+			$excel->getActiveSheet()->getStyle('L' . $numrow)->applyFromArray($style_row);
+			$excel->getActiveSheet()->getStyle('M' . $numrow)->applyFromArray($style_row);
+			$excel->getActiveSheet()->getStyle('N' . $numrow)->applyFromArray($style_row);
+			$excel->getActiveSheet()->getStyle('O' . $numrow)->applyFromArray($style_row);
+			$excel->getActiveSheet()->getStyle('P' . $numrow)->applyFromArray($style_row);
+			$excel->getActiveSheet()->getStyle('Q' . $numrow)->applyFromArray($style_row);
 
             $no++; // Tambah 1 setiap kali looping
             $numrow++; // Tambah 1 setiap kali looping
@@ -317,6 +353,15 @@ class Properti extends CI_Controller {
 		$excel->getActiveSheet()->getColumnDimension('F')->setWidth(30); // Set width kolom E
 		$excel->getActiveSheet()->getColumnDimension('G')->setWidth(30); // Set width kolom E
 		$excel->getActiveSheet()->getColumnDimension('H')->setWidth(30); // Set width kolom E
+		$excel->getActiveSheet()->getColumnDimension('I')->setWidth(30); // Set width kolom E
+		$excel->getActiveSheet()->getColumnDimension('J')->setWidth(30); // Set width kolom E
+		$excel->getActiveSheet()->getColumnDimension('K')->setWidth(30); // Set width kolom E
+		$excel->getActiveSheet()->getColumnDimension('L')->setWidth(30); // Set width kolom E
+		$excel->getActiveSheet()->getColumnDimension('M')->setWidth(30); // Set width kolom E
+		$excel->getActiveSheet()->getColumnDimension('N')->setWidth(30); // Set width kolom E
+		$excel->getActiveSheet()->getColumnDimension('O')->setWidth(30); // Set width kolom E
+		$excel->getActiveSheet()->getColumnDimension('P')->setWidth(30); // Set width kolom E
+		$excel->getActiveSheet()->getColumnDimension('Q')->setWidth(30); // Set width kolom E
 
         // Set height semua kolom menjadi auto (mengikuti height isi dari kolommnya, jadi otomatis)
         $excel->getActiveSheet()->getDefaultRowDimension()->setRowHeight(-1);
@@ -330,10 +375,20 @@ class Properti extends CI_Controller {
 
         // Proses file excel
         header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-        header('Content-Disposition: attachment; filename="Data Properti.xlsx"'); // Set nama file excel nya
+        header('Content-Disposition: attachment; filename="Data Properti.xls"'); // Set nama file excel nya
         header('Cache-Control: max-age=0');
 
         $write = PHPExcel_IOFactory::createWriter($excel, 'Excel2007');
         $write->save('php://output');
-    }
+	}
+	
+	public function preview()
+	{
+		$id_rayon = $this->input->post('rayon6');
+		
+		$data['properti'] = $this->properti_model->get_by_rayon($id_rayon);
+		
+		$this->load->view('admin/properti/preview', $data);
+		
+	}
 }

@@ -297,7 +297,8 @@ class Barang extends CI_Controller {
 				$excel->getActiveSheet()->getStyle('G3')->applyFromArray($style_col);
 
 				// Panggil function view yang ada di SiswaModel untuk menampilkan semua data siswanya 
-				$barang = $this->barang_model->get();
+				$id_rayon = $this->input->post('rayon');
+				$barang = $this->barang_model->get_by_rayon($id_rayon);
 				
 				$no = 1; // Untuk penomoran tabel, di awal set dengan 1
 				$numrow = 7; // Set baris pertama untuk isi tabel adalah baris ke 4
@@ -350,4 +351,13 @@ class Barang extends CI_Controller {
 				$write = PHPExcel_IOFactory::createWriter($excel, 'Excel2007');
 				$write->save('php://output');
 			}
+
+	public function preview()
+	{
+		$id_rayon = $this->input->post('rayon');
+		$data['barang'] = $this->barang_model->get_by_rayon($id_rayon);
+		
+		$this->load->view('admin/barang/preview', $data);
+		
+	}
 }

@@ -14,12 +14,8 @@ class Pengguna_model extends CI_Model
     return $this->db->count_all("admin");
   }
 
-  public function get($limit = FALSE, $offset = FALSE)
+  public function get()
   {
-    if ( $limit ) {
-      $this->db->limit($limit, $offset);
-    }
-
     $this->db->order_by('admin.id_admin', 'ASC');
     $this->db->join('rayon', 'admin.id_rayon = rayon.id_rayon');
     $this->db->join('level', 'admin.id_level = level.id_level');
