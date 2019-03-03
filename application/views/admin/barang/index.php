@@ -31,7 +31,7 @@
                   <tr class="text-warning">
                     <th>Nama</th>
                     <th>Rayon</th>
-                    <th>Alamat</th>
+                    <th>Kondisi</th>
                     <th class="disabled-sorting text-center">Aksi</th>
                   </tr>
                 </thead>
@@ -39,7 +39,7 @@
                   <tr>
                     <th>Nama</th>
                     <th>Rayon</th>
-                    <th>Alamat</th>
+                    <th>Kondisi</th>
                     <th class="text-center">Aksi</th>
                   </tr>
                 </tfoot>
@@ -48,7 +48,7 @@
                     <tr>
                       <td><?php echo $value->nama_barang; ?></td>
                       <td  class="text-warning"><?php echo $value->nama_rayon; ?></td>
-                      <td>Rp. <?php echo number_format($value->harga); ?></td>
+                      <td><?php echo $value->nama_kondisi; ?></td>
                       <td class="text-center">
                       <a href="#" onclick="openModal(<?php echo $value->id_barang; ?>)" rel="tooltip" title="Lihat" class="btn btn-sm btn-success">
                             <i class="material-icons">zoom_out_map</i>

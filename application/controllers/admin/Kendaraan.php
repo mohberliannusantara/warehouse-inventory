@@ -23,22 +23,6 @@ class Kendaraan extends CI_Controller {
 		$data['page'] = 'Kendaraan';
 		$data['kendaraan'] = $this->kendaraan_model->get();
 
-		$limit_per_page = 5;
-		$start_index = ( $this->uri->segment(3) ) ? $this->uri->segment(3) : 0;
-		$total_records = $this->kendaraan_model->get_total($this->session->userdata('id_rayon'), $this->session->userdata('id_level'));
-		if ($total_records > 0) {
-			$data['kendaraan'] = $this->kendaraan_model->get($limit_per_page, $start_index, $this->session->userdata('id_rayon'), $this->session->userdata('id_level'));
-
-			$config['base_url'] = base_url() . 'Kendaraan/index';
-			$config['total_rows'] = $total_records;
-			$config['per_page'] = $limit_per_page;
-			$config["uri_segment"] = 3;
-
-			$this->pagination->initialize($config);
-
-			// Buat link pagination
-			$data["links"] = $this->pagination->create_links();
-		}
 		$this->load->view('admin/templates/header', $data);
 		$this->load->view('admin/kendaraan/index', $data);
 		$this->load->view('admin/templates/footer');

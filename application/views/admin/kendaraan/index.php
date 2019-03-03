@@ -33,7 +33,11 @@
                                     <tr class="text-warning">
                                         <th>Plat</th>
                                         <th>Nama</th>
+                                        <th>Jenis</th>
                                         <th>Rayon</th>
+                                        <th>Status</th>
+                                        <th>Vendor</th>
+                                        <th>Masa Berlaku</th>
                                         <th class="disabled-sorting text-center">Aksi</th>
                                     </tr>
                                 </thead>
@@ -41,7 +45,11 @@
                                     <tr>
                                         <th>Plat</th>
                                         <th>Nama</th>
+                                        <th>Jenis</th>
                                         <th>Rayon</th>
+                                        <th>Status</th>
+                                        <th>Vendor</th>
+                                        <th>Masa Berlaku</th>
                                         <th class="text-center">Aksi</th>
                                     </tr>
                                 </tfoot>
@@ -50,7 +58,11 @@
                                     <tr>
                                         <td><?php echo $value->nomor_polisi ?></td>
                                         <td><?php echo $value->nama_kendaraan; ?></td>
+                                        <td><?php echo $value->nama_jenis_kendaraan; ?></td>
                                         <td class="text-warning"><?php echo $value->nama_rayon; ?></td>
+                                        <td><?php echo $value->status; ?></td>
+                                        <td><?php echo $value->nama_pemilik_kendaraan; ?></td>
+                                        <td><?php echo $value->lama_berlaku; ?></td>
                                         <td class="text-center">
                                             <a href="#" onclick="openModal(<?php echo $value->id_kendaraan?>)" rel="tooltip" title="Lihat"
                                                 class="btn btn-sm btn-success">
