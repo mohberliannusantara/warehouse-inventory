@@ -31,7 +31,7 @@ class Beranda extends CI_Controller
 
 		//total harga aset
 		$data['total_harga_barang'] = $this->Barang_model->get_total_harga($this->session->userdata('id_rayon'), $this->session->userdata('id_level'));
-		$data['total_harga_kendaraan'] = $this->Kendaraan_model->get_total_harga($this->session->userdata('id_rayon'), $this->session->userdata('id_level'));
+		//$data['total_harga_kendaraan'] = $this->Kendaraan_model->get_total_harga($this->session->userdata('id_rayon'), $this->session->userdata('id_level'));
 		$data['total_harga_properti'] = $this->Properti_model->get_total_harga();
 
 		//get limit

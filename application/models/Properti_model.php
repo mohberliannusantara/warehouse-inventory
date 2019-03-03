@@ -23,8 +23,6 @@ class Properti_model extends CI_Model
 
   public function get_limit()
   {
-    $this->db->order_by('properti.nama_properti', 'ASC');
-    $this->db->limit(4);
     $query = $this->db->get('properti');
 
     return $query->result();
@@ -32,8 +30,8 @@ class Properti_model extends CI_Model
 
   public function get()
   {
-    $this->db->order_by('rayon.nama_rayon', 'ASC');
-    $this->db->join('rayon', 'rayon.id_rayon = properti.id_rayon');
+    $this->db->order_by('rayon.nama_rayon', 'asc');
+    $this->db->join('rayon', 'properti.id_rayon = rayon.id_rayon');
     $query = $this->db->get('properti');
     return $query->result();
   }

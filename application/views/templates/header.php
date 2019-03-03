@@ -49,7 +49,7 @@
         <li class="nav-item <?php if ($page == 'Barang'): ?>active<?php endif; ?>">
           <a class="nav-link" href="<?php echo site_url('barang')?>">
             <i class="material-icons">inventory</i>
-            <p>Barang</p>
+            <p>Extra Countable</p>
           </a>
         </li>
         <li class="nav-item <?php if ($page == 'Kendaraan'): ?>active<?php endif; ?>">
@@ -64,12 +64,12 @@
             <p>Properti</p>
           </a>
         </li>
-        <li class="nav-item <?php if ($page == 'Ruang'): ?>active<?php endif; ?>">
+        <!-- <li class="nav-item <?php if ($page == 'Ruang'): ?>active<?php endif; ?>">
           <a class="nav-link" href="<?php echo site_url('properti')?>">
             <i class="material-icons">bookmark</i>
             <p>Ruang</p>
           </a>
-        </li>
+        </li> -->
         <li class="nav-item <?php if ($page == 'Laporan'): ?>active<?php endif; ?>">
           <a class="nav-link" href="<?php echo site_url('laporan')?>">
             <i class="material-icons">print</i>

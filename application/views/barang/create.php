@@ -9,7 +9,7 @@
           </div>
           <div class="card-body">
               <?php //echo $upload_error;?>
-            <form action="<?php base_url('Barang/create') ?>" method="post" enctype="multipart/form-data">
+            <?php echo form_open_multipart('barang/insert');?>
               <div class="form-group">
                 <label for="nama_barang">Nama Barang</label>
                 <input type="text" class="form-control" name="nama_barang" value="<?php echo set_value('nama_barang') ?>" required autofocus>

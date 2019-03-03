@@ -35,7 +35,7 @@
                   </thead>
                   <tbody>
                     <?php foreach ($properti as $value): ?>
-                      <tr>
+                      <tr  onclick="openModal(<?php echo $value->id_properti; ?>)">
                         <td>
                           <?php echo $value->id_properti; ?>
                         </td>

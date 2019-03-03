@@ -32,7 +32,7 @@
           </div>
           <div class="card-footer">
             <div class="stats">
-              <i class="material-icons">local_offer</i> Estimasi Asset Kendaraan Rp. <h5><?php echo number_format($total_harga_kendaraan); ?></h5>
+              <i class="material-icons">local_offer</i> Estimasi Asset Kendaraan Rp. <h5><?php //echo number_format($total_harga_kendaraan); ?></h5>
             </div>
           </div>
         </div>

@@ -1,11 +1,7 @@
 <div class="row">
   <div class="col-md-5">
     <!-- Load thumbnail, jika ada -->
-    <?php if( $properti->gambar ) : ?>
-      <img src="<?php echo base_url() .'assets/uploads/properti/'. $properti->gambar  ?>" alt="" style="width:100%;">
-      <?php ; else : ?>
-        <img src="https://via.placeholder.com/350x250" alt="" style="width:100%;">
-      <?php endif; ?>
+    
     </div>
     <div class="col-md-3">
       <h5>ID Properti</h5>
