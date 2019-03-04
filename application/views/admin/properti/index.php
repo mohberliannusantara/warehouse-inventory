@@ -48,9 +48,9 @@
                                 <tbody>
                                     <?php foreach ($properti as $value): ?>
                                     <tr>
-                                        <td><?php echo substr($value->nama_properti,0,20); ?></td>
+                                        <td><?php echo substr($value->nama_properti,0,30); ?></td>
                                         <td class="text-warning"><?php echo $value->nama_rayon; ?></td>
-                                        <td><?php echo substr($value->alamat,0,20); ?>...</td>
+                                        <td><?php echo substr($value->alamat,0,30); ?>...</td>
                                         <td class="text-center">
                                             <a href="#" onclick="openModal(<?php echo $value->id_properti; ?>)"
                                                 rel="tooltip" title="Lihat" class="btn btn-sm btn-success">

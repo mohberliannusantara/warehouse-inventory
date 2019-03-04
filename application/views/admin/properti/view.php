@@ -28,7 +28,7 @@
       <h5><?php echo $properti->luas_bangunan; ?></h5>
       <h5><?php echo $properti->harga; ?></h5>
       <h5><?php echo $properti->tahun_perolehan; ?></h5>
-      <h5><?php echo $properti->keterangan ?>/h5>
+      <h5><?php echo $properti->keterangan ?></h5>
       <h5><?php echo $properti->no_sertifikat; ?></h5>
       <h5><?php echo $properti->tanggal_berlaku_sertifikat; ?></h5>
       <h5><?php echo $properti->tanggal_kadaluarsa_sertifikat; ?></h5>
@@ -40,6 +40,6 @@
       <h5><a target="_blank" href="<?php echo $properti->lokasi ?>"><?php echo $properti->alamat ?></a></h5>
       <a target="_blank" href="<?php echo base_url('assets/uploads/properti/sertifikat/').$properti->foto_sertifikat ?>" type="button" class="btn btn-rose">Lihat Sertfikat</a>
       <a target="_blank" href="<?php echo base_url('assets/uploads/properti/pajak/').$properti->foto_pajak ?>" type="button" class="btn btn-warning">Lihat PBB</a>
-      <a target="_blank" type="button" class="btn btn-success">Lihat Lokasi</a>
+      <a target="_blank" type="button" href="<?php echo $properti->lokasi ?>" class="btn btn-success">Lihat Lokasi</a>
     </div>
   </div>
