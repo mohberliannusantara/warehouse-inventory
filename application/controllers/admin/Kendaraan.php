@@ -9,7 +9,9 @@ class Kendaraan extends CI_Controller {
 		$this->load->model('kendaraan_model');
 		$this->load->model('jenis_kendaraan_model');
 		$this->load->model('kondisi_model');
+		$this->load->model('rayon_model');
 		$this->load->library('form_validation');
+
 		if (!$this->session->logged_in == TRUE) {
 			redirect('welcome','refresh');
 		}
@@ -37,9 +39,7 @@ class Kendaraan extends CI_Controller {
 	public function create()
 	{
 		$data['page'] = 'Kendaraan';
-		$data['page_title'] = 'Tambah Kendaraan';
-		$data['page_content'] = 'Tambahkan kendaraan kedalam daftar dengan informasi yang lengkap';
-
+		$data['rayon'] = $this->rayon_model->get();
 		$data['jenis_kendaraan'] = $this->jenis_kendaraan_model->get();
 		$data['kondisi'] = $this->kondisi_model->get();
 
@@ -50,9 +50,9 @@ class Kendaraan extends CI_Controller {
 
 		if ($this->form_validation->run() === FALSE)
 		{
-			$this->load->view('templates/header', $data);
-			$this->load->view('kendaraan/create', $data);
-			$this->load->view('templates/footer');
+			$this->load->view('admin/templates/header', $data);
+			$this->load->view('admin/kendaraan/create', $data);
+			$this->load->view('admin/templates/footer');
 		}
 		else
 		{
@@ -73,9 +73,9 @@ class Kendaraan extends CI_Controller {
 
 					$post_image = '';
 
-					$this->load->view('templates/header', $data);
-					$this->load->view('kendaraan/create', $data);
-					$this->load->view('templates/footer');
+					$this->load->view('admin/templates/header', $data);
+					$this->load->view('admin/kendaraan/create', $data);
+					$this->load->view('admin/templates/footer');
 
 				} else { //jika berhasil upload
 
@@ -104,9 +104,9 @@ class Kendaraan extends CI_Controller {
 			if( empty($data['upload_error']) ) {
 				$this->kendaraan_model->create($post_data);
 				$data['kendaraan'] = $this->kendaraan_model->get();
-				$this->load->view('templates/header', $data);
-				$this->load->view('kendaraan/index', $data);
-				$this->load->view('templates/footer');
+				$this->load->view('admin/templates/header', $data);
+				$this->load->view('admin/kendaraan/index', $data);
+				$this->load->view('admin/templates/footer');
 			}
 		}
 	}
@@ -127,9 +127,9 @@ class Kendaraan extends CI_Controller {
 		// Cek apakah input valid atau tidak
 		if ($this->form_validation->run() === FALSE)
 		{
-			$this->load->view('templates/header', $data);
-			$this->load->view('kendaraan/edit', $data);
-			$this->load->view('templates/footer');
+			$this->load->view('admin/templates/header', $data);
+			$this->load->view('admin/kendaraan/edit', $data);
+			$this->load->view('admin/templates/footer');
 
 		} else {
 			if ( isset($_FILES['gambar']) && $_FILES['gambar']['size'] > 0 )
@@ -149,9 +149,9 @@ class Kendaraan extends CI_Controller {
 
 					$post_image = '';
 
-					$this->load->view('templates/header');
-					$this->load->view('kendaraan/create', $data);
-					$this->load->view('templates/footer');
+					$this->load->view('admin/templates/header');
+					$this->load->view('admin/kendaraan/create', $data);
+					$this->load->view('admin/templates/footer');
 
 				} else { //jika berhasil upload
 
@@ -178,9 +178,9 @@ class Kendaraan extends CI_Controller {
 			if( empty($data['upload_error']) ) {
 				$this->kendaraan_model->update($post_data,$id);
 				//$data['kendaraan'] = $this->kendaraan_model->get();
-				// $this->load->view('templates/header');
-				// $this->load->view('kendaraan/index', $data);
-				// $this->load->view('templates/footer');
+				// $this->load->view('admin/templates/header');
+				// $this->load->view('admin/kendaraan/index', $data);
+				// $this->load->view('admin/templates/footer');
 				redirect('Kendaraan','refresh');
 			}
 		}
@@ -192,7 +192,7 @@ class Kendaraan extends CI_Controller {
 		$data['page_content'] = 'Pindahkan kendaraan dan memberi detail keterangan kendaraan';
 
 		$this->load->view("templates/header");
-		$this->load->view('kendaraan/edit', $data);
+		$this->load->view('admin/kendaraan/edit', $data);
 		$this->load->view("templates/footer");
 	}
 
@@ -362,14 +362,14 @@ class Kendaraan extends CI_Controller {
         $write = PHPExcel_IOFactory::createWriter($excel, 'Excel2007');
         $write->save('php://output');
 	}
-	
+
 	public function preview()
 	{
 		$id_rayon = $this->input->post('rayon4');
 		//echo $id_rayon;
 		$data['kendaraan'] = $this->kendaraan_model->get_by_rayon($id_rayon);
-		
+
 		$this->load->view('admin/kendaraan/preview', $data);
-		
+
 	}
 }

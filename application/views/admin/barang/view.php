@@ -13,6 +13,7 @@
       <h5>Jenis</h5>
       <h5>Kondisi</h5>
       <h5>Harga</h5>
+      <h5>Rayon</h5>
       <h5>Keterangan</h5>
     </div>
     <div class="col-md-4">
@@ -31,6 +32,7 @@
       <h5>
         Rp. <?php echo number_format($barang->harga); ?>
       </h5>
+      <h5><?php echo $barang->nama_rayon ?></h5>
       <h5>
         <?php echo $barang->keterangan ?>
       </h5>

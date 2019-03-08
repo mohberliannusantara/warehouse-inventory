@@ -93,7 +93,7 @@
             <div class="modal-body">
                 <form class="navbar-form">
                     <div class="input-group no-border">
-                        <label class="bmd-label-floating">ID Barang</label>
+                        <label class="bmd-label-floating">ID Properti</label>
                         <input type="text" class="form-control">
                         <button type="submit" class="btn btn-warning btn-round btn-just-icon">
                             <i class="material-icons">search</i>
@@ -118,12 +118,12 @@
             </div>
             <div class="modal-body">
                 <div class="form-group">
-                    <input type="hidden" id="id_barang" value="">
-                    <p>Apakah Anda yakin untuk menghapus barang ini..?</p>
+                    <input type="hidden" id="id_properti" value="">
+                    <p>Apakah Anda yakin untuk menghapus properti ini..?</p>
                 </div>
             </div>
             <div class="modal-footer">
-                <button id="deleteButton" onclick="deleteBarang()" type="submit" class="btn btn-danger">Hapus</button>
+                <button id="deleteButton" onclick="deleteProperti()" type="submit" class="btn btn-danger">Hapus</button>
                 <button type="button" class="btn btn-info" data-dismiss="modal">Batal</button>
             </div>
         </div>
@@ -135,7 +135,7 @@
     <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Info Barang</h5>
+                <h5 class="modal-title" id="exampleModalLongTitle">Info Properti</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -163,11 +163,11 @@ function openModal(id) {
 }
 
 function deleteModal(id) {
-    $('#id_barang').val(id);
+    $('#id_properti').val(id);
 }
 
-function deleteBarang() {
-    var id = $('#id_barang').val();
+function deleteProperti() {
+    var id = $('#id_properti').val();
     $.ajax({
         url: "<?php echo base_url('admin/properti/delete/'); ?>" + id,
         method: 'post',

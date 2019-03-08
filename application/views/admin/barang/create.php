@@ -1,95 +1,112 @@
 <div class="content">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-header card-header-info">
-                        <h4 class="card-title "><?php echo $page_title; ?></h4>
-                        <p class="card-category"> Tambahkan barang kedalam daftar dengan informasi yang lengkap</p>
-                    </div>
-                    <div class="card-body">
-                        <?php //echo $upload_error;?>
-                        <form action="<?php base_url('Barang/create') ?>" method="post" enctype="multipart/form-data">
-                            <div class="form-group">
-                                <label for="nama_barang">Nama Barang</label>
-                                <input type="text" class="form-control" name="nama_barang"
-                                    value="<?php echo set_value('nama_barang') ?>" required autofocus>
-                                <div class="invalid-feedback">Masukkan nama barang.</div>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label for="jenis_barang">Rayon</label>
-                                        <select class="custom-select" name="rayon" required>
-                                            <option selected value="">Pilih Rayon</option>
-                                            <?php foreach ($rayon as $row): ?>
-                                            <option value="<?php echo $row->id_rayon ?>">
-                                                <?php echo $row->nama_rayon; ?>
-                                            </option>
-                                            <?php endforeach; ?>
-                                        </select>
-                                        <div class="invalid-feedback">Pilih dulu kategorinya gan</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-3">
-                                    <div class="form-group">
-                                        <label for="jenis_barang">Jenis Barang</label>
-                                        <select class="custom-select" name="jenis_barang" required>
-                                            <option selected value="">Pilih Jenis Barang</option>
-                                            <?php foreach ($jenis_barang as $row): ?>
-                                            <option value="<?php echo $row->id_jenis_barang ?>">
-                                                <?php echo $row->nama_jenis_barang; ?>
-                                            </option>
-                                            <?php endforeach; ?>
-                                        </select>
-                                        <div class="invalid-feedback">Pilih dulu kategorinya gan</div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-3">
-                                    <div class="form-group">
-                                        <label for="kondisi_model">Kondisi Barang</label>
-                                        <select class="custom-select" name="kondisi" required>
-                                            <option selected value="">Pilih Kondisi Barang</option>
-                                            <?php foreach ($kondisi as $row): ?>
-                                            <option value="<?php echo $row->id_kondisi ?>">
-                                                <?php echo $row->nama_kondisi; ?>
-                                            </option>
-                                            <?php endforeach; ?>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="harga">Harga</label>
-                                <input min="1000" class="form-control number" name="harga"
-                                    value="<?php echo set_value('harga') ?>" required>
-                                <div class="invalid-feedback">Masukkan Harga barang.</div>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="keterangan">Keterangan</label>
-                                <textarea class="form-control" name="keterangan" rows="3"
-                                    required><?php echo set_value('keterangan') ?></textarea>
-                                <div class="invalid-feedback">Isi keterangan barang</div>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="gambar">Foto Barang</label>
-                            </div>
-                            <label class="file">
-                                <input type="file" class="form-control-file" name="gambar">
-                                <span class="file-custom"></span>
-                            </label>
-                            <div class="form-group">
-                                <input class="btn btn-info" type="submit" value="Simpan">
-                            </div>
-                            <?php echo form_close()?>
-                    </div>
-                </div>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <form id="TypeValidation" class="form-horizontal" action="" method="">
+          <div class="card ">
+            <div class="card-header card-header-rose card-header-text">
+              <div class="card-text">
+                <h4 class="card-title">Form Tambah Extracomptable</h4>
+              </div>
             </div>
-        </div>
+            <div class="card-body ">
+              <div class="row">
+                <label class="col-sm-2 col-form-label">Nama</label>
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <input class="form-control" type="text" name="nama_barang" value="<?php echo set_value('nama_barang') ?>" required="true" autofocus/>
+                    <span class="bmd-help">Tambahkan nama extracomptable.</span>
+                  </div>
+                </div>
+                <label class="col-xs-3 col-form-label">Rayon</label>
+                <div class="col-sm-3">
+                  <div class="form-group">
+                    <select class="custom-select" name="rayon" required>
+                      <option selected value="">Pilih Rayon </option>
+                      <?php foreach ($rayon as $row): ?>
+                        <option value="<?php echo $row->id_rayon ?>">
+                          <?php echo $row->nama_rayon; ?>
+                        </option>
+                      <?php endforeach; ?>
+                    </select>
+                    <div class="invalid-feedback">Pilih rayon.</div>
+                  </div>
+                </div>
+              </div>
+              <br>
+              <div class="row">
+                <label class="col-sm-2 col-form-label">Jenis</label>
+                <div class="col-sm-4">
+                  <div class="form-group">
+                    <select class="custom-select" name="jenis_barang" required>
+                      <option selected value="">Pilih Jenis Extracomptable</option>
+                      <?php foreach ($jenis_barang as $row): ?>
+                        <option value="<?php echo $row->id_jenis_barang ?>">
+                          <?php echo $row->nama_jenis_barang; ?>
+                        </option>
+                      <?php endforeach; ?>
+                    </select>
+                    <div class="invalid-feedback">Pilih jenis extracomptable.</div>
+                  </div>
+                </div>
+                <label class="col-xs-3 col-form-label">Kondisi</label>
+                <div class="col-sm-5">
+                  <div class="form-group">
+                    <select class="custom-select" name="kondisi" required>
+                      <option selected value="">Pilih Kondisi</option>
+                      <?php foreach ($kondisi as $row): ?>
+                        <option value="<?php echo $row->id_kondisi ?>">
+                          <?php echo $row->nama_kondisi; ?>
+                        </option>
+                      <?php endforeach; ?>
+                    </select>
+                    <div class="invalid-feedback">Pilih kondisi extracomptable.</div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <label class="col-sm-2 col-form-label">Harga</label>
+                <div class="col-sm-10">
+                  <div class="form-group">
+                    <input class="form-control" type="text" name="harga" value="<?php echo set_value('harga') ?>" required="true" />
+                    <span class="bmd-help">Tambahkan harga extracomptable.</span>
+                  </div>
+                </div>
+              </div>
+              <br>
+              <div class="row">
+                <label class="col-sm-2 col-form-label">Keterangan</label>
+                <div class="col-sm-5">
+                  <div class="form-group">
+                    <textarea class="form-control" name="keterangan" rows="5" required><?php echo set_value('keterangan') ?></textarea>
+                    <span class="bmd-help">Tambahkan harga extracomptable.</span>
+                  </div>
+                </div>
+                <label class="col-xs-2 col-form-label">Foto / Gambar</label>
+                <div class="col-sm-3">
+                  <div class="fileinput fileinput-new text-center" data-provides="fileinput">
+                    <div class="fileinput-new thumbnail">
+                      <img src="<?php echo base_url() ?>assets/img/image_placeholder.jpg" alt="...">
+                    </div>
+                    <div class="fileinput-preview fileinput-exists thumbnail"></div>
+                    <div>
+                      <span class="btn btn-warning btn-round btn-file">
+                        <span class="fileinput-new">Select image</span>
+                        <span class="fileinput-exists">Change</span>
+                        <input type="file" name="gambar" />
+                      </span>
+                      <a href="#pablo" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i> Remove</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="card-footer ml-auto mr-auto">
+              <button type="submit" class="btn btn-rose">Simpan Data</button>
+            </div>
+          </div>
+        </form>
+      </div>
     </div>
+  </div>
 </div>

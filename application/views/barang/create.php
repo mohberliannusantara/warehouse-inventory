@@ -14,11 +14,12 @@
                 <label class="col-sm-2 col-form-label">Nama</label>
                 <div class="col-sm-10">
                   <div class="form-group">
-                    <input class="form-control" type="text" name="nama_barang" required="true" />
-                    <span class="bmd-help">tambahkan nama barang.</span>
+                    <input class="form-control" type="text" name="nama_barang" value="<?php echo set_value('nama_barang') ?>" required="true" />
+                    <span class="bmd-help">Tambahkan nama extracomptable.</span>
                   </div>
                 </div>
               </div>
+              <br>
               <div class="row">
                 <label class="col-sm-2 col-form-label">Jenis</label>
                 <div class="col-sm-3">
@@ -31,7 +32,7 @@
                         </option>
                       <?php endforeach; ?>
                     </select>
-                    <div class="invalid-feedback">Pilih dulu kategorinya gan</div>
+                    <div class="invalid-feedback">Pilih jenis extracomptable.</div>
                   </div>
                 </div>
                 <label class="col-xs-2 col-form-label">Kondisi</label>
@@ -45,50 +46,49 @@
                         </option>
                       <?php endforeach; ?>
                     </select>
+                    <div class="invalid-feedback">Pilih kondisi extracomptable.</div>
                   </div>
                 </div>
               </div>
               <div class="row">
-                <label class="col-sm-2 col-form-label">With help</label>
+                <label class="col-sm-2 col-form-label">Harga</label>
                 <div class="col-sm-10">
                   <div class="form-group">
-                    <input type="text" class="form-control">
-                    <span class="bmd-help">A block of help text that breaks onto a new line.</span>
+                    <input class="form-control" type="text" name="harga" value="<?php echo set_value('harga') ?>" required="true" />
+                    <span class="bmd-help">Tambahkan harga extracomptable.</span>
                   </div>
                 </div>
               </div>
-              <div class="form-group">
-                <label for="harga">Harga</label>
-                <input min="1000" class="form-control number" name="harga" value="<?php echo set_value('harga') ?>" required >
-                <div class="invalid-feedback">Masukkan Harga barang.</div>
-              </div>
+              <br>
               <div class="row">
-                <label class="col-sm-2 col-form-label">Email</label>
-                <div class="col-sm-7">
+                <label class="col-sm-2 col-form-label">Keterangan</label>
+                <div class="col-sm-5">
                   <div class="form-group">
-                    <input class="form-control" type="text" name="email" email="true" required="true" />
+                    <textarea class="form-control" name="keterangan" rows="5" required><?php echo set_value('keterangan') ?></textarea>
+                    <span class="bmd-help">Tambahkan harga extracomptable.</span>
                   </div>
                 </div>
-              </div>
-              <div class="row">
-                <label class="col-sm-2 col-form-label">Number</label>
-                <div class="col-sm-7">
-                  <div class="form-group">
-                    <input class="form-control" type="text" name="number" number="true" required="true" />
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <label class="col-sm-2 col-form-label">Url</label>
-                <div class="col-sm-7">
-                  <div class="form-group">
-                    <input class="form-control" type="text" name="url" url="true" required="true" />
+                <label class="col-xs-2 col-form-label">Foto / Gambar</label>
+                <div class="col-sm-3">
+                  <div class="fileinput fileinput-new text-center" data-provides="fileinput">
+                    <div class="fileinput-new thumbnail">
+                      <img src="<?php echo base_url() ?>assets/img/image_placeholder.jpg" alt="...">
+                    </div>
+                    <div class="fileinput-preview fileinput-exists thumbnail"></div>
+                    <div>
+                      <span class="btn btn-warning btn-round btn-file">
+                        <span class="fileinput-new">Select image</span>
+                        <span class="fileinput-exists">Change</span>
+                        <input type="file" name="gambar" />
+                      </span>
+                      <a href="#pablo" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i> Remove</a>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
             <div class="card-footer ml-auto mr-auto">
-              <button type="submit" class="btn btn-rose">Validate Inputs</button>
+              <button type="submit" class="btn btn-rose">Simpan Data</button>
             </div>
           </div>
         </form>

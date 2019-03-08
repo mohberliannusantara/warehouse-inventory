@@ -103,6 +103,7 @@ class Barang_model extends CI_Model
   {
     $this->db->select('*');
     $this->db->from('barang');
+    $this->db->join('rayon', 'barang.id_rayon = rayon.id_rayon');
     $this->db->join('jenis_barang', 'barang.id_jenis_barang = jenis_barang.id_jenis_barang');
     $this->db->join('kondisi', 'barang.id_kondisi = kondisi.id_kondisi');
     $this->db->where(array('barang.id_barang' => $id));

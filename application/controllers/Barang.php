@@ -33,7 +33,7 @@ class Barang extends CI_Controller
 	public function get($id)
 	{
 		$data['barang'] = $this->barang_model->get_by_id($id);
-		$this->load->view('barang/view', $data);
+		$this->load->view('admin/barang/view', $data);
 	}
 
 
