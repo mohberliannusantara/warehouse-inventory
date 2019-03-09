@@ -138,7 +138,7 @@
                 <div class="col-sm-5">
                   <div class="form-group">
                     <textarea class="form-control" name="keterangan" rows="5" required><?php echo set_value('keterangan') ?></textarea>
-                    <span class="bmd-help">Tambahkan harga extracomptable.</span>
+                    <span class="bmd-help">Tambahkan keterangan kendaraan.</span>
                   </div>
                 </div>
                 <label class="col-xs-2 col-form-label">Foto / Gambar</label>
