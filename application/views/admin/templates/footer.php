@@ -398,6 +398,15 @@ $(document).ready(function() {
 		}, 600);
 	});
 </script>
+<script>
+	$(document).ready(function() {
+		// initialise Datetimepicker and Sliders
+		md.initFormExtendedDatetimepickers();
+		if ($('.slider').length != 0) {
+			md.initSliders();
+		}
+	});
+</script>
 </body>
 
 </html>

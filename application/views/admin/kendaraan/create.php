@@ -18,7 +18,7 @@
                     <span class="bmd-help">Tambahkan nama kendaraan.</span>
                   </div>
                 </div>
-                <label class="col-xs-2 col-form-label">Plat</label>
+                <label class="col-xs-2 col-form-label">Plat Nomor</label>
                 <div class="col-sm-3">
                   <div class="form-group">
                     <input class="form-control" type="text" name="nomor_polisi" value="<?php echo set_value('nomor_polisi') ?>" required="true" autofocus/>
@@ -35,61 +35,100 @@
                     <span class="bmd-help">Tambahkan nama pengguna kendaraan.</span>
                   </div>
                 </div>
+                <label class="col-xs-2 col-form-label">Rayon</label>
+                <div class="col-sm-3">
+                  <div class="form-group">
+                    <select class="custom-select" name="rayon" required>
+                      <option selected value="">Pilih Rayon </option>
+                      <?php foreach ($rayon as $row): ?>
+                        <option value="<?php echo $row->id_rayon ?>">
+                          <?php echo $row->nama_rayon; ?>
+                        </option>
+                      <?php endforeach; ?>
+                    </select>
+                    <div class="invalid-feedback">Pilih rayon.</div>
+                  </div>
+                </div>
               </div>
               <br>
-              <!-- <div class="row">
-                <label class="col-sm-2 col-form-label">Rayon</label>
+              <div class="row">
+                <label class="col-sm-2 col-form-label">Pemilik Kendaraan</label>
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <select class="custom-select" name="pemilik_kendaraan" required>
+                      <option selected value="">Pilih Pemilik Kendaraan </option>
+                      <?php foreach ($pemilik_kendaraan as $row): ?>
+                        <option value="<?php echo $row->id_pemilik_kendaraan ?>">
+                          <?php echo $row->nama_pemilik_kendaraan; ?>
+                        </option>
+                      <?php endforeach; ?>
+                    </select>
+                    <div class="invalid-feedback">Pilih pemilik kendaraan.</div>
+                  </div>
+                </div>
+                <label class="col-xs-2 col-form-label">Jenis</label>
+                <div class="col-sm-3">
+                  <div class="form-group">
+                    <select class="custom-select" name="jenis_kendaraan" required>
+                      <option selected value="">Pilih Jenis Kendaraan</option>
+                      <?php foreach ($jenis_kendaraan as $row): ?>
+                        <option value="<?php echo $row->id_jenis_kendaraan ?>">
+                          <?php echo $row->nama_jenis_kendaraan; ?>
+                        </option>
+                      <?php endforeach; ?>
+                    </select>
+                    <div class="invalid-feedback">Pilih jenis kendaraan.</div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <label class="col-sm-2 col-form-label label-checkbox">Status</label>
+                <div class="col-sm-10 checkbox-radios">
+                  <div class="form-check">
+                    <label class="form-check-label">
+                      <input class="form-check-input" type="radio" name="exampleRadios" value="option2" checked> Sewa
+                      <span class="circle">
+                        <span class="check"></span>
+                      </span>
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <label class="form-check-label">
+                      <input class="form-check-input" type="radio" name="exampleRadios" value="option1"> Milik PLN
+                      <span class="circle">
+                        <span class="check"></span>
+                      </span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <label class="col-sm-2 col-form-label">Tanggal Berlaku</label>
                 <div class="col-sm-10">
                   <div class="form-group">
-                    <select class="custom-select" name="rayon" required>
-                      <option selected value="">Pilih Rayon </option>
-                      <?php foreach ($rayon as $row): ?>
-                        <option value="<?php echo $row->id_rayon ?>">
-                          <?php echo $row->nama_rayon; ?>
-                        </option>
-                      <?php endforeach; ?>
-                    </select>
-                    <div class="invalid-feedback">Pilih rayon.</div>
+                    <!-- <input class="form-control" type="date" name="harga" value="<?php echo set_value('harga') ?>" required="true" /> -->
+                    <input type="text" class="form-control datepicker" name="tanggal_berlaku" value="10/06/2018" required="true" />
+                    <span class="bmd-help">Tambahkan tanggal berlaku.</span>
                   </div>
                 </div>
-              </div> -->
+              </div>
               <br>
               <div class="row">
-                <label class="col-sm-2 col-form-label">Rayon</label>
-                <div class="col-sm-4">
-                  <div class="form-group">
-                    <select class="custom-select" name="rayon" required>
-                      <option selected value="">Pilih Rayon </option>
-                      <?php foreach ($rayon as $row): ?>
-                        <option value="<?php echo $row->id_rayon ?>">
-                          <?php echo $row->nama_rayon; ?>
-                        </option>
-                      <?php endforeach; ?>
-                    </select>
-                    <div class="invalid-feedback">Pilih rayon.</div>
-                  </div>
-                </div>
-                <label class="col-xs-3 col-form-label">Jenis</label>
+                <label class="col-sm-2 col-form-label">Stan Awal</label>
                 <div class="col-sm-5">
                   <div class="form-group">
-                    <select class="custom-select" name="kondisi" required>
-                      <option selected value="">Pilih Jenis</option>
-                      <?php foreach ($kondisi as $row): ?>
-                        <option value="<?php echo $row->id_kondisi ?>">
-                          <?php echo $row->nama_kondisi; ?>
-                        </option>
-                      <?php endforeach; ?>
-                    </select>
-                    <div class="invalid-feedback">Pilih kondisi extracomptable.</div>
+                    <input class="form-control" type="text" name="stan_awal" value="<?php echo set_value('stan_awal') ?>" required="true"/>
+                    <span class="bmd-help">Tambahkan stan awal kendaraan.</span>
                   </div>
                 </div>
               </div>
+              <br>
               <div class="row">
-                <label class="col-sm-2 col-form-label">Harga</label>
-                <div class="col-sm-10">
+                <label class="col-sm-2 col-form-label">Stan Akhir</label>
+                <div class="col-sm-5">
                   <div class="form-group">
-                    <input class="form-control" type="text" name="harga" value="<?php echo set_value('harga') ?>" required="true" />
-                    <span class="bmd-help">Tambahkan harga extracomptable.</span>
+                    <input class="form-control" type="text" name="stan_akhir" value="<?php echo set_value('stan_akhir') ?>" required="true"/>
+                    <span class="bmd-help">Tambahkan stan akhir kendaraan.</span>
                   </div>
                 </div>
               </div>

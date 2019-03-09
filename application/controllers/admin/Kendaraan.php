@@ -8,7 +8,7 @@ class Kendaraan extends CI_Controller {
 		parent::__construct();
 		$this->load->model('kendaraan_model');
 		$this->load->model('jenis_kendaraan_model');
-		$this->load->model('kondisi_model');
+		$this->load->model('pemilik_kendaraan_model');
 		$this->load->model('rayon_model');
 		$this->load->library('form_validation');
 
@@ -41,7 +41,7 @@ class Kendaraan extends CI_Controller {
 		$data['page'] = 'Kendaraan';
 		$data['rayon'] = $this->rayon_model->get();
 		$data['jenis_kendaraan'] = $this->jenis_kendaraan_model->get();
-		$data['kondisi'] = $this->kondisi_model->get();
+		$data['pemilik_kendaraan'] = $this->pemilik_kendaraan_model->get();
 
 		// validasi input
 		$this->form_validation->set_rules('nama_kendaraan', 'Nama_kendaraan', 'required');
