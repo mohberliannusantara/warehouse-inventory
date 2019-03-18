@@ -37,34 +37,21 @@ class Barang extends CI_Controller {
 		$this->load->view('admin/barang/view', $data);
 	}
 
-	// public function search()
-	// {
-	// 	$id = $this->input->post('id_barang');
-	// 	$data['page'] = 'Barang';
-	// 	$data['page_title'] = 'Ubah Barang';
-	// 	$data['page_content'] = 'Ubah barang kedalam daftar dengan informasi yang lengkap';
-
-	// 	$data['barang'] = $this->barang_model->get_by_id($id);
-	// 	$data['jenis_barang'] = $this->jenis_barang_model->get();
-	// 	$data['kondisi'] = $this->kondisi_model->get();
-	// 	$this->load->view('templates/header', $data);
-	// 	$this->load->view('barang/edit', $data);
-	// 	$this->load->view('templates/footer');
-	// }
-
 	public function create()
 	{
 		$data['page'] = 'Extracomptable';
-		// $data['page_title'] = 'Tambah Barang';
-		// $data['page_content'] = 'Tambahkan barang kedalam daftar dengan informasi yang lengkap';
 
-		$data['jenis_barang'] = $this->jenis_barang_model->get();
+		$data['jenis'] = $this->jenis_barang_model->get();
 		$data['kondisi'] = $this->kondisi_model->get();
 		$data['rayon'] = $this->rayon_model->get();
 
 		// validasi input
-		$this->form_validation->set_rules('nama_barang', 'Nama_barang', 'required');
-		$this->form_validation->set_rules('harga', 'Harga', 'required');
+		$this->form_validation->set_rules('nama_barang', 'Nama', 'trim|required');
+		$this->form_validation->set_rules('rayon', 'Rayon', 'trim|required');
+		$this->form_validation->set_rules('jenis', 'Jenis', 'trim|required');
+		$this->form_validation->set_rules('kondisi', 'Kondisi', 'trim|required');
+		$this->form_validation->set_rules('harga', 'Harga', 'trim|required');
+		$this->form_validation->set_rules('keterangan', 'Keterangan', 'trim');
 
 		if ($this->form_validation->run() === FALSE)
 		{
@@ -78,8 +65,8 @@ class Barang extends CI_Controller {
 			{
 				// Konfigurasi folder upload & file yang diijinkan untuk diupload/disimpan
 				$config['upload_path']          = './assets/uploads/barang/';
-				$config['allowed_types']        = 'gif|jpg|png';
-				$config['max_size']             = 10000000000000;
+				$config['allowed_types']        = 'gif|jpg|png|jpeg';
+				$config['max_size']             = 10000000000;
 				$config['max_width']            = 5000;
 				$config['max_height']           = 5000;
 
@@ -110,16 +97,17 @@ class Barang extends CI_Controller {
 			$post_data = array(
 				'nama_barang' => $this->input->post('nama_barang'),
 				'harga' => str_replace(',', '', $this->input->post('harga')),
-				'id_jenis_barang' => $this->input->post('jenis_barang'),
+				'id_jenis_barang' => $this->input->post('jenis'),
 				'id_kondisi' => $this->input->post('kondisi'),
 				'keterangan' => $this->input->post('keterangan'),
 				'gambar' => $post_image,
 				'id_rayon' => $this->input->post('rayon')
 			);
-
+			
 			if( empty($data['upload_error']) ) {
 				$this->barang_model->create($post_data);
 				$data['barang'] = $this->barang_model->get();
+
 				$this->load->view('admin/templates/header', $data);
 				$this->load->view('admin/barang/index', $data);
 				$this->load->view('admin/templates/footer');
@@ -184,10 +172,10 @@ class Barang extends CI_Controller {
 			$post_data = array(
 				'nama_barang' => $this->input->post('nama_barang'),
 				'harga' => str_replace(',', '', $this->input->post('harga')),
-				'id_jenis_barang' => $this->input->post('jenis_barang'),
+				'id_jenis_barang' => $this->input->post('jenis'),
 				'id_kondisi' => $this->input->post('kondisi'),
 				'keterangan' => $this->input->post('keterangan'),
-				'tanggal' => date("Y-m-d H:i:s"),
+				'id_rayon' => $this->input->post('rayon'),
 				'gambar' => $post_image
 			);
 		}

@@ -2,7 +2,7 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col-md-12">
-        <form id="TypeValidation" class="form-horizontal" action="" method="">
+        <form id="TypeValidation" class="form-horizontal" action="<?php echo base_url('admin/barang/create') ?>" method="post" enctype="multipart/form-data" >
           <div class="card ">
             <div class="card-header card-header-rose card-header-text">
               <div class="card-text">
@@ -14,7 +14,7 @@
                 <label class="col-sm-2 col-form-label">Nama</label>
                 <div class="col-sm-6">
                   <div class="form-group">
-                    <input class="form-control" type="text" name="nama_barang" value="<?php echo set_value('nama_barang') ?>" required="true" autofocus/>
+                    <input class="form-control" type="text" name="nama_barang" value="<?php echo set_value('nama_barang') ?>" required="true"/>
                     <span class="bmd-help">Tambahkan nama extracomptable.</span>
                   </div>
                 </div>
@@ -38,9 +38,9 @@
                 <label class="col-sm-2 col-form-label">Jenis</label>
                 <div class="col-sm-4">
                   <div class="form-group">
-                    <select class="custom-select" name="jenis_barang" required>
+                    <select class="custom-select" name="jenis" required>
                       <option selected value="">Pilih Jenis Extracomptable</option>
-                      <?php foreach ($jenis_barang as $row): ?>
+                      <?php foreach ($jenis as $row): ?>
                         <option value="<?php echo $row->id_jenis_barang ?>">
                           <?php echo $row->nama_jenis_barang; ?>
                         </option>
@@ -68,7 +68,7 @@
                 <label class="col-sm-2 col-form-label">Harga</label>
                 <div class="col-sm-10">
                   <div class="form-group">
-                    <input class="form-control" type="text" name="harga" value="<?php echo set_value('harga') ?>" required="true" />
+                    <input class="form-control number" type="text" name="harga" value="<?php echo set_value('harga') ?>" required="true" />
                     <span class="bmd-help">Tambahkan harga extracomptable.</span>
                   </div>
                 </div>

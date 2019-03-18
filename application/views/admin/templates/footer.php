@@ -250,7 +250,7 @@ $(document).ready(function() {
 });
 </script>
 <!-- Sharrre libray -->
-<script src="../../assets/demo/jquery.sharrre.js"></script>
+<script src="<?php echo base_url('') ?>assets/demo/jquery.sharrre.js"></script>
 <script>
 $(document).ready(function() {
 

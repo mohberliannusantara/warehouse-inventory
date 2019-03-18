@@ -29,6 +29,7 @@
               <table id="datatables" class="table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%">
                 <thead>
                   <tr class="text-warning">
+                    <th>#</th>
                     <th>Nama</th>
                     <th>Rayon</th>
                     <th>Kondisi</th>
@@ -37,6 +38,7 @@
                 </thead>
                 <tfoot>
                   <tr>
+                    <th>#</th>
                     <th>Nama</th>
                     <th>Rayon</th>
                     <th>Kondisi</th>
@@ -44,8 +46,9 @@
                   </tr>
                 </tfoot>
                 <tbody>
-                  <?php foreach ($barang as $value): ?>
+                  <?php foreach ($barang as $key => $value): ?>
                     <tr>
+                      <td><?php echo $key+1 ?></td>
                       <td><?php echo $value->nama_barang; ?></td>
                       <td  class="text-warning"><?php echo $value->nama_rayon; ?></td>
                       <td><?php echo $value->nama_kondisi; ?></td>
@@ -72,6 +75,9 @@
       </div>
     </div>
   </div>
+  <button class="btn btn-primary btn-round" data-toggle="modal" data-target="#myModal">
+    Classic modal
+  </button>
 </div>
 
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -123,7 +129,26 @@
   </div>
 </div>
 
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Detail Extracomptable</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+          <i class="material-icons">clear</i>
+        </button>
+      </div>
+      <div class="modal-body" id="modal-content">
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger btn-link" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -140,7 +165,7 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->
 
 <script type="text/javascript">
   function openModal(id) {
