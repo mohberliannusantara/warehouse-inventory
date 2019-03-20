@@ -49,17 +49,17 @@
                   <?php foreach ($barang as $key => $value): ?>
                     <tr>
                       <td><?php echo $key+1 ?></td>
-                      <td><?php echo $value->nama_barang; ?></td>
-                      <td  class="text-warning"><?php echo $value->nama_rayon; ?></td>
+                      <td onclick="openModal(<?php echo $value->id_barang; ?>)"><?php echo substr($value->nama_barang,0,30); ?></td>
+                      <td class="text-warning"><?php echo $value->nama_rayon; ?></td>
                       <td><?php echo $value->nama_kondisi; ?></td>
                       <td class="text-center">
                       <a href="#" onclick="openModal(<?php echo $value->id_barang; ?>)" rel="tooltip" title="Lihat" class="btn btn-sm btn-success">
                             <i class="material-icons">zoom_out_map</i>
                           </a>
-                        <a href="<?php echo base_url('admin/Barang/edit/') . $value->id_barang ?>" rel="tooltip" title="Ubah" class="btn btn-sm btn-warning">
+                        <a href="<?php echo base_url('admin/barang/edit/') . $value->id_barang ?>" rel="tooltip" title="Ubah" class="btn btn-sm btn-warning">
                           <i class="material-icons">edit</i>
                         </a>
-                        <a href="<?php echo base_url('admin/Barang/delete/') . $value->id_barang ?>" rel="tooltip" title="Hapus" class="btn btn-sm btn-danger">
+                        <a href="<?php echo base_url('admin/barang/delete/') . $value->id_barang ?>" rel="tooltip" title="Hapus" class="btn btn-sm btn-danger">
                           <i class="material-icons">close</i>
                         </a>
                       </td>
@@ -147,25 +147,6 @@
     </div>
   </div>
 </div>
-
-<!-- <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Info Barang</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body" id="modal-content">
-
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div> -->
 
 <script type="text/javascript">
   function openModal(id) {

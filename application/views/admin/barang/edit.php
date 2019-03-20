@@ -2,89 +2,116 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col-md-12">
-        <div class="card">
-          <div class="card-header card-header-danger">
-            <h4 class="card-title "><?php echo $page_title; ?></h4>
-            <p class="card-category"><?php echo $page_content; ?></p>
-          </div>
-          <div class="card-body">
-            <form action="<?php base_url('Barang/create') ?>" method="post" enctype="multipart/form-data">
-              <center>
-                <?php if( $barang->gambar ) : ?>
-                  <img style="width: 25%;" src="<?php echo base_url('assets/uploads/barang/').$barang->gambar?>">
-                  <?php ; else : ?>
-                    <img src="https://via.placeholder.com/350x250" alt="" style="width:25%;">
-                  <?php endif; ?>
-                </center>
-                <div class="form-group">
-                  <label for="nama_barang" >Nama Barang</label>
-                  <input type="text" class="form-control" name="nama_barang" value="<?php echo $barang->nama_barang ?>" required autofocus>
-                  <div class="invalid-feedback">Masukkan nama barang.</div>
-                </div>
-
-                <div class="row">
-                  <div class="col-sm-3">
-                    <div class="form-group">
-                      <label for="jenis_barang">Jenis Barang</label>
-                      <select class="custom-select" name="jenis_barang" required>
-                        <option selected value="">Pilih Jenis Barang</option>
-                        <?php foreach ($jenis_barang as $row): ?>
-                          <option value="<?php echo $row->id_jenis_barang ?>" <?php echo ($barang->id_jenis_barang == $row->id_jenis_barang) ? 'selected':'' ?>>
-                            <?php echo $row->nama_jenis_barang; ?>
-                          </option>
-                        <?php endforeach; ?>
-                      </select>
-                      <div class="invalid-feedback">Pilih dulu kategorinya gan</div>
-                    </div>
-                  </div>
-                  <div class="col-sm-3">
-                    <div class="form-group">
-                      <label for="kondisi_model">Kondisi Barang</label>
-                      <select class="custom-select" name="kondisi" required>
-                        <option selected value="">Pilih Kondisi Barang</option>
-                        <?php foreach ($kondisi as $row): ?>
-                          <option value="<?php echo $row->id_kondisi ?>" <?php echo ($barang->id_kondisi == $row->id_kondisi) ? 'selected':'' ?>>
-                            <?php echo $row->nama_kondisi; ?>
-                          </option>
-                        <?php endforeach; ?>
-                      </select>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="form-group">
-                  <label for="harga">Harga</label>
-                  <input min="1000" class="form-control number" name="harga" value="<?php echo $barang->harga ?>" required >
-                  <div class="invalid-feedback">Masukkan Harga barang.</div>
-                </div>
-
-                <div class="form-group">
-                  <label for="keterangan">Keterangan</label>
-                  <textarea class="form-control number" name="keterangan" rows="3" required><?php echo $barang->keterangan ?></textarea>
-                  <div class="invalid-feedback">Isi keterangan barang</div>
-                </div>
-
-                <div class="form-group">
-                  <label for="gambar">Foto Barang</label>
-                  <br>
-                  <?php if( $barang->gambar ) : ?>
-                    <img style="width: 100px;height: 100%" src="<?php echo base_url('assets/uploads/barang/').$barang->gambar?>">
-                    <?php ; else : ?>
-                      <img src="https://via.placeholder.com/100x250" alt="" style="width:100%;">
-                    <?php endif; ?>
-                  </div>
-
-                  <label class="file">
-                    <input type="file" class="form-control-file" name="gambar">
-                    <span class="file-custom"></span>
-                  </label>
-                  <div class="form-group">
-                    <input class="btn btn-danger" type="submit" value="Pindah">
-                  </div>
-                </form>
+        <form id="TypeValidation" class="form-horizontal" action="<?php echo base_url('admin/barang/edit') ?>" method="post" enctype="multipart/form-data" >
+          <div class="card ">
+            <div class="card-header card-header-primary card-header-text">
+              <div class="card-text">
+                <h4 class="card-title">Form Ubah Extracomptable</h4>
               </div>
             </div>
+            <div class="card-body ">
+              <div class="row">
+                <label class="col-sm-2 col-form-label">Nama</label>
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <input class="form-control" type="text" name="nama_barang" value="<?php echo $barang->nama_barang ?>" required="true">
+                    <span class="bmd-help">Ubah nama extracomptable.</span>
+                  </div>
+                </div>
+                <label class="col-xs-3 col-form-label">Rayon</label>
+                <div class="col-sm-3">
+                  <div class="form-group">
+                    <select class="custom-select" name="rayon" required>
+                      <option selected value="">Pilih Rayon </option>
+                      <?php foreach ($rayon as $row): ?>
+                        <option value="<?php echo $row->id_rayon ?>">
+                          <option value="<?php echo $row->id_rayon ?>" <?php echo ($barang->id_rayon == $row->id_rayon) ? 'selected':'' ?>>
+                          <?php echo $row->nama_rayon; ?>
+                        </option>
+                      <?php endforeach; ?>
+                    </select>
+                    <div class="invalid-feedback">Pilih rayon.</div>
+                  </div>
+                </div>
+              </div>
+              <br>
+              <div class="row">
+                <label class="col-sm-2 col-form-label">Jenis</label>
+                <div class="col-sm-4">
+                  <div class="form-group">
+                    <select class="custom-select" name="jenis" required>
+                      <option selected value="">Pilih Jenis Extracomptable</option>
+                      <?php foreach ($jenis as $row): ?>
+                          <option value="<?php echo $row->id_jenis_barang ?>" <?php echo ($barang->id_jenis_barang == $row->id_jenis_barang) ? 'selected':'' ?>>
+                          <?php echo $row->nama_jenis_barang; ?>
+                        </option>
+                      <?php endforeach; ?>
+                    </select>
+                    <div class="invalid-feedback">Pilih jenis extracomptable.</div>
+                  </div>
+                </div>
+                <label class="col-xs-3 col-form-label">Kondisi</label>
+                <div class="col-sm-5">
+                  <div class="form-group">
+                    <select class="custom-select" name="kondisi" required>
+                      <option selected value="">Pilih Kondisi</option>
+                      <?php foreach ($kondisi as $row): ?>
+                        <option value="<?php echo $row->id_kondisi ?>" <?php echo ($barang->id_kondisi == $row->id_kondisi) ? 'selected':'' ?>>
+                          <?php echo $row->nama_kondisi; ?>
+                        </option>
+                      <?php endforeach; ?>
+                    </select>
+                    <div class="invalid-feedback">Pilih kondisi extracomptable.</div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <label class="col-sm-2 col-form-label">Harga</label>
+                <div class="col-sm-10">
+                  <div class="form-group">
+                    <input class="form-control number" type="text" name="harga" value="<?php echo $barang->harga ?>" required="true" />
+                    <span class="bmd-help">Tambahkan harga extracomptable.</span>
+                  </div>
+                </div>
+              </div>
+              <br>
+              <div class="row">
+                <label class="col-sm-2 col-form-label">Keterangan</label>
+                <div class="col-sm-5">
+                  <div class="form-group">
+                    <textarea class="form-control" name="keterangan" rows="5" required><?php echo $barang->keterangan ?></textarea>
+                    <span class="bmd-help">Tambahkan keterangan extracomptable.</span>
+                  </div>
+                </div>
+                <label class="col-xs-2 col-form-label">Foto / Gambar</label>
+                <div class="col-sm-3">
+                  <div class="fileinput fileinput-new text-center" data-provides="fileinput">
+                    <div class="fileinput-new thumbnail">
+                      <?php if( $barang->gambar ) : ?>
+                        <img src="<?php echo base_url('assets/uploads/barang/').$barang->gambar?>">
+                        <?php ; else : ?>
+                          <img src="<?php echo base_url() ?>assets/img/image_placeholder.jpg" alt="...">
+                        <?php endif; ?>
+                    </div>
+                    <div class="fileinput-preview fileinput-exists thumbnail"></div>
+                    <div>
+                      <span class="btn btn-warning btn-round btn-file">
+                        <span class="fileinput-new">Select image</span>
+                        <span class="fileinput-exists">Change</span>
+                        <input type="file" name="gambar" />
+                      </span>
+                      <a href="#pablo" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i> Remove</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="card-footer ml-auto mr-auto">
+              <button type="submit" class="btn btn-primary">Ubah Data</button>
+            </div>
           </div>
-        </div>
+        </form>
       </div>
     </div>
+  </div>
+</div>

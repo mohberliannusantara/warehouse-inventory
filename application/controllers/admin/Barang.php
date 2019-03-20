@@ -103,7 +103,7 @@ class Barang extends CI_Controller {
 				'gambar' => $post_image,
 				'id_rayon' => $this->input->post('rayon')
 			);
-			
+
 			if( empty($data['upload_error']) ) {
 				$this->barang_model->create($post_data);
 				$data['barang'] = $this->barang_model->get();
@@ -117,23 +117,26 @@ class Barang extends CI_Controller {
 
 	public function edit($id = null)
 	{
-		$data['page'] = 'Barang';
-		$data['page_title'] = 'Ubah Barang';
-		$data['page_content'] = 'Ubah barang kedalam daftar dengan informasi yang lengkap';
+		$data['page'] = 'Extracomptable';
 
 		$data['barang'] = $this->barang_model->get_by_id($id);
-		$data['jenis_barang'] = $this->jenis_barang_model->get();
+		$data['jenis'] = $this->jenis_barang_model->get();
 		$data['kondisi'] = $this->kondisi_model->get();
-		// validasi input
-		$this->form_validation->set_rules('nama_barang', 'Nama_barang', 'required');
-		$this->form_validation->set_rules('harga', 'Harga', 'required');
+		$data['rayon'] = $this->rayon_model->get();
 
-		// Cek apakah input valid atau tidak
+		// validasi input
+		$this->form_validation->set_rules('nama_barang', 'Nama', 'trim|required');
+		$this->form_validation->set_rules('rayon', 'Rayon', 'trim|required');
+		$this->form_validation->set_rules('jenis', 'Jenis', 'trim|required');
+		$this->form_validation->set_rules('kondisi', 'Kondisi', 'trim|required');
+		$this->form_validation->set_rules('harga', 'Harga', 'trim|required');
+		$this->form_validation->set_rules('keterangan', 'Keterangan', 'trim');
+
 		if ($this->form_validation->run() === FALSE)
 		{
-			$this->load->view('templates/header', $data);
+			$this->load->view('admin/templates/header', $data);
 			$this->load->view('admin/barang/edit', $data);
-			$this->load->view('templates/footer');
+			$this->load->view('admin/templates/footer');
 
 		} else {
 			if ( isset($_FILES['gambar']) && $_FILES['gambar']['size'] > 0 )
@@ -153,9 +156,9 @@ class Barang extends CI_Controller {
 
 					$post_image = '';
 
-					$this->load->view('templates/header');
-					$this->load->view('admin/barang/create', $data);
-					$this->load->view('templates/footer');
+					$this->load->view('admin/templates/header', $data);
+					$this->load->view('admin/barang/edit', $data);
+					$this->load->view('admin/templates/footer');
 
 				} else { //jika berhasil upload
 
@@ -175,8 +178,8 @@ class Barang extends CI_Controller {
 				'id_jenis_barang' => $this->input->post('jenis'),
 				'id_kondisi' => $this->input->post('kondisi'),
 				'keterangan' => $this->input->post('keterangan'),
-				'id_rayon' => $this->input->post('rayon'),
-				'gambar' => $post_image
+				'gambar' => $post_image,
+				'id_rayon' => $this->input->post('rayon')
 			);
 		}
 	}
