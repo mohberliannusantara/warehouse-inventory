@@ -75,9 +75,6 @@
       </div>
     </div>
   </div>
-  <button class="btn btn-primary btn-round" data-toggle="modal" data-target="#myModal">
-    Classic modal
-  </button>
 </div>
 
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

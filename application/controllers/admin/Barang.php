@@ -108,9 +108,10 @@ class Barang extends CI_Controller {
 				$this->barang_model->create($post_data);
 				$data['barang'] = $this->barang_model->get();
 
-				$this->load->view('admin/templates/header', $data);
-				$this->load->view('admin/barang/index', $data);
-				$this->load->view('admin/templates/footer');
+				// $this->load->view('admin/templates/header', $data);
+				// $this->load->view('admin/barang/index', $data);
+				// $this->load->view('admin/templates/footer');
+				redirect('barang','refresh');
 			}
 		}
 	}
@@ -145,8 +146,8 @@ class Barang extends CI_Controller {
 				$config['upload_path']          = './assets/uploads/barang/';
 				$config['allowed_types']        = 'gif|jpg|png';
 				$config['max_size']             = 10000000000000;
-				$config['max_width']            = 3000;
-				$config['max_height']           = 3000;
+				$config['max_width']            = 5000;
+				$config['max_height']           = 5000;
 
 				$this->load->library('upload', $config);
 
@@ -181,6 +182,15 @@ class Barang extends CI_Controller {
 				'gambar' => $post_image,
 				'id_rayon' => $this->input->post('rayon')
 			);
+
+			if( empty($data['upload_error']) ) {
+				$this->barang_model->update($post_data,$id);
+				//$data['barang'] = $this->barang_model->get();
+				// $this->load->view('templates/header');
+				// $this->load->view('barang/index', $data);
+				// $this->load->view('templates/footer');
+				redirect('admin/barang','refresh');
+			}
 		}
 	}
 

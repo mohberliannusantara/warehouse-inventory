@@ -76,6 +76,7 @@ class Barang_model extends CI_Model
     $query = $this->db->get();
     return $query->result();
   }
+
   public function get_all($id_rayon = NULL, $id_level = NULL)
   {
     if ($id_level != 1) {
