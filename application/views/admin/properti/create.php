@@ -2,7 +2,7 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col-md-12">
-        <form id="TypeValidation" class="form-horizontal" action="" method="">
+        <form id="TypeValidation" class="form-horizontal" action="<?php echo base_url('admin/properti/create') ?>" method="post" enctype="multipart/form-data" >
           <div class="card ">
             <div class="card-header card-header-rose card-header-text">
               <div class="card-text">
@@ -39,7 +39,7 @@
                       <span class="btn btn-warning btn-round btn-file">
                         <span class="fileinput-new">Select image</span>
                         <span class="fileinput-exists">Change</span>
-                        <input type="file" name="gambar" />
+                        <input type="file" name="foto_properti" />
                       </span>
                       <a href="#pablo" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i> Remove</a>
                     </div>
@@ -65,7 +65,7 @@
                 <label class="col-xs-2 col-form-label">Link Maps</label>
                 <div class="col-sm-6">
                   <div class="form-group">
-                    <input class="form-control" type="text" name="lokasi" value="<?php echo set_value('lokasi') ?>" required="true" autofocus/>
+                    <input class="form-control" type="text" name="lokasi" value="<?php echo set_value('lokasi') ?>" required="true"/>
                     <span class="bmd-help">Tambahkan link lokasi map properti.</span>
                   </div>
                 </div>
@@ -121,7 +121,7 @@
                       <span class="btn btn-warning btn-round btn-file">
                         <span class="fileinput-new">Select image</span>
                         <span class="fileinput-exists">Change</span>
-                        <input type="file" name="foto_properti" />
+                        <input type="file" name="foto_sertifikat" />
                       </span>
                       <a href="#pablo" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i> Remove</a>
                     </div>
@@ -132,7 +132,7 @@
                 <label class="col-sm-2 col-form-label">Nomor Sertifikat</label>
                 <div class="col-sm-10">
                   <div class="form-group">
-                    <input class="form-control" type="text" name="alamat" value="<?php echo set_value('alamat') ?>" required="true" autofocus/>
+                    <input class="form-control" type="text" name="no_sertifikat" value="<?php echo set_value('no_sertifikat') ?>" required="true"/>
                     <span class="bmd-help">Tambahkan nomor sertifikat properti.</span>
                   </div>
                 </div>
@@ -159,14 +159,14 @@
                 <label class="col-sm-2 col-form-label">Luas Tanah</label>
                 <div class="col-sm-4">
                   <div class="form-group">
-                    <input type="text" class="form-control" name="luas_tanah" value="<?php echo set_value('luas_tanah') ?>" required="true" />
+                    <input type="number" class="form-control" name="luas_tanah" value="<?php echo set_value('luas_tanah') ?>" required="true" />
                     <span class="bmd-help">Tambahkan luas tanah dalam satuan m<sup>2</sup>.</span>
                   </div>
                 </div>
                 <label class="col-xs-2 col-form-label">Luas Bangunan</label>
                 <div class="col-sm-4">
                   <div class="form-group">
-                    <input type="text" class="form-control" name="luas_bangunan" value="<?php echo set_value('luas_bangunan') ?>" required="true" />
+                    <input type="number" class="form-control" name="luas_bangunan" value="<?php echo set_value('luas_bangunan') ?>" required="true" />
                     <span class="bmd-help">Tambahkan luas bangunan dalam satuan m<sup>2</sup>.</span>
                   </div>
                 </div>

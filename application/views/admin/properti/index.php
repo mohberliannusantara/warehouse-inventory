@@ -21,9 +21,9 @@
           <div class="card">
             <div class="card-header card-header-warning card-header-icon">
               <div class="card-icon">
-                <i class="material-icons">home</i>
+                <i class="material-icons">local_shipping</i>
               </div>
-              <h4 class="card-title">Daftar Properti</h4>
+              <h4 class="card-title">Daftar Kendaraan</h4>
             </div>
             <div class="card-body">
               <div class="material-datatables">
@@ -31,6 +31,7 @@
                 cellspacing="0" width="100%" style="width:100%">
                 <thead>
                   <tr class="text-warning">
+                    <th>#</th>
                     <th>Nama</th>
                     <th>Rayon</th>
                     <th>Alamat</th>
@@ -39,6 +40,7 @@
                 </thead>
                 <tfoot>
                   <tr>
+                    <th>#</th>
                     <th>Nama</th>
                     <th>Rayon</th>
                     <th>Alamat</th>
@@ -46,8 +48,9 @@
                   </tr>
                 </tfoot>
                 <tbody>
-                  <?php foreach ($properti as $value): ?>
+                  <?php foreach ($properti as $key => $value): ?>
                     <tr>
+                      <td><?php echo $key+1 ?></td>
                       <td><?php echo substr($value->nama_properti,0,30); ?></td>
                       <td class="text-warning"><?php echo $value->nama_rayon; ?></td>
                       <td><?php echo substr($value->alamat,0,30); ?>...</td>

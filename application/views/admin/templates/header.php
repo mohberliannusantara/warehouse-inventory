@@ -35,25 +35,6 @@
     })(window, document, 'script', 'dataLayer', 'GTM-NKDMSK6');
   </script>
   <!-- End Google Tag Manager -->
-  <!-- Google Tag Manager -->
-  <script>
-    (function(w, d, s, l, i) {
-      w[l] = w[l] || [];
-      w[l].push({
-        'gtm.start': new Date().getTime(),
-        event: 'gtm.js'
-      });
-      var f = d.getElementsByTagName(s)[0],
-        j = d.createElement(s),
-        dl = l != 'dataLayer' ? '&l=' + l : '';
-      j.async = true;
-      j.src =
-        'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
-      f.parentNode.insertBefore(j, f);
-    })(window, document, 'script', 'dataLayer', 'GTM-NKDMSK6');
-  </script>
-  <!-- End Google Tag Manager -->
-
 </head>
 <body class="">
   <!-- Extra details for Live View on GitHub Pages -->
@@ -103,12 +84,12 @@
             <p>Properti</p>
           </a>
         </li>
-        <!-- <li class="nav-item <?php if ($page == 'Aktivitas'): ?>active<?php endif; ?>">
-          <a class="nav-link" href="<?php echo site_url('admin/aktivitas')?>">
+        <li class="nav-item <?php if ($page == 'Vendor'): ?>active<?php endif; ?>">
+          <a class="nav-link" href="<?php echo site_url('admin/vendor')?>">
             <i class="material-icons">content_paste</i>
-            <p>Aktivitas</p>
+            <p>Vendor</p>
           </a>
-        </li> -->
+        </li>
         <li class="nav-item <?php if ($page == 'Laporan'): ?>active<?php endif; ?>">
           <a class="nav-link" href="<?php echo site_url('admin/laporan')?>">
             <i class="material-icons">print</i>

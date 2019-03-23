@@ -2,11 +2,11 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col-md-12">
-        <form id="TypeValidation" class="form-horizontal" action="<?php echo base_url('admin/barang/edit/') . $barang->id_barang?> " method="post" enctype="multipart/form-data" >
+        <form id="TypeValidation" class="form-horizontal" action="<?php echo base_url('admin/barang/create') ?>" method="post" enctype="multipart/form-data" >
           <div class="card ">
-            <div class="card-header card-header-primary card-header-text">
+            <div class="card-header card-header-rose card-header-text">
               <div class="card-text">
-                <h4 class="card-title">Form Ubah Extracomptable</h4>
+                <h4 class="card-title">Form Tambah Extracomptable</h4>
               </div>
             </div>
             <div class="card-body ">
@@ -14,8 +14,8 @@
                 <label class="col-sm-2 col-form-label">Nama</label>
                 <div class="col-sm-6">
                   <div class="form-group">
-                    <input class="form-control" type="text" name="nama_barang" value="<?php echo $barang->nama_barang ?>" required="true">
-                    <span class="bmd-help">Ubah nama extracomptable.</span>
+                    <input class="form-control" type="text" name="nama_barang" value="<?php echo set_value('nama_barang') ?>" required="true"/>
+                    <span class="bmd-help">Tambahkan nama extracomptable.</span>
                   </div>
                 </div>
                 <label class="col-xs-3 col-form-label">Rayon</label>
@@ -25,7 +25,6 @@
                       <option selected value="">Pilih Rayon </option>
                       <?php foreach ($rayon as $row): ?>
                         <option value="<?php echo $row->id_rayon ?>">
-                          <option value="<?php echo $row->id_rayon ?>" <?php echo ($barang->id_rayon == $row->id_rayon) ? 'selected':'' ?>>
                           <?php echo $row->nama_rayon; ?>
                         </option>
                       <?php endforeach; ?>
@@ -42,7 +41,7 @@
                     <select class="custom-select" name="jenis" required>
                       <option selected value="">Pilih Jenis Extracomptable</option>
                       <?php foreach ($jenis as $row): ?>
-                          <option value="<?php echo $row->id_jenis_barang ?>" <?php echo ($barang->id_jenis_barang == $row->id_jenis_barang) ? 'selected':'' ?>>
+                        <option value="<?php echo $row->id_jenis_barang ?>">
                           <?php echo $row->nama_jenis_barang; ?>
                         </option>
                       <?php endforeach; ?>
@@ -56,7 +55,7 @@
                     <select class="custom-select" name="kondisi" required>
                       <option selected value="">Pilih Kondisi</option>
                       <?php foreach ($kondisi as $row): ?>
-                        <option value="<?php echo $row->id_kondisi ?>" <?php echo ($barang->id_kondisi == $row->id_kondisi) ? 'selected':'' ?>>
+                        <option value="<?php echo $row->id_kondisi ?>">
                           <?php echo $row->nama_kondisi; ?>
                         </option>
                       <?php endforeach; ?>
@@ -69,7 +68,7 @@
                 <label class="col-sm-2 col-form-label">Harga</label>
                 <div class="col-sm-10">
                   <div class="form-group">
-                    <input class="form-control number" type="text" name="harga" value="<?php echo $barang->harga ?>" required="true" />
+                    <input class="form-control number" type="text" name="harga" value="<?php echo set_value('harga') ?>" required="true" />
                     <span class="bmd-help">Tambahkan harga extracomptable.</span>
                   </div>
                 </div>
@@ -79,7 +78,7 @@
                 <label class="col-sm-2 col-form-label">Keterangan</label>
                 <div class="col-sm-5">
                   <div class="form-group">
-                    <textarea class="form-control" name="keterangan" rows="5" required><?php echo $barang->keterangan ?></textarea>
+                    <textarea class="form-control" name="keterangan" rows="5" required><?php echo set_value('keterangan') ?></textarea>
                     <span class="bmd-help">Tambahkan keterangan extracomptable.</span>
                   </div>
                 </div>
@@ -87,11 +86,7 @@
                 <div class="col-sm-3">
                   <div class="fileinput fileinput-new text-center" data-provides="fileinput">
                     <div class="fileinput-new thumbnail">
-                      <?php if( $barang->gambar ) : ?>
-                        <img src="<?php echo base_url('assets/uploads/barang/').$barang->gambar?>">
-                        <?php ; else : ?>
-                          <img src="<?php echo base_url() ?>assets/img/image_placeholder.jpg" alt="...">
-                        <?php endif; ?>
+                      <img src="<?php echo base_url() ?>assets/img/image_placeholder.jpg" alt="...">
                     </div>
                     <div class="fileinput-preview fileinput-exists thumbnail"></div>
                     <div>
@@ -107,7 +102,7 @@
               </div>
             </div>
             <div class="card-footer ml-auto mr-auto">
-              <button type="submit" class="btn btn-primary">Ubah Data</button>
+              <button type="submit" class="btn btn-rose">Simpan Data</button>
             </div>
           </div>
         </form>

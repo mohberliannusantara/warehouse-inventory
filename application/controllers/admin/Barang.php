@@ -106,8 +106,8 @@ class Barang extends CI_Controller {
 
 			if( empty($data['upload_error']) ) {
 				$this->barang_model->create($post_data);
-				$data['barang'] = $this->barang_model->get();
 
+				// $data['barang'] = $this->barang_model->get();
 				// $this->load->view('admin/templates/header', $data);
 				// $this->load->view('admin/barang/index', $data);
 				// $this->load->view('admin/templates/footer');
