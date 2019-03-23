@@ -3,12 +3,12 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Kendaraan_model extends CI_Model
 {
-    
+
     public function __construct()
     {
         parent::__construct();
     }
-    
+
     public function get_total($id_rayon = null, $id_level = null)
     {
         if ($id_level != 1) {
@@ -19,7 +19,7 @@ class Kendaraan_model extends CI_Model
             return $this->db->count_all("kendaraan");
         }
     }
-    
+
     public function get_total_harga($id_rayon = null, $id_level = null)
     {
         if ($id_level != 1) {
@@ -30,15 +30,15 @@ class Kendaraan_model extends CI_Model
             return $query;
         }
     }
-    
+
     public function get_by_rayon($id_rayon)
     {
         $this->db->join('rayon', 'kendaraan.id_rayon = rayon.id_rayon');
         $this->db->join('jenis_kendaraan', 'kendaraan.id_jenis_kendaraan = jenis_kendaraan.id_jenis_kendaraan');
-        $this->db->join('pemilik_kendaraan', 'pemilik_kendaraan.id_pemilik_kendaraan = kendaraan.id_pemilik_kendaraan');      
+        $this->db->join('pemilik_kendaraan', 'pemilik_kendaraan.id_pemilik_kendaraan = kendaraan.id_pemilik_kendaraan');
         $this->db->where('kendaraan.id_rayon', $id_rayon);
         $this->db->from('kendaraan');
-        
+
         $query = $this->db->get();
         return $query->result();
     }
@@ -48,21 +48,21 @@ class Kendaraan_model extends CI_Model
         if ($id_level != 1) {
             $this->db->where('kendaraan.id_rayon', $id_rayon);
             $this->db->join('jenis_kendaraan', 'kendaraan.id_jenis_kendaraan = jenis_kendaraan.id_jenis_kendaraan');
-            
+
             $this->db->from('kendaraan');
-            
+
             $query = $this->db->get();
             return $query->result();
         } else {
             $this->db->join('jenis_kendaraan', 'kendaraan.id_jenis_kendaraan = jenis_kendaraan.id_jenis_kendaraan');
-            
+
             $this->db->from('kendaraan');
-            
+
             $query = $this->db->get();
             return $query->result();
         }
     }
-    
+
     public function get()
     {
         $this->db->order_by('kendaraan.nama_kendaraan', 'asc');
@@ -70,56 +70,56 @@ class Kendaraan_model extends CI_Model
         $this->db->join('jenis_kendaraan', 'kendaraan.id_jenis_kendaraan = jenis_kendaraan.id_jenis_kendaraan');
         $this->db->join('pemilik_kendaraan', 'kendaraan.id_pemilik_kendaraan = pemilik_kendaraan.id_pemilik_kendaraan');
         $this->db->from('kendaraan');
-        
-        $query = $this->db->get();
+
+        $query = $this->db->get('');
         return $query->result();
     }
-    
+
     public function get_all($id_rayon = null, $id_level = null)
     {
         if ($id_level != 1) {
             $this->db->where('kendaraan.id_rayon', $id_rayon);
             $this->db->join('jenis_kendaraan', 'kendaraan.id_jenis_kendaraan = jenis_kendaraan.id_jenis_kendaraan');
-            
+
             $this->db->from('kendaraan');
-            
+
             $query = $this->db->get();
             return $query->result();
         } else {
             // $this->db->where('kendaraan.id_rayon', $id_rayon);
             $this->db->join('jenis_kendaraan', 'kendaraan.id_jenis_kendaraan = jenis_kendaraan.id_jenis_kendaraan');
-            
+
             $this->db->from('kendaraan');
-            
+
             $query = $this->db->get();
             return $query->result();
         }
     }
-    
+
     public function get_by_id($id)
     {
         $this->db->select('*');
         $this->db->from('kendaraan');
         $this->db->join('jenis_kendaraan', 'kendaraan.id_jenis_kendaraan = jenis_kendaraan.id_jenis_kendaraan');
         $this->db->join('rayon', 'kendaraan.id_rayon = rayon.id_rayon');
-        
+
         $this->db->where(array('kendaraan.id_kendaraan' => $id));
-        
+
         $query = $this->db->get();
         return $query->row();
     }
-    
+
     public function create($data)
     {
         return $this->db->insert('kendaraan', $data);
     }
-    
+
     public function update($data, $id)
     {
         $this->db->where('id_kendaraan', $id);
         return $this->db->update('kendaraan', $data);
     }
-    
+
     public function delete($id)
     {
         if (!empty($id)) {

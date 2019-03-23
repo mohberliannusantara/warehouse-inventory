@@ -111,7 +111,7 @@ class Barang extends CI_Controller {
 				// $this->load->view('admin/templates/header', $data);
 				// $this->load->view('admin/barang/index', $data);
 				// $this->load->view('admin/templates/footer');
-				redirect('barang','refresh');
+				redirect('admin/barang','refresh');
 			}
 		}
 	}

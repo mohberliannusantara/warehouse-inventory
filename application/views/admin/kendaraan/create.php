@@ -2,7 +2,7 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col-md-12">
-        <form id="TypeValidation" class="form-horizontal" action="" method="">
+        <form id="TypeValidation" class="form-horizontal" action="<?php echo base_url('admin/kendaraan/create') ?>" method="post" enctype="multipart/form-data" >
           <div class="card ">
             <div class="card-header card-header-rose card-header-text">
               <div class="card-text">
@@ -55,7 +55,7 @@
                 <label class="col-sm-2 col-form-label">Pemilik Kendaraan</label>
                 <div class="col-sm-6">
                   <div class="form-group">
-                    <select class="custom-select" name="pemilik_kendaraan" required>
+                    <select class="custom-select" name="pemilik" required>
                       <option selected value="">Pilih Pemilik Kendaraan </option>
                       <?php foreach ($pemilik_kendaraan as $row): ?>
                         <option value="<?php echo $row->id_pemilik_kendaraan ?>">
@@ -69,7 +69,7 @@
                 <label class="col-xs-2 col-form-label">Jenis</label>
                 <div class="col-sm-3">
                   <div class="form-group">
-                    <select class="custom-select" name="jenis_kendaraan" required>
+                    <select class="custom-select" name="jenis" required>
                       <option selected value="">Pilih Jenis Kendaraan</option>
                       <?php foreach ($jenis_kendaraan as $row): ?>
                         <option value="<?php echo $row->id_jenis_kendaraan ?>">
@@ -86,7 +86,7 @@
                 <div class="col-sm-10 checkbox-radios">
                   <div class="form-check">
                     <label class="form-check-label">
-                      <input class="form-check-input" type="radio" name="exampleRadios" value="option2" checked> Sewa
+                      <input class="form-check-input" type="radio" name="status" value="Sewa" checked> Sewa
                       <span class="circle">
                         <span class="check"></span>
                       </span>
@@ -94,7 +94,7 @@
                   </div>
                   <div class="form-check">
                     <label class="form-check-label">
-                      <input class="form-check-input" type="radio" name="exampleRadios" value="option1"> Milik PLN
+                      <input class="form-check-input" type="radio" name="status" value="Milik PLN"> Milik PLN
                       <span class="circle">
                         <span class="check"></span>
                       </span>
@@ -117,7 +117,7 @@
                 <label class="col-sm-2 col-form-label">Stan Awal</label>
                 <div class="col-sm-5">
                   <div class="form-group">
-                    <input class="form-control" type="text" name="stan_awal" value="<?php echo set_value('stan_awal') ?>" required="true"/>
+                    <input class="form-control" type="number" name="stan_awal" value="<?php echo set_value('stan_awal') ?>" required="true"/>
                     <span class="bmd-help">Tambahkan stan awal kendaraan.</span>
                   </div>
                 </div>
@@ -127,7 +127,7 @@
                 <label class="col-sm-2 col-form-label">Stan Akhir</label>
                 <div class="col-sm-5">
                   <div class="form-group">
-                    <input class="form-control" type="text" name="stan_akhir" value="<?php echo set_value('stan_akhir') ?>" required="true"/>
+                    <input class="form-control" type="number" name="stan_akhir" value="<?php echo set_value('stan_akhir') ?>" required="true"/>
                     <span class="bmd-help">Tambahkan stan akhir kendaraan.</span>
                   </div>
                 </div>

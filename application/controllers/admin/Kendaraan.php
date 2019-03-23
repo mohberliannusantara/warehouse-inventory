@@ -44,9 +44,17 @@ class Kendaraan extends CI_Controller {
 		$data['pemilik_kendaraan'] = $this->pemilik_kendaraan_model->get();
 
 		// validasi input
-		$this->form_validation->set_rules('nama_kendaraan', 'Nama_kendaraan', 'required');
-		$this->form_validation->set_rules('plat', 'Plat', 'required');
-		$this->form_validation->set_rules('harga', 'Harga', 'required');
+		$this->form_validation->set_rules('nama_kendaraan', 'Nama Kendaraan', 'trim|required');
+		$this->form_validation->set_rules('nomor_polisi', 'Nomor Polisi', 'trim|required');
+		$this->form_validation->set_rules('pengguna', 'Pengguna', 'trim|required');
+		$this->form_validation->set_rules('rayon', 'Rayon', 'trim|required');
+		$this->form_validation->set_rules('pemilik', 'Pemilik Kendaraan', 'trim|required');
+		$this->form_validation->set_rules('jenis', 'Jenis', 'trim|required');
+		$this->form_validation->set_rules('status', 'Status', 'trim|required');
+		$this->form_validation->set_rules('tanggal_berlaku', 'Tanggal Berlaku', 'trim|required');
+		$this->form_validation->set_rules('stan_awal', 'Stan Awal', 'trim');
+		$this->form_validation->set_rules('stan_akhir', 'Stan Akhir', 'trim');
+		$this->form_validation->set_rules('keterangan', 'Keteragan', 'trim');
 
 		if ($this->form_validation->run() === FALSE)
 		{
@@ -91,22 +99,27 @@ class Kendaraan extends CI_Controller {
 
 			$post_data = array(
 				'nama_kendaraan' => $this->input->post('nama_kendaraan'),
-				'plat' => $this->input->post('plat'),
-				'harga' => str_replace(',', '', $this->input->post('harga')),
-				'id_jenis_kendaraan' => $this->input->post('jenis_kendaraan'),
-				'id_kondisi' => $this->input->post('kondisi'),
-				'id_rayon' => $this->session->userdata('id_rayon'),
+				'nomor_polisi' => $this->input->post('nomor_polisi'),
+				'pengguna' => $this->input->post('pengguna'),
+				'id_rayon' => $this->session->post('rayon'),
+				'id_pemilik_kendaraan' => $this->input->post('pemilik'),
+				'id_jenis_kendaraan' => $this->input->post('jenis'),
+				'status' => $this->input->post('status'),
+				'tanggal_berlaku' => date("Y-m-d H:i:s"),
+				'stan_awal' => $this->input->post('stan_awal'),
+				'stan_akhir' => $this->input->post('stan_akhir'),
 				'keterangan' => $this->input->post('keterangan'),
-				'tanggal' => date("Y-m-d H:i:s"),
 				'gambar' => $post_image
 			);
 
 			if( empty($data['upload_error']) ) {
 				$this->kendaraan_model->create($post_data);
 				$data['kendaraan'] = $this->kendaraan_model->get();
-				$this->load->view('admin/templates/header', $data);
-				$this->load->view('admin/kendaraan/index', $data);
-				$this->load->view('admin/templates/footer');
+
+				// $this->load->view('admin/templates/header', $data);
+				// $this->load->view('admin/kendaraan/index', $data);
+				// $this->load->view('admin/templates/footer');
+				redirect('admin/kendaraan','refresh');
 			}
 		}
 	}

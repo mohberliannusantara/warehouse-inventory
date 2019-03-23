@@ -69,7 +69,7 @@
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
-				<?php echo form_open('Autentikasi/login')?>
+				<?php echo form_open('autentikasi/login')?>
 				<div class="modal-body">
 					<div class="form-group">
 						<label for="" class="label">Username</label>
