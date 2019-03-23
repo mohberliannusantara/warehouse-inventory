@@ -65,11 +65,11 @@
                           class="btn btn-sm btn-success">
                           <i class="material-icons">zoom_out_map</i>
                         </a>
-                        <a href="<?php echo base_url('Kendaraa/edit/') . $value->id_kendaraan ?>"
+                        <a href="<?php echo base_url('Kendaraan/edit/') . $value->id_kendaraan ?>"
                           rel="tooltip" title="Ubah" class="btn btn-sm btn-warning">
                           <i class="material-icons">edit</i>
                         </a>
-                        <a href="<?php echo base_url('Kendaraa/delete/') . $value->id_kendaraan ?>"
+                        <a href="<?php echo base_url('Kendaraan/delete/') . $value->id_kendaraan ?>"
                           rel="tooltip" title="Hapus" class="btn btn-sm btn-danger">
                           <i class="material-icons">close</i>
                         </a>

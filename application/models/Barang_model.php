@@ -27,7 +27,7 @@ class Barang_model extends CI_Model
       return $query->row()->harga;
     } else {
       $query = $this->db->get('barang')->row();
-      return $query->harga;
+      return $query;
     }
   }
 
