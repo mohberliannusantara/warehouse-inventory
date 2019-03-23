@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Mar 03, 2019 at 03:45 PM
+-- Generation Time: Mar 23, 2019 at 05:13 PM
 -- Server version: 5.7.21-1
 -- PHP Version: 7.0.29-1+b1
 
@@ -75,11 +75,21 @@ INSERT INTO `barang` (`id_barang`, `nama_barang`, `harga`, `id_jenis_barang`, `i
 (8, 'LCD Proyektor', 752000, 1, 1, 'Dilatakkan diLemari ruang C', '', 2),
 (10, 'TV 21 inci', 2500000, 1, 1, 'Diletakkan di Lobby', '', 2),
 (12, 'TV 21 inci', 2500000, 1, 1, 'Diletakkan di Lobby', '', 3),
-(17, 'LCD Proyektor', 765000, 1, 1, 'Diletakkan diruang G', 'Sony-VPL-DX1402.jpg', 2),
 (18, 'Meja', 500000, 2, 1, 'meja tamu diletakkan di ruang tunggu', '', 0),
 (19, 'kursi', 640000, 2, 1, 'diletakkan diruang B', '61edea9d-894b-4f2c-ba78-422e393b7962w.jpg', 0),
 (20, 'rak buku', 150000, 2, 1, 'diletakkan diruang B', '1294504_e90647e3-d9e7-471d-918d-f59fba093227.jpg', 0),
-(21, 'meja komputer', 350000, 2, 1, 'meja untuk komputer', '', 0);
+(21, 'meja komputer', 350000, 2, 1, 'meja untuk komputer', '', 0),
+(22, 'laptop', 1300000000, 1, 1, 'keterangan', 'background-5.jpg', 1),
+(23, 'laptop', 1300000000, 1, 1, 'keterangan', 'background-51.jpg', 1),
+(24, 'wowow', 1300000000, 1, 1, 'asd', 'POLITEKNIK_NEGERI_MALANG.png', 1),
+(25, 'wowow', 1300000000, 1, 1, 'asd', 'POLITEKNIK_NEGERI_MALANG1.png', 1),
+(27, 'asdasd', 1300000000, 1, 1, 'asdas', 'background-6.jpg', 1),
+(28, 'kursi', 1300000000, 2, 2, 'asd', '53783977_789646474754384_2793212236988940288_n.jpg', 5),
+(29, 'kursi', 1300000000, 2, 2, 'asd', '53783977_789646474754384_2793212236988940288_n1.jpg', 5),
+(30, 'kursi', 1300000000, 2, 2, 'asd', '53783977_789646474754384_2793212236988940288_n2.jpg', 5),
+(31, 'kursi', 1300000000, 2, 2, 'asd', '53783977_789646474754384_2793212236988940288_n3.jpg', 5),
+(32, 'React makes it painless to create interactive UIs. Design simple views for each state in your applic', 2147483647, 1, 1, 'React makes it painless to create interactive UIs. Design simple views for each state in your application, and React will efficiently update and render just the right ...', '', 1),
+(33, 'laptoppppppppp', 1300000000, 1, 1, 'asdasdasdasd', 'IMG_2836.jpg', 3);
 
 -- --------------------------------------------------------
 
@@ -136,8 +146,18 @@ CREATE TABLE `kendaraan` (
   `stan_akhir` int(11) NOT NULL,
   `gambar` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `keterangan` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `id_pemilik_kendaraan` int(10) UNSIGNED NOT NULL
+  `id_pemilik_kendaraan` int(10) UNSIGNED NOT NULL,
+  `status` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tanggal_berlaku` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `kendaraan`
+--
+
+INSERT INTO `kendaraan` (`id_kendaraan`, `nama_kendaraan`, `nomor_polisi`, `pengguna`, `id_rayon`, `id_jenis_kendaraan`, `stan_awal`, `stan_akhir`, `gambar`, `keterangan`, `id_pemilik_kendaraan`, `status`, `tanggal_berlaku`) VALUES
+(1, 'asdasd', 'P 123 PK', 'ASDASD', 1, 2, 1231, 12312, 'IMG_28361.jpg', 'DSFSDFSD', 2, 'Sewa', '2019-03-23'),
+(2, 'asdasd', 'P 123 PK', 'ASDASD', 2, 2, 123123, 123123123, 'IMG_28362.jpg', 'asdasd', 1, 'Sewa', '2019-03-23');
 
 -- --------------------------------------------------------
 
@@ -211,15 +231,20 @@ INSERT INTO `pemilik_kendaraan` (`id_pemilik_kendaraan`, `nama_pemilik_kendaraan
 CREATE TABLE `properti` (
   `id_properti` int(11) NOT NULL,
   `nama_properti` varchar(255) NOT NULL,
+  `jenis_properti` varchar(100) NOT NULL,
   `id_rayon` int(11) NOT NULL,
-  `luas` int(11) NOT NULL,
+  `luas_tanah` int(11) NOT NULL,
+  `luas_bangunan` int(11) NOT NULL,
   `harga` bigint(11) NOT NULL,
+  `tahun_perolehan` date DEFAULT NULL,
   `keterangan` text NOT NULL,
-  `no_sertifikat` varchar(100) NOT NULL,
-  `no_pajak` int(11) NOT NULL,
-  `alamat` varchar(255) NOT NULL,
+  `no_sertifikat` varchar(255) NOT NULL,
+  `tanggal_berlaku_sertifikat` date DEFAULT NULL,
+  `tanggal_kadaluarsa_sertifikat` date DEFAULT NULL,
+  `no_pajak` varchar(255) NOT NULL,
+  `alamat` text NOT NULL,
   `lokasi` text NOT NULL,
-  `kodepos` varchar(10) NOT NULL,
+  `status` varchar(100) NOT NULL,
   `foto_properti` text NOT NULL,
   `foto_pajak` text NOT NULL,
   `foto_sertifikat` text NOT NULL
@@ -229,9 +254,10 @@ CREATE TABLE `properti` (
 -- Dumping data for table `properti`
 --
 
-INSERT INTO `properti` (`id_properti`, `nama_properti`, `id_rayon`, `luas`, `harga`, `keterangan`, `no_sertifikat`, `no_pajak`, `alamat`, `lokasi`, `kodepos`, `foto_properti`, `foto_pajak`, `foto_sertifikat`) VALUES
-(1, 'wowowowowo', 1, 150, 120000000000000, 'lahan kosong', '555678', 0, 'jl. mega mendung rt/rw 10/13, kelurahan mulyorejo, kecamatan grati, pasuruan ', 'jl. mega mendung rt/rw 10/13, kelurahan mulyorejo, kecamatan grati, pasuruan ', '', '', '', ''),
-(2, 'awerwer', 2, 200, 1300000000, 'lahan kosong', '187567165', 0, '', 'Jl. Sukarno Hatta No. 123', '', '', '', '');
+INSERT INTO `properti` (`id_properti`, `nama_properti`, `jenis_properti`, `id_rayon`, `luas_tanah`, `luas_bangunan`, `harga`, `tahun_perolehan`, `keterangan`, `no_sertifikat`, `tanggal_berlaku_sertifikat`, `tanggal_kadaluarsa_sertifikat`, `no_pajak`, `alamat`, `lokasi`, `status`, `foto_properti`, `foto_pajak`, `foto_sertifikat`) VALUES
+(3, 'Lokasi Tanah Tambakan Kec Bangil', 'Tanah', 10, 119, 0, 40000000, NULL, '', '', '1999-07-07', NULL, '', 'Desa Tambanan, Kec. Bangil', 'https://goo.gl/maps/JjoWEbWLckA2', 'PLN', 'PSR_ TANAH TAMBAKAN_3.jpeg', 'f82461bd-1aca-4b68-8725-24b3a6e4d364_169.jpg', '290x387xgbr-2-SHM.png.jpg'),
+(4, 'LOKASI TANAH RAYA BROMO', 'Tanah', 6, 436, 60, 150000000, '1987-02-10', 'Petok No. 28', 'Surat Pernyataan Pelepasan Hak Atas Tanah No.02/II/1987', '1987-02-10', NULL, '35.74.040.002.012-0051.0', 'Desa Karangsentul, Gondang Wetan', 'https://goo.gl/maps/oRr6eyRt44J2', 'PLN', 'PSR_TANAH RAYA BROMO_2.JPG', '4lqc78.jpg', '0001.jpg'),
+(5, 'LOKASI RUMAH DINAS MANAJER AREA', 'Tanah dan Bangunan', 4, 348, 113, 430000000, '1966-10-18', 'Hak Pakai\r\n10/20/1971', 'Sertifikat No.1', '1971-10-20', NULL, '', 'JL. DR WAHIDIN 86-88, Purworejo, pasuruan', 'https://goo.gl/maps/5bCWvCU3q5Q2', 'PLN', 'PSR_RUMAH DINAS MA PASURUAN_1.JPG', 'WhatsApp Image 2018-03-26 at 01.59.32.jpg', 'sertifikat-tanah-asli.jpg');
 
 -- --------------------------------------------------------
 
@@ -261,7 +287,8 @@ INSERT INTO `rayon` (`id_rayon`, `nama_rayon`, `telp`, `keterangan`, `latitude`,
 (6, 'Gondang Wetan', '546', 'sdf', 546, 45),
 (7, 'Kejayan', '4566', 'sdgsdg', 768, 7),
 (8, 'Kraton', '4566', 'hfg', 3, 4),
-(9, 'Pandaan', '324', 'sdf', 34, 3);
+(9, 'Pandaan', '324', 'sdf', 34, 3),
+(10, 'Bangil', '453465', '', 354345, 3464760);
 
 --
 -- Indexes for dumped tables
@@ -343,7 +370,7 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `barang`
 --
 ALTER TABLE `barang`
-  MODIFY `id_barang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id_barang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 --
 -- AUTO_INCREMENT for table `jenis_barang`
 --
@@ -358,7 +385,7 @@ ALTER TABLE `jenis_kendaraan`
 -- AUTO_INCREMENT for table `kendaraan`
 --
 ALTER TABLE `kendaraan`
-  MODIFY `id_kendaraan` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id_kendaraan` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `kondisi`
 --
@@ -378,12 +405,12 @@ ALTER TABLE `pemilik_kendaraan`
 -- AUTO_INCREMENT for table `properti`
 --
 ALTER TABLE `properti`
-  MODIFY `id_properti` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_properti` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `rayon`
 --
 ALTER TABLE `rayon`
-  MODIFY `id_rayon` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id_rayon` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
