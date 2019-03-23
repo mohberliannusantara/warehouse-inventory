@@ -24,10 +24,10 @@ class Barang_model extends CI_Model
   {
     if ($id_level != 1) {
       $query = $this->db->get_where('barang', array('id_rayon' => $id_rayon));
-      return $query->row()->harga;
+      return $query->row();
     } else {
       $query = $this->db->get('barang')->row();
-      return $query;
+      return $query->result();
     }
   }
 

@@ -8,6 +8,7 @@ class Kendaraan extends CI_Controller {
 		parent::__construct();
 		$this->load->model('kendaraan_model');
 		$this->load->model('jenis_kendaraan_model');
+		$this->load->model('kondisi_model');
 		$this->load->model('pemilik_kendaraan_model');
 		$this->load->model('rayon_model');
 		$this->load->library('form_validation');
@@ -130,6 +131,8 @@ class Kendaraan extends CI_Controller {
 		$data['page_title'] = 'Ubah Kendaraan';
 		$data['page_content'] = 'Ubah kendaraan kedalam daftar dengan informasi yang lengkap';
 
+		$data['pemilik_kendaraan'] = $this->pemilik_kendaraan_model->get();
+		$data['rayon'] = $this->rayon_model->get();
 		$data['kendaraan'] = $this->kendaraan_model->get_by_id($id);
 		$data['jenis_kendaraan'] = $this->jenis_kendaraan_model->get();
 		$data['kondisi'] = $this->kondisi_model->get();
@@ -194,7 +197,7 @@ class Kendaraan extends CI_Controller {
 				// $this->load->view('admin/templates/header');
 				// $this->load->view('admin/kendaraan/index', $data);
 				// $this->load->view('admin/templates/footer');
-				redirect('Kendaraan','refresh');
+				redirect('admin/Kendaraan','refresh');
 			}
 		}
 	}
@@ -212,6 +215,7 @@ class Kendaraan extends CI_Controller {
 	public function delete($id)
 	{
 		$this->kendaraan_model->delete($id);
+		redirect('admin/kendaraan','refresh');
 	}
 
 	public function export()
