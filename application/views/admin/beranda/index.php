@@ -248,7 +248,7 @@
               <h6 class="card-category text-gray"><?php echo $this->session->level; ?> / <?php echo $this->session->rayon; ?></h6>
               <h4 class="card-title"><?php echo $this->session->username; ?></h4>
             <p class="card-description">
-              Don't be scared of the truth because we need to restart the human foundation in truth And I love you like Kanye loves Kanye I love Rick Owens’ bed design but the back is...
+              Life would not be better because a chance, life will always be better because of the courage to take action at every chance.
             </p>
             <a href="<?php echo base_url('Pengguna/')?>" class="btn btn-warning btn-round">Lihat</a>
           </div>

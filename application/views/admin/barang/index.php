@@ -5,9 +5,11 @@
         <div class="card card-pricing card-raised">
           <div class="card-body">
             <h6 class="card-category">Tambah Data</h6>
-            <div class="card-icon icon-rose">
-              <i class="material-icons">add</i>
-            </div>
+            <a href="<?php echo base_url('admin/barang/create') ?>">
+              <div class="card-icon icon-rose">
+                <i class="material-icons">add</i>
+              </div>
+            </a>
             <h3 class="card-title">Extracomptable</h3>
             <p class="card-description">
               Tambahkan data extracomptable kedalam daftar
@@ -53,9 +55,9 @@
                       <td class="text-warning"><?php echo $value->nama_rayon; ?></td>
                       <td><?php echo $value->nama_kondisi; ?></td>
                       <td class="text-center">
-                      <a href="#" onclick="openModal(<?php echo $value->id_barang; ?>)" rel="tooltip" title="Lihat" class="btn btn-sm btn-success">
-                            <i class="material-icons">zoom_out_map</i>
-                          </a>
+                        <a href="#" onclick="openModal(<?php echo $value->id_barang; ?>)" rel="tooltip" title="Lihat" class="btn btn-sm btn-success">
+                          <i class="material-icons">zoom_out_map</i>
+                        </a>
                         <a href="<?php echo base_url('admin/barang/edit/') . $value->id_barang ?>" rel="tooltip" title="Ubah" class="btn btn-sm btn-warning">
                           <i class="material-icons">edit</i>
                         </a>
@@ -120,30 +122,30 @@
 </div>
 
 <script type="text/javascript">
-  function openModal(id) {
-    $.ajax({
-      url:"<?php echo base_url('admin/barang/get/'); ?>"+id,
-      method: 'post',
-      data:null
-    }).done(function(data) {
-      $('#modal-content').html(data);
-      $('#exampleModalCenter').modal('show');
-    });
-  }
+function openModal(id) {
+  $.ajax({
+    url:"<?php echo base_url('admin/barang/get/'); ?>"+id,
+    method: 'post',
+    data:null
+  }).done(function(data) {
+    $('#modal-content').html(data);
+    $('#exampleModalCenter').modal('show');
+  });
+}
 
-  function deleteModal(id) {
-    $('#id_barang').val(id);
-  }
+function deleteModal(id) {
+  $('#id_barang').val(id);
+}
 
-  function deleteBarang(){
-     var id = $('#id_barang').val();
-     $.ajax({
-      url:"<?php echo base_url('admin/barang/delete/'); ?>"+id,
-      method: 'post',
-      data:null
-    }).done(function(data) {
-      location.reload();
-    });
-  }
+function deleteBarang(){
+  var id = $('#id_barang').val();
+  $.ajax({
+    url:"<?php echo base_url('admin/barang/delete/'); ?>"+id,
+    method: 'post',
+    data:null
+  }).done(function(data) {
+    location.reload();
+  });
+}
 
 </script>

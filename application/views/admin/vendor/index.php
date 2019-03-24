@@ -5,14 +5,16 @@
         <div class="card card-pricing card-raised">
           <div class="card-body">
             <h6 class="card-category">Tambah Data</h6>
-            <div class="card-icon icon-rose">
-              <i class="material-icons">add</i>
-            </div>
-            <h3 class="card-title">Extracomptable</h3>
+            <a href="<?php echo base_url('admin/vendor/create') ?>">
+              <div class="card-icon icon-rose">
+                <i class="material-icons">add</i>
+              </div>
+            </a>
+            <h3 class="card-title">Vendor</h3>
             <p class="card-description">
-              Tambahkan data extracomptable kedalam daftar
+              Tambahkan data vendor kedalam daftar
             </p>
-            <a href="<?php echo base_url('admin/barang/create') ?>" class="btn btn-rose btn-round">Tambah</a>
+            <a href="<?php echo base_url('admin/vendor/create') ?>" class="btn btn-rose btn-round">Tambah</a>
           </div>
         </div>
       </div>
@@ -20,9 +22,9 @@
         <div class="card">
           <div class="card-header card-header-warning card-header-icon">
             <div class="card-icon">
-              <i class="material-icons">inventory</i>
+              <i class="material-icons">content_paste</i>
             </div>
-            <h4 class="card-title">Daftar Extracomptable</h4>
+            <h4 class="card-title">Daftar Vendor</h4>
           </div>
           <div class="card-body">
             <div class="material-datatables">
@@ -31,8 +33,7 @@
                   <tr class="text-warning">
                     <th>#</th>
                     <th>Nama</th>
-                    <th>Rayon</th>
-                    <th>Kondisi</th>
+                    <th>Telepon</th>
                     <th class="disabled-sorting text-center">Aksi</th>
                   </tr>
                 </thead>
@@ -40,26 +41,24 @@
                   <tr>
                     <th>#</th>
                     <th>Nama</th>
-                    <th>Rayon</th>
-                    <th>Kondisi</th>
+                    <th>Telepon</th>
                     <th class="text-center">Aksi</th>
                   </tr>
                 </tfoot>
                 <tbody>
-                  <?php foreach ($barang as $key => $value): ?>
+                  <?php foreach ($vendor as $key => $value): ?>
                     <tr>
                       <td><?php echo $key+1 ?></td>
-                      <td onclick="openModal(<?php echo $value->id_barang; ?>)"><?php echo substr($value->nama_barang,0,30); ?></td>
-                      <td class="text-warning"><?php echo $value->nama_rayon; ?></td>
-                      <td><?php echo $value->nama_kondisi; ?></td>
+                      <td onclick="openModal(<?php echo $value->id_pemilik_kendaraan; ?>)"><?php echo $value->nama_pemilik_kendaraan; ?></td>
+                      <td class="text-warning"><?php echo $value->telepon; ?></td>
                       <td class="text-center">
-                      <a href="#" onclick="openModal(<?php echo $value->id_barang; ?>)" rel="tooltip" title="Lihat" class="btn btn-sm btn-success">
-                            <i class="material-icons">zoom_out_map</i>
-                          </a>
-                        <a href="<?php echo base_url('admin/barang/edit/') . $value->id_barang ?>" rel="tooltip" title="Ubah" class="btn btn-sm btn-warning">
+                        <a href="#" onclick="openModal(<?php echo $value->id_pemilik_kendaraan; ?>)" rel="tooltip" title="Lihat" class="btn btn-sm btn-success">
+                          <i class="material-icons">zoom_out_map</i>
+                        </a>
+                        <a href="<?php echo base_url('admin/vendor/edit/') . $value->id_pemilik_kendaraan ?>" rel="tooltip" title="Ubah" class="btn btn-sm btn-warning">
                           <i class="material-icons">edit</i>
                         </a>
-                        <a href="<?php echo base_url('admin/barang/delete/') . $value->id_barang ?>" rel="tooltip" title="Hapus" class="btn btn-sm btn-danger">
+                        <a href="<?php echo base_url('admin/vendor/delete/') . $value->id_pemilik_kendaraan ?>" rel="tooltip" title="Hapus" class="btn btn-sm btn-danger">
                           <i class="material-icons">close</i>
                         </a>
                       </td>
@@ -88,8 +87,8 @@
       </div>
       <div class="modal-body">
         <div class="form-group">
-          <input type="hidden" id="id_barang" value="">
-          <p>Apakah Anda yakin untuk menghapus barang ini..?</p>
+          <input type="hidden" id="id_pemilik_kendaraan" value="">
+          <p>Apakah Anda yakin untuk menghapus vendor ini..?</p>
         </div>
       </div>
       <div class="modal-footer">
@@ -104,7 +103,7 @@
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title">Detail Extracomptable</h4>
+        <h4 class="modal-title">Detail Vendor</h4>
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
           <i class="material-icons">clear</i>
         </button>
@@ -113,37 +112,37 @@
 
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-danger btn-link" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-danger btn-round" data-dismiss="modal">Tutup</button>
       </div>
     </div>
   </div>
 </div>
 
 <script type="text/javascript">
-  function openModal(id) {
-    $.ajax({
-      url:"<?php echo base_url('admin/barang/get/'); ?>"+id,
-      method: 'post',
-      data:null
-    }).done(function(data) {
-      $('#modal-content').html(data);
-      $('#exampleModalCenter').modal('show');
-    });
-  }
+function openModal(id) {
+  $.ajax({
+    url:"<?php echo base_url('admin/vendor/get/'); ?>"+id,
+    method: 'post',
+    data:null
+  }).done(function(data) {
+    $('#modal-content').html(data);
+    $('#exampleModalCenter').modal('show');
+  });
+}
 
-  function deleteModal(id) {
-    $('#id_barang').val(id);
-  }
+function deleteModal(id) {
+  $('#id_pemilik_kendaraan').val(id);
+}
 
-  function deleteBarang(){
-     var id = $('#id_barang').val();
-     $.ajax({
-      url:"<?php echo base_url('admin/barang/delete/'); ?>"+id,
-      method: 'post',
-      data:null
-    }).done(function(data) {
-      location.reload();
-    });
-  }
+function deleteBarang(){
+  var id = $('#id_pemilik_kendaraan').val();
+  $.ajax({
+    url:"<?php echo base_url('admin/vendor/delete/'); ?>"+id,
+    method: 'post',
+    data:null
+  }).done(function(data) {
+    location.reload();
+  });
+}
 
 </script>

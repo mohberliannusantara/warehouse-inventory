@@ -5,9 +5,11 @@
         <div class="card card-pricing card-raised">
           <div class="card-body">
             <h6 class="card-category">Tambah Data</h6>
-            <div class="card-icon icon-rose">
-              <i class="material-icons">add</i>
-            </div>
+            <a href="<?php echo base_url('admin/properti/create') ?>">
+              <div class="card-icon icon-rose">
+                <i class="material-icons">add</i>
+              </div>
+            </a>
             <h3 class="card-title">Properti</h3>
             <p class="card-description">
               Tambahkan data properti kedalam daftar
@@ -51,9 +53,9 @@
                   <?php foreach ($properti as $key => $value): ?>
                     <tr>
                       <td><?php echo $key+1 ?></td>
-                      <td><?php echo substr($value->nama_properti,0,30); ?></td>
+                      <td><?php echo substr($value->nama_properti,0,28); ?></td>
                       <td class="text-warning"><?php echo $value->nama_rayon; ?></td>
-                      <td><?php echo substr($value->alamat,0,30); ?>...</td>
+                      <td><?php echo substr($value->alamat,0,26); ?></td>
                       <td class="text-center">
                         <a href="#" onclick="openModal(<?php echo $value->id_properti; ?>)"
                           rel="tooltip" title="Lihat" class="btn btn-sm btn-success">
@@ -138,7 +140,7 @@ aria-hidden="true">
 <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
   <div class="modal-content">
     <div class="modal-header">
-      <h5 class="modal-title" id="exampleModalLongTitle">Info Properti</h5>
+      <h5 class="modal-title" id="exampleModalLongTitle">Detail Properti</h5>
       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
         <span aria-hidden="true">&times;</span>
       </button>
@@ -147,7 +149,7 @@ aria-hidden="true">
 
     </div>
     <div class="modal-footer">
-      <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+      <button type="button" class="btn btn-danger btn-round" data-dismiss="modal">Tutup</button>
     </div>
   </div>
 </div>

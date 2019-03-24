@@ -5,9 +5,11 @@
         <div class="card card-pricing card-raised">
           <div class="card-body">
             <h6 class="card-category">Tambah Data</h6>
-            <div class="card-icon icon-rose">
-              <i class="material-icons">add</i>
-            </div>
+            <a href="<?php echo base_url('admin/kendaraan/create') ?>">
+              <div class="card-icon icon-rose">
+                <i class="material-icons">add</i>
+              </div>
+            </a>
             <h3 class="card-title">Kendaraan</h3>
             <p class="card-description">
               Tambahkan data kendaraan kedalam daftar
@@ -33,7 +35,6 @@
                   <tr class="text-warning">
                     <th>Plat</th>
                     <th>Nama</th>
-                    <th>Jenis</th>
                     <th>Rayon</th>
                     <th>Status</th>
                     <th>Masa Berlaku</th>
@@ -44,7 +45,6 @@
                   <tr>
                     <th>Plat</th>
                     <th>Nama</th>
-                    <th>Jenis</th>
                     <th>Rayon</th>
                     <th>Status</th>
                     <th>Masa Berlaku</th>
@@ -52,14 +52,13 @@
                   </tr>
                 </tfoot>
                 <tbody>
-                  <?php foreach ($kendaraan as $value): ?>
+                  <?php foreach ($kendaraan as $key => $value): ?>
                     <tr>
                       <td><?php echo $value->nomor_polisi ?></td>
-                      <td><?php echo $value->nama_kendaraan; ?></td>
-                      <td><?php echo $value->nama_jenis_kendaraan; ?></td>
+                      <td onclick="openModal(<?php echo $value->id_kendaraan?>)"><?php echo substr($value->nama_kendaraan,0 , 20); ?></td>
                       <td class="text-warning"><?php echo $value->nama_rayon; ?></td>
                       <td><?php echo $value->status; ?></td>
-                      <td><?php echo $value->tanggal_berlaku; ?></td>
+                      <td><?php echo date_format(date_create($value->tanggal_berlaku), "d/m/Y"); ?></td>
                       <td class="text-center">
                         <a href="#" onclick="openModal(<?php echo $value->id_kendaraan?>)" rel="tooltip" title="Lihat"
                           class="btn btn-sm btn-success">
@@ -100,8 +99,8 @@ aria-hidden="true">
     </div>
     <div class="modal-body">
       <div class="form-group">
-        <input type="hidden" id="id_barang" value="">
-        <p>Apakah Anda yakin untuk menghapus barang ini..?</p>
+        <input type="hidden" id="id_kendaraan" value="">
+        <p>Apakah Anda yakin untuk menghapus kendaraan ini..?</p>
       </div>
     </div>
     <div class="modal-footer">
@@ -116,7 +115,7 @@ aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title">Detail Extracomptable</h4>
+        <h4 class="modal-title">Detail Kendaraan</h4>
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
           <i class="material-icons">clear</i>
         </button>
@@ -125,7 +124,7 @@ aria-hidden="true">
 
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-danger btn-link" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-danger btn-round" data-dismiss="modal">Tutup</button>
       </div>
     </div>
   </div>
@@ -144,11 +143,11 @@ function openModal(id) {
 }
 
 function deleteModal(id) {
-  $('#id_barang').val(id);
+  $('#id_kendaraan').val(id);
 }
 
 function deleteBarang() {
-  var id = $('#id_barang').val();
+  var id = $('#id_kendaraan').val();
   $.ajax({
     url: "<?php echo base_url('admin/kendaraan/delete/'); ?>" + id,
     method: 'post',

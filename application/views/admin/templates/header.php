@@ -90,16 +90,16 @@
             <p>Vendor</p>
           </a>
         </li>
-        <li class="nav-item <?php if ($page == 'Laporan'): ?>active<?php endif; ?>">
-          <a class="nav-link" href="<?php echo site_url('admin/laporan')?>">
-            <i class="material-icons">print</i>
-            <p>Laporan</p>
-          </a>
-        </li>
         <li class="nav-item <?php if ($page == 'Pengguna'): ?>active<?php endif; ?>">
           <a class="nav-link" href="<?php echo site_url('admin/pengguna')?>">
             <i class="material-icons">person</i>
             <p>Pengguna</p>
+          </a>
+        </li>
+        <li class="nav-item <?php if ($page == 'Laporan'): ?>active<?php endif; ?>">
+          <a class="nav-link" href="<?php echo site_url('admin/laporan')?>">
+            <i class="material-icons">print</i>
+            <p>Laporan</p>
           </a>
         </li>
       </ul>

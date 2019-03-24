@@ -3,30 +3,29 @@
     <div class="row">
       <div class="col-md-8">
         <div class="card">
-          <div class="card-header card-header-warning">
-            <h4 class="card-title "><?php echo $page_title; ?></h4>
-            <p class="card-category">melihat daftar dan detail profil pengguna</p>
+          <div class="card-header card-header-warning card-header-icon">
+            <div class="card-icon">
+              <i class="material-icons">person</i>
+            </div>
+            <h4 class="card-title">Daftar Pengguna</h4>
           </div>
           <div class="card-body">
-            <div class="table-responsive">
-              <table class="table">
+            <div class="material-datatables">
+              <table id="datatables" class="table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%">
                 <thead class="text-warning">
-                  <th>
-                    ID
-                  </th>
-                  <th>
-                    Nama
-                  </th>
-                  <th>
-                    Level
-                  </th>
-                  <th>
-                    Rayon
-                  </th>
-                  <th>
-                    aksi
-                  </th>
+                  <th>#</th>
+                  <th>Nama</th>
+                  <th>Level</th>
+                  <th>Rayon</th>
+                  <th class="disabled-sorting text-center">Aksi</th>
                 </thead>
+                <tfoot>
+                  <th>#</th>
+                  <th>Nama</th>
+                  <th>Level</th>
+                  <th>Rayon</th>
+                  <th class="text-center">Aksi</th>
+                </tfoot>
                 <tbody>
                   <?php foreach ($pengguna as $value): ?>
                     <tr>
@@ -76,22 +75,9 @@
               <h6 class="card-category text-gray"><?php echo $this->session->level; ?> / <?php echo $this->session->rayon; ?></h6>
               <h4 class="card-title"><?php echo $this->session->username; ?></h4>
               <p class="card-description">
-                Being honest may not get you a lot of friends but it’ll always get you the right ones..
+                Life would not be better because a chance, life will always be better because of the courage to take action at every chance.
               </p>
-            </div>
-          </div>
-          <div class="card card-profile">
-            <a href="<?php echo base_url('Pengguna/create')?>">
-              <div class="card-header card-header-info">
-                <h4 class="card-title">Tambah Pengguna</h4>
-              </div>
-            </a>
-            <div class="card-body">
-              <h4 class="card-title">Tambah Pengguna</h4>
-              <p class="card-description">
-                Tambahkan pengguna untuk dapat mengelola inventori
-              </p>
-              <?php echo anchor('Pengguna/create', 'Tambah', array('class' => 'btn btn-info btn-round')); ?>
+              <a href="<?php echo base_url('admin/pengguna/create') ?>" class="btn btn-warning btn-round">Tambah</a>
             </div>
           </div>
         </div>
