@@ -1,6 +1,6 @@
 #Web App for monitoring assets
 
-![Image warehouse](https://github.com/mohberliannusantara/warehouse-inventory/blob/master/assets/img/landing_page.png)
+![Image warehouse](assets/img/landing_page.png)
 
 ### How to use:
 - clone or download this project
