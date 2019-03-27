@@ -40,7 +40,7 @@
                       <div class="picture-container">
                         <div class="picture">
                           <img src="../../assets/img/default-avatar.png" class="picture-src" id="wizardPicturePreview" title="" />
-                          <input type="file" name="foto" id="wizard-picture">
+                          <input type="file" name="gambar" id="wizard-picture">
                         </div>
                         <h6 class="description">Pilih Foto</h6>
                       </div>
@@ -131,7 +131,7 @@
               </div>
               <div class="ml-auto">
                 <input type="button" class="btn btn-next btn-fill btn-rose btn-wd" name="next" value="Next">
-                <input type="button" class="btn btn-finish btn-fill btn-rose btn-wd" name="finish" value="Finish" style="display: none;">
+                <input type="submit" class="btn btn-finish btn-fill btn-rose btn-wd" name="finish" value="Finish" style="display: none;">
               </div>
               <div class="clearfix"></div>
             </div>

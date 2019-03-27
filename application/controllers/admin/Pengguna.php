@@ -41,12 +41,10 @@ class Pengguna extends CI_Controller
 		$data['rayon'] = $this->rayon_model->get();
 
 		// validasi input
-		$this->form_validation->set_rules('nama_pengguna', 'Nama', 'trim|required');
+		$this->form_validation->set_rules('username', 'Username', 'trim|required');
+		$this->form_validation->set_rules('password', 'Password', 'trim|required');
+		$this->form_validation->set_rules('level', 'Level', 'trim|required');
 		$this->form_validation->set_rules('rayon', 'Rayon', 'trim|required');
-		$this->form_validation->set_rules('jenis', 'Jenis', 'trim|required');
-		$this->form_validation->set_rules('kondisi', 'Kondisi', 'trim|required');
-		$this->form_validation->set_rules('harga', 'Harga', 'trim|required');
-		$this->form_validation->set_rules('keterangan', 'Keterangan', 'trim');
 
 		if ($this->form_validation->run() === FALSE)
 		{
@@ -59,7 +57,7 @@ class Pengguna extends CI_Controller
 			if ( isset($_FILES['gambar']) && $_FILES['gambar']['size'] > 0 )
 			{
 				// Konfigurasi folder upload & file yang diijinkan untuk diupload/disimpan
-				$config['upload_path']          = './assets/uploads/pengguna/';
+				$config['upload_path']          = './assets/uploads//';
 				$config['allowed_types']        = 'gif|jpg|png|jpeg';
 				$config['max_size']             = 10000000000;
 				$config['max_width']            = 5000;
@@ -90,22 +88,15 @@ class Pengguna extends CI_Controller
 			}
 
 			$post_data = array(
-				'nama_pengguna' => $this->input->post('nama_pengguna'),
-				'harga' => str_replace(',', '', $this->input->post('harga')),
-				'id_jenis_pengguna' => $this->input->post('jenis'),
-				'id_kondisi' => $this->input->post('kondisi'),
-				'keterangan' => $this->input->post('keterangan'),
+				'username' => $this->input->post('username'),
+				'password' => $this->input->post('password'),
+				'id_level' => $this->input->post('level'),
 				'gambar' => $post_image,
 				'id_rayon' => $this->input->post('rayon')
 			);
 
 			if( empty($data['upload_error']) ) {
 				$this->pengguna_model->create($post_data);
-
-				// $data['pengguna'] = $this->pengguna_model->get();
-				// $this->load->view('admin/templates/header', $data);
-				// $this->load->view('admin/pengguna/index', $data);
-				// $this->load->view('admin/templates/footer');
 				redirect('admin/pengguna','refresh');
 			}
 		}

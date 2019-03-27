@@ -5,7 +5,7 @@
       <?php if( $barang->gambar ) : ?>
         <img src="<?php echo base_url() .'assets/uploads/barang/'. $barang->gambar  ?>" alt="" style="width:100%;">
         <?php ; else : ?>
-          <img src="https://via.placeholder.com/350x250" alt="" style="width:50%;">
+          <img src="https://via.placeholder.com/350x250" alt="" style="width:100%;">
         <?php endif; ?>
       </center>
     </div>
@@ -21,28 +21,28 @@
         </thead>
         <tbody>
           <tr>
-            <td>Nama</td>
+            <th>Nama</th>
             <td><?php echo $barang->nama_barang ?></td>
           </tr>
           <tr>
-            <td>Jenis</td>
+            <th>Jenis</th>
             <td><?php echo $barang->nama_jenis_barang ?></td>
           </tr>
           <tr>
-            <td>Kondisi</td>
+            <th>Kondisi</th>
             <td><?php echo $barang->nama_kondisi ?></td>
           </tr>
           <tr>
-            <td>Harga</td>
+            <th>Harga</th>
             <td><?php echo $barang->harga ?></td>
           </tr>
           <tr>
-            <td>Keterangan</td>
-            <td><?php echo $barang->keterangan ?></td>
+            <th>Rayon</th>
+            <td><?php echo $barang->nama_rayon ?></td>
           </tr>
           <tr>
-            <td>Rayon</td>
-            <td><?php echo $barang->nama_rayon ?></td>
+            <th>Keterangan</th>
+            <td><?php echo $barang->keterangan ?></td>
           </tr>
         </tbody>
       </table>

@@ -1,10 +1,19 @@
 <div class="row">
+  <div class="col-md-3">
+
+  </div>
+  <div class="col-md-6">
+    <?php if( $kendaraan->gambar ) : ?>
+      <img src="<?php echo base_url() .'assets/uploads/kendaraan/'. $kendaraan->gambar  ?>" alt="" style="width:100%;">
+      <?php ; else : ?>
+        <img src="https://via.placeholder.com/350x250" alt="" style="width:50%;">
+      <?php endif; ?>
+  </div>
+  <div class="col-md-3">
+
+  </div>
   <center>
-  <?php if( $kendaraan->gambar ) : ?>
-    <img src="<?php echo base_url() .'assets/uploads/kendaraan/'. $kendaraan->gambar  ?>" alt="" style="width:50%;">
-    <?php ; else : ?>
-      <img src="https://via.placeholder.com/350x250" alt="" style="width:50%;">
-    <?php endif; ?>
+
   </center>
 </div>
 <div class="row">
