@@ -49,7 +49,7 @@
                   <?php foreach ($vendor as $key => $value): ?>
                     <tr>
                       <td><?php echo $key+1 ?></td>
-                      <td onclick="openModal(<?php echo $value->id_pemilik_kendaraan; ?>)"><?php echo $value->nama_pemilik_kendaraan; ?></td>
+                      <td><?php echo $value->nama_pemilik_kendaraan; ?></td>
                       <td class="text-warning"><?php echo $value->telepon; ?></td>
                       <td class="text-center">
                         <a href="#" onclick="openModal(<?php echo $value->id_pemilik_kendaraan; ?>)" rel="tooltip" title="Lihat" class="btn btn-sm btn-success">

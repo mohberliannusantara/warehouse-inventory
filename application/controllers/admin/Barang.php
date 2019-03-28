@@ -207,9 +207,7 @@ class Barang extends CI_Controller {
 	public function delete($id)
 	{
 		$this->barang_model->delete($id);
-
 		redirect('admin/barang','refresh');
-
 	}
 
 	public function printBarang()

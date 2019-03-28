@@ -32,7 +32,7 @@ class Pengguna extends CI_Controller
 	public function get($id)
 	{
 		$data['pengguna'] = $this->pengguna_model->get_by_id($id);
-		$this->load->view('pengguna/view', $data);
+		$this->load->view('admin/pengguna/view', $data);
 	}
 
 	public function create()

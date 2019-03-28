@@ -42,9 +42,9 @@
                         <?php echo $value->nama_rayon; ?>
                       </td>
                       <td>
-                        <a href="#" onclick="openModal(<?php echo $value->id_admin; ?>)" rel="tooltip" title="Lihat" class="btn btn-sm btn-success">
+                        <!-- <a href="#" onclick="openModal(<?php echo $value->id_admin; ?>)" rel="tooltip" title="Lihat" class="btn btn-sm btn-success">
                           <i class="material-icons">zoom_out_map</i>
-                        </a>
+                        </a> -->
                         <a href="<?php echo base_url('Pengguna/edit/') . $value->id_admin ?>" rel="tooltip" title="Ubah" class="btn btn-sm btn-warning">
                           <i class="material-icons">edit</i>
                         </a>
@@ -77,7 +77,7 @@
               <p class="card-description">
                 Life would not be better because a chance, life will always be better because of the courage to take action at every chance.
               </p>
-              <a href="<?php echo base_url('admin/pengguna/create') ?>" class="btn btn-warning btn-round">Tambah</a>
+              <a href="<?php echo base_url('admin/pengguna/create') ?>" class="btn btn-rose btn-round">Tambah</a>
             </div>
           </div>
         </div>
@@ -109,19 +109,19 @@
   </div>
 
   <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+    <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLongTitle">Info Pengguna</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
+          <h4 class="modal-title">Detail Pengguna</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+            <i class="material-icons">clear</i>
           </button>
         </div>
         <div class="modal-body" id="modal-content">
 
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-danger btn-round" data-dismiss="modal">Tutup</button>
         </div>
       </div>
     </div>
@@ -130,7 +130,7 @@
   <script type="text/javascript">
   function openModal(id) {
     $.ajax({
-      url:"<?php echo base_url('pengguna/get/'); ?>"+id,
+      url:"<?php echo base_url('admin/pengguna/get/'); ?>"+id,
       method: 'post',
       data:null
     }).done(function(data) {

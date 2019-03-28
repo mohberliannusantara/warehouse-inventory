@@ -70,7 +70,7 @@
                 <div class="col-sm-10">
                   <div class="form-group">
                     <input class="form-control number" type="text" name="harga" value="<?php echo $barang->harga ?>" required="true" />
-                    <span class="bmd-help">Tambahkan harga extracomptable.</span>
+                    <span class="bmd-help">Ubah harga extracomptable.</span>
                   </div>
                 </div>
               </div>
@@ -80,7 +80,7 @@
                 <div class="col-sm-5">
                   <div class="form-group">
                     <textarea class="form-control" name="keterangan" rows="5" required><?php echo $barang->keterangan ?></textarea>
-                    <span class="bmd-help">Tambahkan keterangan extracomptable.</span>
+                    <span class="bmd-help">Ubah keterangan extracomptable.</span>
                   </div>
                 </div>
                 <label class="col-xs-2 col-form-label">Foto / Gambar</label>

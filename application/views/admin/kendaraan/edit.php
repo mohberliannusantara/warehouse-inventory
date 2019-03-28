@@ -4,9 +4,9 @@
       <div class="col-md-12">
         <form id="TypeValidation" class="form-horizontal" action="<?php echo base_url('admin/kendaraan/edit/') .$kendaraan->id_kendaraan ?>" method="post" enctype="multipart/form-data" >
           <div class="card ">
-            <div class="card-header card-header-rose card-header-text">
+            <div class="card-header card-header-primary card-header-text">
               <div class="card-text">
-                <h4 class="card-title">Edit Kendaraan</h4>
+                <h4 class="card-title">Form Ubah Kendaraan</h4>
               </div>
             </div>
             <div class="card-body ">
@@ -15,14 +15,14 @@
                 <div class="col-sm-6">
                   <div class="form-group">
                     <input class="form-control" type="text" name="nama_kendaraan" value="<?php echo $kendaraan->nama_kendaraan ?>" required="true" autofocus/>
-                    <span class="bmd-help">Tambahkan nama kendaraan.</span>
+                    <span class="bmd-help">Ubah nama kendaraan.</span>
                   </div>
                 </div>
                 <label class="col-xs-2 col-form-label">Plat Nomor</label>
                 <div class="col-sm-3">
                   <div class="form-group">
                     <input class="form-control" type="text" name="nomor_polisi" value="<?php echo $kendaraan->nomor_polisi ?>" required="true" autofocus/>
-                    <span class="bmd-help">Tambahkan plat nomor kendaraan.</span>
+                    <span class="bmd-help">Ubah plat nomor kendaraan.</span>
                   </div>
                 </div>
               </div>
@@ -32,7 +32,7 @@
                 <div class="col-sm-6">
                   <div class="form-group">
                     <input class="form-control" type="text" name="pengguna" value="<?php echo $kendaraan->pengguna ?>" required="true" autofocus/>
-                    <span class="bmd-help">Tambahkan nama pengguna kendaraan.</span>
+                    <span class="bmd-help">Ubah nama pengguna kendaraan.</span>
                   </div>
                 </div>
                 <label class="col-xs-2 col-form-label">Rayon</label>
@@ -107,7 +107,7 @@
                 <div class="col-sm-10">
                   <div class="form-group">
                     <input type="text" class="form-control datepicker" name="tanggal_berlaku" value="<?php echo date('m/d/Y', strtotime($kendaraan->tanggal_berlaku)) ?>" required="true" />
-                    <span class="bmd-help">Tambahkan tanggal berlaku.</span>
+                    <span class="bmd-help">Ubah tanggal berlaku.</span>
                   </div>
                 </div>
               </div>
@@ -117,7 +117,7 @@
                 <div class="col-sm-5">
                   <div class="form-group">
                     <input class="form-control" type="number" name="stan_awal" value="<?php echo $kendaraan->stan_awal ?>" required="true"/>
-                    <span class="bmd-help">Tambahkan stan awal kendaraan.</span>
+                    <span class="bmd-help">Ubah stan awal kendaraan.</span>
                   </div>
                 </div>
               </div>
@@ -127,7 +127,7 @@
                 <div class="col-sm-5">
                   <div class="form-group">
                     <input class="form-control" type="number" name="stan_akhir" value="<?php echo $kendaraan->stan_akhir  ?>" required="true"/>
-                    <span class="bmd-help">Tambahkan stan akhir kendaraan.</span>
+                    <span class="bmd-help">Ubah stan akhir kendaraan.</span>
                   </div>
                 </div>
               </div>
@@ -137,14 +137,18 @@
                 <div class="col-sm-5">
                   <div class="form-group">
                     <textarea class="form-control" name="keterangan" rows="5" required><?php echo $kendaraan->keterangan  ?></textarea>
-                    <span class="bmd-help">Tambahkan keterangan kendaraan.</span>
+                    <span class="bmd-help">Ubah keterangan kendaraan.</span>
                   </div>
                 </div>
                 <label class="col-xs-2 col-form-label">Foto / Gambar</label>
                 <div class="col-sm-3">
                   <div class="fileinput fileinput-new text-center" data-provides="fileinput">
                     <div class="fileinput-new thumbnail">
-                      <img src="<?php echo base_url('/assets/uploads/kendaraan/'.$kendaraan->gambar) ?>" alt="...">
+                      <?php if( $kendaraan->gambar ) : ?>
+                        <img src="<?php echo base_url('/assets/uploads/kendaraan/'.$kendaraan->gambar) ?>">
+                        <?php ; else : ?>
+                          <img src="<?php echo base_url() ?>assets/img/image_placeholder.jpg" alt="...">
+                        <?php endif; ?>
                     </div>
                     <div class="fileinput-preview fileinput-exists thumbnail"></div>
                     <div>
@@ -160,7 +164,7 @@
               </div>
             </div>
             <div class="card-footer ml-auto mr-auto">
-              <button type="submit" class="btn btn-rose">Simpan Data</button>
+              <button type="submit" class="btn btn-primary">Simpan Data</button>
             </div>
           </div>
         </form>

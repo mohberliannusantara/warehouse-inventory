@@ -96,10 +96,6 @@ class Vendor_model extends CI_Model
 
   public function get_by_id($id)
   {
-    // $this->db->where(array('pemilik_kendaraan.id_pemilik_kendaraan' => $id));
-    // $query = $this->db->get('pemilik_kendaraan');
-    // return $query->row();
-
     $query = $this->db->get_where('pemilik_kendaraan', array('id_pemilik_kendaraan' => $id));
     return $query->row();
   }

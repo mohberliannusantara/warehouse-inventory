@@ -92,10 +92,18 @@
                 </div>
               </div>
               <div class="row">
+                <label class="col-sm-2 col-form-label">Status</label>
+                <div class="col-sm-10">
+                  <div class="form-group">
+                    <input class="form-control" type="text" name="status" value="<?php echo set_value('status') ?>"/>
+                    <span class="bmd-help">Tambahkan status properti.</span>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
                 <label class="col-sm-2 col-form-label">Tahun Perolehan</label>
                 <div class="col-sm-3">
                   <div class="form-group">
-                    <!-- <input class="form-control" type="date" name="harga" value="<?php echo set_value('harga') ?>" required="true" /> -->
                     <input type="text" class="form-control datepicker" name="tahun_perolehan" value="10/06/2018" required="true" />
                     <span class="bmd-help">Tambahkan tahun perolehan.</span>
                   </div>
@@ -103,7 +111,7 @@
                 <label class="col-xs-2 col-form-label">Estimasi Harga</label>
                 <div class="col-sm-5">
                   <div class="form-group">
-                    <input class="form-control" type="text" name="harga" value="<?php echo set_value('harga') ?>" required="true"/>
+                    <input class="form-control number" type="text" name="harga" value="<?php echo set_value('harga') ?>" required="true"/>
                     <span class="bmd-help">Tambahkan harga properti.</span>
                   </div>
                 </div>

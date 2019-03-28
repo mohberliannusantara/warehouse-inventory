@@ -65,7 +65,6 @@ class Kendaraan_model extends CI_Model
 
     public function get()
     {
-        $this->db->order_by('kendaraan.nama_kendaraan', 'asc');
         $this->db->join('rayon', 'kendaraan.id_rayon = rayon.id_rayon');
         $this->db->join('jenis_kendaraan', 'kendaraan.id_jenis_kendaraan = jenis_kendaraan.id_jenis_kendaraan');
         $this->db->join('pemilik_kendaraan', 'kendaraan.id_pemilik_kendaraan = pemilik_kendaraan.id_pemilik_kendaraan');

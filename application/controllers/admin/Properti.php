@@ -49,6 +49,7 @@ class Properti extends CI_Controller
     $this->form_validation->set_rules('no_sertifikat', 'Nomor Sertifikat', 'trim|required');
     $this->form_validation->set_rules('tanggal_berlaku_sertifikat', 'Tanggal Berlaku Sertifikat', 'trim|required');
     $this->form_validation->set_rules('tanggal_kadaluarsa_sertifikat', 'Tanggal Kadaluarsa Sertifikat', 'trim|required');
+    $this->form_validation->set_rules('status', 'Status', 'trim');
     $this->form_validation->set_rules('luas_tanah', 'Luas Tanah', 'trim');
     $this->form_validation->set_rules('luas_bangunan', 'Luas Bangunan', 'trim');
     $this->form_validation->set_rules('no_pajak', 'Nomor Pajak', 'trim|required');
@@ -118,9 +119,6 @@ class Properti extends CI_Controller
         else
         { //jika berhasil upload
 
-          // $img_data = $this->upload->data();
-          // $post_image = $img_data['file_name'];
-
           $img_data = $this->sertifikat->data();
           $sertifikat_data = $img_data['file_name'];
 
@@ -157,7 +155,7 @@ class Properti extends CI_Controller
         'keterangan' => $this->input->post('nama_properti'),
         'no_pajak' => $this->input->post('no_pajak'),
         'lokasi' => $this->input->post('lokasi'),
-        // 'status' => $this->input->post('status'),
+        'status' => $this->input->post('status'),
         'foto_properti' => $properti_data,
         'foto_pajak' => $pajak_data,
         'foto_sertifikat' => $sertifikat_data
@@ -186,6 +184,7 @@ class Properti extends CI_Controller
     $this->form_validation->set_rules('no_sertifikat', 'Nomor Sertifikat', 'trim|required');
     $this->form_validation->set_rules('tanggal_berlaku_sertifikat', 'Tanggal Berlaku Sertifikat', 'trim|required');
     $this->form_validation->set_rules('tanggal_kadaluarsa_sertifikat', 'Tanggal Kadaluarsa Sertifikat', 'trim|required');
+    $this->form_validation->set_rules('status', 'Status', 'trim');
     $this->form_validation->set_rules('luas_tanah', 'Luas Tanah', 'trim');
     $this->form_validation->set_rules('luas_bangunan', 'Luas Bangunan', 'trim');
     $this->form_validation->set_rules('no_pajak', 'Nomor Pajak', 'trim|required');
@@ -290,7 +289,7 @@ class Properti extends CI_Controller
         'keterangan' => $this->input->post('nama_properti'),
         'no_pajak' => $this->input->post('no_pajak'),
         'lokasi' => $this->input->post('lokasi'),
-        // 'status' => $this->input->post('status'),
+        'status' => $this->input->post('status'),
         'foto_properti' => $properti_data,
         'foto_pajak' => $pajak_data,
         'foto_sertifikat' => $sertifikat_data
@@ -298,7 +297,7 @@ class Properti extends CI_Controller
 
       if (empty($data['upload_error'])) {
         $this->properti_model->update($post_data, $id);
-        redirect('Properti', 'refresh');
+        redirect('admin/properti', 'refresh');
       }
     }
   }
@@ -316,9 +315,7 @@ class Properti extends CI_Controller
   public function delete($id)
   {
     $this->properti_model->delete($id);
-
-    redirect('properti', 'refresh');
-
+    redirect('admin/properti', 'refresh');
   }
 
   public function export()

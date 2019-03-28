@@ -16,7 +16,6 @@ class Pengguna_model extends CI_Model
 
   public function get()
   {
-    $this->db->order_by('admin.id_admin', 'ASC');
     $this->db->join('rayon', 'admin.id_rayon = rayon.id_rayon');
     $this->db->join('level', 'admin.id_level = level.id_level');
     $this->db->from('admin');

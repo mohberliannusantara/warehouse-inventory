@@ -11,15 +11,15 @@
       </thead>
       <tbody>
         <tr>
-          <td>Nama</td>
+          <th>Nama</th>
           <td><?php echo $vendor->nama_pemilik_kendaraan ?></td>
         </tr>
         <tr>
-          <td>Jenis</td>
+          <th>Jenis</th>
           <td><?php echo $vendor->telepon ?></td>
         </tr>
         <tr>
-          <td>Keterangan</td>
+          <th>Keterangan</th>
           <td><?php echo $vendor->keterangan ?></td>
         </tr>
       </tbody>
