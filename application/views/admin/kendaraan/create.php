@@ -106,8 +106,7 @@
                 <label class="col-sm-2 col-form-label">Tanggal Berlaku</label>
                 <div class="col-sm-10">
                   <div class="form-group">
-                    <!-- <input class="form-control" type="date" name="harga" value="<?php echo set_value('harga') ?>" required="true" /> -->
-                    <input type="text" class="form-control datepicker" name="tanggal_berlaku" value="10/06/2018" required="true" />
+                    <input type="text" class="form-control datepicker" name="tanggal_berlaku" value="<?php echo date('m/d/Y') ?>" required="true" />
                     <span class="bmd-help">Tambahkan tanggal berlaku.</span>
                   </div>
                 </div>

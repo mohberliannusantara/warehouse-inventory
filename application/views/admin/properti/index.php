@@ -61,11 +61,11 @@
                           rel="tooltip" title="Lihat" class="btn btn-sm btn-success">
                           <i class="material-icons">zoom_out_map</i>
                         </a>
-                        <a href="<?php echo base_url('Properti/edit/') . $value->id_properti ?>"
+                        <a href="<?php echo base_url('admin/properti/edit/') . $value->id_properti ?>"
                           rel="tooltip" title="Ubah" class="btn btn-sm btn-warning">
                           <i class="material-icons">edit</i>
                         </a>
-                        <a href="<?php echo base_url('Properti/hapus/') . $value->id_properti ?>"
+                        <a href="<?php echo base_url('admin/properti/hapus/') . $value->id_properti ?>"
                           rel="tooltip" title="Hapus" class="btn btn-sm btn-danger">
                           <i class="material-icons">close</i>
                         </a>

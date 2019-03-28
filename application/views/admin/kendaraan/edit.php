@@ -2,7 +2,7 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col-md-12">
-        <form id="TypeValidation" class="form-horizontal" action="<?php echo base_url('admin/kendaraan/create') ?>" method="post" enctype="multipart/form-data" >
+        <form id="TypeValidation" class="form-horizontal" action="<?php echo base_url('admin/kendaraan/edit/') .$kendaraan->id_kendaraan ?>" method="post" enctype="multipart/form-data" >
           <div class="card ">
             <div class="card-header card-header-rose card-header-text">
               <div class="card-text">
@@ -106,7 +106,7 @@
                 <label class="col-sm-2 col-form-label">Tanggal Berlaku</label>
                 <div class="col-sm-10">
                   <div class="form-group">
-                    <input type="text" class="form-control datepicker" name="tanggal_berlaku" value="<?php echo $kendaraan->tanggal_berlaku ?>" required="true" />
+                    <input type="text" class="form-control datepicker" name="tanggal_berlaku" value="<?php echo date('m/d/Y', strtotime($kendaraan->tanggal_berlaku)) ?>" required="true" />
                     <span class="bmd-help">Tambahkan tanggal berlaku.</span>
                   </div>
                 </div>

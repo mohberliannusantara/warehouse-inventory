@@ -165,118 +165,139 @@ class Properti extends CI_Controller
 
       if( empty($data['upload_error']) ) {
         $this->properti_model->create($post_data);
-        // $data['properti'] = $this->properti_model->get();
-        // $this->load->view('templates/header', $data);
-        // $this->load->view('properti/index', $data);
-        // $this->load->view('templates/footer');
         redirect('admin/properti','refresh');
       }
     }
   }
 
-  public function insert()
-  {
-
-    $config['upload_path'] = './uploads/';
-    $config['allowed_types'] = 'gif|jpg|png|jpeg';
-    $config['max_size']  = '100';
-    $config['max_width']  = '1024';
-    $config['max_height']  = '768';
-
-    $this->load->library('upload', $config);
-
-    if ( ! $this->upload->do_upload()){
-      $error = array('error' => $this->upload->display_errors());
-    }
-
-    $post_data = array(
-      'nama_properti' => $this->input->post('nama_properti'),
-      'jenis_properti' => $this->input->post('jenis_properti'),
-      'id_rayon' => $this->input->post('id_rayon'),
-      'luas_tanah' => $this->input->post('luas_tanah'),
-      'luas_bangunan' => $this->input->post('luas_bangunan'),
-      'harga' => $this->input->post('harga'),
-      'tahun_perolehan' => $this->input->post('tahun_perolehan'),
-      'keterangan' => $this->input->post('nama_properti'),
-      'no_sertifikat' => $this->input->post('no_sertifikat'),
-      'tanggal_berlaku_sertifikat' => $this->input->post('tanggal_berlaku_sertifikat'),
-      'tanggal_kadaluarsa_sertifikat' => $this->input->post('tanggal_kadaluarsa_sertifikat'),
-      'no_pajak' => $this->input->post('no_pajak'),
-      'alamat' => $this->input->post('alamat'),
-      'lokasi' => $this->input->post('lokasi'),
-      'status' => $this->input->post('status'),
-      'foto_properto' => $this->input->post('foto_properto'),
-      'foto_pajak' => $this->input->post('foto_pajak'),
-      'foto_sertifikat' => $this->input->post('foto_sertifikat')
-    );
-  }
-
   public function edit($id = null)
   {
     $data['page'] = 'Properti';
-    $data['page_title'] = 'Ubah Properti';
-    $data['page_content'] = 'Ubah properti kedalam daftar dengan informasi yang lengkap';
 
+    $data['rayon'] = $this->rayon_model->get();
     $data['properti'] = $this->properti_model->get_by_id($id);
 
-    // validasi input
-    $this->form_validation->set_rules('nama_properti', 'Nama_properti', 'required');
-    $this->form_validation->set_rules('harga', 'Harga', 'required');
+    $this->form_validation->set_rules('nama_properti', 'Nama Properti', 'trim|required');
+    $this->form_validation->set_rules('alamat', 'Alamat', 'trim|required');
+    $this->form_validation->set_rules('rayon', 'Rayon', 'trim|required');
+    $this->form_validation->set_rules('jenis_properti', 'Jenis Properti', 'trim|required');
+    $this->form_validation->set_rules('tahun_perolehan', 'Tahun Perolehan', 'trim|required');
+    $this->form_validation->set_rules('harga', 'Harga', 'trim|required');
+    $this->form_validation->set_rules('no_sertifikat', 'Nomor Sertifikat', 'trim|required');
+    $this->form_validation->set_rules('tanggal_berlaku_sertifikat', 'Tanggal Berlaku Sertifikat', 'trim|required');
+    $this->form_validation->set_rules('tanggal_kadaluarsa_sertifikat', 'Tanggal Kadaluarsa Sertifikat', 'trim|required');
+    $this->form_validation->set_rules('luas_tanah', 'Luas Tanah', 'trim');
+    $this->form_validation->set_rules('luas_bangunan', 'Luas Bangunan', 'trim');
+    $this->form_validation->set_rules('no_pajak', 'Nomor Pajak', 'trim|required');
+    $this->form_validation->set_rules('lokasi', 'Lokasi', 'trim|required');
+    $this->form_validation->set_rules('keterangan', 'Keterangan', 'trim');
 
-    // Cek apakah input valid atau tidak
-    if ($this->form_validation->run() === false) {
-      $this->load->view('templates/header', $data);
-      $this->load->view('properti/edit', $data);
-      $this->load->view('templates/footer');
+    $sertifikat_data = '';
+    $pajak_data = '';
+    $properti_data = '';
 
-    } else {
-      if (isset($_FILES['gambar']) && $_FILES['gambar']['size'] > 0) {
-        // Konfigurasi folder upload & file yang diijinkan untuk diupload/disimpan
-        $config['upload_path'] = './assets/uploads/properti/';
-        $config['allowed_types'] = 'gif|jpg|png';
-        $config['max_size'] = 10000000000000;
-        $config['max_width'] = 3000;
-        $config['max_height'] = 3000;
+    if ($this->form_validation->run() === FALSE)
+    {
+      $this->load->view('admin/templates/header', $data);
+      $this->load->view('admin/properti/edit', $data);
+      $this->load->view('admin/templates/footer');
+    }
+    else
+    {
+      if ( isset($_FILES['foto_sertifikat']) && $_FILES['foto_sertifikat']['size'] > 0 || isset($_FILES['foto_pajak']) && $_FILES['foto_pajak']['size'] > 0 || isset($_FILES['foto_properti']) && $_FILES['foto_properti']['size'] > 0 )
+      {
+        // Sertifikat upload
+        $config = array();
+        $config['upload_path']    = './assets/uploads/properti/sertifikat/';
+        $config['allowed_types']	= 'gif|jpg|png|jpeg';
+        $config['max_size'] 			= '1000000000';
+        $config['max_width']			= '5000';
+        $config['max_height'] 		= '5000';
+        $this->load->library('upload', $config, 'sertifikat'); // Create custom object for sertifikat upload
+        $this->sertifikat->initialize($config);
+        $upload_sertifikat = $this->sertifikat->do_upload('foto_sertifikat');
 
-        $this->load->library('upload', $config);
+        // Sertifikat upload
+        $config = array();
+        $config['upload_path']    = './assets/uploads/properti/pajak/';
+        $config['allowed_types']	= 'gif|jpg|png|jpeg';
+        $config['max_size'] 			= '1000000000';
+        $config['max_width']			= '5000';
+        $config['max_height'] 		= '5000';
+        $this->load->library('upload', $config, 'pajak'); // Create custom object for pajak upload
+        $this->pajak->initialize($config);
+        $upload_pajak = $this->pajak->do_upload('foto_pajak');
 
-        if (!$this->upload->do_upload('gambar')) {
-          $data['upload_error'] = $this->upload->display_errors();
+        // Sertifikat upload
+        $config = array();
+        $config['upload_path']    = './assets/uploads/properti/';
+        $config['allowed_types']	= 'gif|jpg|png|jpeg';
+        $config['max_size'] 			= '1000000000';
+        $config['max_width']			= '5000';
+        $config['max_height'] 		= '5000';
+        $this->load->library('upload', $config, 'properti'); // Create custom object for properti upload
+        $this->properti->initialize($config);
+        $upload_properti = $this->properti->do_upload('foto_properti');
 
-          $post_image = '';
+        if ( !$this->properti->do_upload('foto_properti') || !$this->sertifikat->do_upload('foto_sertifikat') || !$this->pajak->do_upload('foto_pajak'))
+        {
+          // $data['upload_error'] = $this->upload->display_errors();
 
-          $this->load->view('templates/header');
-          $this->load->view('properti/create', $data);
-          $this->load->view('templates/footer');
+          $sertifikat_data = '';
+          $pajak_data = '';
+          $properti_data = '';
 
-        } else { //jika berhasil upload
-
-          $img_data = $this->upload->data();
-          $post_image = $img_data['file_name'];
+          $this->load->view('admin/templates/header', $data);
+          $this->load->view('admin/properti/edit', $data);
+          $this->load->view('admin/templates/footer');
 
         }
-      } else { //jika tidak upload gambar
+        else
+        { //jika berhasil upload
 
-        $post_image = '';
+          $img_data = $this->sertifikat->data();
+          $sertifikat_data = $img_data['file_name'];
+
+          $img_data = $this->pajak->data();
+          $pajak_data = $img_data['file_name'];
+
+          $img_data = $this->properti->data();
+          $properti_data = $img_data['file_name'];
+
+        }
+      }
+      else
+      { //jika tidak upload gambar
+
+        $sertifikat_data = '';
+        $pajak_data = '';
+        $properti_data = '';
 
       }
 
       $post_data = array(
         'nama_properti' => $this->input->post('nama_properti'),
-        'harga' => str_replace(',', '', $this->input->post('harga')),
-        'id_jenis_properti' => $this->input->post('jenis_properti'),
-        'id_kondisi' => $this->input->post('kondisi'),
-        'keterangan' => $this->input->post('keterangan'),
-        'tanggal' => date("Y-m-d H:i:s"),
-        'gambar' => $post_image,
+        'alamat' => $this->input->post('alamat'),
+        'id_rayon' => $this->input->post('rayon'),
+        'jenis_properti' => $this->input->post('jenis_properti'),
+        'tahun_perolehan' => $this->input->post('tahun_perolehan'),
+        'harga' => $this->input->post('harga'),
+        'no_sertifikat' => $this->input->post('no_sertifikat'),
+        'tanggal_berlaku_sertifikat' => $this->input->post('tanggal_berlaku_sertifikat'),
+        'tanggal_kadaluarsa_sertifikat' => $this->input->post('tanggal_kadaluarsa_sertifikat'),
+        'luas_tanah' => $this->input->post('luas_tanah'),
+        'luas_bangunan' => $this->input->post('luas_bangunan'),
+        'keterangan' => $this->input->post('nama_properti'),
+        'no_pajak' => $this->input->post('no_pajak'),
+        'lokasi' => $this->input->post('lokasi'),
+        // 'status' => $this->input->post('status'),
+        'foto_properti' => $properti_data,
+        'foto_pajak' => $pajak_data,
+        'foto_sertifikat' => $sertifikat_data
       );
 
       if (empty($data['upload_error'])) {
         $this->properti_model->update($post_data, $id);
-        //$data['properti'] = $this->properti_model->get();
-        // $this->load->view('templates/header');
-        // $this->load->view('properti/index', $data);
-        // $this->load->view('templates/footer');
         redirect('Properti', 'refresh');
       }
     }
