@@ -78,9 +78,9 @@ class Barang extends CI_Controller {
 
 					$post_image = '';
 
-					$this->load->view('templates/header', $data);
+					$this->load->view('admin/templates/header', $data);
 					$this->load->view('admin/barang/create', $data);
-					$this->load->view('templates/footer');
+					$this->load->view('admin/templates/footer');
 
 				} else { //jika berhasil upload
 
@@ -199,9 +199,9 @@ class Barang extends CI_Controller {
 		$data['page_title'] = 'Pindah Barang';
 		$data['page_content'] = 'Pindahkan barang dan memberi detail keterangan barang';
 
-		$this->load->view("templates/header");
+		$this->load->view("admin/templates/header");
 		$this->load->view('barang/edit', $data);
-		$this->load->view("templates/footer");
+		$this->load->view("admin/templates/footer");
 	}
 
 	public function delete($id)

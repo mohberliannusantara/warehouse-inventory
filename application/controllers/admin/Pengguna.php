@@ -57,7 +57,7 @@ class Pengguna extends CI_Controller
 			if ( isset($_FILES['gambar']) && $_FILES['gambar']['size'] > 0 )
 			{
 				// Konfigurasi folder upload & file yang diijinkan untuk diupload/disimpan
-				$config['upload_path']          = './assets/uploads//';
+				$config['upload_path']          = './assets/uploads/pengguna/';
 				$config['allowed_types']        = 'gif|jpg|png|jpeg';
 				$config['max_size']             = 10000000000;
 				$config['max_width']            = 5000;
@@ -102,6 +102,74 @@ class Pengguna extends CI_Controller
 		}
 	}
 
+	public function edit($id = null)
+	{
+		$data['page'] = 'Pengguna';
+
+		$data['pengguna'] = $this->pengguna_model->get_by_id($id);
+		$data['rayon'] = $this->rayon_model->get();
+
+		// validasi input
+		$this->form_validation->set_rules('username', 'Username', 'trim|required');
+		$this->form_validation->set_rules('password', 'Password', 'trim|required');
+		$this->form_validation->set_rules('level', 'Level', 'trim|required');
+		$this->form_validation->set_rules('rayon', 'Rayon', 'trim|required');
+
+		if ($this->form_validation->run() === FALSE)
+		{
+			$this->load->view('admin/templates/header', $data);
+			$this->load->view('admin/pengguna/edit', $data);
+			$this->load->view('admin/templates/footer');
+		}
+		else
+		{
+			if ( isset($_FILES['gambar']) && $_FILES['gambar']['size'] > 0 )
+			{
+				// Konfigurasi folder upload & file yang diijinkan untuk diupload/disimpan
+				$config['upload_path']          = './assets/uploads/pengguna/';
+				$config['allowed_types']        = 'gif|jpg|png|jpeg';
+				$config['max_size']             = 10000000000;
+				$config['max_width']            = 5000;
+				$config['max_height']           = 5000;
+
+				$this->load->library('upload', $config);
+
+				if ( ! $this->upload->do_upload('gambar'))
+				{
+					$data['upload_error'] = $this->upload->display_errors();
+
+					$post_image = '';
+
+					$this->load->view('admin/templates/header', $data);
+					$this->load->view('admin/pengguna/edit', $data);
+					$this->load->view('admin/templates/footer');
+
+				} else { //jika berhasil upload
+
+					$img_data = $this->upload->data();
+					$post_image = $img_data['file_name'];
+
+				}
+			} else { //jika tidak upload gambar
+
+				$post_image = '';
+
+			}
+
+			$post_data = array(
+				'username' => $this->input->post('username'),
+				'password' => $this->input->post('password'),
+				'id_level' => $this->input->post('level'),
+				'gambar' => $post_image,
+				'id_rayon' => $this->input->post('rayon')
+			);
+
+			if( empty($data['upload_error']) ) {
+				$this->pengguna_model->update($post_data, $id);
+				redirect('admin/pengguna','refresh');
+			}
+		}
+	}
 
 	public function export()
 	{

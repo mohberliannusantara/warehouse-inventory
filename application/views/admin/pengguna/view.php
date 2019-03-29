@@ -10,11 +10,8 @@
       <?php endif; ?>
   </div>
   <div class="col-md-3">
-
+    
   </div>
-  <center>
-
-  </center>
 </div>
 <div class="row">
   <table class="table">

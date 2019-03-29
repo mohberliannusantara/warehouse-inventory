@@ -24,6 +24,12 @@ class Pengguna_model extends CI_Model
     return $query->result();
   }
 
+  // public function get_by_id($id)
+  // {
+  //   $query = $this->db->get_where('pengguna', array('id_pengguna' => $id));
+  //   return $query->row();
+  // }
+
   public function create($data)
   {
     return $this->db->insert('admin', $data);
@@ -31,7 +37,6 @@ class Pengguna_model extends CI_Model
 
   public function get_by_id($id)
   {
-
     $this->db->select('*');
     $this->db->from('admin');
     $this->db->join('rayon', 'admin.id_rayon = rayon.id_rayon');
@@ -40,6 +45,12 @@ class Pengguna_model extends CI_Model
 
     $query = $this->db->get();
     return $query->row();
+  }
+
+  public function update($data,$id)
+  {
+    $this->db->where('id_admin', $id);
+    return $this->db->update('admin', $data);
   }
 
   public function delete($id)
