@@ -4,7 +4,7 @@
       <!--      Wizard container        -->
       <div class="wizard-container">
         <div class="card card-wizard" data-color="rose" id="wizardProfile">
-          <form action="<?php echo base_url('admin/pengguna/edit/') .$pengguna->id_admin ?>" method="post" enctype="multipart/form-data" >
+          <form action="<?php echo base_url('pengguna/edit/') .$pengguna->id_admin ?>" method="post" enctype="multipart/form-data" >
             <!--        You can switch " data-color="primary" "  with one of the next bright colors: "green", "orange", "red", "blue"       -->
             <div class="card-header text-center">
               <h3 class="card-title">
@@ -35,7 +35,7 @@
                       <div class="picture-container">
                         <div class="picture">
                           <?php if ($pengguna->gambar): ?>
-                            <img src="<?php echo $pengguna->gambar ?>" class="picture-src" id="wizardPicturePreview" title="" />
+                            <img src="<?php echo base_url() .'assets/uploads/admin/'. $pengguna->gambar ?>" class="picture-src" id="wizardPicturePreview" title="" />
                           <?php else: ?>
                             <img src="../../assets/img/default-avatar.png" class="picture-src" id="wizardPicturePreview" title="" />
                           <?php endif; ?>
@@ -68,19 +68,6 @@
                           <span toggle="#password-field" onclick="myFunction()" class="fa fa-fw fa-eye field-icon toggle-password"></span>
                         </div>
                       </div>
-                      <div class="input-group form-control-lg">
-                        <div class="input-group-prepend">
-                          <span class="input-group-text">
-                            <i class="material-icons">build</i>
-                          </span>
-                        </div>
-                        <div class="form-group">
-                          <select class="selectpicker" data-size="7" data-style="select-with-transition" title="Single Select" name="level">
-                            <option value="1" <?php echo ($pengguna->id_level  == 1) ? 'selected':'' ?>>Super Admin</option>
-                            <option value="2" <?php echo ($pengguna->id_level  == 2) ? 'selected':'' ?>>Admin Rayon</option>
-                          </select>
-                        </div>
-                      </div>
                     </div>
                   </div>
                 </div>
@@ -93,7 +80,7 @@
                       <div class="form-group select-wizard">
                         <label>Country</label>
                         <div class="form-group">
-                          <select class="custom-select" name="rayon" required>
+                          <select class="custom-select" name="rayon" required disabled>
                             <option selected value="">Pilih Rayon </option>
                             <?php foreach ($rayon as $row): ?>
                               <option value="<?php echo $row->id_rayon ?>" <?php echo ($pengguna->id_rayon == $row->id_rayon) ? 'selected':'' ?>>

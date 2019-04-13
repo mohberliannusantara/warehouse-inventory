@@ -7,8 +7,9 @@ class Properti extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->library('form_validation');
         $this->load->model('properti_model');
+        $this->load->model('rayon_model');
+        $this->load->library('form_validation');
 
         if (!$this->session->logged_in == true) {
             redirect('welcome', 'refresh');
@@ -20,15 +21,12 @@ class Properti extends CI_Controller
 
     public function index()
     {
-        $data['page'] = 'Properti';
-        $data['properti'] = $this->properti_model->get();
+      $data['page'] = 'Properti';
+      $data['properti'] = $this->properti_model->get();
 
-        $limit_per_page = 5;
-        $start_index = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
-        $total_records = $this->properti_model->get_total();
-        $this->load->view('templates/header', $data);
-        $this->load->view('properti/index', $data);
-        $this->load->view('templates/footer');
+      $this->load->view('templates/header', $data);
+      $this->load->view('properti/index', $data);
+      $this->load->view('templates/footer');
     }
 
     public function get($id)

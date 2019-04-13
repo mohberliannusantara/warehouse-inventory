@@ -171,6 +171,12 @@ class Pengguna extends CI_Controller
 		}
 	}
 
+	public function delete($id)
+	{
+		$this->pengguna_model->delete($id);
+		redirect('admin/pengguna','refresh');
+	}
+
 	public function export()
 	{
 		// Load plugin PHPExcel nya

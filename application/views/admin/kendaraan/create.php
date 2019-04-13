@@ -21,7 +21,7 @@
                 <label class="col-xs-2 col-form-label">Plat Nomor</label>
                 <div class="col-sm-3">
                   <div class="form-group">
-                    <input class="form-control" type="text" name="nomor_polisi" value="<?php echo set_value('nomor_polisi') ?>" required="true" autofocus/>
+                    <input class="form-control" type="text" name="nomor_polisi" value="<?php echo set_value('nomor_polisi') ?>" required="true"/>
                     <span class="bmd-help">Tambahkan plat nomor kendaraan.</span>
                   </div>
                 </div>
@@ -31,7 +31,7 @@
                 <label class="col-sm-2 col-form-label">Pengguna</label>
                 <div class="col-sm-6">
                   <div class="form-group">
-                    <input class="form-control" type="text" name="pengguna" value="<?php echo set_value('pengguna') ?>" required="true" autofocus/>
+                    <input class="form-control" type="text" name="pengguna" value="<?php echo set_value('pengguna') ?>" required="true"/>
                     <span class="bmd-help">Tambahkan nama pengguna kendaraan.</span>
                   </div>
                 </div>
@@ -104,10 +104,17 @@
               </div>
               <div class="row">
                 <label class="col-sm-2 col-form-label">Tanggal Berlaku</label>
-                <div class="col-sm-10">
+                <div class="col-sm-3">
                   <div class="form-group">
                     <input type="text" class="form-control datepicker" name="tanggal_berlaku" value="<?php echo date('m/d/Y') ?>" required="true" />
                     <span class="bmd-help">Tambahkan tanggal berlaku.</span>
+                  </div>
+                </div>
+                <label class="col-xs-2 col-form-label">Estimasi Harga</label>
+                <div class="col-sm-5">
+                  <div class="form-group">
+                    <input class="form-control number" type="text" name="harga" value="<?php echo set_value('harga') ?>" required="true"/>
+                    <span class="bmd-help">Tambahkan harga kendaraan.</span>
                   </div>
                 </div>
               </div>
@@ -116,7 +123,7 @@
                 <label class="col-sm-2 col-form-label">Stan Awal</label>
                 <div class="col-sm-5">
                   <div class="form-group">
-                    <input class="form-control" type="number" name="stan_awal" value="<?php echo set_value('stan_awal') ?>" required="true"/>
+                    <input class="form-control" type="number" name="stan_awal" value="<?php echo set_value('stan_awal') ?>"/>
                     <span class="bmd-help">Tambahkan stan awal kendaraan.</span>
                   </div>
                 </div>
@@ -126,7 +133,7 @@
                 <label class="col-sm-2 col-form-label">Stan Akhir</label>
                 <div class="col-sm-5">
                   <div class="form-group">
-                    <input class="form-control" type="number" name="stan_akhir" value="<?php echo set_value('stan_akhir') ?>" required="true"/>
+                    <input class="form-control" type="number" name="stan_akhir" value="<?php echo set_value('stan_akhir') ?>"/>
                     <span class="bmd-help">Tambahkan stan akhir kendaraan.</span>
                   </div>
                 </div>
@@ -136,7 +143,7 @@
                 <label class="col-sm-2 col-form-label">Keterangan</label>
                 <div class="col-sm-5">
                   <div class="form-group">
-                    <textarea class="form-control" name="keterangan" rows="5" required><?php echo set_value('keterangan') ?></textarea>
+                    <textarea class="form-control" name="keterangan" rows="5"><?php echo set_value('keterangan') ?></textarea>
                     <span class="bmd-help">Tambahkan keterangan kendaraan.</span>
                   </div>
                 </div>

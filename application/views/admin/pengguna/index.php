@@ -27,10 +27,11 @@
                   <th class="text-center">Aksi</th>
                 </tfoot>
                 <tbody>
-                  <?php foreach ($pengguna as $value): ?>
+                  <?php foreach ($pengguna as $key => $value): ?>
+                    <?php if ($value->id_admin != 1): ?>
                     <tr>
                       <td>
-                        <?php echo $value->id_admin; ?>
+                        <?php echo $key; ?>
                       </td>
                       <td>
                         <?php echo $value->username; ?>
@@ -48,11 +49,15 @@
                         <a href="<?php echo base_url('admin/pengguna/edit/') . $value->id_admin ?>" rel="tooltip" title="Ubah" class="btn btn-sm btn-warning">
                           <i class="material-icons">edit</i>
                         </a>
-                        <a href="#" id="deleteModal" onclick="deleteModal(<?php echo $value->id_admin; ?>)" data-id="<?php echo $value->id_admin; ?>" data-toggle="modal" data-target="#confirmModal" rel="tooltip" title="Hapus" class="btn btn-sm btn-danger">
+                        <!-- <a href="#" id="deleteModal" onclick="deleteModal(<?php echo $value->id_admin; ?>)" data-id="<?php echo $value->id_admin; ?>" data-toggle="modal" data-target="#confirmModal" rel="tooltip" title="Hapus" class="btn btn-sm btn-danger">
+                          <i class="material-icons">close</i>
+                        </a> -->
+                        <a href="<?php echo base_url('admin/pengguna/delete/') . $value->id_admin ?>" rel="tooltip" title="Hapus" class="btn btn-sm btn-danger">
                           <i class="material-icons">close</i>
                         </a>
                       </td>
                     </tr>
+                    <?php endif; ?>
                   <?php endforeach; ?>
                 </tbody>
               </table>

@@ -8,9 +8,11 @@ class Kendaraan extends CI_Controller
     {
         parent::__construct();
         $this->load->model('kendaraan_model');
-        $this->load->model('jenis_kendaraan_model');
-        $this->load->model('kondisi_model');
-        $this->load->library('form_validation');
+    		$this->load->model('jenis_kendaraan_model');
+    		$this->load->model('kondisi_model');
+    		$this->load->model('pemilik_kendaraan_model');
+    		$this->load->model('rayon_model');
+    		$this->load->library('form_validation');
 
         if (!$this->session->logged_in == true) {
             redirect('welcome', 'refresh');
@@ -22,12 +24,12 @@ class Kendaraan extends CI_Controller
 
     public function index()
     {
-        $data['page'] = 'Kendaraan';
-        $data['kendaraan'] = $this->kendaraan_model->get_limit($this->session->userdata('id_rayon'), $this->session->userdata('id_level'));
+      $data['page'] = 'Kendaraan';
+      $data['kendaraan'] = $this->kendaraan_model->get();
 
-        $this->load->view('templates/header', $data);
-        $this->load->view('kendaraan/index', $data);
-        $this->load->view('templates/footer');
+      $this->load->view('templates/header', $data);
+      $this->load->view('kendaraan/index', $data);
+      $this->load->view('templates/footer');
     }
 
     public function get($id)

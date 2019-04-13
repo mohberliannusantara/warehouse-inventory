@@ -57,6 +57,10 @@
         <td><?php echo date_format(date_create($kendaraan->tanggal_berlaku), "d/m/Y"); ?></td>
       </tr>
       <tr>
+        <th>Estimasi Harga</th>
+        <td><?php echo $kendaraan->harga ?></td>
+      </tr>
+      <tr>
         <th>Stan Awal</th>
         <td><?php echo $kendaraan->stan_awal ?></td>
       </tr>

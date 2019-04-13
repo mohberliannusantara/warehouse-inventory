@@ -106,11 +106,6 @@ class Barang extends CI_Controller {
 
 			if( empty($data['upload_error']) ) {
 				$this->barang_model->create($post_data);
-
-				// $data['barang'] = $this->barang_model->get();
-				// $this->load->view('admin/templates/header', $data);
-				// $this->load->view('admin/barang/index', $data);
-				// $this->load->view('admin/templates/footer');
 				redirect('admin/barang','refresh');
 			}
 		}
@@ -144,7 +139,7 @@ class Barang extends CI_Controller {
 			{
 				// Konfigurasi folder upload & file yang diijinkan untuk diupload/disimpan
 				$config['upload_path']          = './assets/uploads/barang/';
-				$config['allowed_types']        = 'gif|jpg|png';
+				$config['allowed_types']        = 'gif|jpg|png|jpeg';
 				$config['max_size']             = 10000000000000;
 				$config['max_width']            = 5000;
 				$config['max_height']           = 5000;
@@ -185,23 +180,9 @@ class Barang extends CI_Controller {
 
 			if( empty($data['upload_error']) ) {
 				$this->barang_model->update($post_data,$id);
-				//$data['barang'] = $this->barang_model->get();
-				// $this->load->view('templates/header');
-				// $this->load->view('barang/index', $data);
-				// $this->load->view('templates/footer');
 				redirect('admin/barang','refresh');
 			}
 		}
-	}
-
-	public function move()
-	{
-		$data['page_title'] = 'Pindah Barang';
-		$data['page_content'] = 'Pindahkan barang dan memberi detail keterangan barang';
-
-		$this->load->view("admin/templates/header");
-		$this->load->view('barang/edit', $data);
-		$this->load->view("admin/templates/footer");
 	}
 
 	public function delete($id)

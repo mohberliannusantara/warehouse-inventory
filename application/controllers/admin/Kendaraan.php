@@ -52,6 +52,7 @@ class Kendaraan extends CI_Controller {
 		$this->form_validation->set_rules('pemilik', 'Pemilik Kendaraan', 'trim|required');
 		$this->form_validation->set_rules('jenis', 'Jenis', 'trim|required');
 		$this->form_validation->set_rules('status', 'Status', 'trim|required');
+		$this->form_validation->set_rules('harga', 'Harga', 'trim|required');
 		$this->form_validation->set_rules('tanggal_berlaku', 'Tanggal Berlaku', 'trim|required');
 		$this->form_validation->set_rules('stan_awal', 'Stan Awal', 'trim');
 		$this->form_validation->set_rules('stan_akhir', 'Stan Akhir', 'trim');
@@ -101,6 +102,7 @@ class Kendaraan extends CI_Controller {
 			$post_data = array(
 				'nama_kendaraan' => $this->input->post('nama_kendaraan'),
 				'nomor_polisi' => $this->input->post('nomor_polisi'),
+				'harga' =>$this->input->post('harga'),
 				'pengguna' => $this->input->post('pengguna'),
 				'id_rayon' => $this->input->post('rayon'),
 				'id_pemilik_kendaraan' => $this->input->post('pemilik'),
@@ -136,6 +138,7 @@ class Kendaraan extends CI_Controller {
 		$this->form_validation->set_rules('pemilik', 'Pemilik Kendaraan', 'trim|required');
 		$this->form_validation->set_rules('jenis', 'Jenis', 'trim|required');
 		$this->form_validation->set_rules('status', 'Status', 'trim|required');
+		$this->form_validation->set_rules('harga', 'Harga', 'trim|required');
 		$this->form_validation->set_rules('tanggal_berlaku', 'Tanggal Berlaku', 'trim|required');
 		$this->form_validation->set_rules('stan_awal', 'Stan Awal', 'trim');
 		$this->form_validation->set_rules('stan_akhir', 'Stan Akhir', 'trim');
@@ -191,6 +194,7 @@ class Kendaraan extends CI_Controller {
 				'id_jenis_kendaraan' => $this->input->post('jenis'),
 				'status' => $this->input->post('status'),
 				'tanggal_berlaku' => date("Y-m-d H:i:s"),
+				'harga' =>$this->input->post('harga'),
 				'stan_awal' => $this->input->post('stan_awal'),
 				'stan_akhir' => $this->input->post('stan_akhir'),
 				'keterangan' => $this->input->post('keterangan'),

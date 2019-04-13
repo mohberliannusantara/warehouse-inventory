@@ -8,93 +8,39 @@
             <p class="card-category">melihat daftar dan detail profil pengguna</p>
           </div>
           <div class="card-body">
-            <?php //var_dump($this->session->id_admin); ?>
-            <?php if ($this->session->id_level != 1 ){ ?>
-              <div class="row">
-                <div class="col-md-12">
-                  <div class="form-group">
-                    <input type="text" class="form-control" value="<?php echo $this->session->id_admin; ?>" disabled>ID
-                  </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <input type="text" class="form-control" value="<?php echo $this->session->id_admin; ?>" disabled>ID
                 </div>
               </div>
-              <div class="row">
-                <div class="col-md-12">
-                  <div class="form-group">
-                    <input type="text" class="form-control" value="<?php echo $this->session->rayon; ?>" disabled>Rayon
-                  </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <input type="text" class="form-control" value="<?php echo $this->session->rayon; ?>" disabled>Rayon
                 </div>
               </div>
-              <div class="row">
-                <div class="col-md-12">
-                  <div class="form-group">
-                    <input type="text" class="form-control" value="<?php echo $this->session->level; ?>" disabled>Level
-                  </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <input type="text" class="form-control" value="<?php echo $this->session->level; ?>" disabled>Level
                 </div>
               </div>
-              <div class="row">
-                <div class="col-md-12">
-                  <div class="form-group">
-                    <input type="text" class="form-control" value="<?php echo $this->session->username; ?>" disabled>Nama
-                  </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <input type="text" class="form-control" value="<?php echo $this->session->username; ?>" disabled>Nama
                 </div>
               </div>
-              <center>
-                <a href="<?php echo base_url('Pengguna/edit/') . $this->session->id_admin; ?>" rel="tooltip" title="Ubah" class="btn btn-warning btn-round">
-                  <i class="material-icons">edit</i>
-                </a>
-              </center>
-            <?php } else { ?>
-              <div class="table-responsive">
-                <table class="table">
-                  <thead class="text-warning">
-                    <th>
-                      ID
-                    </th>
-                    <th>
-                      Nama
-                    </th>
-                    <th>
-                      Level
-                    </th>
-                    <th>
-                      Rayon
-                    </th>
-                    <th>
-                      aksi
-                    </th>
-                  </thead>
-                  <tbody>
-                    <?php foreach ($pengguna as $value): ?>
-                      <tr>
-                        <td>
-                          <?php echo $value->id_admin; ?>
-                        </td>
-                        <td>
-                          <?php echo $value->username; ?>
-                        </td>
-                        <td>
-                          <?php echo $value->nama_level; ?>
-                        </td>
-                        <td>
-                          <?php echo $value->nama_rayon; ?>
-                        </td>
-                        <td>
-                          <a href="#" onclick="openModal(<?php echo $value->id_admin; ?>)" rel="tooltip" title="Lihat" class="btn btn-sm btn-success">
-                            <i class="material-icons">zoom_out_map</i>
-                          </a>
-                          <a href="<?php echo base_url('Pengguna/edit/') . $value->id_admin ?>" rel="tooltip" title="Ubah" class="btn btn-sm btn-warning">
-                            <i class="material-icons">edit</i>
-                          </a>
-                          <a href="#" id="deleteModal" onclick="deleteModal(<?php echo $value->id_admin; ?>)" data-id="<?php echo $value->id_admin; ?>" data-toggle="modal" data-target="#confirmModal" rel="tooltip" title="Hapus" class="btn btn-sm btn-danger">
-                            <i class="material-icons">close</i>
-                          </a>
-                        </td>
-                      </tr>
-                    <?php endforeach; ?>
-                  </tbody>
-                </table>
-              </div>
-            <?php }; ?>
+            </div>
+            <center>
+              <a href="<?php echo base_url('pengguna/edit/') . $this->session->id_admin; ?>" rel="tooltip" title="Ubah" class="btn btn-warning btn-round">
+                <i class="material-icons">edit</i>
+              </a>
+            </center>
           </div>
         </div>
       </div>
@@ -184,42 +130,42 @@
   </div>
 
   <script type="text/javascript">
-    function openModal(id) {
-      $.ajax({
-        url:"<?php echo base_url('pengguna/get/'); ?>"+id,
-        method: 'post',
-        data:null
-      }).done(function(data) {
-        $('#modal-content').html(data);
-        $('#exampleModalCenter').modal('show');
-      });
-    }
+  function openModal(id) {
+    $.ajax({
+      url:"<?php echo base_url('pengguna/get/'); ?>"+id,
+      method: 'post',
+      data:null
+    }).done(function(data) {
+      $('#modal-content').html(data);
+      $('#exampleModalCenter').modal('show');
+    });
+  }
 
-    function deleteModal(id) {
-      $('#id_admin').val(id);
-    }
+  function deleteModal(id) {
+    $('#id_admin').val(id);
+  }
 
-    function deletePengguna(){
-       var id = $('#id_admin').val();
-       $.ajax({
-        url:"<?php echo base_url('pengguna/delete/'); ?>"+id,
-        method: 'post',
-        data:null
-      }).done(function(data) {
-        location.reload();
-      });
-    }
+  function deletePengguna(){
+    var id = $('#id_admin').val();
+    $.ajax({
+      url:"<?php echo base_url('pengguna/delete/'); ?>"+id,
+      method: 'post',
+      data:null
+    }).done(function(data) {
+      location.reload();
+    });
+  }
 
-    $(document).ready(function(){
+  $(document).ready(function(){
 
 
 
-      // $('#deleteButton').click(function(){
-      //   var ID = $(this).data('id');
-      //   $.ajax({
-      //     url: "<?php //echo base_url(); ?>barang/delete" + ID
-      //   });
-      // });
+    // $('#deleteButton').click(function(){
+    //   var ID = $(this).data('id');
+    //   $.ajax({
+    //     url: "<?php //echo base_url(); ?>barang/delete" + ID
+    //   });
+    // });
 
-    })
+  })
   </script>

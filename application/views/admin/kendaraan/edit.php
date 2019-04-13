@@ -104,10 +104,17 @@
               </div>
               <div class="row">
                 <label class="col-sm-2 col-form-label">Tanggal Berlaku</label>
-                <div class="col-sm-10">
+                <div class="col-sm-3">
                   <div class="form-group">
                     <input type="text" class="form-control datepicker" name="tanggal_berlaku" value="<?php echo date('m/d/Y', strtotime($kendaraan->tanggal_berlaku)) ?>" required="true" />
                     <span class="bmd-help">Ubah tanggal berlaku.</span>
+                  </div>
+                </div>
+                <label class="col-xs-2 col-form-label">Estimasi Harga</label>
+                <div class="col-sm-5">
+                  <div class="form-group">
+                    <input class="form-control number" type="text" name="harga" value="<?php echo $kendaraan->harga ?>" required="true"/>
+                    <span class="bmd-help">Ubah harga kendaraan.</span>
                   </div>
                 </div>
               </div>

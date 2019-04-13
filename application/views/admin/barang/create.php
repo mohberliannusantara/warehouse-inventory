@@ -78,7 +78,7 @@
                 <label class="col-sm-2 col-form-label">Keterangan</label>
                 <div class="col-sm-5">
                   <div class="form-group">
-                    <textarea class="form-control" name="keterangan" rows="5" required><?php echo set_value('keterangan') ?></textarea>
+                    <textarea class="form-control" name="keterangan" rows="5"><?php echo set_value('keterangan') ?></textarea>
                     <span class="bmd-help">Tambahkan keterangan extracomptable.</span>
                   </div>
                 </div>
