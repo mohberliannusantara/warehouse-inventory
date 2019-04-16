@@ -5,7 +5,7 @@
       <?php if( $barang->gambar ) : ?>
         <img src="<?php echo base_url() .'assets/uploads/barang/'. $barang->gambar  ?>" alt="" style="width:100%;">
         <?php ; else : ?>
-          <img src="https://via.placeholder.com/350x250" alt="" style="width:100%;">
+          <img src="<?php echo base_url() .'assets/img/image_placeholder.jpg' ?>" alt="" style="width:100%;">
         <?php endif; ?>
       </center>
     </div>

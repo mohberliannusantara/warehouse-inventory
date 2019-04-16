@@ -27,7 +27,7 @@
                     <select class="custom-select" name="jenis" required>
                       <option selected value="">Pilih Jenis Extracomptable</option>
                       <?php foreach ($jenis as $row): ?>
-                          <option value="<?php echo $row->id_jenis_barang ?>" <?php echo ($barang->id_jenis_barang == $row->id_jenis_barang) ? 'selected':'' ?>>
+                        <option value="<?php echo $row->id_jenis_barang ?>" <?php echo ($barang->id_jenis_barang == $row->id_jenis_barang) ? 'selected':'' ?>>
                           <?php echo $row->nama_jenis_barang; ?>
                         </option>
                       <?php endforeach; ?>
@@ -64,7 +64,7 @@
                 <label class="col-sm-2 col-form-label">Keterangan</label>
                 <div class="col-sm-5">
                   <div class="form-group">
-                    <textarea class="form-control" name="keterangan" rows="5"><?php echo $barang->keterangan ?></textarea>
+                    <textarea class="form-control" name="keterangan" rows="5" required><?php echo $barang->keterangan ?></textarea>
                     <span class="bmd-help">Ubah keterangan extracomptable.</span>
                   </div>
                 </div>
@@ -77,26 +77,26 @@
                         <?php ; else : ?>
                           <img src="<?php echo base_url() ?>assets/img/image_placeholder.jpg" alt="...">
                         <?php endif; ?>
-                    </div>
-                    <div class="fileinput-preview fileinput-exists thumbnail"></div>
-                    <div>
-                      <span class="btn btn-warning btn-round btn-file">
-                        <span class="fileinput-new">Select image</span>
-                        <span class="fileinput-exists">Change</span>
-                        <input type="file" name="gambar" />
-                      </span>
-                      <a href="#pablo" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i> Remove</a>
+                      </div>
+                      <div class="fileinput-preview fileinput-exists thumbnail"></div>
+                      <div>
+                        <span class="btn btn-warning btn-round btn-file">
+                          <span class="fileinput-new">Select image</span>
+                          <span class="fileinput-exists">Change</span>
+                          <input type="file" name="gambar" />
+                        </span>
+                        <a href="#pablo" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i> Remove</a>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
+              <div class="card-footer ml-auto mr-auto">
+                <button type="submit" class="btn btn-primary">Ubah Data</button>
+              </div>
             </div>
-            <div class="card-footer ml-auto mr-auto">
-              <button type="submit" class="btn btn-primary">Ubah Data</button>
-            </div>
-          </div>
-        </form>
+          </form>
+        </div>
       </div>
     </div>
   </div>
-</div>

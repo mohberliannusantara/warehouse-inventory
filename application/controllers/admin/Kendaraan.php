@@ -207,17 +207,7 @@ class Kendaraan extends CI_Controller {
 			}
 		}
 	}
-
-	public function move()
-	{
-		$data['page_title'] = 'Pindah Kendaraan';
-		$data['page_content'] = 'Pindahkan kendaraan dan memberi detail keterangan kendaraan';
-
-		$this->load->view("templates/header");
-		$this->load->view('admin/kendaraan/edit', $data);
-		$this->load->view("templates/footer");
-	}
-
+	
 	public function delete($id)
 	{
 		$this->kendaraan_model->delete($id);

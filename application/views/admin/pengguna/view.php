@@ -6,11 +6,11 @@
     <?php if( $pengguna->gambar ) : ?>
       <img src="<?php echo base_url() .'assets/uploads/pengguna/'. $pengguna->gambar  ?>" alt="" style="width:100%;">
       <?php ; else : ?>
-        <img src="https://via.placeholder.com/350x250" alt="" style="width:100%;">
+        <img src="<?php echo base_url() .'assets/img/image_placeholder.jpg' ?>" alt="" style="width:100%;">
       <?php endif; ?>
   </div>
   <div class="col-md-3">
-    
+
   </div>
 </div>
 <div class="row">

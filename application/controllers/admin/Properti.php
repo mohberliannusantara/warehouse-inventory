@@ -171,9 +171,8 @@ class Properti extends CI_Controller
   public function edit($id = null)
   {
     $data['page'] = 'Properti';
-
-    $data['rayon'] = $this->rayon_model->get();
     $data['properti'] = $this->properti_model->get_by_id($id);
+    $data['rayon'] = $this->rayon_model->get();
 
     $this->form_validation->set_rules('nama_properti', 'Nama Properti', 'trim|required');
     $this->form_validation->set_rules('alamat', 'Alamat', 'trim|required');
@@ -274,6 +273,7 @@ class Properti extends CI_Controller
 
       }
 
+      // // Check uploads success
       $post_data = array(
         'nama_properti' => $this->input->post('nama_properti'),
         'alamat' => $this->input->post('alamat'),
@@ -295,21 +295,11 @@ class Properti extends CI_Controller
         'foto_sertifikat' => $sertifikat_data
       );
 
-      if (empty($data['upload_error'])) {
+      if( empty($data['upload_error']) ) {
         $this->properti_model->update($post_data, $id);
-        redirect('admin/properti', 'refresh');
+        redirect('admin/properti','refresh');
       }
     }
-  }
-
-  public function move()
-  {
-    $data['page_title'] = 'Pindah Properti';
-    $data['page_content'] = 'Pindahkan properti dan memberi detail keterangan properti';
-
-    $this->load->view("templates/header");
-    $this->load->view('properti/edit', $data);
-    $this->load->view("templates/footer");
   }
 
   public function delete($id)

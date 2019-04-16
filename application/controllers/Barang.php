@@ -10,7 +10,6 @@ class Barang extends CI_Controller
 		$this->load->model('barang_model');
 		$this->load->model('jenis_barang_model');
 		$this->load->model('kondisi_model');
-		$this->load->model('rayon_model');
 
 		$this->load->library('form_validation');
 		// $this->load->library('dompdf_gen');
@@ -121,7 +120,6 @@ class Barang extends CI_Controller
 
 		// validasi input
 		$this->form_validation->set_rules('nama_barang', 'Nama', 'trim|required');
-		$this->form_validation->set_rules('rayon', 'Rayon', 'trim|required');
 		$this->form_validation->set_rules('jenis', 'Jenis', 'trim|required');
 		$this->form_validation->set_rules('kondisi', 'Kondisi', 'trim|required');
 		$this->form_validation->set_rules('harga', 'Harga', 'trim|required');
@@ -174,7 +172,7 @@ class Barang extends CI_Controller
 				'id_kondisi' => $this->input->post('kondisi'),
 				'keterangan' => $this->input->post('keterangan'),
 				'gambar' => $post_image,
-				'id_rayon' => $this->input->post('rayon')
+				'id_rayon' => $this->session->userdata('id_rayon')
 			);
 
 			if( empty($data['upload_error']) ) {

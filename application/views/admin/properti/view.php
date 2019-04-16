@@ -6,7 +6,7 @@
     <?php if( $properti->foto_properti ) : ?>
       <img src="<?php echo base_url() .'assets/uploads/properti/'. $properti->foto_properti  ?>" alt="" style="width:100%;">
       <?php ; else : ?>
-        <img src="https://via.placeholder.com/350x250" alt="" style="width:100%;">
+        <img src="<?php echo base_url() .'assets/img/image_placeholder.jpg' ?>" alt="" style="width:100%;">
       <?php endif; ?>
     </div>
     <div class="col-md-3">
@@ -62,7 +62,11 @@
           <td>
             <?php echo $properti->no_sertifikat ?>
             <br>
-            <a href="<?php echo base_url('assets/uploads/properti/sertifikat/').$properti->foto_sertifikat ?>" class="btn btn-sm btn-primary" target="_blank">Lihat</a>
+            <?php if( $properti->foto_sertifikat ) : ?>
+              <a href="<?php echo base_url('assets/uploads/properti/sertifikat/').$properti->foto_sertifikat ?>" class="btn btn-sm btn-primary" target="_blank">Lihat</a>
+              <?php ; else : ?>
+                <a href="<?php echo base_url('admin/properti/edit/').$properti->id_properti ?>" class="btn btn-sm btn-primary" target="_blank">Upload</a>
+              <?php endif; ?>
           </div>
         </td>
       </tr>

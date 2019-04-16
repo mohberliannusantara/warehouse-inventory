@@ -14,7 +14,7 @@
                 <label class="col-sm-2 col-form-label">Nama</label>
                 <div class="col-sm-6">
                   <div class="form-group">
-                    <input class="form-control" type="text" name="nama_barang" value="<?php echo set_value('nama_barang') ?>" required="true"/>
+                    <input class="form-control" type="text" name="nama_barang" value="<?php echo set_value('nama_barang') ?>" required="true" autofocus/>
                     <span class="bmd-help">Tambahkan nama extracomptable.</span>
                   </div>
                 </div>

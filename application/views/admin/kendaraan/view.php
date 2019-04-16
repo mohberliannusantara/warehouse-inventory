@@ -6,7 +6,7 @@
     <?php if( $kendaraan->gambar ) : ?>
       <img src="<?php echo base_url() .'assets/uploads/kendaraan/'. $kendaraan->gambar  ?>" alt="" style="width:100%;">
       <?php ; else : ?>
-        <img src="https://via.placeholder.com/350x250" alt="" style="width:100%;">
+        <img src="<?php echo base_url() .'assets/img/image_placeholder.jpg' ?>" alt="" style="width:100%;">
       <?php endif; ?>
   </div>
   <div class="col-md-3">
