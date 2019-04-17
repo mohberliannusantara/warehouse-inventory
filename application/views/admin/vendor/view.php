@@ -15,7 +15,7 @@
           <td><?php echo $vendor->nama_pemilik_kendaraan ?></td>
         </tr>
         <tr>
-          <th>Jenis</th>
+          <th>Telepon</th>
           <td><?php echo $vendor->telepon ?></td>
         </tr>
         <tr>

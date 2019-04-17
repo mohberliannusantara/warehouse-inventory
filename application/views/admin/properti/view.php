@@ -63,10 +63,10 @@
             <?php echo $properti->no_sertifikat ?>
             <br>
             <?php if( $properti->foto_sertifikat ) : ?>
-              <a href="<?php echo base_url('assets/uploads/properti/sertifikat/').$properti->foto_sertifikat ?>" class="btn btn-sm btn-primary" target="_blank">Lihat</a>
-              <?php ; else : ?>
-                <a href="<?php echo base_url('admin/properti/edit/').$properti->id_properti ?>" class="btn btn-sm btn-primary" target="_blank">Upload</a>
-              <?php endif; ?>
+              <a href="<?php echo base_url('assets/uploads/properti/pajak/') .$properti->foto_pajak ?>" target="_blank" class="btn btn-sm btn-rose">Lihat</a>
+            <?php else: ?>
+              <a href="<?php echo base_url('admin/properti/edit/').$properti->id_properti ?>" class="btn btn-sm btn-primary" target="_blank">Upload</a>
+            <?php endif; ?>
           </div>
         </td>
       </tr>
@@ -79,7 +79,11 @@
         <td>
           <?php echo $properti->no_pajak ?>
           <br>
-          <a href="<?php echo base_url('assets/uploads/properti/pajak/') .$properti->foto_pajak ?>" target="_blank" class="btn btn-sm btn-rose">Lihat</a>
+          <?php if ($properti->foto_pajak): ?>
+            <a href="<?php echo base_url('assets/uploads/properti/pajak/') .$properti->foto_pajak ?>" target="_blank" class="btn btn-sm btn-rose">Lihat</a>
+          <?php else: ?>
+            <a href="<?php echo base_url('admin/properti/edit/').$properti->id_properti ?>" class="btn btn-sm btn-primary" target="_blank">Upload</a>
+          <?php endif; ?>
         </td>
       </tr>
       <tr>

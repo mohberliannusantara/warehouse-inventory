@@ -11,6 +11,7 @@ class Beranda extends CI_Controller
 		$this->load->model('Barang_model');
 		$this->load->model('Kendaraan_model');
 		$this->load->model('Properti_model');
+		$this->load->model('rayon_model');
 
 		if (!$this->session->logged_in == TRUE) {
 			redirect('welcome','refresh');
@@ -23,7 +24,7 @@ class Beranda extends CI_Controller
 	public function index()
 	{
 		$data['page'] = 'Beranda';
-
+		$data['rayon'] = $this->rayon_model->get();
 		//jumlah barang
 		$data['total_barang']= $this->Barang_model->get_total($this->session->userdata('id_rayon'), $this->session->userdata('id_level'));
 		$data['total_kendaraan']= $this->Kendaraan_model->get_total($this->session->userdata('id_rayon'), $this->session->userdata('id_level'));
@@ -40,7 +41,7 @@ class Beranda extends CI_Controller
 		$data['properti'] = $this->Properti_model->get_limit();
 
 		$this->load->view('admin/templates/header', $data);
-		$this->load->view('admin/beranda/index', $data);
+		$this->load->view('admin/beranda/index2', $data);
 		$this->load->view('admin/templates/footer');
 	}
 }

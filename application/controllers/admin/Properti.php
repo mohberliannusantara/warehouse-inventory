@@ -171,6 +171,7 @@ class Properti extends CI_Controller
   public function edit($id = null)
   {
     $data['page'] = 'Properti';
+
     $data['properti'] = $this->properti_model->get_by_id($id);
     $data['rayon'] = $this->rayon_model->get();
 

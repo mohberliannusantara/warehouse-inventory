@@ -2,7 +2,7 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col-md-12">
-        <form id="TypeValidation" class="form-horizontal" action="<?php echo base_url('admin/properti/edit/').$properti->id_properti ?>" method="post" enctype="multipart/form-data" >
+        <form id="TypeValidation" class="form-horizontal" action="<?php echo base_url('admin/properti/edit/') .$properti->id_properti ?>" method="post" enctype="multipart/form-data" >
           <div class="card ">
             <div class="card-header card-header-primary card-header-text">
               <div class="card-text">
