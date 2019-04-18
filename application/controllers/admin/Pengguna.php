@@ -109,7 +109,8 @@ class Pengguna extends CI_Controller
 		$data['pengguna'] = $this->pengguna_model->get_by_id($id);
 		$data['rayon'] = $this->rayon_model->get();
 
-		// validasi input
+		$old_image = $data['pengguna']->gambar;
+		
 		$this->form_validation->set_rules('username', 'Username', 'trim|required');
 		$this->form_validation->set_rules('password', 'Password', 'trim|required');
 		$this->form_validation->set_rules('level', 'Level', 'trim|required');
@@ -145,6 +146,13 @@ class Pengguna extends CI_Controller
 					$this->load->view('admin/templates/footer');
 
 				} else { //jika berhasil upload
+					if (!empty($old_image)) {
+						if (file_exists('./assets/uploads/pengguna/'.$old_image)) {
+							unlink('./assets/uploads/pengguna/'.$old_image);
+						} else {
+							echo "file not found";
+						}
+					}
 
 					$img_data = $this->upload->data();
 					$post_image = $img_data['file_name'];
@@ -152,7 +160,7 @@ class Pengguna extends CI_Controller
 				}
 			} else { //jika tidak upload gambar
 
-				$post_image = '';
+				$post_image = ( !empty($old_image) ) ? $old_image : '';
 
 			}
 

@@ -9,48 +9,48 @@ class Barang_model extends CI_Model
     parent::__construct();
   }
 
-  public function get_total($id_rayon = NULL, $id_level = NULL)
-  {
-    if ($id_level != 1) {
-      $this->db->where('barang.id_rayon', $id_rayon);
-      $this->db->from('barang');
-      return $this->db->count_all_results();;
-    } else {
-      return $this->db->count_all("barang");
-    }
-  }
+  // public function get_total($id_rayon = NULL, $id_level = NULL)
+  // {
+  //   if ($id_level != 1) {
+  //     $this->db->where('barang.id_rayon', $id_rayon);
+  //     $this->db->from('barang');
+  //     return $this->db->count_all_results();;
+  //   } else {
+  //     return $this->db->count_all("barang");
+  //   }
+  // }
+  //
+  // public function get_total_harga($id_rayon = NULL, $id_level = NULL)
+  // {
+  //   if ($id_level != 1) {
+  //     $query = $this->db->get_where('barang', array('id_rayon' => $id_rayon));
+  //     return $query->row();
+  //   } else {
+  //     $query = $this->db->get('barang')->row();
+  //     return $query->result();
+  //   }
+  // }
 
-  public function get_total_harga($id_rayon = NULL, $id_level = NULL)
-  {
-    if ($id_level != 1) {
-      $query = $this->db->get_where('barang', array('id_rayon' => $id_rayon));
-      return $query->row();
-    } else {
-      $query = $this->db->get('barang')->row();
-      return $query->result();
-    }
-  }
-
-  public function get_limit($id_rayon = NULL, $id_level = NULL)
-  {
-    if ($id_level != 1) {
-      $this->db->where('barang.id_rayon', $id_rayon);
-      $this->db->join('jenis_barang', 'barang.id_jenis_barang = jenis_barang.id_jenis_barang');
-      $this->db->join('kondisi', 'barang.id_kondisi = kondisi.id_kondisi');
-      $this->db->from('barang');
-
-      $query = $this->db->get();
-      return $query->result();
-    } else {
-
-      $this->db->join('jenis_barang', 'barang.id_jenis_barang = jenis_barang.id_jenis_barang');
-      $this->db->join('kondisi', 'barang.id_kondisi = kondisi.id_kondisi');
-      $this->db->from('barang');
-
-      $query = $this->db->get();
-      return $query->result();
-    }
-  }
+  // public function get_limit($id_rayon = NULL, $id_level = NULL)
+  // {
+  //   if ($id_level != 1) {
+  //     $this->db->where('barang.id_rayon', $id_rayon);
+  //     $this->db->join('jenis_barang', 'barang.id_jenis_barang = jenis_barang.id_jenis_barang');
+  //     $this->db->join('kondisi', 'barang.id_kondisi = kondisi.id_kondisi');
+  //     $this->db->from('barang');
+  //
+  //     $query = $this->db->get();
+  //     return $query->result();
+  //   } else {
+  //
+  //     $this->db->join('jenis_barang', 'barang.id_jenis_barang = jenis_barang.id_jenis_barang');
+  //     $this->db->join('kondisi', 'barang.id_kondisi = kondisi.id_kondisi');
+  //     $this->db->from('barang');
+  //
+  //     $query = $this->db->get();
+  //     return $query->result();
+  //   }
+  // }
 
   public function get()
   {
@@ -76,28 +76,28 @@ class Barang_model extends CI_Model
     return $query->result();
   }
 
-  public function get_all($id_rayon = NULL, $id_level = NULL)
-  {
-    if ($id_level != 1) {
-
-      $this->db->where('barang.id_rayon', $id_rayon);
-      $this->db->join('jenis_barang', 'barang.id_jenis_barang = jenis_barang.id_jenis_barang');
-      $this->db->join('kondisi', 'barang.id_kondisi = kondisi.id_kondisi');
-      $this->db->from('barang');
-
-      $query = $this->db->get();
-      return $query->result();
-    } else {
-
-      // $this->db->where('barang.id_rayon', $id_rayon);
-      $this->db->join('jenis_barang', 'barang.id_jenis_barang = jenis_barang.id_jenis_barang');
-      $this->db->join('kondisi', 'barang.id_kondisi = kondisi.id_kondisi');
-      $this->db->from('barang');
-
-      $query = $this->db->get();
-      return $query->result();
-    }
-  }
+  // public function get_all($id_rayon = NULL, $id_level = NULL)
+  // {
+  //   if ($id_level != 1) {
+  //
+  //     $this->db->where('barang.id_rayon', $id_rayon);
+  //     $this->db->join('jenis_barang', 'barang.id_jenis_barang = jenis_barang.id_jenis_barang');
+  //     $this->db->join('kondisi', 'barang.id_kondisi = kondisi.id_kondisi');
+  //     $this->db->from('barang');
+  //
+  //     $query = $this->db->get();
+  //     return $query->result();
+  //   } else {
+  //
+  //     // $this->db->where('barang.id_rayon', $id_rayon);
+  //     $this->db->join('jenis_barang', 'barang.id_jenis_barang = jenis_barang.id_jenis_barang');
+  //     $this->db->join('kondisi', 'barang.id_kondisi = kondisi.id_kondisi');
+  //     $this->db->from('barang');
+  //
+  //     $query = $this->db->get();
+  //     return $query->result();
+  //   }
+  // }
 
   public function get_by_id($id)
   {

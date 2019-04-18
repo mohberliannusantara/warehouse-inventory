@@ -120,6 +120,7 @@ class Barang extends CI_Controller {
 		$data['kondisi'] = $this->kondisi_model->get();
 		$data['rayon'] = $this->rayon_model->get();
 
+		$old_image = $data['barang']->gambar;
 		// validasi input
 		$this->form_validation->set_rules('nama_barang', 'Nama', 'trim|required');
 		$this->form_validation->set_rules('rayon', 'Rayon', 'trim|required');
@@ -157,6 +158,13 @@ class Barang extends CI_Controller {
 					$this->load->view('admin/templates/footer');
 
 				} else { //jika berhasil upload
+					if (!empty($old_image)) {
+						if (file_exists('./assets/uploads/barang/'.$old_image)) {
+							unlink('./assets/uploads/barang/'.$old_image);
+						} else {
+							echo "file not found";
+						}
+					}
 
 					$img_data = $this->upload->data();
 					$post_image = $img_data['file_name'];
@@ -164,7 +172,7 @@ class Barang extends CI_Controller {
 				}
 			} else { //jika tidak upload gambar
 
-				$post_image = '';
+				$post_image = ( !empty($old_image) ) ? $old_image : '';
 
 			}
 

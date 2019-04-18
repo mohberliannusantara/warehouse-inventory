@@ -191,10 +191,6 @@ class Properti extends CI_Controller
     $this->form_validation->set_rules('lokasi', 'Lokasi', 'trim|required');
     $this->form_validation->set_rules('keterangan', 'Keterangan', 'trim');
 
-    $sertifikat_data = '';
-    $pajak_data = '';
-    $properti_data = '';
-
     if ($this->form_validation->run() === FALSE)
     {
       $this->load->view('admin/templates/header', $data);

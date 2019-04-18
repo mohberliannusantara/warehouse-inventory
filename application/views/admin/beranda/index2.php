@@ -24,7 +24,7 @@
                 <a href="#pablo">Extracomptable</a>
               </h4>
               <div class="card-description">
-                The place is close to Barceloneta Beach and bus stop just 2 min by walk and near to "Naviglio" where you can enjoy the main night life in Barcelona.
+                Pengelolaan data informasi tentang extracomptable
               </div>
             </div>
             <div class="card-footer">
@@ -62,7 +62,7 @@
                 <a href="#pablo">Kendaraan</a>
               </h4>
               <div class="card-description">
-                The place is close to Metro Station and bus stop just 2 min by walk and near to "Naviglio" where you can enjoy the night life in London, UK.
+                Pengelolaan data informasi tentang kendaraan
               </div>
             </div>
             <div class="card-footer">
@@ -100,7 +100,7 @@
                 <a href="#pablo">Properti</a>
               </h4>
               <div class="card-description">
-                The place is close to Metro Station and bus stop just 2 min by walk and near to "Naviglio" where you can enjoy the main night life in Milan.
+                Pengelolaan data informasi tentang properti perusahaan
               </div>
             </div>
             <div class="card-footer">
@@ -120,12 +120,12 @@
       <div class="row">
         <div class="col-lg-4 col-md-6 col-sm-6">
           <div class="card card-stats">
-            <div class="card-header card-header-warning card-header-icon">
+            <div class="card-header card-header-info card-header-icon">
               <div class="card-icon">
                 <i class="material-icons">inventory</i>
               </div>
               <p class="card-category">Extracomptable</p>
-              <h3 class="card-title">184</h3>
+              <h3 class="card-title"><?php echo $total_barang ?></h3>
             </div>
             <div class="card-footer">
               <div class="stats">
@@ -142,7 +142,7 @@
                 <i class="material-icons">local_shipping</i>
               </div>
               <p class="card-category">Kendaraan</p>
-              <h3 class="card-title">75.521</h3>
+              <h3 class="card-title"><?php echo $total_kendaraan ?></h3>
             </div>
             <div class="card-footer">
               <div class="stats">
@@ -159,7 +159,7 @@
                 <i class="material-icons">home</i>
               </div>
               <p class="card-category">Properti</p>
-              <h3 class="card-title">3445</h3>
+              <h3 class="card-title"><?php echo $total_properti ?></h3>
             </div>
             <div class="card-footer">
               <div class="stats">
@@ -169,27 +169,11 @@
             </div>
           </div>
         </div>
-        <!-- <div class="col-lg-4 col-md-6 col-sm-6">
-          <div class="card card-stats">
-            <div class="card-header card-header-info card-header-icon">
-              <div class="card-icon">
-                <i class="material-icons">content_paste</i>
-              </div>
-              <p class="card-category">Vendor</p>
-              <h3 class="card-title">245</h3>
-            </div>
-            <div class="card-footer">
-              <div class="stats">
-                <i class="material-icons">update</i> Just Updated
-              </div>
-            </div>
-          </div>
-        </div> -->
       </div>
       <div class="row">
         <div class="col-md-8">
           <div class="card ">
-            <div class="card-header card-header-primary card-header-icon">
+            <div class="card-header card-header-warning card-header-icon">
               <div class="card-icon">
                 <i class="material-icons"></i>
               </div>
@@ -218,24 +202,49 @@
                         </th>
                       </thead>
                       <tbody>
-                        <?php foreach ($rayon as $key => $value): ?>
+                        <?php
+                        $total_barang_rayon = 0;
+                        $total_kendaraan_rayon = 0;
+                        $total_properti_rayon = 0;
+                        ?>
+                        <?php foreach ($rayon as $key => $rayon): ?>
                           <tr>
                             <td>
                               <div class="flag">
                                 <img src="../assets/img/favicon.png">
                               </div>
                             </td>
-                            <td><?php echo $value->nama_rayon ?></td>
+                            <td><?php echo $rayon->nama_rayon ?></td>
+                            <?php foreach ($barang as $key => $value): ?>
+                              <?php if ($value->id_rayon == $rayon->id_rayon): ?>
+                                <?php $total_barang_rayon++;?>
+                              <?php endif;?>
+                            <?php endforeach; ?>
                             <td class="text-center">
-                              920
+                              <?php echo $total_barang_rayon ?>
                             </td>
+                            <?php foreach ($kendaraan as $key => $value): ?>
+                              <?php if ($value->id_rayon == $rayon->id_rayon): ?>
+                                <?php $total_kendaraan_rayon++;?>
+                              <?php endif;?>
+                            <?php endforeach; ?>
                             <td class="text-center">
-                              5323
+                              <?php echo $total_kendaraan_rayon ?>
                             </td>
+                            <?php foreach ($properti as $key => $value): ?>
+                              <?php if ($value->id_rayon == $rayon->id_rayon): ?>
+                                <?php $total_properti_rayon++;?>
+                              <?php endif;?>
+                            <?php endforeach; ?>
                             <td class="text-center">
-                              3463
+                              <?php echo $total_properti_rayon ?>
                             </td>
                           </tr>
+                          <?php
+                          $total_barang_rayon = 0;
+                          $total_kendaraan_rayon = 0;
+                          $total_properti_rayon = 0;
+                          ?>
                         <?php endforeach; ?>
                       </tbody>
                     </table>
@@ -259,14 +268,14 @@
               <div class="card-body">
                 <h6 class="card-category text-gray"><?php echo $this->session->level; ?> / <?php echo $this->session->rayon; ?></h6>
                 <h4 class="card-title"><?php echo $this->session->username; ?></h4>
-              <p class="card-description">
-                Life would not be better because a chance, life will always be better because of the courage to take action at every chance.
-              </p>
-              <a href="<?php echo base_url('admin/pengguna')?>" class="btn btn-warning btn-round">Lihat</a>
+                <p class="card-description">
+                  Life would not be better because a chance, life will always be better because of the courage to take action at every chance.
+                </p>
+                <a href="<?php echo base_url('admin/pengguna')?>" class="btn btn-warning btn-round">Lihat</a>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>

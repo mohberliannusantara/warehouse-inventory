@@ -131,6 +131,8 @@ class Kendaraan extends CI_Controller {
 		$data['jenis_kendaraan'] = $this->jenis_kendaraan_model->get();
 		$data['pemilik_kendaraan'] = $this->pemilik_kendaraan_model->get();
 
+		$old_image = $data['kendaraan']->gambar;
+
 		$this->form_validation->set_rules('nama_kendaraan', 'Nama Kendaraan', 'trim|required');
 		$this->form_validation->set_rules('nomor_polisi', 'Nomor Polisi', 'trim|required');
 		$this->form_validation->set_rules('pengguna', 'Pengguna', 'trim|required');
@@ -174,14 +176,21 @@ class Kendaraan extends CI_Controller {
 					$this->load->view('admin/templates/footer');
 
 				} else { //jika berhasil upload
-
+					if (!empty($old_image)) {
+						if (file_exists('./assets/uploads/kendaraan/'.$old_image)) {
+							unlink('./assets/uploads/kendaraan/'.$old_image);
+						} else {
+							echo "file not found";
+						}
+					}
+					
 					$img_data = $this->upload->data();
 					$post_image = $img_data['file_name'];
 
 				}
 			} else { //jika tidak upload gambar
 
-				$post_image = '';
+				$post_image = ( !empty($old_image) ) ? $old_image : '';
 
 			}
 
@@ -207,7 +216,7 @@ class Kendaraan extends CI_Controller {
 			}
 		}
 	}
-	
+
 	public function delete($id)
 	{
 		$this->kendaraan_model->delete($id);
