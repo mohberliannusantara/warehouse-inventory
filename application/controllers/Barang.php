@@ -24,7 +24,7 @@ class Barang extends CI_Controller
 	public function index()
 	{
 		$data['page'] = 'Extracomptable';
-		$data['barang'] = $this->barang_model->get_by_rayon($this->session->id_rayon);
+		$data['barang'] = $this->barang_model->get();
 
 		$this->load->view('templates/header', $data);
 		$this->load->view('barang/index', $data);

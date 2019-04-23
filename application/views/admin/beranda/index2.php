@@ -15,7 +15,7 @@
                   <i class="material-icons">build</i> Fix Header!
                 </button>
                 <button type="button" class="btn btn-default btn-link" rel="tooltip" data-placement="bottom" title="Kelola">
-                  <a href="<?php echo base_url('admin/barang') ?>">
+                  <a href="<?php echo base_url('barang') ?>">
                     <i class="material-icons">art_track</i>
                   </a>
                 </button>
@@ -33,7 +33,7 @@
               </div>
               <div class="stats">
                 <p class="card-category">
-                  <a href="<?php echo base_url('admin/barang') ?>">Lihat Detail</a>
+                  <a href="<?php echo base_url('barang') ?>">Lihat Detail</a>
                   <i class="material-icons">keyboard_arrow_right</i>
                 </p>
               </div>
@@ -53,7 +53,7 @@
                   <i class="material-icons">build</i> Fix Header!
                 </button>
                 <button type="button" class="btn btn-default btn-link" rel="tooltip" data-placement="bottom" title="Kelola">
-                  <a href="<?php echo base_url('admin/kendaraan') ?>">
+                  <a href="<?php echo base_url('kendaraan') ?>">
                     <i class="material-icons">art_track</i>
                   </a>
                 </button>
@@ -71,7 +71,7 @@
               </div>
               <div class="stats">
                 <p class="card-category">
-                  <a href="<?php echo base_url('admin/kendaraan') ?>">Lihat Detail</a>
+                  <a href="<?php echo base_url('kendaraan') ?>">Lihat Detail</a>
                   <i class="material-icons">keyboard_arrow_right</i>
                 </p>
               </div>
@@ -91,7 +91,7 @@
                   <i class="material-icons">build</i> Fix Header!
                 </button>
                 <button type="button" class="btn btn-default btn-link" rel="tooltip" data-placement="bottom" title="Kelola">
-                  <a href="<?php echo base_url('admin/properti') ?>">
+                  <a href="<?php echo base_url('properti') ?>">
                     <i class="material-icons">art_track</i>
                   </a>
                 </button>
@@ -109,7 +109,7 @@
               </div>
               <div class="stats">
                 <p class="card-category">
-                  <a href="<?php echo base_url('admin/properti') ?>">Lihat Detail</a>
+                  <a href="<?php echo base_url('properti') ?>">Lihat Detail</a>
                   <i class="material-icons">keyboard_arrow_right</i>
                 </p>
               </div>
@@ -130,7 +130,7 @@
             <div class="card-footer">
               <div class="stats">
                 <i class="material-icons">zoom_out_map</i>
-                <a href="<?php echo base_url('admin/barang') ?>" class="text-secondary">Lihat Detail..</a>
+                <a href="<?php echo base_url('barang') ?>" class="text-secondary">Lihat Detail..</a>
               </div>
             </div>
           </div>
@@ -147,7 +147,7 @@
             <div class="card-footer">
               <div class="stats">
                 <i class="material-icons">zoom_out_map</i>
-                <a href="<?php echo base_url('admin/kendaraan') ?>" class="text-secondary">Lihat Detail..</a>
+                <a href="<?php echo base_url('kendaraan') ?>" class="text-secondary">Lihat Detail..</a>
               </div>
             </div>
           </div>
@@ -164,7 +164,7 @@
             <div class="card-footer">
               <div class="stats">
                 <i class="material-icons">zoom_out_map</i>
-                <a href="<?php echo base_url('admin/properti') ?>" class="text-secondary">Lihat Detail..</a>
+                <a href="<?php echo base_url('properti') ?>" class="text-secondary">Lihat Detail..</a>
               </div>
             </div>
           </div>
@@ -259,7 +259,7 @@
             <div class="card-avatar">
               <a href="#<?php echo $this->session->username; ?>">
                 <?php if ($this->session->gambar): ?>
-                  <img class="img" src="<?php echo base_url('assets/uploads/admin/' . $this->session->gambar) ?>" />
+                  <img class="img" src="<?php echo base_url('assets/uploads/' . $this->session->gambar) ?>" />
                   <?php ; else : ?>
                     <img class="img" src="<?php echo base_url(); ?>assets/img/faces/marc.jpg" />
                   <?php endif; ?>
@@ -271,7 +271,7 @@
                 <p class="card-description">
                   Life would not be better because a chance, life will always be better because of the courage to take action at every chance.
                 </p>
-                <a href="<?php echo base_url('admin/pengguna')?>" class="btn btn-warning btn-round">Lihat</a>
+                <a href="<?php echo base_url('pengguna')?>" class="btn btn-warning btn-round">Lihat</a>
               </div>
             </div>
           </div>

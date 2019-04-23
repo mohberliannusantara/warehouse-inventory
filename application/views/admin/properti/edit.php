@@ -228,7 +228,7 @@
                     <label class="col-xs-2 col-form-label">Keterangan</label>
                     <div class="col-sm-5">
                       <div class="form-group">
-                        <textarea class="form-control" name="keterangan" rows="5" required><?php echo $properti->keterangan ?></textarea>
+                        <textarea class="form-control" name="keterangan" rows="5"><?php echo $properti->keterangan ?></textarea>
                         <span class="bmd-help">Ubah keterangan properti.</span>
                       </div>
                     </div>

@@ -3,54 +3,51 @@
     <div class="row">
       <div class="col-lg-4 col-md-6 col-sm-6">
         <div class="card card-stats">
-          <a href="<?php echo base_url('Barang/')?>">
-            <div class="card-header card-header-success card-header-icon" rel="tooltip" title="Barang">
-              <div class="card-icon">
-                <i class="material-icons" style="color: white;">inventory</i>
-              </div>
-            </a>
-            <p class="card-category">Barang</p>
-            <h3 class="card-title"><?php echo $total_barang; ?></h3>
+          <div class="card-header card-header-info card-header-icon">
+            <div class="card-icon">
+              <i class="material-icons">inventory</i>
+            </div>
+            <p class="card-category">Extracomptable</p>
+            <h3 class="card-title"><?php echo $total_barang ?></h3>
           </div>
           <div class="card-footer">
             <div class="stats">
-              <i class="material-icons">local_offer</i> Estimasi Asset Barang Rp. <h5><?php echo number_format($total_harga_barang); ?></h5>
+              <i class="material-icons">zoom_out_map</i>
+              <a href="<?php echo base_url('admin/barang') ?>" class="text-secondary">Lihat Detail..</a>
             </div>
           </div>
         </div>
       </div>
       <div class="col-lg-4 col-md-6 col-sm-6">
         <div class="card card-stats">
-          <a href="<?php echo base_url('Kendaraan/')?>">
-            <div class="card-header card-header-info card-header-icon" rel="tooltip" title="Kendaraan">
-              <div class="card-icon">
-                <i class="material-icons" style="color: white;">local_shipping</i>
-              </div>
-            </a>
+          <div class="card-header card-header-rose card-header-icon">
+            <div class="card-icon">
+              <i class="material-icons">local_shipping</i>
+            </div>
             <p class="card-category">Kendaraan</p>
-            <h3 class="card-title"><?php echo $total_kendaraan; ?></h3>
+            <h3 class="card-title"><?php echo $total_kendaraan ?></h3>
           </div>
           <div class="card-footer">
             <div class="stats">
-              <i class="material-icons">local_offer</i> Estimasi Asset Kendaraan Rp. <h5><?php //echo number_format($total_harga_kendaraan); ?></h5>
+              <i class="material-icons">zoom_out_map</i>
+              <a href="<?php echo base_url('admin/kendaraan') ?>" class="text-secondary">Lihat Detail..</a>
             </div>
           </div>
         </div>
       </div>
       <div class="col-lg-4 col-md-6 col-sm-6">
         <div class="card card-stats">
-          <a href="<?php echo base_url('Properti')?>">
-            <div class="card-header card-header-rose card-header-icon" rel="tooltip" title="Properti">
-              <div class="card-icon">
-                <i class="material-icons" style="color: white;">home</i>
-              </div>
-            </a>
+          <div class="card-header card-header-success card-header-icon">
+            <div class="card-icon">
+              <i class="material-icons">home</i>
+            </div>
             <p class="card-category">Properti</p>
-            <h3 class="card-title"><?php echo $total_properti; ?></h3>
+            <h3 class="card-title"><?php echo $total_properti ?></h3>
           </div>
           <div class="card-footer">
             <div class="stats">
-              <i class="material-icons">local_offer</i> Estimasi Asset Properti Rp. <h5><?php echo number_format($total_harga_properti); ?></h5>
+              <i class="material-icons">zoom_out_map</i>
+              <a href="<?php echo base_url('admin/properti') ?>" class="text-secondary">Lihat Detail..</a>
             </div>
           </div>
         </div>
@@ -247,13 +244,13 @@
             <div class="card-body">
               <h6 class="card-category text-gray"><?php echo $this->session->level; ?> / <?php echo $this->session->rayon; ?></h6>
               <h4 class="card-title"><?php echo $this->session->username; ?></h4>
-            <p class="card-description">
-              Don't be scared of the truth because we need to restart the human foundation in truth And I love you like Kanye loves Kanye I love Rick Owens’ bed design but the back is...
-            </p>
-            <a href="<?php echo base_url('Pengguna/')?>" class="btn btn-warning btn-round">Lihat</a>
+              <p class="card-description">
+                Don't be scared of the truth because we need to restart the human foundation in truth And I love you like Kanye loves Kanye I love Rick Owens’ bed design but the back is...
+              </p>
+              <a href="<?php echo base_url('Pengguna/')?>" class="btn btn-warning btn-round">Lihat</a>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>

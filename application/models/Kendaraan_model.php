@@ -9,29 +9,29 @@ class Kendaraan_model extends CI_Model
         parent::__construct();
     }
 
-    public function get_total($id_rayon = null, $id_level = null)
-    {
-        if ($id_level != 1) {
-            $this->db->where('kendaraan.id_rayon', $id_rayon);
-            $this->db->from('kendaraan');
-            return $this->db->count_all_results();
-        } else {
-            return $this->db->count_all("kendaraan");
-        }
-    }
+    // public function get_total($id_rayon = null, $id_level = null)
+    // {
+    //     if ($id_level != 1) {
+    //         $this->db->where('kendaraan.id_rayon', $id_rayon);
+    //         $this->db->from('kendaraan');
+    //         return $this->db->count_all_results();
+    //     } else {
+    //         return $this->db->count_all("kendaraan");
+    //     }
+    // }
+    //
+    // public function get_total_harga($id_rayon = null, $id_level = null)
+    // {
+    //     if ($id_level != 1) {
+    //         $query = $this->db->get_where('kendaraan', array('id_rayon' => $id_rayon));
+    //         return $query;
+    //     } else {
+    //         $query = $this->db->get('kendaraan')->row();
+    //         return $query;
+    //     }
+    // }
 
-    public function get_total_harga($id_rayon = null, $id_level = null)
-    {
-        if ($id_level != 1) {
-            $query = $this->db->get_where('kendaraan', array('id_rayon' => $id_rayon));
-            return $query;
-        } else {
-            $query = $this->db->get('kendaraan')->row();
-            return $query;
-        }
-    }
-
-    public function get_by_rayon($id_rayon)
+    public function get_by_rayon($id_rayon = null)
     {
         $this->db->join('rayon', 'kendaraan.id_rayon = rayon.id_rayon');
         $this->db->join('jenis_kendaraan', 'kendaraan.id_jenis_kendaraan = jenis_kendaraan.id_jenis_kendaraan');
@@ -39,8 +39,7 @@ class Kendaraan_model extends CI_Model
         $this->db->where('kendaraan.id_rayon', $id_rayon);
         $this->db->from('kendaraan');
 
-        $query = $this->db->get();
-        return $query->result();
+        return $this->db->count_all_results();
     }
 
     public function get_limit($id_rayon = null, $id_level = null)

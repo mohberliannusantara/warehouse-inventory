@@ -9,24 +9,24 @@ class Properti_model extends CI_Model
     parent::__construct();
   }
 
-  public function get_total()
-  {
-    return $this->db->count_all("properti");
-  }
-
-  public function get_total_harga()
-  {
-    $this->db->select_sum('harga');
-    $query = $this->db->get('properti')->row();;
-    return $query->harga;
-  }
-
-  public function get_limit()
-  {
-    $query = $this->db->get('properti');
-
-    return $query->result();
-  }
+  // public function get_total()
+  // {
+  //   return $this->db->count_all("properti");
+  // }
+  //
+  // public function get_total_harga()
+  // {
+  //   $this->db->select_sum('harga');
+  //   $query = $this->db->get('properti')->row();;
+  //   return $query->harga;
+  // }
+  //
+  // public function get_limit()
+  // {
+  //   $query = $this->db->get('properti');
+  //
+  //   return $query->result();
+  // }
 
   public function get()
   {
@@ -51,8 +51,7 @@ class Properti_model extends CI_Model
         $this->db->where('properti.id_rayon', $id_rayon);
         $this->db->from('properti');
 
-        $query = $this->db->get();
-        return $query->result();
+        return $this->db->count_all_results();
     }
 
   public function create($data)

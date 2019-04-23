@@ -175,6 +175,10 @@ class Properti extends CI_Controller
     $data['properti'] = $this->properti_model->get_by_id($id);
     $data['rayon'] = $this->rayon_model->get();
 
+    $old_image_properti = $data['properti']->foto_properti;
+    $old_image_sertifikat = $data['properti']->foto_sertifikat;
+    $old_image_pajak = $data['properti']->foto_pajak;
+
     $this->form_validation->set_rules('nama_properti', 'Nama Properti', 'trim|required');
     $this->form_validation->set_rules('alamat', 'Alamat', 'trim|required');
     $this->form_validation->set_rules('rayon', 'Rayon', 'trim|required');
@@ -190,6 +194,10 @@ class Properti extends CI_Controller
     $this->form_validation->set_rules('no_pajak', 'Nomor Pajak', 'trim|required');
     $this->form_validation->set_rules('lokasi', 'Lokasi', 'trim|required');
     $this->form_validation->set_rules('keterangan', 'Keterangan', 'trim');
+
+    $sertifikat_data = '';
+    $pajak_data = '';
+    $properti_data = '';
 
     if ($this->form_validation->run() === FALSE)
     {
@@ -249,6 +257,27 @@ class Properti extends CI_Controller
         }
         else
         { //jika berhasil upload
+          if (!empty($old_image_properti) || !empty($old_image_sertifikat) || !empty($old_image_pajak)) {
+            if ($old_image_properti) {
+              if (file_exists('./assets/uploads/properti/'.$old_image_properti)) {
+  							unlink('./assets/uploads/properti/'.$old_image_properti);
+  						} else {
+  							echo "file not found";
+  						}
+            } elseif ($old_image_sertifikat) {
+              if (file_exists('./assets/uploads/properti/sertifikat'.$old_image_sertifikat)) {
+  							unlink('./assets/uploads/properti/sertifikat'.$old_image_sertifikat);
+  						} else {
+  							echo "file not found";
+  						}
+            } elseif ($old_image_pajak) {
+              if (file_exists('./assets/uploads/properti/pajak'.$old_image_pajak)) {
+  							unlink('./assets/uploads/properti/pajak'.$old_image_pajak);
+  						} else {
+  							echo "file not found";
+  						}
+            }
+					}
 
           $img_data = $this->sertifikat->data();
           $sertifikat_data = $img_data['file_name'];
@@ -264,9 +293,9 @@ class Properti extends CI_Controller
       else
       { //jika tidak upload gambar
 
-        $sertifikat_data = '';
-        $pajak_data = '';
-        $properti_data = '';
+        $sertifikat_data = ( !empty($old_image_sertifikat) ) ? $old_image_sertifikat : '';
+        $pajak_data = ( !empty($old_image_pajak) ) ? $old_image_pajak : '';
+        $properti_data = ( !empty($old_image_properti) ) ? $old_image_properti : '';
 
       }
 

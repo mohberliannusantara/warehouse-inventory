@@ -63,7 +63,7 @@ class Barang_model extends CI_Model
       return $query->result();
   }
 
-  public function get_by_rayon($id_rayon)
+  public function get_by_rayon($id_rayon = null)
   {
     // $this->db->order_by('barang.nama_barang', 'asc');
     $this->db->join('rayon', 'barang.id_rayon = rayon.id_rayon');
@@ -72,8 +72,7 @@ class Barang_model extends CI_Model
     $this->db->where('barang.id_rayon', $id_rayon);
     $this->db->from('barang');
 
-    $query = $this->db->get();
-    return $query->result();
+    return $this->db->count_all_results();
   }
 
   // public function get_all($id_rayon = NULL, $id_level = NULL)
