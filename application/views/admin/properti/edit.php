@@ -43,7 +43,7 @@
                         <span class="btn btn-warning btn-round btn-file">
                           <span class="fileinput-new">Select image</span>
                           <span class="fileinput-exists">Change</span>
-                          <input type="file" name="foto_properti" />
+                          <input type="file" name="foto_properti" value=<?php echo $properti->foto_properti?>/>
                         </span>
                         <a href="#pablo" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i> Remove</a>
                       </div>

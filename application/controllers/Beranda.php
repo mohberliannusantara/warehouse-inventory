@@ -29,6 +29,9 @@ class Beranda extends CI_Controller
 		$data['total_kendaraan']= $this->kendaraan_model->get_by_rayon($this->session->userdata('id_rayon'));
 		$data['total_properti']= $this->properti_model->get_by_rayon($this->session->userdata('id_rayon'));
 
+		$data['barang'] = $this->barang_model->get($this->session->userdata('id_rayon'));
+		$data['kendaraan'] = $this->kendaraan_model->get($this->session->userdata('id_rayon'));
+		$data['properti'] = $this->properti_model->get($this->session->userdata('id_rayon'));
 		//total harga aset
 		// $data['total_harga_barang'] = $this->Barang_model->get_total_harga($this->session->userdata('id_rayon'), $this->session->userdata('id_level'));
 		//$data['total_harga_kendaraan'] = $this->Kendaraan_model->get_total_harga($this->session->userdata('id_rayon'), $this->session->userdata('id_level'));

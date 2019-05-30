@@ -129,7 +129,7 @@
                   </table>
                 </div>
                 <center>
-                  <a href="<?php echo base_url('Barang/')?>" class="btn btn-sm btn-warning">Lihat Lebih Banyak</a>
+                  <a href="<?php echo base_url('barang')?>" class="btn btn-sm btn-warning">Lihat Lebih Banyak</a>
                 </center>
               </div>
               <div class="tab-pane" id="messages">
@@ -162,7 +162,7 @@
                             <?php echo $value->nama_kendaraan; ?>
                           </td>
                           <td>
-                            <?php echo $value->plat; ?>
+                            <?php echo $value->nomor_polisi; ?>
                           </td>
                           <td class="text-warning">
                             Rp. <?php echo number_format($value->harga); ?>
@@ -206,7 +206,7 @@
                             <?php echo $value->id_properti; ?>
                           </td>
                           <td>
-                            <?php echo $value->luas, " M2"; ?>
+                            <?php echo $value->luas_tanah, " M2"; ?>
                           </td>
                           <td>
                             <?php echo $value->no_sertifikat; ?>

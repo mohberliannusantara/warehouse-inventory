@@ -72,7 +72,7 @@ class Barang extends CI_Controller {
 
 				$this->load->library('upload', $config);
 
-				if ( ! $this->upload->do_upload('gambar'))
+				if ( !$this->upload->do_upload('gambar'))
 				{
 					$data['upload_error'] = $this->upload->display_errors();
 
@@ -81,17 +81,16 @@ class Barang extends CI_Controller {
 					$this->load->view('admin/templates/header', $data);
 					$this->load->view('admin/barang/create', $data);
 					$this->load->view('admin/templates/footer');
-
-				} else { //jika berhasil upload
-
+				} 
+				else 
+				{ //jika berhasil upload
 					$img_data = $this->upload->data();
 					$post_image = $img_data['file_name'];
-
 				}
-			} else { //jika tidak upload gambar
-
+			} 
+			else 
+			{ //jika tidak upload gambar
 				$post_image = '';
-
 			}
 
 			$post_data = array(
@@ -104,7 +103,8 @@ class Barang extends CI_Controller {
 				'id_rayon' => $this->input->post('rayon')
 			);
 
-			if( empty($data['upload_error']) ) {
+			if( empty($data['upload_error']) ) 
+			{
 				$this->barang_model->create($post_data);
 				redirect('admin/barang','refresh');
 			}

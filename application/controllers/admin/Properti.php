@@ -91,7 +91,7 @@ class Properti extends CI_Controller
         $this->load->library('upload', $config, 'pajak'); // Create custom object for pajak upload
         $this->pajak->initialize($config);
         $upload_pajak = $this->pajak->do_upload('foto_pajak');
-
+        
         // Sertifikat upload
         $config = array();
         $config['upload_path']    = './assets/uploads/properti/';
@@ -106,7 +106,6 @@ class Properti extends CI_Controller
         if ( !$this->properti->do_upload('foto_properti') || !$this->sertifikat->do_upload('foto_sertifikat') || !$this->pajak->do_upload('foto_pajak'))
         {
           // $data['upload_error'] = $this->upload->display_errors();
-
           $sertifikat_data = '';
           $pajak_data = '';
           $properti_data = '';
@@ -114,11 +113,9 @@ class Properti extends CI_Controller
           $this->load->view('admin/templates/header', $data);
           $this->load->view('admin/properti/create', $data);
           $this->load->view('admin/templates/footer');
-
         }
         else
         { //jika berhasil upload
-
           $img_data = $this->sertifikat->data();
           $sertifikat_data = $img_data['file_name'];
 
@@ -127,7 +124,6 @@ class Properti extends CI_Controller
 
           $img_data = $this->properti->data();
           $properti_data = $img_data['file_name'];
-
         }
       }
       else
@@ -164,6 +160,7 @@ class Properti extends CI_Controller
       if( empty($data['upload_error']) ) {
         $this->properti_model->create($post_data);
         redirect('admin/properti','refresh');
+        // var_dump($post_data);
       }
     }
   }
@@ -324,6 +321,7 @@ class Properti extends CI_Controller
       if( empty($data['upload_error']) ) {
         $this->properti_model->update($post_data, $id);
         redirect('admin/properti','refresh');
+        // var_dump($post_data);
       }
     }
   }

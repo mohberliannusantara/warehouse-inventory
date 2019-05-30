@@ -52,14 +52,26 @@ class Barang_model extends CI_Model
   //   }
   // }
 
-  public function get()
+  public function get($id_rayon = null)
   {
+    if ($id_rayon) {
+      $this->db->where('barang.id_rayon', $id_rayon);
+      $this->db->join('rayon', 'barang.id_rayon = rayon.id_rayon');
+      $this->db->join('jenis_barang', 'barang.id_jenis_barang = jenis_barang.id_jenis_barang');
+      $this->db->join('kondisi', 'barang.id_kondisi = kondisi.id_kondisi');
+      $this->db->from('barang', 10, 20);
+
+      $query = $this->db->get();
+    } else {
       $this->db->join('rayon', 'barang.id_rayon = rayon.id_rayon');
       $this->db->join('jenis_barang', 'barang.id_jenis_barang = jenis_barang.id_jenis_barang');
       $this->db->join('kondisi', 'barang.id_kondisi = kondisi.id_kondisi');
       $this->db->from('barang');
 
       $query = $this->db->get();
+    }
+    
+      
       return $query->result();
   }
 
