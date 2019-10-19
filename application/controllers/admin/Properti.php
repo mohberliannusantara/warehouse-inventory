@@ -44,16 +44,16 @@ class Properti extends CI_Controller
     $this->form_validation->set_rules('alamat', 'Alamat', 'trim|required');
     $this->form_validation->set_rules('rayon', 'Rayon', 'trim|required');
     $this->form_validation->set_rules('jenis_properti', 'Jenis Properti', 'trim|required');
-    $this->form_validation->set_rules('tahun_perolehan', 'Tahun Perolehan', 'trim|required');
+    $this->form_validation->set_rules('tahun_perolehan', 'Tahun Perolehan', 'trim');
     $this->form_validation->set_rules('harga', 'Harga', 'trim|required');
-    $this->form_validation->set_rules('no_sertifikat', 'Nomor Sertifikat', 'trim|required');
-    $this->form_validation->set_rules('tanggal_berlaku_sertifikat', 'Tanggal Berlaku Sertifikat', 'trim|required');
-    $this->form_validation->set_rules('tanggal_kadaluarsa_sertifikat', 'Tanggal Kadaluarsa Sertifikat', 'trim|required');
+    $this->form_validation->set_rules('no_sertifikat', 'Nomor Sertifikat', 'trim');
+    $this->form_validation->set_rules('tanggal_berlaku_sertifikat', 'Tanggal Berlaku Sertifikat', 'trim');
+    $this->form_validation->set_rules('tanggal_kadaluarsa_sertifikat', 'Tanggal Kadaluarsa Sertifikat', 'trim');
     $this->form_validation->set_rules('status', 'Status', 'trim');
     $this->form_validation->set_rules('luas_tanah', 'Luas Tanah', 'trim');
     $this->form_validation->set_rules('luas_bangunan', 'Luas Bangunan', 'trim');
-    $this->form_validation->set_rules('no_pajak', 'Nomor Pajak', 'trim|required');
-    $this->form_validation->set_rules('lokasi', 'Lokasi', 'trim|required');
+    $this->form_validation->set_rules('no_pajak', 'Nomor Pajak', 'trim');
+    $this->form_validation->set_rules('lokasi', 'Lokasi', 'trim');
     $this->form_validation->set_rules('keterangan', 'Keterangan', 'trim');
 
     $sertifikat_data = '';
@@ -68,20 +68,20 @@ class Properti extends CI_Controller
     }
     else
     {
-      if ( isset($_FILES['foto_sertifikat']) && $_FILES['foto_sertifikat']['size'] > 0 || isset($_FILES['foto_pajak']) && $_FILES['foto_pajak']['size'] > 0 || isset($_FILES['foto_properti']) && $_FILES['foto_properti']['size'] > 0 )
+      if ( isset($_FILES['file_sertifikat']) && $_FILES['file_sertifikat']['size'] > 0 || isset($_FILES['foto_pajak']) && $_FILES['foto_pajak']['size'] > 0 || isset($_FILES['foto_properti']) && $_FILES['foto_properti']['size'] > 0 )
       {
         // Sertifikat upload
         $config = array();
         $config['upload_path']    = './assets/uploads/properti/sertifikat/';
-        $config['allowed_types']	= 'gif|jpg|png|jpeg';
+        $config['allowed_types']	= 'pdf';
         $config['max_size'] 			= '1000000000';
         $config['max_width']			= '5000';
         $config['max_height'] 		= '5000';
         $this->load->library('upload', $config, 'sertifikat'); // Create custom object for sertifikat upload
         $this->sertifikat->initialize($config);
-        $upload_sertifikat = $this->sertifikat->do_upload('foto_sertifikat');
+        $upload_sertifikat = $this->sertifikat->do_upload('file_sertifikat');
 
-        // Sertifikat upload
+        // Pajak upload
         $config = array();
         $config['upload_path']    = './assets/uploads/properti/pajak/';
         $config['allowed_types']	= 'gif|jpg|png|jpeg';
@@ -92,7 +92,7 @@ class Properti extends CI_Controller
         $this->pajak->initialize($config);
         $upload_pajak = $this->pajak->do_upload('foto_pajak');
         
-        // Sertifikat upload
+        // Properti foto upload
         $config = array();
         $config['upload_path']    = './assets/uploads/properti/';
         $config['allowed_types']	= 'gif|jpg|png|jpeg';
@@ -103,7 +103,7 @@ class Properti extends CI_Controller
         $this->properti->initialize($config);
         $upload_properti = $this->properti->do_upload('foto_properti');
 
-        if ( !$this->properti->do_upload('foto_properti') || !$this->sertifikat->do_upload('foto_sertifikat') || !$this->pajak->do_upload('foto_pajak'))
+        if ( !$this->properti->do_upload('foto_properti') || !$this->sertifikat->do_upload('file_sertifikat') || !$this->pajak->do_upload('foto_pajak'))
         {
           // $data['upload_error'] = $this->upload->display_errors();
           $sertifikat_data = '';
@@ -154,7 +154,7 @@ class Properti extends CI_Controller
         'status' => $this->input->post('status'),
         'foto_properti' => $properti_data,
         'foto_pajak' => $pajak_data,
-        'foto_sertifikat' => $sertifikat_data
+        'file_sertifikat' => $sertifikat_data
       );
 
       if( empty($data['upload_error']) ) {
@@ -173,7 +173,7 @@ class Properti extends CI_Controller
     $data['rayon'] = $this->rayon_model->get();
 
     $old_image_properti = $data['properti']->foto_properti;
-    $old_image_sertifikat = $data['properti']->foto_sertifikat;
+    $old_image_sertifikat = $data['properti']->file_sertifikat;
     $old_image_pajak = $data['properti']->foto_pajak;
 
     $this->form_validation->set_rules('nama_properti', 'Nama Properti', 'trim|required');
@@ -204,7 +204,7 @@ class Properti extends CI_Controller
     }
     else
     {
-      if ( isset($_FILES['foto_sertifikat']) && $_FILES['foto_sertifikat']['size'] > 0 || isset($_FILES['foto_pajak']) && $_FILES['foto_pajak']['size'] > 0 || isset($_FILES['foto_properti']) && $_FILES['foto_properti']['size'] > 0 )
+      if ( isset($_FILES['file_sertifikat']) && $_FILES['file_sertifikat']['size'] > 0 || isset($_FILES['foto_pajak']) && $_FILES['foto_pajak']['size'] > 0 || isset($_FILES['foto_properti']) && $_FILES['foto_properti']['size'] > 0 )
       {
         // Sertifikat upload
         $config = array();
@@ -215,7 +215,7 @@ class Properti extends CI_Controller
         $config['max_height'] 		= '5000';
         $this->load->library('upload', $config, 'sertifikat'); // Create custom object for sertifikat upload
         $this->sertifikat->initialize($config);
-        $upload_sertifikat = $this->sertifikat->do_upload('foto_sertifikat');
+        $upload_sertifikat = $this->sertifikat->do_upload('file_sertifikat');
 
         // Sertifikat upload
         $config = array();
@@ -239,7 +239,7 @@ class Properti extends CI_Controller
         $this->properti->initialize($config);
         $upload_properti = $this->properti->do_upload('foto_properti');
 
-        if ( !$this->properti->do_upload('foto_properti') || !$this->sertifikat->do_upload('foto_sertifikat') || !$this->pajak->do_upload('foto_pajak'))
+        if ( !$this->properti->do_upload('foto_properti') || !$this->sertifikat->do_upload('file_sertifikat') || !$this->pajak->do_upload('foto_pajak'))
         {
           // $data['upload_error'] = $this->upload->display_errors();
 
@@ -315,7 +315,7 @@ class Properti extends CI_Controller
         'status' => $this->input->post('status'),
         'foto_properti' => $properti_data,
         'foto_pajak' => $pajak_data,
-        'foto_sertifikat' => $sertifikat_data
+        'file_sertifikat' => $sertifikat_data
       );
 
       if( empty($data['upload_error']) ) {

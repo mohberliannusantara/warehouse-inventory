@@ -23,9 +23,9 @@
           <div class="card">
             <div class="card-header card-header-warning card-header-icon">
               <div class="card-icon">
-                <i class="material-icons">local_shipping</i>
+                <i class="material-icons">home</i>
               </div>
-              <h4 class="card-title">Daftar Kendaraan</h4>
+              <h4 class="card-title">Daftar Properti</h4>
             </div>
             <div class="card-body">
               <div class="material-datatables">
