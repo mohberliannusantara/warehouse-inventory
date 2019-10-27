@@ -47,7 +47,7 @@
         </tr>
         <tr>
           <th>Tahun Perolehan</th>
-          <td><?php echo date('d/m/Y', strtotime($properti->tahun_perolehan)) ?></td>
+          <td><?php echo date('d/m/Y', strtotime($properti->tahun_perolehan)) ?>
         </tr>
         <tr>
           <th>Harga Perolehan</th>
@@ -62,8 +62,9 @@
           <td>
             <?php echo $properti->no_sertifikat ?>
             <br>
-            <?php if( $properti->foto_sertifikat ) : ?>
-              <a href="<?php echo base_url('assets/uploads/properti/pajak/') .$properti->foto_pajak ?>" target="_blank" class="btn btn-sm btn-rose">Lihat</a>
+            <?php if( $properti->file_sertifikat ) : ?>
+              <!-- <a href="<?php echo base_url('assets/uploads/properti/sertfikat/') .$properti->file_sertifikat ?>" target="_blank" class="btn btn-sm btn-rose">Lihat</a> -->
+              <a href="<?php echo base_url('admin/properti/file/'.$properti->file_sertifikat)?>" target="_blank" class="btn btn-sm btn-rose">Lihat</a>
             <?php else: ?>
               <a href="<?php echo base_url('admin/properti/edit/').$properti->id_properti ?>" class="btn btn-sm btn-primary" target="_blank">Upload</a>
             <?php endif; ?>

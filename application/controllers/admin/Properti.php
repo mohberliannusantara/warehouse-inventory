@@ -10,6 +10,7 @@ class Properti extends CI_Controller
     $this->load->model('properti_model');
     $this->load->model('rayon_model');
     $this->load->library('form_validation');
+    $this->load->helper('download');
 
     if (!$this->session->logged_in == true) {
       redirect('welcome', 'refresh');
@@ -68,8 +69,6 @@ class Properti extends CI_Controller
     }
     else
     {
-      if ( isset($_FILES['file_sertifikat']) && $_FILES['file_sertifikat']['size'] > 0 || isset($_FILES['foto_pajak']) && $_FILES['foto_pajak']['size'] > 0 || isset($_FILES['foto_properti']) && $_FILES['foto_properti']['size'] > 0 )
-      {
         // Sertifikat upload
         $config = array();
         $config['upload_path']    = './assets/uploads/properti/sertifikat/';
@@ -125,16 +124,6 @@ class Properti extends CI_Controller
           $img_data = $this->properti->data();
           $properti_data = $img_data['file_name'];
         }
-      }
-      else
-      { //jika tidak upload gambar
-
-        $sertifikat_data = '';
-        $pajak_data = '';
-        $properti_data = '';
-
-      }
-
       // // Check uploads success
       $post_data = array(
         'nama_properti' => $this->input->post('nama_properti'),
@@ -180,16 +169,16 @@ class Properti extends CI_Controller
     $this->form_validation->set_rules('alamat', 'Alamat', 'trim|required');
     $this->form_validation->set_rules('rayon', 'Rayon', 'trim|required');
     $this->form_validation->set_rules('jenis_properti', 'Jenis Properti', 'trim|required');
-    $this->form_validation->set_rules('tahun_perolehan', 'Tahun Perolehan', 'trim|required');
+    $this->form_validation->set_rules('tahun_perolehan', 'Tahun Perolehan', 'trim');
     $this->form_validation->set_rules('harga', 'Harga', 'trim|required');
-    $this->form_validation->set_rules('no_sertifikat', 'Nomor Sertifikat', 'trim|required');
-    $this->form_validation->set_rules('tanggal_berlaku_sertifikat', 'Tanggal Berlaku Sertifikat', 'trim|required');
-    $this->form_validation->set_rules('tanggal_kadaluarsa_sertifikat', 'Tanggal Kadaluarsa Sertifikat', 'trim|required');
+    $this->form_validation->set_rules('no_sertifikat', 'Nomor Sertifikat', 'trim');
+    $this->form_validation->set_rules('tanggal_berlaku_sertifikat', 'Tanggal Berlaku Sertifikat', 'trim');
+    $this->form_validation->set_rules('tanggal_kadaluarsa_sertifikat', 'Tanggal Kadaluarsa Sertifikat', 'trim');
     $this->form_validation->set_rules('status', 'Status', 'trim');
     $this->form_validation->set_rules('luas_tanah', 'Luas Tanah', 'trim');
     $this->form_validation->set_rules('luas_bangunan', 'Luas Bangunan', 'trim');
-    $this->form_validation->set_rules('no_pajak', 'Nomor Pajak', 'trim|required');
-    $this->form_validation->set_rules('lokasi', 'Lokasi', 'trim|required');
+    $this->form_validation->set_rules('no_pajak', 'Nomor Pajak', 'trim');
+    $this->form_validation->set_rules('lokasi', 'Lokasi', 'trim');
     $this->form_validation->set_rules('keterangan', 'Keterangan', 'trim');
 
     $sertifikat_data = '';
@@ -209,7 +198,7 @@ class Properti extends CI_Controller
         // Sertifikat upload
         $config = array();
         $config['upload_path']    = './assets/uploads/properti/sertifikat/';
-        $config['allowed_types']	= 'gif|jpg|png|jpeg';
+        $config['allowed_types']	= 'pdf';
         $config['max_size'] 			= '1000000000';
         $config['max_width']			= '5000';
         $config['max_height'] 		= '5000';
@@ -330,6 +319,13 @@ class Properti extends CI_Controller
   {
     $this->properti_model->delete($id);
     redirect('admin/properti', 'refresh');
+  }
+
+  public function file($name)
+  {
+    $tofile= realpath("assets/uploads/properti/sertifikat/".$name);
+    header('Content-Type: application/pdf');
+    readfile($tofile);
   }
 
   public function export()

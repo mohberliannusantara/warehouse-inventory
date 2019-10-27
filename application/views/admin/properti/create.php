@@ -95,7 +95,7 @@
                 <label class="col-sm-2 col-form-label">Status</label>
                 <div class="col-sm-10">
                   <div class="form-group">
-                    <input class="form-control" type="text" name="status" value="<?php echo set_value('status') ?>"/>
+                    <input class="form-control" type="text" name="status" value="<?php echo set_value('status') ?>" required="true"/>
                     <span class="bmd-help">Tambahkan status properti.</span>
                   </div>
                 </div>
@@ -108,10 +108,10 @@
                     <span class="bmd-help">Tambahkan tahun perolehan.</span>
                   </div>
                 </div>
-                <label class="col-xs-2 col-form-label">Estimasi Harga</label>
+                <label class="col-xs-2 col-form-label">Estimasi Harga (Rp.)</label>
                 <div class="col-sm-5">
                   <div class="form-group">
-                    <input class="form-control number" type="text" name="harga" value="<?php echo set_value('harga') ?>" required="true"/>
+                    <input class="form-control number" type="text" name="harga" value="<?php echo set_value('harga') ?>"/>
                     <span class="bmd-help">Tambahkan harga properti.</span>
                   </div>
                 </div>
@@ -121,15 +121,12 @@
                 <label class="col-sm-2 col-form-label">File Sertfikat</label>
                 <div class="col-sm-4">
                   <div class="fileinput fileinput-new text-center" data-provides="fileinput">
-                    <div class="fileinput-new thumbnail">
-                      <img src="<?php echo base_url() ?>assets/img/image_placeholder.jpg" alt="...">
-                    </div>
                     <div class="fileinput-preview fileinput-exists thumbnail"></div>
                     <div>
                       <span class="btn btn-warning btn-round btn-file">
-                        <span class="fileinput-new">Select image</span>
+                        <span class="fileinput-new">Select File</span>
                         <span class="fileinput-exists">Change</span>
-                        <input type="file" name="foto_sertifikat" />
+                        <input type="file" name="file_sertifikat" />
                       </span>
                       <a href="#pablo" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i> Remove</a>
                     </div>
@@ -140,7 +137,7 @@
                 <label class="col-sm-2 col-form-label">Nomor Sertifikat</label>
                 <div class="col-sm-10">
                   <div class="form-group">
-                    <input class="form-control" type="text" name="no_sertifikat" value="<?php echo set_value('no_sertifikat') ?>" required="true"/>
+                    <input class="form-control" type="text" name="no_sertifikat" value="<?php echo set_value('no_sertifikat') ?>"/>
                     <span class="bmd-help">Tambahkan nomor sertifikat properti.</span>
                   </div>
                 </div>
@@ -150,14 +147,14 @@
                 <label class="col-sm-2 col-form-label">Tanggal Berlaku</label>
                 <div class="col-sm-4">
                   <div class="form-group">
-                    <input type="text" class="form-control datepicker" name="tanggal_berlaku_sertifikat" value="10/06/2018" required="true" />
+                    <input type="text" class="form-control datepicker" name="tanggal_berlaku_sertifikat" value="10/06/2018"/>
                     <span class="bmd-help">Tambahkan tanggal berlaku.</span>
                   </div>
                 </div>
                 <label class="col-xs-2 col-form-label">Tanggal Kadaluarsa</label>
                 <div class="col-sm-4">
                   <div class="form-group">
-                    <input type="text" class="form-control datepicker" name="tanggal_kadaluarsa_sertifikat" value="10/06/2018" required="true" />
+                    <input type="text" class="form-control datepicker" name="tanggal_kadaluarsa_sertifikat" value="10/06/2018"/>
                     <span class="bmd-help">Tambahkan tanggal kadaluarsa.</span>
                   </div>
                 </div>
@@ -184,7 +181,7 @@
                 <label class="col-sm-2 col-form-label">Nomor Pajak (PBB)</label>
                 <div class="col-sm-10">
                   <div class="form-group">
-                    <input type="text" class="form-control" name="no_pajak" value="<?php echo set_value('no_pajak') ?>" required="true" />
+                    <input type="text" class="form-control" name="no_pajak" value="<?php echo set_value('no_pajak') ?>"/>
                     <span class="bmd-help">Tambahkan nomor pajak.</span>
                   </div>
                 </div>

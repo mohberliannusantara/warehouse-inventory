@@ -195,6 +195,13 @@ class Properti extends CI_Controller
         $this->properti_model->delete($id);
     }
 
+    public function file($name)
+    {
+        $tofile= realpath("assets/uploads/properti/sertifikat/".$name);
+        header('Content-Type: application/pdf');
+        readfile($tofile);
+    }
+
     public function export()
     {
         // Load plugin PHPExcel nya

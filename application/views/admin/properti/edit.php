@@ -131,8 +131,8 @@
                     <div class="col-sm-4">
                       <div class="fileinput fileinput-new text-center" data-provides="fileinput">
                         <div class="fileinput-new thumbnail">
-                          <?php if ($properti->foto_sertifikat): ?>
-                            <img src="<?php echo base_url('assets/uploads/properti/sertifikat/').$properti->foto_sertifikat ?>">
+                          <?php if ($properti->file_sertifikat): ?>
+                            <img src="<?php echo base_url('assets/uploads/properti/sertifikat/').$properti->file_sertifikat ?>">
                           <?php else: ?>
                             <img src="<?php echo base_url() ?>assets/img/image_placeholder.jpg" alt="...">
                           <?php endif; ?>
@@ -142,7 +142,7 @@
                           <span class="btn btn-warning btn-round btn-file">
                             <span class="fileinput-new">Select image</span>
                             <span class="fileinput-exists">Change</span>
-                            <input type="file" name="foto_sertifikat" />
+                            <input type="file" name="file_sertifikat" />
                           </span>
                           <a href="#pablo" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i> Remove</a>
                         </div>

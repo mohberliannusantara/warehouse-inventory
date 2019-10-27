@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Oct 19, 2019 at 10:05 PM
+-- Generation Time: Oct 27, 2019 at 11:18 AM
 -- Server version: 5.7.21-1
 -- PHP Version: 7.0.29-1+b1
 
@@ -240,40 +240,27 @@ CREATE TABLE `properti` (
   `luas_tanah` int(11) NOT NULL,
   `luas_bangunan` int(11) NOT NULL,
   `harga` bigint(11) NOT NULL,
-  `tahun_perolehan` date DEFAULT NULL,
+  `tahun_perolehan` varchar(12) DEFAULT NULL,
   `keterangan` text NOT NULL,
   `no_sertifikat` varchar(255) NOT NULL,
-  `tanggal_berlaku_sertifikat` date DEFAULT NULL,
-  `tanggal_kadaluarsa_sertifikat` date DEFAULT NULL,
+  `tanggal_berlaku_sertifikat` varchar(12) DEFAULT NULL,
+  `tanggal_kadaluarsa_sertifikat` varchar(12) DEFAULT NULL,
   `no_pajak` varchar(255) NOT NULL,
   `alamat` text NOT NULL,
   `lokasi` text NOT NULL,
   `status` varchar(100) NOT NULL,
   `foto_properti` text NOT NULL,
   `foto_pajak` text NOT NULL,
-  `foto_sertifikat` text NOT NULL
+  `file_sertifikat` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `properti`
 --
 
-INSERT INTO `properti` (`id_properti`, `nama_properti`, `jenis_properti`, `id_rayon`, `luas_tanah`, `luas_bangunan`, `harga`, `tahun_perolehan`, `keterangan`, `no_sertifikat`, `tanggal_berlaku_sertifikat`, `tanggal_kadaluarsa_sertifikat`, `no_pajak`, `alamat`, `lokasi`, `status`, `foto_properti`, `foto_pajak`, `foto_sertifikat`) VALUES
-(3, 'Lokasi Tanah Tambakan Kec Bangil', 'Tanah', 10, 119, 0, 40000000, '0000-00-00', 'Lokasi Tanah Tambakan Kec Bangil', '28498293', '0000-00-00', '0000-00-00', '9282342333', 'Desa Tambanan, Kec. Bangil', 'https://goo.gl/maps/JjoWEbWLckA2', '', '', '', ''),
-(4, 'LOKASI TANAH RAYA BROMO DEKAT ANU DEKAT ANU DEKAT ANU', 'Tanah', 6, 436, 60, 150000000, '0000-00-00', 'LOKASI TANAH RAYA BROMO DEKAT ANU DEKAT ANU DEKAT ANU', 'Surat Pernyataan Pelepasan Hak Atas Tanah No.02/II/1987', '0000-00-00', '0000-00-00', '35.74.040.002.012-0051.0', 'Desa Karangsentul, Gondang Wetan Desa Karangsentul, Gondang WetanDesa Karangsentul, Gondang Wetan', 'https://goo.gl/maps/oRr6eyRt44J2', '', '', '', ''),
-(5, 'LOKASI RUMAH DINAS MANAJER AREA', 'Tanah dan Bangunan', 4, 348, 113, 430000000, '1966-10-18', 'Hak Pakai\r\n10/20/1971', 'Sertifikat No.1', '1971-10-20', NULL, '', 'JL. DR WAHIDIN 86-88, Purworejo, pasuruan', 'https://goo.gl/maps/5bCWvCU3q5Q2', 'PLN', 'PSR_RUMAH DINAS MA PASURUAN_1.JPG', 'WhatsApp Image 2018-03-26 at 01.59.32.jpg', 'sertifikat-tanah-asli.jpg'),
-(6, 'tanah pln pusat', 'Tanah dan Bangunan', 1, 12312, 123123, 1, '0000-00-00', 'tanah pln pusat', '234234', '0000-00-00', '0000-00-00', '12312312', 'jl. patimura perumaha agkasa rt 01 rw 01 kecamatan lowokwaru', 'Jl. Sukarno Hatta No. 123', '', 'background-55.jpg', 'background-63.jpg', 'background-47.jpg'),
-(9, 'hp', 'Tanah dan Bangunan', 2, 12312, 123123, 130, '0000-00-00', 'hp', '234234', '0000-00-00', '0000-00-00', '12312312', 'asdasdas', 'Jl. Sukarno Hatta No. 123', '', '', '', ''),
-(10, 'Tanah Lowokwaru', 'Tanah dan Bangunan', 1, 12312, 122123, 199, '0000-00-00', 'Tanah Lowokwaru', '234234', '0000-00-00', '0000-00-00', '12312312', 'asdkjasd', 'asdasdasdasd', '', '', '', ''),
-(11, 'uuuuuuwwww', 'Tanah dan Bangunan', 4, 12312, 123123, 1, '0000-00-00', 'uuuuuuwwww', '234234', '0000-00-00', '0000-00-00', '12312312', 'aaaaaaaaaaaaaa', 'aaaaaaaa', '', '', '', ''),
-(12, 'poliasd', 'Tanah dan Bangunan', 8, 12312, 123123, 7, '0000-00-00', 'poliasd', '234234', '0000-00-00', '0000-00-00', '12312312', 'asmdnasmnd', 'ssdfffsd', '', 'background1.jpg', 'kendaraan1.jpg', 'barang1.jpeg'),
-(13, 'asjdhkaj', 'Tanah dan Bangunan', 3, 12312, 1323, 1, '0000-00-00', 'asjdhkaj', '234234', '0000-00-00', '0000-00-00', '12312312', 'asd', 'asdasdasdasd', 'Sewa', '', '', ''),
-(14, 'asdd', 'Tanah dan Bangunan', 3, 12312, 23123, 12, '0000-00-00', 'asdd', '28498293', '0000-00-00', '0000-00-00', '123123', 'asd', 'asdas', '', '', '', ''),
-(15, 'kasjdja', 'Tanah dan Bangunan', 2, 987777, 87676, 87, '0000-00-00', 'kasjdja', '09809809', '0000-00-00', '0000-00-00', '9878798', 'ksjdj', 'kjjh', 'Sewa', '', '', ''),
-(16, 'erwsfd', 'Tanah dan Bangunan', 6, 8989, 98898, 8, '0000-00-00', 'erwsfd', '878', '0000-00-00', '0000-00-00', '8798', 'kjjk', 'kjbjk', 'Sewa', '', '', ''),
-(17, 'erwsfd', 'Tanah dan Bangunan', 6, 8989, 98898, 8, '0000-00-00', 'erwsfd', '878', '0000-00-00', '0000-00-00', '8798', 'kjjk', 'kjbjk', 'Sewa', '', '', ''),
-(18, 'asdn', 'Tanah dan Bangunan', 3, 12312, 123123, 545, '0000-00-00', 'asdn', '28498293', '0000-00-00', '0000-00-00', '9282342333', 'sdkjnkj', 'Jl. Sukarno Hatta No. 123', 'Sewa', 'background-47.jpg', 'background-52.jpg', 'POLITEKNIK_NEGERI_MALANG5.png'),
-(19, 'asdn', 'Tanah dan Bangunan', 3, 12312, 123123, 545, '0000-00-00', 'asdn', '28498293', '0000-00-00', '0000-00-00', '9282342333', 'sdkjnkj', 'Jl. Sukarno Hatta No. 123', 'Sewa', 'background-49.jpg', 'background-54.jpg', 'POLITEKNIK_NEGERI_MALANG7.png');
+INSERT INTO `properti` (`id_properti`, `nama_properti`, `jenis_properti`, `id_rayon`, `luas_tanah`, `luas_bangunan`, `harga`, `tahun_perolehan`, `keterangan`, `no_sertifikat`, `tanggal_berlaku_sertifikat`, `tanggal_kadaluarsa_sertifikat`, `no_pajak`, `alamat`, `lokasi`, `status`, `foto_properti`, `foto_pajak`, `file_sertifikat`) VALUES
+(30, 'halo', 'Tanah dan Bangunan', 3, 12312, 123123, 1, '10/11/2018', 'halo', '28498293', '10/11/2018', '10/16/2018', '123123', 'as', 'asdas', '', 'banana1.png', 'fast-food-33.jpg', 'faisal.pdf'),
+(31, 'rumah', 'Tanah dan Bangunan', 1, 12312, 123123, 130, '04/14/1999', 'rumah', '234234', '02/14/2013', '03/14/2013', '9282342333', 'jaasd', 'asdasdasdasd', 'Sewa', 'p035s0001_detpak_4_large_food_tray_white1.png', 'fast-food-31.jpg', 'Sistem_Informasi_Akademik1.pdf');
 
 -- --------------------------------------------------------
 
@@ -421,7 +408,7 @@ ALTER TABLE `pemilik_kendaraan`
 -- AUTO_INCREMENT for table `properti`
 --
 ALTER TABLE `properti`
-  MODIFY `id_properti` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id_properti` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 --
 -- AUTO_INCREMENT for table `rayon`
 --
