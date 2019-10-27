@@ -127,20 +127,20 @@
                   </div>
                   <br>
                   <div class="row">
-                    <label class="col-sm-2 col-form-label">Foto / Gambar Sertfikat</label>
+                  <label class="col-sm-2 col-form-label">File Sertfikat (PDF)</label>
                     <div class="col-sm-4">
                       <div class="fileinput fileinput-new text-center" data-provides="fileinput">
                         <div class="fileinput-new thumbnail">
                           <?php if ($properti->file_sertifikat): ?>
-                            <img src="<?php echo base_url('assets/uploads/properti/sertifikat/').$properti->file_sertifikat ?>">
+                            <?php echo base_url('assets/uploads/properti/sertifikat/').$properti->file_sertifikat ?>
                           <?php else: ?>
-                            <img src="<?php echo base_url() ?>assets/img/image_placeholder.jpg" alt="...">
+                            
                           <?php endif; ?>
                         </div>
                         <div class="fileinput-preview fileinput-exists thumbnail"></div>
                         <div>
                           <span class="btn btn-warning btn-round btn-file">
-                            <span class="fileinput-new">Select image</span>
+                          <span class="fileinput-new">Select File</span>
                             <span class="fileinput-exists">Change</span>
                             <input type="file" name="file_sertifikat" />
                           </span>

@@ -118,7 +118,7 @@
               </div>
               <br>
               <div class="row">
-                <label class="col-sm-2 col-form-label">File Sertfikat</label>
+                <label class="col-sm-2 col-form-label">File Sertfikat (PDF)</label>
                 <div class="col-sm-4">
                   <div class="fileinput fileinput-new text-center" data-provides="fileinput">
                     <div class="fileinput-preview fileinput-exists thumbnail"></div>
